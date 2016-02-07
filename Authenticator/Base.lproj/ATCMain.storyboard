@@ -705,7 +705,7 @@
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="djA-mP-XkM">
                                                                     <rect key="frame" x="13" y="58" width="134" height="19"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Feb 5, 2016 16:11" id="Lrv-4M-Haw">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Feb 5, 2016 16:11" id="Lrv-4M-Haw">
                                                                         <font key="font" size="12" name="HelveticaNeue-Light"/>
                                                                         <color key="textColor" red="0.6470588235294118" green="0.6470588235294118" blue="0.6470588235294118" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -713,7 +713,7 @@
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3z0-Af-kgE">
                                                                     <rect key="frame" x="13" y="10" width="134" height="19"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="TongKuo" id="LZq-K6-LpW">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="TongKuo" id="LZq-K6-LpW">
                                                                         <font key="font" size="12" name="HelveticaNeue-Light"/>
                                                                         <color key="textColor" red="0.64705882349999999" green="0.64705882349999999" blue="0.64705882349999999" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -721,7 +721,7 @@
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oig-Ue-GI5">
                                                                     <rect key="frame" x="12" y="33" width="135" height="23"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Facebook" id="p1N-6z-L8s">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Facebook" id="p1N-6z-L8s">
                                                                         <font key="font" size="15" name="HelveticaNeue-Light"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -731,6 +731,12 @@
                                                                     <rect key="frame" x="155" y="3" width="171" height="74"/>
                                                                 </customView>
                                                             </subviews>
+                                                            <connections>
+                                                                <outlet property="createdDateField" destination="djA-mP-XkM" id="seB-hn-m4o"/>
+                                                                <outlet property="otpBadgeView" destination="H4A-Yf-8Iy" id="YjQ-0R-Cld"/>
+                                                                <outlet property="serviceNameField" destination="oig-Ue-GI5" id="WXR-jK-RPJ"/>
+                                                                <outlet property="userNameField" destination="3z0-Af-kgE" id="NyI-zj-7yi"/>
+                                                            </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>

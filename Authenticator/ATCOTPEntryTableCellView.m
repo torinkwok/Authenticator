@@ -11,4 +11,21 @@
 // ATCOTPEntryTableCellView class
 @implementation ATCOTPEntryTableCellView
 
+#pragma mark - Dynamic Properties
+
+@dynamic optEntry;
+
+- ( void ) setOptEntry: ( ATCOTPEntry* )_NewEntry
+    {
+    if ( optEntry_ != _NewEntry )
+        {
+        optEntry_ = _NewEntry;
+        }
+    }
+
+- ( ATCOTPEntry* ) optEntry
+    {
+    return optEntry_;
+    }
+
 @end // ATCOTPEntryTableCellView class
