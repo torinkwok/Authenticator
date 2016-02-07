@@ -22,8 +22,8 @@
     optEntries_ = [ NSMutableOrderedSet orderedSetWithObjects:
           [ [ ATCOTPEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"fdafjkjkga" ]
         , [ [ ATCOTPEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"fda843kq" ]
-        , [ [ ATCOTPEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"fdafjkjkga" ]
-        , [ [ ATCOTPEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"fdafjkjkga" ]
+        , [ [ ATCOTPEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"quJJJLIKgjJf" ]
+        , [ [ ATCOTPEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"OIKjfanKUTHfa" ]
         , nil ];
 
     // Do any additional setup after loading the view.
@@ -52,6 +52,12 @@
 
 #pragma mark - Conforms to <NSTableViewDelegate>
 
+- ( CGFloat ) tableView: ( NSTableView* )_TableView
+            heightOfRow: ( NSInteger )_Row
+    {
+    return 91.f;
+    }
+
 - ( NSView* )tableView: ( NSTableView* )_TableView
     viewForTableColumn: ( NSTableColumn* )_TableColumn
                    row: ( NSInteger )_Row
@@ -59,7 +65,10 @@
     ATCOTPEntryTableCellView* result = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
 
     ATCOTPEntry* optEntry = [ _TableView.dataSource tableView: _TableView objectValueForTableColumn: _TableColumn row: _Row ];
-    result.createdDateField.stringValue = optEntry.createdDate.description ?: @"";
+
+    NSDateFormatter* dateFormatter = [ [ NSDateFormatter alloc ] init ];
+    [ dateFormatter setDateStyle: NSDateFormatterMediumStyle ];
+    result.createdDateField.stringValue = optEntry.createdDate ? [ dateFormatter stringFromDate: optEntry.createdDate ] : @"";
     result.serviceNameField.stringValue = optEntry.serviceName.description ?: @"";
     result.userNameField.stringValue = optEntry.userName.description ?: @"";
 

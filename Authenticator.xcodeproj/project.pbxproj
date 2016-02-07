@@ -18,6 +18,9 @@
 		8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960191C670CBB007241D9 /* ATCMainWindowController.m */; settings = {ASSET_TAGS = (); }; };
 		8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339601C1C670D96007241D9 /* ATCMainContentView.m */; settings = {ASSET_TAGS = (); }; };
 		833960211C6712CA007241D9 /* ATCOTPBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960201C6712CA007241D9 /* ATCOTPBadgeView.m */; settings = {ASSET_TAGS = (); }; };
+		8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D85E1C671D7300A11E31 /* ALView+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
+		8373D8671C671D7300A11E31 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8601C671D7300A11E31 /* NSArray+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
+		8373D8681C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8621C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BFC1C67148A007253E3 /* ATCOTPEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BFB1C67148A007253E3 /* ATCOTPEntry.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -64,6 +67,16 @@
 		8339601C1C670D96007241D9 /* ATCMainContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainContentView.m; sourceTree = "<group>"; };
 		8339601F1C6712CA007241D9 /* ATCOTPBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPBadgeView.h; sourceTree = "<group>"; };
 		833960201C6712CA007241D9 /* ATCOTPBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPBadgeView.m; sourceTree = "<group>"; };
+		8373D85D1C671D7300A11E31 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
+		8373D85E1C671D7300A11E31 /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
+		8373D85F1C671D7300A11E31 /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
+		8373D8601C671D7300A11E31 /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PureLayout.m"; sourceTree = "<group>"; };
+		8373D8611C671D7300A11E31 /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
+		8373D8621C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+PureLayout.m"; sourceTree = "<group>"; };
+		8373D8631C671D7300A11E31 /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
+		8373D8641C671D7300A11E31 /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
+		8373D8651C671D7300A11E31 /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
+		8373D8691C671D9700A11E31 /* AuthenticatorPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthenticatorPrefixHeader.pch; sourceTree = "<group>"; };
 		83D34BF71C67145B007253E3 /* ATCOTPEntryTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntryTableCellView.h; sourceTree = "<group>"; };
 		83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntryTableCellView.m; sourceTree = "<group>"; };
 		83D34BFA1C67148A007253E3 /* ATCOTPEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntry.h; sourceTree = "<group>"; };
@@ -99,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				8324B19D1C67073900153EC7 /* Authenticator */,
+				8373D85B1C671D6300A11E31 /* vendors */,
 				8324B1B41C67073A00153EC7 /* AuthenticatorTests */,
 				8324B1BF1C67073A00153EC7 /* AuthenticatorUITests */,
 				8324B19C1C67073900153EC7 /* Products */,
@@ -143,6 +157,7 @@
 		8324B1A11C67073900153EC7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8373D8691C671D9700A11E31 /* AuthenticatorPrefixHeader.pch */,
 				8324B1AC1C67073900153EC7 /* Info.plist */,
 				8324B1A71C67073900153EC7 /* Assets.xcassets */,
 				8324B1CE1C67074800153EC7 /* Authenticator.entitlements */,
@@ -175,6 +190,31 @@
 				8324B1A91C67073900153EC7 /* ATCMain.storyboard */,
 			);
 			name = wysiwyg;
+			sourceTree = "<group>";
+		};
+		8373D85B1C671D6300A11E31 /* vendors */ = {
+			isa = PBXGroup;
+			children = (
+				8373D85C1C671D7300A11E31 /* PureLayout */,
+			);
+			name = vendors;
+			sourceTree = "<group>";
+		};
+		8373D85C1C671D7300A11E31 /* PureLayout */ = {
+			isa = PBXGroup;
+			children = (
+				8373D85D1C671D7300A11E31 /* ALView+PureLayout.h */,
+				8373D85E1C671D7300A11E31 /* ALView+PureLayout.m */,
+				8373D85F1C671D7300A11E31 /* NSArray+PureLayout.h */,
+				8373D8601C671D7300A11E31 /* NSArray+PureLayout.m */,
+				8373D8611C671D7300A11E31 /* NSLayoutConstraint+PureLayout.h */,
+				8373D8621C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m */,
+				8373D8631C671D7300A11E31 /* PureLayout+Internal.h */,
+				8373D8641C671D7300A11E31 /* PureLayout.h */,
+				8373D8651C671D7300A11E31 /* PureLayoutDefines.h */,
+			);
+			name = PureLayout;
+			path = Authenticator/vendors/PureLayout/PureLayout/PureLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,12 +354,15 @@
 				8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
+				8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */,
 				8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */,
 				8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */,
+				8373D8671C671D7300A11E31 /* NSArray+PureLayout.m in Sources */,
 				83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */,
 				833960211C6712CA007241D9 /* ATCOTPBadgeView.m in Sources */,
 				83D34BFC1C67148A007253E3 /* ATCOTPEntry.m in Sources */,
 				833960171C670C73007241D9 /* ATCMainWindow.m in Sources */,
+				8373D8681C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +494,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Authenticator/Authenticator.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Authenticator/AuthenticatorPrefixHeader.pch;
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.Authenticator;
@@ -464,6 +509,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Authenticator/Authenticator.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Authenticator/AuthenticatorPrefixHeader.pch;
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.Authenticator;

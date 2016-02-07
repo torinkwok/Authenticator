@@ -11,6 +11,11 @@
 // ATCOTPEntryTableCellView class
 @implementation ATCOTPEntryTableCellView
 
+- ( void ) awakeFromNib
+    {
+    [ self configureForAutoLayout ];
+    }
+
 #pragma mark - Dynamic Properties
 
 @dynamic optEntry;
