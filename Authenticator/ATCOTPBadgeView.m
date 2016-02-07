@@ -11,6 +11,13 @@
 // ATCOTPBadgeView class
 @implementation ATCOTPBadgeView
 
+- ( void ) awakeFromNib
+    {
+    optDrawingAttrs_ = @{ NSFontAttributeName : [ NSFont fontWithName: @"Courier New" size: 44.f ]
+                        , NSForegroundColorAttributeName : [ NSColor whiteColor ]
+                        };
+    }
+
 #pragma mark - Drawing
 
 - ( void ) drawRect: ( NSRect )_DirtyRect
@@ -28,6 +35,8 @@
                                        isFlipped: NO ];
 
     [ roundedBoundsPath fill ];
+
+//    optEntry_.
     }
 
 #pragma mark - Dynamic Properties

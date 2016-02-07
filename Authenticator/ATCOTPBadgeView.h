@@ -15,6 +15,9 @@
     {
 @private
     ATCOTPEntry __strong* optEntry_;
+    NSDictionary __strong* optDrawingAttrs_;
+
+    AGOtp __strong* agOtp_;
     }
 
 @property ( strong, readwrite ) ATCOTPEntry* optEntry;

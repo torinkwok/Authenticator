@@ -14,6 +14,7 @@
 
 // Third Party Modules
 #import "PureLayout.h"
+#import "AeroGearOTP.h"
 
 // Extensions
 #import "NSColor+ATCExtensions.h"

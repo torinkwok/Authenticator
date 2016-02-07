@@ -17,13 +17,18 @@
 		833960171C670C73007241D9 /* ATCMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960161C670C73007241D9 /* ATCMainWindow.m */; settings = {ASSET_TAGS = (); }; };
 		8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960191C670CBB007241D9 /* ATCMainWindowController.m */; settings = {ASSET_TAGS = (); }; };
 		8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339601C1C670D96007241D9 /* ATCMainContentView.m */; settings = {ASSET_TAGS = (); }; };
-		833960211C6712CA007241D9 /* ATCOTPBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960201C6712CA007241D9 /* ATCOTPBadgeView.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D85E1C671D7300A11E31 /* ALView+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8671C671D7300A11E31 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8601C671D7300A11E31 /* NSArray+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8681C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8621C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		8373D87A1C67494300A11E31 /* NSColor+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8741C67494300A11E31 /* NSColor+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		8373D87B1C67494300A11E31 /* NSBezierPath+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8761C67494300A11E31 /* NSBezierPath+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		8373D87C1C67494300A11E31 /* NSAffineTransform+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8781C67494300A11E31 /* NSAffineTransform+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
+		8373D87F1C67537500A11E31 /* ATCOTPBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D87D1C67537500A11E31 /* ATCOTPBadgeView.m */; settings = {ASSET_TAGS = (); }; };
+		8373D88E1C67548C00A11E31 /* AGBase32.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8851C67548C00A11E31 /* AGBase32.m */; settings = {ASSET_TAGS = (); }; };
+		8373D88F1C67548C00A11E31 /* AGClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8871C67548C00A11E31 /* AGClock.m */; settings = {ASSET_TAGS = (); }; };
+		8373D8901C67548C00A11E31 /* AGOtp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8891C67548C00A11E31 /* AGOtp.m */; settings = {ASSET_TAGS = (); }; };
+		8373D8911C67548C00A11E31 /* AGStringEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D88B1C67548C00A11E31 /* AGStringEncoding.m */; settings = {ASSET_TAGS = (); }; };
+		8373D8921C67548C00A11E31 /* AGTotp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D88D1C67548C00A11E31 /* AGTotp.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BFC1C67148A007253E3 /* ATCOTPEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BFB1C67148A007253E3 /* ATCOTPEntry.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -68,8 +73,6 @@
 		833960191C670CBB007241D9 /* ATCMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainWindowController.m; sourceTree = "<group>"; };
 		8339601B1C670D96007241D9 /* ATCMainContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainContentView.h; sourceTree = "<group>"; };
 		8339601C1C670D96007241D9 /* ATCMainContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainContentView.m; sourceTree = "<group>"; };
-		8339601F1C6712CA007241D9 /* ATCOTPBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPBadgeView.h; sourceTree = "<group>"; };
-		833960201C6712CA007241D9 /* ATCOTPBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPBadgeView.m; sourceTree = "<group>"; };
 		8373D85D1C671D7300A11E31 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
 		8373D85E1C671D7300A11E31 /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
 		8373D85F1C671D7300A11E31 /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
@@ -86,6 +89,20 @@
 		8373D8771C67494300A11E31 /* NSBezierPath+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBezierPath+ATCExtensions.h"; sourceTree = "<group>"; };
 		8373D8781C67494300A11E31 /* NSAffineTransform+ATCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAffineTransform+ATCExtensions.m"; sourceTree = "<group>"; };
 		8373D8791C67494300A11E31 /* NSAffineTransform+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAffineTransform+ATCExtensions.h"; sourceTree = "<group>"; };
+		8373D87D1C67537500A11E31 /* ATCOTPBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPBadgeView.m; sourceTree = "<group>"; };
+		8373D87E1C67537500A11E31 /* ATCOTPBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPBadgeView.h; sourceTree = "<group>"; };
+		8373D8811C67548C00A11E31 /* aerogear-otp.ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "aerogear-otp.ios-Prefix.pch"; sourceTree = "<group>"; };
+		8373D8831C67548C00A11E31 /* AeroGearOTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AeroGearOTP.h; sourceTree = "<group>"; };
+		8373D8841C67548C00A11E31 /* AGBase32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGBase32.h; sourceTree = "<group>"; };
+		8373D8851C67548C00A11E31 /* AGBase32.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGBase32.m; sourceTree = "<group>"; };
+		8373D8861C67548C00A11E31 /* AGClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGClock.h; sourceTree = "<group>"; };
+		8373D8871C67548C00A11E31 /* AGClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGClock.m; sourceTree = "<group>"; };
+		8373D8881C67548C00A11E31 /* AGOtp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGOtp.h; sourceTree = "<group>"; };
+		8373D8891C67548C00A11E31 /* AGOtp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGOtp.m; sourceTree = "<group>"; };
+		8373D88A1C67548C00A11E31 /* AGStringEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGStringEncoding.h; sourceTree = "<group>"; };
+		8373D88B1C67548C00A11E31 /* AGStringEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGStringEncoding.m; sourceTree = "<group>"; };
+		8373D88C1C67548C00A11E31 /* AGTotp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTotp.h; sourceTree = "<group>"; };
+		8373D88D1C67548C00A11E31 /* AGTotp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTotp.m; sourceTree = "<group>"; };
 		83D34BF71C67145B007253E3 /* ATCOTPEntryTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntryTableCellView.h; sourceTree = "<group>"; };
 		83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntryTableCellView.m; sourceTree = "<group>"; };
 		83D34BFA1C67148A007253E3 /* ATCOTPEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntry.h; sourceTree = "<group>"; };
@@ -157,8 +174,8 @@
 				83D34BFB1C67148A007253E3 /* ATCOTPEntry.m */,
 				83D34BF71C67145B007253E3 /* ATCOTPEntryTableCellView.h */,
 				83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */,
-				8339601F1C6712CA007241D9 /* ATCOTPBadgeView.h */,
-				833960201C6712CA007241D9 /* ATCOTPBadgeView.m */,
+				8373D87E1C67537500A11E31 /* ATCOTPBadgeView.h */,
+				8373D87D1C67537500A11E31 /* ATCOTPBadgeView.m */,
 				8324B1A11C67073900153EC7 /* Supporting Files */,
 			);
 			path = Authenticator;
@@ -205,6 +222,7 @@
 		8373D85B1C671D6300A11E31 /* vendors */ = {
 			isa = PBXGroup;
 			children = (
+				8373D8801C67548C00A11E31 /* aerogear-otp.ios */,
 				8373D85C1C671D7300A11E31 /* PureLayout */,
 			);
 			name = vendors;
@@ -238,6 +256,34 @@
 				8373D8791C67494300A11E31 /* NSAffineTransform+ATCExtensions.h */,
 			);
 			name = extensions;
+			sourceTree = "<group>";
+		};
+		8373D8801C67548C00A11E31 /* aerogear-otp.ios */ = {
+			isa = PBXGroup;
+			children = (
+				8373D8811C67548C00A11E31 /* aerogear-otp.ios-Prefix.pch */,
+				8373D8821C67548C00A11E31 /* Classes */,
+			);
+			name = "aerogear-otp.ios";
+			path = "Authenticator/vendors/aerogear-otp-ios/aerogear-otp.ios";
+			sourceTree = "<group>";
+		};
+		8373D8821C67548C00A11E31 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8373D8831C67548C00A11E31 /* AeroGearOTP.h */,
+				8373D8841C67548C00A11E31 /* AGBase32.h */,
+				8373D8851C67548C00A11E31 /* AGBase32.m */,
+				8373D8861C67548C00A11E31 /* AGClock.h */,
+				8373D8871C67548C00A11E31 /* AGClock.m */,
+				8373D8881C67548C00A11E31 /* AGOtp.h */,
+				8373D8891C67548C00A11E31 /* AGOtp.m */,
+				8373D88A1C67548C00A11E31 /* AGStringEncoding.h */,
+				8373D88B1C67548C00A11E31 /* AGStringEncoding.m */,
+				8373D88C1C67548C00A11E31 /* AGTotp.h */,
+				8373D88D1C67548C00A11E31 /* AGTotp.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,20 +420,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8373D8911C67548C00A11E31 /* AGStringEncoding.m in Sources */,
 				8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
 				8373D87A1C67494300A11E31 /* NSColor+ATCExtensions.m in Sources */,
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
 				8373D87C1C67494300A11E31 /* NSAffineTransform+ATCExtensions.m in Sources */,
+				8373D87F1C67537500A11E31 /* ATCOTPBadgeView.m in Sources */,
 				8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */,
 				8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */,
 				8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */,
+				8373D8901C67548C00A11E31 /* AGOtp.m in Sources */,
 				8373D8671C671D7300A11E31 /* NSArray+PureLayout.m in Sources */,
 				83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */,
-				833960211C6712CA007241D9 /* ATCOTPBadgeView.m in Sources */,
 				83D34BFC1C67148A007253E3 /* ATCOTPEntry.m in Sources */,
 				833960171C670C73007241D9 /* ATCMainWindow.m in Sources */,
+				8373D88E1C67548C00A11E31 /* AGBase32.m in Sources */,
 				8373D8681C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m in Sources */,
+				8373D88F1C67548C00A11E31 /* AGClock.m in Sources */,
+				8373D8921C67548C00A11E31 /* AGTotp.m in Sources */,
 				8373D87B1C67494300A11E31 /* NSBezierPath+ATCExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
