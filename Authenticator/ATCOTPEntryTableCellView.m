@@ -7,6 +7,7 @@
 //
 
 #import "ATCOTPEntryTableCellView.h"
+#import "ATCOTPBadgeView.h"
 
 // ATCOTPEntryTableCellView class
 @implementation ATCOTPEntryTableCellView
@@ -25,6 +26,7 @@
     if ( optEntry_ != _NewEntry )
         {
         optEntry_ = _NewEntry;
+        self.otpBadgeView.optEntry = optEntry_;
         }
     }
 

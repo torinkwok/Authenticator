@@ -7,6 +7,7 @@
 //
 
 #import "ATCOTPBadgeView.h"
+#import "ATCOTPEntry.h"
 
 // ATCOTPBadgeView class
 @implementation ATCOTPBadgeView
@@ -36,7 +37,7 @@
 
     [ roundedBoundsPath fill ];
 
-//    optEntry_.
+    [ [ agTotp_ now ] drawAtPoint: NSMakePoint( 0, 0 ) withAttributes: optDrawingAttrs_ ];
     }
 
 #pragma mark - Dynamic Properties
@@ -48,6 +49,8 @@
     if ( optEntry_ != _NewEntry )
         {
         optEntry_ = _NewEntry;
+        agTotp_ = [ [ AGTotp alloc ] initWithDigits: 6 andSecret: [ AGBase32 base32Decode: optEntry_.secretString ] ];
+
         self.needsDisplay = YES;
         }
     }

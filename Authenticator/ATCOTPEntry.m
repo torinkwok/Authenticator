@@ -33,6 +33,7 @@
         self.createdDate = [ NSDate date ];
         self.serviceName = _ServiceName;
         self.userName = _UserName;
+        self.secretString = _Secret;
         }
 
     return self;

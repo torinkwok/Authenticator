@@ -21,7 +21,7 @@
 
     optEntries_ = [ NSMutableOrderedSet orderedSetWithObjects:
           [ [ ATCOTPEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"fdafjkjkga" ]
-        , [ [ ATCOTPEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"fda843kq" ]
+        , [ [ ATCOTPEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"fd2NNNkMa843kq" ]
         , [ [ ATCOTPEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"quJJJLIKgjJf" ]
         , [ [ ATCOTPEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"OIKjfanKUTHfa" ]
         , nil ];
@@ -65,6 +65,7 @@
     ATCOTPEntryTableCellView* result = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
 
     ATCOTPEntry* optEntry = [ _TableView.dataSource tableView: _TableView objectValueForTableColumn: _TableColumn row: _Row ];
+    [ result setOptEntry: optEntry ];
 
     NSDateFormatter* dateFormatter = [ [ NSDateFormatter alloc ] init ];
     [ dateFormatter setDateStyle: NSDateFormatterMediumStyle ];
