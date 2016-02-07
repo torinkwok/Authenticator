@@ -55,7 +55,7 @@
 - ( CGFloat ) tableView: ( NSTableView* )_TableView
             heightOfRow: ( NSInteger )_Row
     {
-    return 91.f;
+    return 89.f;
     }
 
 - ( NSView* )tableView: ( NSTableView* )_TableView
