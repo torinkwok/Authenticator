@@ -17,6 +17,7 @@
 		833960171C670C73007241D9 /* ATCMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960161C670C73007241D9 /* ATCMainWindow.m */; settings = {ASSET_TAGS = (); }; };
 		8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960191C670CBB007241D9 /* ATCMainWindowController.m */; settings = {ASSET_TAGS = (); }; };
 		8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339601C1C670D96007241D9 /* ATCMainContentView.m */; settings = {ASSET_TAGS = (); }; };
+		833960211C6712CA007241D9 /* ATCOTPBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960201C6712CA007241D9 /* ATCOTPBadgeView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		833960191C670CBB007241D9 /* ATCMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainWindowController.m; sourceTree = "<group>"; };
 		8339601B1C670D96007241D9 /* ATCMainContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainContentView.h; sourceTree = "<group>"; };
 		8339601C1C670D96007241D9 /* ATCMainContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainContentView.m; sourceTree = "<group>"; };
+		8339601F1C6712CA007241D9 /* ATCOTPBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPBadgeView.h; sourceTree = "<group>"; };
+		833960201C6712CA007241D9 /* ATCOTPBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPBadgeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,7 @@
 		8324B19D1C67073900153EC7 /* Authenticator */ = {
 			isa = PBXGroup;
 			children = (
+				8339601E1C670E69007241D9 /* wysiwyg */,
 				8324B19E1C67073900153EC7 /* ATCAppDelegate.h */,
 				8324B19F1C67073900153EC7 /* ATCAppDelegate.m */,
 				833960181C670CBB007241D9 /* ATCMainWindowController.h */,
@@ -119,7 +123,8 @@
 				8324B1A51C67073900153EC7 /* ATCMainContentViewController.m */,
 				8339601B1C670D96007241D9 /* ATCMainContentView.h */,
 				8339601C1C670D96007241D9 /* ATCMainContentView.m */,
-				8324B1A91C67073900153EC7 /* ATCMain.storyboard */,
+				8339601F1C6712CA007241D9 /* ATCOTPBadgeView.h */,
+				833960201C6712CA007241D9 /* ATCOTPBadgeView.m */,
 				8324B1A11C67073900153EC7 /* Supporting Files */,
 			);
 			path = Authenticator;
@@ -152,6 +157,14 @@
 				8324B1C21C67073A00153EC7 /* Info.plist */,
 			);
 			path = AuthenticatorUITests;
+			sourceTree = "<group>";
+		};
+		8339601E1C670E69007241D9 /* wysiwyg */ = {
+			isa = PBXGroup;
+			children = (
+				8324B1A91C67073900153EC7 /* ATCMain.storyboard */,
+			);
+			name = wysiwyg;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +306,7 @@
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
 				8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */,
 				8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */,
+				833960211C6712CA007241D9 /* ATCOTPBadgeView.m in Sources */,
 				833960171C670C73007241D9 /* ATCMainWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
