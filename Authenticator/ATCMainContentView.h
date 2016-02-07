@@ -11,4 +11,6 @@
 // ATCMainContentView class
 @interface ATCMainContentView : NSVisualEffectView
 
+@property ( weak ) IBOutlet NSPopUpButton* addNewKeyPopUpButton;
+
 @end // ATCMainContentView class

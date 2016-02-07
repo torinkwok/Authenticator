@@ -672,14 +672,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="424" height="512"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="83" horizontalPageScroll="10" verticalLineScroll="83" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEz-oe-qrV">
-                                <rect key="frame" x="0.0" y="94" width="424" height="322"/>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="83" horizontalPageScroll="10" verticalLineScroll="83" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEz-oe-qrV">
+                                <rect key="frame" x="0.0" y="0.0" width="424" height="416"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="KrV-Uh-5kV">
-                                    <rect key="frame" x="0.0" y="0.0" width="424" height="322"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="424" height="416"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="81" rowSizeStyle="automatic" viewBased="YES" id="d6W-DR-s03">
-                                            <rect key="frame" x="0.0" y="0.0" width="424" height="322"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="424" height="416"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
@@ -801,46 +801,71 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wFK-7M-lIN">
-                                <rect key="frame" x="384" y="478" width="30" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="Tmr-Xk-sEt"/>
-                                    <constraint firstAttribute="width" constant="30" id="xiZ-gW-0jj"/>
-                                </constraints>
-                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSAddTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NJo-jt-c87">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <outlet property="menu" destination="k3Z-Yn-GdG" id="B4p-rH-KFW"/>
-                                </connections>
-                            </button>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nYK-8S-80v">
+                                <rect key="frame" x="389" y="480" width="25" height="27"/>
+                                <popUpButtonCell key="cell" type="recessed" bezelStyle="recessed" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" selectedItem="DYO-vz-B7I" id="kvT-ip-f4x">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" metaFont="systemBold" size="12"/>
+                                    <menu key="menu" id="jDp-SO-zdv">
+                                        <items>
+                                            <menuItem state="on" image="NSAddTemplate" hidden="YES" id="RZf-zo-0C9">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Scan QR Code on Screen" id="rxx-jU-xan"/>
+                                            <menuItem title="Entry Key Manually" id="DYO-vz-B7I">
+                                                <connections>
+                                                    <segue destination="BGZ-yE-X0s" kind="show" id="IcB-Ck-m2G"/>
+                                                </connections>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="BEz-oe-qrV" secondAttribute="bottom" id="16E-JS-gsc"/>
-                            <constraint firstAttribute="trailing" secondItem="wFK-7M-lIN" secondAttribute="trailing" constant="10" id="Bpl-Of-n4g"/>
+                            <constraint firstItem="nYK-8S-80v" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="373" id="2hS-3S-5pY"/>
+                            <constraint firstItem="BEz-oe-qrV" firstAttribute="top" secondItem="nYK-8S-80v" secondAttribute="bottom" constant="65" id="DIq-9i-7Ew"/>
                             <constraint firstItem="BEz-oe-qrV" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="96" id="H4J-HA-qFY"/>
                             <constraint firstItem="BEz-oe-qrV" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="J3b-U6-LWe"/>
-                            <constraint firstItem="BEz-oe-qrV" firstAttribute="top" secondItem="wFK-7M-lIN" secondAttribute="bottom" constant="64" id="UYl-rr-6zI"/>
-                            <constraint firstItem="wFK-7M-lIN" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="fbv-EB-xV4"/>
-                            <constraint firstItem="wFK-7M-lIN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="304" id="oj5-oc-Ocq"/>
+                            <constraint firstAttribute="trailing" secondItem="nYK-8S-80v" secondAttribute="trailing" constant="10" id="SUr-Dc-6wz"/>
                             <constraint firstAttribute="trailing" secondItem="BEz-oe-qrV" secondAttribute="trailing" id="qvd-78-naX"/>
+                            <constraint firstItem="nYK-8S-80v" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="5" id="r1F-S0-eK1"/>
                         </constraints>
+                        <connections>
+                            <outlet property="addNewKeyPopUpButton" destination="nYK-8S-80v" id="JXS-d8-tfx"/>
+                        </connections>
                     </view>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <menu id="k3Z-Yn-GdG">
-                    <items>
-                        <menuItem title="Scan QR Code on Screen" id="kzY-Sb-olx">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                        </menuItem>
-                        <menuItem title="Entry Key Manually" id="ySc-Hu-V3J">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                        </menuItem>
-                    </items>
-                </menu>
             </objects>
             <point key="canvasLocation" x="29" y="994"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="wCF-5g-1tx">
+            <objects>
+                <viewController id="E0J-7N-dTK" sceneMemberID="viewController">
+                    <view key="view" id="eb1-QI-LmM">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="p6y-XT-kpV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1216" y="736"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dh7-x5-yLK">
+            <objects>
+                <viewController id="BGZ-yE-X0s" sceneMemberID="viewController">
+                    <view key="view" id="hcR-eI-Y1N">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="7oq-cF-sa0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="549" y="1037"/>
         </scene>
     </scenes>
     <resources>
