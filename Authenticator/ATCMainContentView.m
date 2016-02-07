@@ -11,6 +11,8 @@
 // ATCMainContentView class
 @implementation ATCMainContentView
 
+#pragma mark - Drawing
+
 - ( void ) drawRect: ( NSRect )_DirtyRect
     {
     [ super drawRect: _DirtyRect ];

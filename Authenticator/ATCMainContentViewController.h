@@ -8,8 +8,14 @@
 
 @import Cocoa;
 
+@class ATCOTPEntry;
+
 // ATCMainContentViewController class
 @interface ATCMainContentViewController : NSViewController
     <NSTableViewDataSource, NSTableViewDelegate>
+    {
+@private
+    NSMutableOrderedSet <ATCOTPEntry*>* optEntries_;
+    }
 
 @end // ATCMainContentViewController class
