@@ -18,6 +18,8 @@
 		8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960191C670CBB007241D9 /* ATCMainWindowController.m */; settings = {ASSET_TAGS = (); }; };
 		8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339601C1C670D96007241D9 /* ATCMainContentView.m */; settings = {ASSET_TAGS = (); }; };
 		833960211C6712CA007241D9 /* ATCOTPBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960201C6712CA007241D9 /* ATCOTPBadgeView.m */; settings = {ASSET_TAGS = (); }; };
+		83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */; settings = {ASSET_TAGS = (); }; };
+		83D34BFC1C67148A007253E3 /* ATCOTPEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BFB1C67148A007253E3 /* ATCOTPEntry.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,10 @@
 		8339601C1C670D96007241D9 /* ATCMainContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainContentView.m; sourceTree = "<group>"; };
 		8339601F1C6712CA007241D9 /* ATCOTPBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPBadgeView.h; sourceTree = "<group>"; };
 		833960201C6712CA007241D9 /* ATCOTPBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPBadgeView.m; sourceTree = "<group>"; };
+		83D34BF71C67145B007253E3 /* ATCOTPEntryTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntryTableCellView.h; sourceTree = "<group>"; };
+		83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntryTableCellView.m; sourceTree = "<group>"; };
+		83D34BFA1C67148A007253E3 /* ATCOTPEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntry.h; sourceTree = "<group>"; };
+		83D34BFB1C67148A007253E3 /* ATCOTPEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntry.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,10 @@
 				8324B1A51C67073900153EC7 /* ATCMainContentViewController.m */,
 				8339601B1C670D96007241D9 /* ATCMainContentView.h */,
 				8339601C1C670D96007241D9 /* ATCMainContentView.m */,
+				83D34BFA1C67148A007253E3 /* ATCOTPEntry.h */,
+				83D34BFB1C67148A007253E3 /* ATCOTPEntry.m */,
+				83D34BF71C67145B007253E3 /* ATCOTPEntryTableCellView.h */,
+				83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */,
 				8339601F1C6712CA007241D9 /* ATCOTPBadgeView.h */,
 				833960201C6712CA007241D9 /* ATCOTPBadgeView.m */,
 				8324B1A11C67073900153EC7 /* Supporting Files */,
@@ -306,7 +316,9 @@
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
 				8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */,
 				8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */,
+				83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */,
 				833960211C6712CA007241D9 /* ATCOTPBadgeView.m in Sources */,
+				83D34BFC1C67148A007253E3 /* ATCOTPEntry.m in Sources */,
 				833960171C670C73007241D9 /* ATCMainWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

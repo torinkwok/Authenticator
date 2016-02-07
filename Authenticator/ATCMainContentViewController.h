@@ -10,5 +10,6 @@
 
 // ATCMainContentViewController class
 @interface ATCMainContentViewController : NSViewController
+    <NSTableViewDataSource, NSTableViewDelegate>
 
 @end // ATCMainContentViewController class

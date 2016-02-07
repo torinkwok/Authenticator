@@ -699,7 +699,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="EmX-pO-Q86">
+                                                        <tableCellView id="EmX-pO-Q86" customClass="ATCOTPEntryTableCellView">
                                                             <rect key="frame" x="1" y="1" width="343" height="80"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -735,6 +735,10 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="XfG-lQ-9wD" id="cKA-Jl-lHN"/>
+                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="Qj7-63-QCC"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
