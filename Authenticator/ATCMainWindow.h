@@ -1,5 +1,5 @@
 //
-//  main.m
+//  ATCMainWindow.h
 //  Authenticator
 //
 //  Created by Tong G. on 2/7/16.
@@ -8,7 +8,7 @@
 
 @import Cocoa;
 
-int main ( int _Argc, char const* _Argv[] )
-    {
-    return NSApplicationMain( _Argc, _Argv );
-    }
+// ATCMainWindow class
+@interface ATCMainWindow : NSWindow
+
+@end // ATCMainWindow class

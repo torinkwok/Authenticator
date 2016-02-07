@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8324B1A01C67073900153EC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B19F1C67073900153EC7 /* AppDelegate.m */; };
+		8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B19F1C67073900153EC7 /* ATCAppDelegate.m */; };
 		8324B1A31C67073900153EC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B1A21C67073900153EC7 /* main.m */; };
-		8324B1A61C67073900153EC7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B1A51C67073900153EC7 /* ViewController.m */; };
+		8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B1A51C67073900153EC7 /* ATCMainContentViewController.m */; };
 		8324B1A81C67073900153EC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8324B1A71C67073900153EC7 /* Assets.xcassets */; };
-		8324B1AB1C67073900153EC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8324B1A91C67073900153EC7 /* Main.storyboard */; };
+		8324B1AB1C67073900153EC7 /* ATCMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8324B1A91C67073900153EC7 /* ATCMain.storyboard */; };
 		8324B1B61C67073A00153EC7 /* AuthenticatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B1B51C67073A00153EC7 /* AuthenticatorTests.m */; };
 		8324B1C11C67073A00153EC7 /* AuthenticatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B1C01C67073A00153EC7 /* AuthenticatorUITests.m */; };
+		833960171C670C73007241D9 /* ATCMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960161C670C73007241D9 /* ATCMainWindow.m */; settings = {ASSET_TAGS = (); }; };
+		8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960191C670CBB007241D9 /* ATCMainWindowController.m */; settings = {ASSET_TAGS = (); }; };
+		8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339601C1C670D96007241D9 /* ATCMainContentView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,13 +38,13 @@
 
 /* Begin PBXFileReference section */
 		8324B19B1C67073900153EC7 /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8324B19E1C67073900153EC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		8324B19F1C67073900153EC7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8324B19E1C67073900153EC7 /* ATCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCAppDelegate.h; sourceTree = "<group>"; };
+		8324B19F1C67073900153EC7 /* ATCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATCAppDelegate.m; sourceTree = "<group>"; };
 		8324B1A21C67073900153EC7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8324B1A41C67073900153EC7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8324B1A51C67073900153EC7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8324B1A41C67073900153EC7 /* ATCMainContentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCMainContentViewController.h; sourceTree = "<group>"; };
+		8324B1A51C67073900153EC7 /* ATCMainContentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATCMainContentViewController.m; sourceTree = "<group>"; };
 		8324B1A71C67073900153EC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8324B1AA1C67073900153EC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8324B1AA1C67073900153EC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ATCMain.storyboard; sourceTree = "<group>"; };
 		8324B1AC1C67073900153EC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8324B1B11C67073A00153EC7 /* AuthenticatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8324B1B51C67073A00153EC7 /* AuthenticatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenticatorTests.m; sourceTree = "<group>"; };
@@ -50,6 +53,12 @@
 		8324B1C01C67073A00153EC7 /* AuthenticatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenticatorUITests.m; sourceTree = "<group>"; };
 		8324B1C21C67073A00153EC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8324B1CE1C67074800153EC7 /* Authenticator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Authenticator.entitlements; sourceTree = "<group>"; };
+		833960151C670C73007241D9 /* ATCMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainWindow.h; sourceTree = "<group>"; };
+		833960161C670C73007241D9 /* ATCMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainWindow.m; sourceTree = "<group>"; };
+		833960181C670CBB007241D9 /* ATCMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainWindowController.h; sourceTree = "<group>"; };
+		833960191C670CBB007241D9 /* ATCMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainWindowController.m; sourceTree = "<group>"; };
+		8339601B1C670D96007241D9 /* ATCMainContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainContentView.h; sourceTree = "<group>"; };
+		8339601C1C670D96007241D9 /* ATCMainContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainContentView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,11 +109,17 @@
 		8324B19D1C67073900153EC7 /* Authenticator */ = {
 			isa = PBXGroup;
 			children = (
-				8324B19E1C67073900153EC7 /* AppDelegate.h */,
-				8324B19F1C67073900153EC7 /* AppDelegate.m */,
-				8324B1A41C67073900153EC7 /* ViewController.h */,
-				8324B1A51C67073900153EC7 /* ViewController.m */,
-				8324B1A91C67073900153EC7 /* Main.storyboard */,
+				8324B19E1C67073900153EC7 /* ATCAppDelegate.h */,
+				8324B19F1C67073900153EC7 /* ATCAppDelegate.m */,
+				833960181C670CBB007241D9 /* ATCMainWindowController.h */,
+				833960191C670CBB007241D9 /* ATCMainWindowController.m */,
+				833960151C670C73007241D9 /* ATCMainWindow.h */,
+				833960161C670C73007241D9 /* ATCMainWindow.m */,
+				8324B1A41C67073900153EC7 /* ATCMainContentViewController.h */,
+				8324B1A51C67073900153EC7 /* ATCMainContentViewController.m */,
+				8339601B1C670D96007241D9 /* ATCMainContentView.h */,
+				8339601C1C670D96007241D9 /* ATCMainContentView.m */,
+				8324B1A91C67073900153EC7 /* ATCMain.storyboard */,
 				8324B1A11C67073900153EC7 /* Supporting Files */,
 			);
 			path = Authenticator;
@@ -248,7 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8324B1A81C67073900153EC7 /* Assets.xcassets in Resources */,
-				8324B1AB1C67073900153EC7 /* Main.storyboard in Resources */,
+				8324B1AB1C67073900153EC7 /* ATCMain.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,9 +288,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8324B1A61C67073900153EC7 /* ViewController.m in Sources */,
+				8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
-				8324B1A01C67073900153EC7 /* AppDelegate.m in Sources */,
+				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
+				8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */,
+				8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */,
+				833960171C670C73007241D9 /* ATCMainWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,12 +329,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8324B1A91C67073900153EC7 /* Main.storyboard */ = {
+		8324B1A91C67073900153EC7 /* ATCMain.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8324B1AA1C67073900153EC7 /* Base */,
 			);
-			name = Main.storyboard;
+			name = ATCMain.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -498,6 +516,7 @@
 				8324B1C71C67073A00153EC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8324B1C81C67073A00153EC7 /* Build configuration list for PBXNativeTarget "AuthenticatorTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +525,7 @@
 				8324B1CA1C67073A00153EC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8324B1CB1C67073A00153EC7 /* Build configuration list for PBXNativeTarget "AuthenticatorUITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +534,7 @@
 				8324B1CD1C67073A00153EC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

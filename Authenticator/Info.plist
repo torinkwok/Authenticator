@@ -27,7 +27,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2016 Tong Kuo. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
-	<string>Main</string>
+	<string>ATCMain</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
