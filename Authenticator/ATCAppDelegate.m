@@ -8,18 +8,12 @@
 
 #import "ATCAppDelegate.h"
 
+// Private Interfaces
 @interface ATCAppDelegate ()
 
-@end
+@end // Private Interfaces
 
+// ATCAppDelegate class
 @implementation ATCAppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
-}
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
-}
-
-@end
+@end // ATCAppDelegate class
