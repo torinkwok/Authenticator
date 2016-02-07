@@ -15,4 +15,9 @@
 // Third Party Modules
 #import "PureLayout.h"
 
+// Extensions
+#import "NSColor+ATCExtensions.h"
+#import "NSAffineTransform+ATCExtensions.h"
+#import "NSBezierPath+ATCExtensions.h"
+
 #endif /* AuthenticatorPrefixHeader_pch */

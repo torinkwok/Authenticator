@@ -21,6 +21,9 @@
 		8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D85E1C671D7300A11E31 /* ALView+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8671C671D7300A11E31 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8601C671D7300A11E31 /* NSArray+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8681C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8621C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
+		8373D87A1C67494300A11E31 /* NSColor+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8741C67494300A11E31 /* NSColor+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
+		8373D87B1C67494300A11E31 /* NSBezierPath+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8761C67494300A11E31 /* NSBezierPath+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
+		8373D87C1C67494300A11E31 /* NSAffineTransform+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8781C67494300A11E31 /* NSAffineTransform+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BFC1C67148A007253E3 /* ATCOTPEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BFB1C67148A007253E3 /* ATCOTPEntry.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -77,6 +80,12 @@
 		8373D8641C671D7300A11E31 /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
 		8373D8651C671D7300A11E31 /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
 		8373D8691C671D9700A11E31 /* AuthenticatorPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthenticatorPrefixHeader.pch; sourceTree = "<group>"; };
+		8373D8741C67494300A11E31 /* NSColor+ATCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+ATCExtensions.m"; sourceTree = "<group>"; };
+		8373D8751C67494300A11E31 /* NSColor+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+ATCExtensions.h"; sourceTree = "<group>"; };
+		8373D8761C67494300A11E31 /* NSBezierPath+ATCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBezierPath+ATCExtensions.m"; sourceTree = "<group>"; };
+		8373D8771C67494300A11E31 /* NSBezierPath+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBezierPath+ATCExtensions.h"; sourceTree = "<group>"; };
+		8373D8781C67494300A11E31 /* NSAffineTransform+ATCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAffineTransform+ATCExtensions.m"; sourceTree = "<group>"; };
+		8373D8791C67494300A11E31 /* NSAffineTransform+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAffineTransform+ATCExtensions.h"; sourceTree = "<group>"; };
 		83D34BF71C67145B007253E3 /* ATCOTPEntryTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntryTableCellView.h; sourceTree = "<group>"; };
 		83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntryTableCellView.m; sourceTree = "<group>"; };
 		83D34BFA1C67148A007253E3 /* ATCOTPEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntry.h; sourceTree = "<group>"; };
@@ -132,6 +141,7 @@
 		8324B19D1C67073900153EC7 /* Authenticator */ = {
 			isa = PBXGroup;
 			children = (
+				8373D8731C67491D00A11E31 /* extensions */,
 				8339601E1C670E69007241D9 /* wysiwyg */,
 				8324B19E1C67073900153EC7 /* ATCAppDelegate.h */,
 				8324B19F1C67073900153EC7 /* ATCAppDelegate.m */,
@@ -215,6 +225,19 @@
 			);
 			name = PureLayout;
 			path = Authenticator/vendors/PureLayout/PureLayout/PureLayout;
+			sourceTree = "<group>";
+		};
+		8373D8731C67491D00A11E31 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8373D8741C67494300A11E31 /* NSColor+ATCExtensions.m */,
+				8373D8751C67494300A11E31 /* NSColor+ATCExtensions.h */,
+				8373D8761C67494300A11E31 /* NSBezierPath+ATCExtensions.m */,
+				8373D8771C67494300A11E31 /* NSBezierPath+ATCExtensions.h */,
+				8373D8781C67494300A11E31 /* NSAffineTransform+ATCExtensions.m */,
+				8373D8791C67494300A11E31 /* NSAffineTransform+ATCExtensions.h */,
+			);
+			name = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,7 +376,9 @@
 			files = (
 				8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
+				8373D87A1C67494300A11E31 /* NSColor+ATCExtensions.m in Sources */,
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
+				8373D87C1C67494300A11E31 /* NSAffineTransform+ATCExtensions.m in Sources */,
 				8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */,
 				8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */,
 				8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */,
@@ -363,6 +388,7 @@
 				83D34BFC1C67148A007253E3 /* ATCOTPEntry.m in Sources */,
 				833960171C670C73007241D9 /* ATCMainWindow.m in Sources */,
 				8373D8681C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m in Sources */,
+				8373D87B1C67494300A11E31 /* NSBezierPath+ATCExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
