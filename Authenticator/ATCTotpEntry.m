@@ -45,7 +45,9 @@
 
 - ( NSString* ) pinCodeRightNow
     {
-    return [ agTotp_ now ];
+    NSString* pin = [ agTotp_ now ];
+    NSLog( @"%@ => %@", self.secretString, pin );
+    return pin;
     }
 
 @end // ATCTotpEntry class

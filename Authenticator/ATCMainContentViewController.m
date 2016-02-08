@@ -21,8 +21,10 @@
 
     optEntries_ = [ NSMutableOrderedSet orderedSetWithObjects:
           [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"fdafjkjkga" ]
+        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"MJKjjnWNQcan" ]
+        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"mmmjjangiaJJNRU" ]
         , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"fd2NNNkMa843kq" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"quJJJLIKgjJf" ]
+        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"quJjsJJLIKgjJf" ]
         , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"OIKjfanKUTHfa" ]
         , nil ];
 
@@ -68,7 +70,6 @@
     ATCTotpEntryTableCellView* result = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
 
     ATCTotpEntry* optEntry = [ _TableView.dataSource tableView: _TableView objectValueForTableColumn: _TableColumn row: _Row ];
-    NSLog( @"%@", optEntry.secretString );
     [ result setOptEntry: optEntry ];
 
     NSDateFormatter* dateFormatter = [ [ NSDateFormatter alloc ] init ];
