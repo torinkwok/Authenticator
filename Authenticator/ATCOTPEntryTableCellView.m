@@ -1,5 +1,5 @@
 //
-//  ATCOTPEntryTableCellView.m
+//  ATCTotpEntryTableCellView.m
 //  Authenticator
 //
 //  Created by Tong G. on 2/7/16.
@@ -9,8 +9,8 @@
 #import "ATCOTPEntryTableCellView.h"
 #import "ATCOTPBadgeView.h"
 
-// ATCOTPEntryTableCellView class
-@implementation ATCOTPEntryTableCellView
+// ATCTotpEntryTableCellView class
+@implementation ATCTotpEntryTableCellView
 
 - ( void ) awakeFromNib
     {
@@ -21,7 +21,7 @@
 
 @dynamic optEntry;
 
-- ( void ) setOptEntry: ( ATCOTPEntry* )_NewEntry
+- ( void ) setOptEntry: ( ATCTotpEntry* )_NewEntry
     {
     if ( optEntry_ != _NewEntry )
         {
@@ -30,9 +30,9 @@
         }
     }
 
-- ( ATCOTPEntry* ) optEntry
+- ( ATCTotpEntry* ) optEntry
     {
     return optEntry_;
     }
 
-@end // ATCOTPEntryTableCellView class
+@end // ATCTotpEntryTableCellView class

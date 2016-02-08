@@ -7,7 +7,7 @@
 //
 
 #import "ATCMainContentViewController.h"
-#import "ATCOTPEntry.h"
+#import "ATCTotpEntry.h"
 #import "ATCOTPEntryTableCellView.h"
 
 // ATCMainContentViewController class
@@ -20,11 +20,13 @@
     [ super viewDidLoad ];
 
     optEntries_ = [ NSMutableOrderedSet orderedSetWithObjects:
-          [ [ ATCOTPEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"fdafjkjkga" ]
-        , [ [ ATCOTPEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"fd2NNNkMa843kq" ]
-        , [ [ ATCOTPEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"quJJJLIKgjJf" ]
-        , [ [ ATCOTPEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"OIKjfanKUTHfa" ]
+          [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"fdafjkjkga" ]
+        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"fd2NNNkMa843kq" ]
+        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"quJJJLIKgjJf" ]
+        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"OIKjfanKUTHfa" ]
         , nil ];
+
+    [ self.optEntriesTableView reloadData ];
 
     // Do any additional setup after loading the view.
     }
@@ -47,6 +49,7 @@
     objectValueForTableColumn: ( NSTableColumn* )_TableColumn
                           row: ( NSInteger )_Row
     {
+//    NSLog( @"%ld", _Row );
     return [ optEntries_ objectAtIndex: _Row ];
     }
 
@@ -62,9 +65,10 @@
     viewForTableColumn: ( NSTableColumn* )_TableColumn
                    row: ( NSInteger )_Row
     {
-    ATCOTPEntryTableCellView* result = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
+    ATCTotpEntryTableCellView* result = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
 
-    ATCOTPEntry* optEntry = [ _TableView.dataSource tableView: _TableView objectValueForTableColumn: _TableColumn row: _Row ];
+    ATCTotpEntry* optEntry = [ _TableView.dataSource tableView: _TableView objectValueForTableColumn: _TableColumn row: _Row ];
+    NSLog( @"%@", optEntry.secretString );
     [ result setOptEntry: optEntry ];
 
     NSDateFormatter* dateFormatter = [ [ NSDateFormatter alloc ] init ];

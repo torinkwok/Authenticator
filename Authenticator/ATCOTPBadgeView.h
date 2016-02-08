@@ -8,18 +8,16 @@
 
 @import Cocoa;
 
-@class ATCOTPEntry;
+@class ATCTotpEntry;
 
 // ATCOTPBadgeView class
 @interface ATCOTPBadgeView : NSControl
     {
 @private
-    ATCOTPEntry __strong* optEntry_;
+    ATCTotpEntry __strong* optEntry_;
     NSDictionary __strong* optDrawingAttrs_;
-
-    AGTotp __strong* agTotp_;
     }
 
-@property ( strong, readwrite ) ATCOTPEntry* optEntry;
+@property ( strong, readwrite ) ATCTotpEntry* optEntry;
 
 @end // ATCOTPBadgeView class

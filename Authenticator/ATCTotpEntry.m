@@ -1,15 +1,15 @@
 //
-//  ATCOTPEntry.m
+//  ATCTotpEntry.m
 //  Authenticator
 //
 //  Created by Tong G. on 2/7/16.
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-#import "ATCOTPEntry.h"
+#import "ATCTotpEntry.h"
 
 // Private Interfaces
-@interface ATCOTPEntry ()
+@interface ATCTotpEntry ()
 
 @property ( strong, readwrite ) NSDate* createdDate;
 @property ( strong, readwrite ) NSString* serviceName;
@@ -19,8 +19,8 @@
 
 @end // Private Interfaces
 
-// ATCOTPEntry class
-@implementation ATCOTPEntry
+// ATCTotpEntry class
+@implementation ATCTotpEntry
 
 #pragma mark - Initializations
 
@@ -34,9 +34,18 @@
         self.serviceName = _ServiceName;
         self.userName = _UserName;
         self.secretString = _Secret;
+
+        agTotp_ = [ [ AGTotp alloc ] initWithDigits: 6 andSecret: [ AGBase32 base32Decode: self.secretString ] ];
         }
 
     return self;
     }
 
-@end // ATCOTPEntry class
+#pragma mark - Dynamic Properties
+
+- ( NSString* ) pinCodeRightNow
+    {
+    return [ agTotp_ now ];
+    }
+
+@end // ATCTotpEntry class

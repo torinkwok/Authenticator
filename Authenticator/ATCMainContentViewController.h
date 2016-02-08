@@ -8,14 +8,16 @@
 
 @import Cocoa;
 
-@class ATCOTPEntry;
+@class ATCTotpEntry;
 
 // ATCMainContentViewController class
 @interface ATCMainContentViewController : NSViewController
     <NSTableViewDataSource, NSTableViewDelegate>
     {
 @private
-    NSMutableOrderedSet <ATCOTPEntry*>* optEntries_;
+    NSMutableOrderedSet <ATCTotpEntry*>* optEntries_;
     }
+
+@property ( weak ) IBOutlet NSTableView* optEntriesTableView;
 
 @end // ATCMainContentViewController class

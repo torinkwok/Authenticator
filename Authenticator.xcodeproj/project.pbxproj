@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		831EC89E1C688824005DCD88 /* ATCOTPDigitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 831EC89D1C688824005DCD88 /* ATCOTPDigitLayer.m */; settings = {ASSET_TAGS = (); }; };
+		831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831EC89F1C688830005DCD88 /* QuartzCore.framework */; };
 		8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B19F1C67073900153EC7 /* ATCAppDelegate.m */; };
 		8324B1A31C67073900153EC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B1A21C67073900153EC7 /* main.m */; };
 		8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B1A51C67073900153EC7 /* ATCMainContentViewController.m */; };
@@ -30,7 +32,7 @@
 		8373D8911C67548C00A11E31 /* AGStringEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D88B1C67548C00A11E31 /* AGStringEncoding.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8921C67548C00A11E31 /* AGTotp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D88D1C67548C00A11E31 /* AGTotp.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */; settings = {ASSET_TAGS = (); }; };
-		83D34BFC1C67148A007253E3 /* ATCOTPEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BFB1C67148A007253E3 /* ATCOTPEntry.m */; settings = {ASSET_TAGS = (); }; };
+		83D34BFC1C67148A007253E3 /* ATCTotpEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BFB1C67148A007253E3 /* ATCTotpEntry.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		831EC89C1C688824005DCD88 /* ATCOTPDigitLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPDigitLayer.h; sourceTree = "<group>"; };
+		831EC89D1C688824005DCD88 /* ATCOTPDigitLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPDigitLayer.m; sourceTree = "<group>"; };
+		831EC89F1C688830005DCD88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8324B19B1C67073900153EC7 /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8324B19E1C67073900153EC7 /* ATCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCAppDelegate.h; sourceTree = "<group>"; };
 		8324B19F1C67073900153EC7 /* ATCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATCAppDelegate.m; sourceTree = "<group>"; };
@@ -105,8 +110,8 @@
 		8373D88D1C67548C00A11E31 /* AGTotp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTotp.m; sourceTree = "<group>"; };
 		83D34BF71C67145B007253E3 /* ATCOTPEntryTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntryTableCellView.h; sourceTree = "<group>"; };
 		83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntryTableCellView.m; sourceTree = "<group>"; };
-		83D34BFA1C67148A007253E3 /* ATCOTPEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntry.h; sourceTree = "<group>"; };
-		83D34BFB1C67148A007253E3 /* ATCOTPEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntry.m; sourceTree = "<group>"; };
+		83D34BFA1C67148A007253E3 /* ATCTotpEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCTotpEntry.h; sourceTree = "<group>"; };
+		83D34BFB1C67148A007253E3 /* ATCTotpEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCTotpEntry.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +143,7 @@
 		8324B1921C67073900153EC7 = {
 			isa = PBXGroup;
 			children = (
+				831EC89F1C688830005DCD88 /* QuartzCore.framework */,
 				8324B19D1C67073900153EC7 /* Authenticator */,
 				8373D85B1C671D6300A11E31 /* vendors */,
 				8324B1B41C67073A00153EC7 /* AuthenticatorTests */,
@@ -170,12 +177,14 @@
 				8324B1A51C67073900153EC7 /* ATCMainContentViewController.m */,
 				8339601B1C670D96007241D9 /* ATCMainContentView.h */,
 				8339601C1C670D96007241D9 /* ATCMainContentView.m */,
-				83D34BFA1C67148A007253E3 /* ATCOTPEntry.h */,
-				83D34BFB1C67148A007253E3 /* ATCOTPEntry.m */,
+				83D34BFA1C67148A007253E3 /* ATCTotpEntry.h */,
+				83D34BFB1C67148A007253E3 /* ATCTotpEntry.m */,
 				83D34BF71C67145B007253E3 /* ATCOTPEntryTableCellView.h */,
 				83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */,
 				8373D87E1C67537500A11E31 /* ATCOTPBadgeView.h */,
 				8373D87D1C67537500A11E31 /* ATCOTPBadgeView.m */,
+				831EC89C1C688824005DCD88 /* ATCOTPDigitLayer.h */,
+				831EC89D1C688824005DCD88 /* ATCOTPDigitLayer.m */,
 				8324B1A11C67073900153EC7 /* Supporting Files */,
 			);
 			path = Authenticator;
@@ -421,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8373D8911C67548C00A11E31 /* AGStringEncoding.m in Sources */,
+				831EC89E1C688824005DCD88 /* ATCOTPDigitLayer.m in Sources */,
 				8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
 				8373D87A1C67494300A11E31 /* NSColor+ATCExtensions.m in Sources */,
@@ -433,7 +443,7 @@
 				8373D8901C67548C00A11E31 /* AGOtp.m in Sources */,
 				8373D8671C671D7300A11E31 /* NSArray+PureLayout.m in Sources */,
 				83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */,
-				83D34BFC1C67148A007253E3 /* ATCOTPEntry.m in Sources */,
+				83D34BFC1C67148A007253E3 /* ATCTotpEntry.m in Sources */,
 				833960171C670C73007241D9 /* ATCMainWindow.m in Sources */,
 				8373D88E1C67548C00A11E31 /* AGBase32.m in Sources */,
 				8373D8681C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m in Sources */,

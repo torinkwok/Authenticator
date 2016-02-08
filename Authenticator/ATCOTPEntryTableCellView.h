@@ -1,5 +1,5 @@
 //
-//  ATCOTPEntryTableCellView.h
+//  ATCTotpEntryTableCellView.h
 //  Authenticator
 //
 //  Created by Tong G. on 2/7/16.
@@ -8,17 +8,17 @@
 
 @import Cocoa;
 
-@class ATCOTPEntry;
+@class ATCTotpEntry;
 @class ATCOTPBadgeView;
 
-// ATCOTPEntryTableCellView class
-@interface ATCOTPEntryTableCellView : NSTableCellView
+// ATCTotpEntryTableCellView class
+@interface ATCTotpEntryTableCellView : NSTableCellView
     {
 @private
-    ATCOTPEntry __strong* optEntry_;
+    ATCTotpEntry __strong* optEntry_;
     }
 
-@property ( strong, readwrite ) ATCOTPEntry* optEntry;
+@property ( strong, readwrite ) ATCTotpEntry* optEntry;
 
 #pragma mark - Outlets
 
@@ -28,4 +28,4 @@
 
 @property ( weak ) IBOutlet ATCOTPBadgeView* otpBadgeView;
 
-@end // ATCOTPEntryTableCellView class
+@end // ATCTotpEntryTableCellView class

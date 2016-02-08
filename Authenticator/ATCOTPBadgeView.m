@@ -7,7 +7,7 @@
 //
 
 #import "ATCOTPBadgeView.h"
-#import "ATCOTPEntry.h"
+#import "ATCTotpEntry.h"
 
 // ATCOTPBadgeView class
 @implementation ATCOTPBadgeView
@@ -17,9 +17,16 @@
     optDrawingAttrs_ = @{ NSFontAttributeName : [ NSFont fontWithName: @"Courier New" size: 44.f ]
                         , NSForegroundColorAttributeName : [ NSColor whiteColor ]
                         };
+
+    self.wantsLayer = YES;
     }
 
 #pragma mark - Drawing
+
+- ( BOOL ) isFlipped
+    {
+    return YES;
+    }
 
 - ( void ) drawRect: ( NSRect )_DirtyRect
     {
@@ -37,25 +44,23 @@
 
     [ roundedBoundsPath fill ];
 
-    [ [ agTotp_ now ] drawAtPoint: NSMakePoint( 0, 0 ) withAttributes: optDrawingAttrs_ ];
+    [ optEntry_.pinCodeRightNow drawAtPoint: NSMakePoint( 0, 0 ) withAttributes: optDrawingAttrs_ ];
     }
 
 #pragma mark - Dynamic Properties
 
 @dynamic optEntry;
 
-- ( void ) setOptEntry: ( ATCOTPEntry* )_NewEntry
+- ( void ) setOptEntry: ( ATCTotpEntry* )_NewEntry
     {
     if ( optEntry_ != _NewEntry )
         {
         optEntry_ = _NewEntry;
-        agTotp_ = [ [ AGTotp alloc ] initWithDigits: 6 andSecret: [ AGBase32 base32Decode: optEntry_.secretString ] ];
-
         self.needsDisplay = YES;
         }
     }
 
-- ( ATCOTPEntry* ) optEntry
+- ( ATCTotpEntry* ) optEntry
     {
     return optEntry_;
     }

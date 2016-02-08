@@ -1,5 +1,5 @@
 //
-//  ATCOTPEntry.h
+//  ATCTotpEntry.h
 //  Authenticator
 //
 //  Created by Tong G. on 2/7/16.
@@ -8,14 +8,19 @@
 
 @import Foundation;
 
-// ATCOTPEntry class
-@interface ATCOTPEntry : NSObject
+// ATCTotpEntry class
+@interface ATCTotpEntry : NSObject
+    {
+@protected
+    AGTotp __strong* agTotp_;
+    }
 
 @property ( strong, readonly ) NSDate* createdDate;
 @property ( strong, readonly ) NSString* serviceName;
 @property ( strong, readonly ) NSString* userName;
 
 @property ( strong, readonly ) NSString* secretString;
+@property ( strong, readonly ) NSString* pinCodeRightNow;
 
 #pragma mark - Initializations
 
@@ -23,4 +28,4 @@
                               userName: ( NSString* )_UserName
                                 secret: ( NSString* )_Secret;
 
-@end // ATCOTPEntry class
+@end // ATCTotpEntry class
