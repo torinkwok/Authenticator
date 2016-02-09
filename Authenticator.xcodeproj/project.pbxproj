@@ -37,6 +37,7 @@
 		8373D8BE1C697E2600A11E31 /* ATCSecretKeyManuallyInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8BD1C697E2600A11E31 /* ATCSecretKeyManuallyInputView.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8C11C69801900A11E31 /* ATCSecretKeyManuallyInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C01C69801900A11E31 /* ATCSecretKeyManuallyInputViewController.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C31C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m */; settings = {ASSET_TAGS = (); }; };
+		8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C61C6A322900A11E31 /* ATCConstants.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BFC1C67148A007253E3 /* ATCTotpEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BFB1C67148A007253E3 /* ATCTotpEntry.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -126,6 +127,8 @@
 		8373D8C01C69801900A11E31 /* ATCSecretKeyManuallyInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCSecretKeyManuallyInputViewController.m; sourceTree = "<group>"; };
 		8373D8C21C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCSecretKeyManuallyInputWindowController.h; sourceTree = "<group>"; };
 		8373D8C31C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCSecretKeyManuallyInputWindowController.m; sourceTree = "<group>"; };
+		8373D8C51C6A322900A11E31 /* ATCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCConstants.h; sourceTree = "<group>"; };
+		8373D8C61C6A322900A11E31 /* ATCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCConstants.m; sourceTree = "<group>"; };
 		83D34BF71C67145B007253E3 /* ATCOTPEntryTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntryTableCellView.h; sourceTree = "<group>"; };
 		83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntryTableCellView.m; sourceTree = "<group>"; };
 		83D34BFA1C67148A007253E3 /* ATCTotpEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCTotpEntry.h; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 			children = (
 				8339601E1C670E69007241D9 /* wysiwyg */,
 				8373D8731C67491D00A11E31 /* extensions */,
+				8373D8C51C6A322900A11E31 /* ATCConstants.h */,
+				8373D8C61C6A322900A11E31 /* ATCConstants.m */,
 				8324B19E1C67073900153EC7 /* ATCAppDelegate.h */,
 				8324B19F1C67073900153EC7 /* ATCAppDelegate.m */,
 				833960181C670CBB007241D9 /* ATCMainWindowController.h */,
@@ -485,6 +490,7 @@
 				8373D88F1C67548C00A11E31 /* AGClock.m in Sources */,
 				8373D8921C67548C00A11E31 /* AGTotp.m in Sources */,
 				8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */,
+				8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */,
 				8373D87B1C67494300A11E31 /* NSBezierPath+ATCExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

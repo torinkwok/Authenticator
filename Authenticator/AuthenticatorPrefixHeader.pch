@@ -12,11 +12,16 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
+// System Frameworks
+@import Cocoa;
+@import QuartzCore;
+
 // Third Party Modules
 #import "PureLayout.h"
 #import "AeroGearOTP.h"
 
-// Extensions
+// Frequently Used Headers
+#import "ATCConstants.h"
 #import "NSColor+ATCExtensions.h"
 #import "NSAffineTransform+ATCExtensions.h"
 #import "NSBezierPath+ATCExtensions.h"

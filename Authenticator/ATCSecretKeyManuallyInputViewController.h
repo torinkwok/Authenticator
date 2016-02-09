@@ -9,6 +9,13 @@
 @import Cocoa;
 
 // ATCSecretKeyManuallyInputViewController class
-@interface ATCSecretKeyManuallyInputViewController : NSViewController
+@interface ATCSecretKeyManuallyInputViewController : NSViewController <NSTextFieldDelegate>
+
+@property ( weak ) IBOutlet NSSecureTextField* secretKeyField;
+@property ( weak ) IBOutlet NSTextField* accountNameField;
+@property ( weak ) IBOutlet NSTextField* serviceNameField;
+
+@property ( weak ) IBOutlet NSButton* cancelButton;
+@property ( weak ) IBOutlet NSButton* okButton;
 
 @end // ATCSecretKeyManuallyInputViewController class

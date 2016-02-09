@@ -10,6 +10,14 @@
 #import "ATCTotpEntry.h"
 #import "ATCOTPEntryTableCellView.h"
 
+// Private Interfaces
+@interface ATCMainContentViewController ()
+
+// Notification Selector
+- ( void ) newTotpEntryDidAdd: ( NSNotification* )_Notif;
+
+@end // Private Interfaces
+
 // ATCMainContentViewController class
 @implementation ATCMainContentViewController
 
@@ -27,6 +35,9 @@
         , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
         , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
         , nil ];
+
+    [ [ NSNotificationCenter defaultCenter ]
+        addObserver: self selector: @selector( newTotpEntryDidAdd: ) name: ATCNewTotpEntryDidAddNotif object: nil ];
 
     [ self.optEntriesTableView reloadData ];
 
@@ -79,6 +90,19 @@
     result.userNameField.stringValue = optEntry.userName.description ?: @"";
 
     return result;
+    }
+
+#pragma mark - Private Interfaces
+
+// Notification Selector
+- ( void ) newTotpEntryDidAdd: ( NSNotification* )_Notif
+    {
+    ATCTotpEntry* newTotpEntry = _Notif.userInfo[ kTotpEntry ];
+    if ( newTotpEntry )
+        {
+        [ optEntries_ insertObject: newTotpEntry atIndex: 0 ];
+        [ self.optEntriesTableView reloadData ];
+        }
     }
 
 @end // ATCMainContentViewController class
