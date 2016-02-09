@@ -92,6 +92,12 @@
     return result;
     }
 
+- ( BOOL ) tableView: ( NSTableView* )_TableView
+     shouldSelectRow: ( NSInteger )_Row
+    {
+    return NO;
+    }
+
 #pragma mark - Private Interfaces
 
 // Notification Selector

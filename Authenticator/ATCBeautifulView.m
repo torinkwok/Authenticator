@@ -10,4 +10,12 @@
 
 // ATCBeautifulView class
 @implementation ATCBeautifulView
+
+#pragma mark - Initializations
+
+- ( void ) awakeFromNib
+    {
+    self.state = NSVisualEffectStateActive;
+    }
+
 @end // ATCBeautifulView class
