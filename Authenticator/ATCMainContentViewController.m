@@ -20,12 +20,12 @@
     [ super viewDidLoad ];
 
     optEntries_ = [ NSMutableOrderedSet orderedSetWithObjects:
-          [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"fdafjkjkga" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"MJKjjnWNQcan" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"mmmjjangiaJJNRU" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"fd2NNNkMa843kq" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"quJjsJJLIKgjJf" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"OIKjfanKUTHfa" ]
+          [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
+        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
+        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
+        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
+        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
+        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
         , nil ];
 
     [ self.optEntriesTableView reloadData ];

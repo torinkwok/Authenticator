@@ -11,13 +11,4 @@
 // ATCMainWindow class
 @implementation ATCMainWindow
 
-#pragma mark - Initializations
-
-- ( void ) awakeFromNib
-    {
-    self.titleVisibility = NSWindowTitleHidden;
-    self.titlebarAppearsTransparent = YES;
-    self.styleMask |= NSFullSizeContentViewWindowMask;
-    }
-
 @end // ATCMainWindow class

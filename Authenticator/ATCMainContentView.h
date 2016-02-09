@@ -6,10 +6,10 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-@import Cocoa;
+#import "ATCBeautifulView.h"
 
 // ATCMainContentView class
-@interface ATCMainContentView : NSVisualEffectView
+@interface ATCMainContentView : ATCBeautifulView
 
 @property ( weak ) IBOutlet NSPopUpButton* addNewKeyPopUpButton;
 

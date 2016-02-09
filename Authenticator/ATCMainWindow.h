@@ -6,9 +6,9 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-@import Cocoa;
+#import "ATCBeautifulWindow.h"
 
 // ATCMainWindow class
-@interface ATCMainWindow : NSWindow
+@interface ATCMainWindow : ATCBeautifulWindow
 
 @end // ATCMainWindow class

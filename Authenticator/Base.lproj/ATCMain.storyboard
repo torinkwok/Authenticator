@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A279b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F1504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
@@ -815,7 +815,7 @@
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nYK-8S-80v">
                                 <rect key="frame" x="389" y="480" width="25" height="27"/>
                                 <animations/>
-                                <popUpButtonCell key="cell" type="recessed" bezelStyle="recessed" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" selectedItem="DYO-vz-B7I" id="kvT-ip-f4x">
+                                <popUpButtonCell key="cell" type="recessed" bezelStyle="recessed" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" id="kvT-ip-f4x">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="systemBold" size="12"/>
                                     <menu key="menu" id="jDp-SO-zdv">
@@ -826,7 +826,7 @@
                                             <menuItem title="Scan QR Code on Screen" id="rxx-jU-xan"/>
                                             <menuItem title="Entry Key Manually" id="DYO-vz-B7I">
                                                 <connections>
-                                                    <segue destination="BGZ-yE-X0s" kind="show" id="IcB-Ck-m2G"/>
+                                                    <segue destination="yHS-eX-c7F" kind="show" id="FhL-Pd-xcg"/>
                                                 </connections>
                                             </menuItem>
                                         </items>
@@ -857,33 +857,109 @@
             </objects>
             <point key="canvasLocation" x="29" y="994"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="wCF-5g-1tx">
+        <!--Window Controller-->
+        <scene sceneID="cTr-72-gXx">
             <objects>
-                <viewController id="E0J-7N-dTK" sceneMemberID="viewController">
-                    <view key="view" id="eb1-QI-LmM">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </view>
-                </viewController>
-                <customObject id="p6y-XT-kpV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <windowController id="yHS-eX-c7F" customClass="ATCSecretKeyManuallyInputWindowController" sceneMemberID="viewController">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Nci-uy-JGO" customClass="ATCSecretKeyManuallyInputWindow">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
+                        <windowPositionMask key="initialPositionMask" bottomStrut="YES"/>
+                        <rect key="contentRect" x="425" y="550" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                    </window>
+                    <connections>
+                        <segue destination="uub-cs-bdF" kind="relationship" relationship="window.shadowedContentViewController" id="HI6-rC-HZd"/>
+                    </connections>
+                </windowController>
+                <customObject id="n2s-8L-Fje" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1216" y="736"/>
+            <point key="canvasLocation" x="610" y="1138"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="dh7-x5-yLK">
+        <!--Secret Key Manually Input View Controller-->
+        <scene sceneID="IFD-Gk-JeJ">
             <objects>
-                <viewController id="BGZ-yE-X0s" sceneMemberID="viewController">
-                    <view key="view" id="hcR-eI-Y1N">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                <viewController id="uub-cs-bdF" customClass="ATCSecretKeyManuallyInputViewController" sceneMemberID="viewController">
+                    <view key="view" id="Ow7-Qe-JEc" customClass="ATCSecretKeyManuallyInputView">
+                        <rect key="frame" x="0.0" y="0.0" width="383" height="170"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ScW-Lu-Wi5">
+                                <rect key="frame" x="43" y="116" width="71" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Secret Key" id="aiY-Lw-qvh">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ctw-Kz-Khg">
+                                <rect key="frame" x="120" y="113" width="243" height="22"/>
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Required" drawsBackground="YES" usesSingleLineMode="YES" id="SxU-dZ-Iuy">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                            </secureTextField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A9w-GU-8tC">
+                                <rect key="frame" x="24" y="52" width="90" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Service Name" id="huY-W5-e0V">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dn2-Dr-naR">
+                                <rect key="frame" x="120" y="81" width="243" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Required" drawsBackground="YES" id="cxe-vr-Ofa">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SG2-oR-4DI">
+                                <rect key="frame" x="287" y="7" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DiQ-zi-M9v">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hR-1Q-pgZ">
+                                <rect key="frame" x="211" y="7" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jbp-23-Q7v">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                            </button>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZH-Zp-gkc">
+                                <rect key="frame" x="120" y="49" width="243" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Optional" drawsBackground="YES" id="1Et-Q9-xEo">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QeB-pd-pGy">
+                                <rect key="frame" x="18" y="84" width="96" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Account Name" id="uek-SX-Lb6">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
                     </view>
                 </viewController>
-                <customObject id="7oq-cF-sa0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="aZQ-M8-UdW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="549" y="1037"/>
+            <point key="canvasLocation" x="1173.5" y="939"/>
         </scene>
     </scenes>
     <resources>
