@@ -13,10 +13,16 @@
     {
 @private
     NSTimer __strong* timer_;
+    NSRunLoop __weak* currentRunLoop_;
     }
 
 #pragma mark - Initializations
 
 + ( instancetype ) sharedTimer;
+
+#pragma mark - Timing
+
+- ( void ) startTiming;
+- ( void ) stopTiming;
 
 @end // ATCTimer class

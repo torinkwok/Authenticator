@@ -33,7 +33,7 @@ ATCTimer static* sTimer;
         {
         if ( self = [ super init ] )
             {
-            timer_ = [ NSTimer timerWithTimeInterval: 1.f target: self selector: @selector( timerFire_: ) userInfo: nil repeats: YES ];
+            currentRunLoop_ = [ NSRunLoop currentRunLoop ];
             sTimer = self;
             }
         }
@@ -43,8 +43,24 @@ ATCTimer static* sTimer;
 
 - ( void ) awakeFromNib
     {
-    NSRunLoop* runLoop = [ NSRunLoop currentRunLoop ];
-    [ runLoop addTimer: timer_ forMode: NSDefaultRunLoopMode ];
+    [ self startTiming ];
+    }
+
+#pragma mark - Timing
+
+- ( void ) startTiming
+    {
+    if ( !timer_ )
+        {
+        timer_ = [ NSTimer timerWithTimeInterval: 1.f target: self selector: @selector( timerFire_: ) userInfo: nil repeats: YES ];
+        [ currentRunLoop_ addTimer: timer_ forMode: NSDefaultRunLoopMode ];
+        }
+    }
+
+- ( void ) stopTiming
+    {
+    [ timer_ invalidate ];
+    timer_ = nil;
     }
 
 #pragma mark - Private

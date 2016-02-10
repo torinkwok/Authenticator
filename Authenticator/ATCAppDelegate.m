@@ -16,4 +16,14 @@
 // ATCAppDelegate class
 @implementation ATCAppDelegate
 
+- ( void ) applicationWillResignActive: ( NSNotification* )_Notif
+    {
+    [ [ ATCTimer sharedTimer ] stopTiming ];
+    }
+
+- ( void ) applicationWillBecomeActive: ( NSNotification* )_Notif
+    {
+    [ [ ATCTimer sharedTimer ] startTiming ];
+    }
+
 @end // ATCAppDelegate class
