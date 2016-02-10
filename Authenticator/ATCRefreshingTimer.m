@@ -1,27 +1,27 @@
 //
-//  ATCTimer.m
+//  ATCRefreshingTimer.m
 //  Authenticator
 //
 //  Created by Tong G. on 2/10/16.
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-#import "ATCTimer.h"
+#import "ATCRefreshingTimer.h"
 
 // Private Interfaces
-@interface ATCTimer ()
+@interface ATCRefreshingTimer ()
 
 // Timer Selector
 - ( void ) timerFire_: ( NSTimer* )_Timer;
 
 @end // Private Interfaces
 
-// ATCTimer class
-@implementation ATCTimer
+// ATCRefreshingTimer class
+@implementation ATCRefreshingTimer
 
 #pragma mark - Initializations
 
-ATCTimer static* sTimer;
+ATCRefreshingTimer static* sTimer;
 + ( instancetype ) sharedTimer
     {
     return [ [ self alloc ] init ];
@@ -76,4 +76,4 @@ ATCTimer static* sTimer;
         postNotificationName: ATCTotpEntryShouldUpdateNotif object: self ];
     }
 
-@end // ATCTimer class
+@end // ATCRefreshingTimer class

@@ -1,5 +1,5 @@
 //
-//  ATCTimer.h
+//  ATCRefreshingTimer.h
 //  Authenticator
 //
 //  Created by Tong G. on 2/10/16.
@@ -8,8 +8,8 @@
 
 @import Foundation;
 
-// ATCTimer class
-@interface ATCTimer : NSObject
+// ATCRefreshingTimer class
+@interface ATCRefreshingTimer : NSObject
     {
 @private
     NSTimer __strong* timer_;
@@ -25,4 +25,4 @@
 - ( void ) startTiming;
 - ( void ) stopTiming;
 
-@end // ATCTimer class
+@end // ATCRefreshingTimer class

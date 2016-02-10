@@ -22,7 +22,7 @@
 
 // Frequently Used Headers
 #import "ATCConstants.h"
-#import "ATCTimer.h"
+#import "ATCRefreshingTimer.h"
 #import "NSColor+ATCExtensions.h"
 #import "NSAffineTransform+ATCExtensions.h"
 #import "NSBezierPath+ATCExtensions.h"
