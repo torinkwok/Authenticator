@@ -62,7 +62,6 @@
     objectValueForTableColumn: ( NSTableColumn* )_TableColumn
                           row: ( NSInteger )_Row
     {
-//    NSLog( @"%ld", _Row );
     return [ optEntries_ objectAtIndex: _Row ];
     }
 

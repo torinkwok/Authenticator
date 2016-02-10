@@ -19,6 +19,7 @@
 		833960171C670C73007241D9 /* ATCMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960161C670C73007241D9 /* ATCMainWindow.m */; settings = {ASSET_TAGS = (); }; };
 		8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960191C670CBB007241D9 /* ATCMainWindowController.m */; settings = {ASSET_TAGS = (); }; };
 		8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339601C1C670D96007241D9 /* ATCMainContentView.m */; settings = {ASSET_TAGS = (); }; };
+		8368DD341C6AED6600005A7D /* ATCTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD331C6AED6600005A7D /* ATCTimer.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D85E1C671D7300A11E31 /* ALView+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8671C671D7300A11E31 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8601C671D7300A11E31 /* NSArray+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8681C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8621C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
@@ -85,6 +86,8 @@
 		833960191C670CBB007241D9 /* ATCMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainWindowController.m; sourceTree = "<group>"; };
 		8339601B1C670D96007241D9 /* ATCMainContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainContentView.h; sourceTree = "<group>"; };
 		8339601C1C670D96007241D9 /* ATCMainContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainContentView.m; sourceTree = "<group>"; };
+		8368DD321C6AED6600005A7D /* ATCTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCTimer.h; sourceTree = "<group>"; };
+		8368DD331C6AED6600005A7D /* ATCTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCTimer.m; sourceTree = "<group>"; };
 		8373D85D1C671D7300A11E31 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
 		8373D85E1C671D7300A11E31 /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
 		8373D85F1C671D7300A11E31 /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
@@ -189,6 +192,8 @@
 				8373D8731C67491D00A11E31 /* extensions */,
 				8373D8C51C6A322900A11E31 /* ATCConstants.h */,
 				8373D8C61C6A322900A11E31 /* ATCConstants.m */,
+				8368DD321C6AED6600005A7D /* ATCTimer.h */,
+				8368DD331C6AED6600005A7D /* ATCTimer.m */,
 				8324B19E1C67073900153EC7 /* ATCAppDelegate.h */,
 				8324B19F1C67073900153EC7 /* ATCAppDelegate.m */,
 				833960181C670CBB007241D9 /* ATCMainWindowController.h */,
@@ -470,6 +475,7 @@
 				8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */,
 				8373D8BE1C697E2600A11E31 /* ATCSecretKeyManuallyInputView.m in Sources */,
 				8373D8B81C697D8D00A11E31 /* ATCSecretKeyManuallyInputWindow.m in Sources */,
+				8368DD341C6AED6600005A7D /* ATCTimer.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
 				8373D87A1C67494300A11E31 /* NSColor+ATCExtensions.m in Sources */,
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,

@@ -19,6 +19,14 @@
                         };
 
     self.wantsLayer = YES;
+
+    [ [ NSNotificationCenter defaultCenter ]
+        addObserver: self selector: @selector( totpEntryShouldUpdate: ) name: ATCTotpEntryShouldUpdateNotif object: nil ];
+    }
+
+- ( void ) totpEntryShouldUpdate: ( NSNotification* )_Notif
+    {
+    self.needsDisplay = YES;
     }
 
 #pragma mark - Drawing

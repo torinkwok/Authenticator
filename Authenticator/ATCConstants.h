@@ -8,6 +8,7 @@
 
 // Notification Names
 NSString extern* const ATCNewTotpEntryDidAddNotif;
+NSString extern* const ATCTotpEntryShouldUpdateNotif;
 
 // User Info Key
 NSString extern* const kTotpEntry;
