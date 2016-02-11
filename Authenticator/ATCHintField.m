@@ -16,6 +16,9 @@
 
 @property ( assign, readwrite ) uint64_t remainingSeconds_;
 
+- ( void ) totpEntryShouldUpdate_: ( NSNotification* )_Notif;
+- ( void ) calculateCurrentRemainingSeconds_;
+
 @end // Private Interfaces
 
 // ATCHintField class
@@ -41,20 +44,10 @@
         [ self calculateCurrentRemainingSeconds_ ];
 
         [ [ NSNotificationCenter defaultCenter ]
-            addObserver: self selector: @selector( totpEntryShouldUpdate: ) name: ATCTotpEntryShouldUpdateNotif object: nil ];
+            addObserver: self selector: @selector( totpEntryShouldUpdate_: ) name: ATCTotpEntryShouldUpdateNotif object: nil ];
         }
 
     return self;
-    }
-
-- ( void ) totpEntryShouldUpdate: ( NSNotification* )_Notif
-    {
-    [ self calculateCurrentRemainingSeconds_ ];
-    }
-
-- ( void ) calculateCurrentRemainingSeconds_
-    {
-    [ self setRemainingSeconds_: [ AGClock remainingSecondsForRecalculation ] ];
     }
 
 #pragma mark - Private Interfaces
@@ -81,6 +74,16 @@
     [ attributedString setAlignment: NSCenterTextAlignment range: NSMakeRange( 0, attributedString.length ) ];
 
     self.attributedStringValue = attributedString;
+    }
+
+- ( void ) totpEntryShouldUpdate_: ( NSNotification* )_Notif
+    {
+    [ self calculateCurrentRemainingSeconds_ ];
+    }
+
+- ( void ) calculateCurrentRemainingSeconds_
+    {
+    [ self setRemainingSeconds_: [ AGClock remainingSecondsForRecalculation ] ];
     }
 
 @end
