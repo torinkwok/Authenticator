@@ -1,6 +1,6 @@
 [submodule "/Users/EsquireTongG/git/Authenticator/Authenticator/vendors/PureLayout"]
 	path = /Users/EsquireTongG/git/Authenticator/Authenticator/vendors/PureLayout
 	url = https://github.com/TongKuo/PureLayout.git
-[submodule "/Users/EsquireTongG/git/Authenticator/Authenticator/vendors/aerogear-otp-ios"]
+[submodule "/Users/EsquireTongG/git/Authenticator/Authenticator/vendors/aerogear-otp"]
 	path = /Users/EsquireTongG/git/Authenticator/Authenticator/vendors/aerogear-otp
 	url = https://github.com/TongKuo/aerogear-otp.git
