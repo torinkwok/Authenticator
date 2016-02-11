@@ -16,6 +16,9 @@
 - ( void ) awakeFromNib
     {
     self.state = NSVisualEffectStateActive;
+
+    self.wantsLayer = YES;
+    self.layer.backgroundColor = [ NSColor whiteColor ].CGColor;
     }
 
 @end // ATCBeautifulView class

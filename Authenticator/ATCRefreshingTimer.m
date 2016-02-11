@@ -69,7 +69,7 @@ ATCRefreshingTimer static* sTimer;
 - ( void ) timerFire_: ( NSTimer* )_Timer
     {
     #if DEBUG
-    NSLog( @"Timer Fired: %@", _Timer );
+//    NSLog( @"Timer Fired: %@", _Timer );
     #endif
 
     [ [ NSNotificationCenter defaultCenter ]

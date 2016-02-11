@@ -20,6 +20,8 @@
 		8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960191C670CBB007241D9 /* ATCMainWindowController.m */; settings = {ASSET_TAGS = (); }; };
 		8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339601C1C670D96007241D9 /* ATCMainContentView.m */; settings = {ASSET_TAGS = (); }; };
 		8368DD341C6AED6600005A7D /* ATCRefreshingTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD331C6AED6600005A7D /* ATCRefreshingTimer.m */; settings = {ASSET_TAGS = (); }; };
+		8368DD361C6B637200005A7D /* libcommonCrypto.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8368DD351C6B637200005A7D /* libcommonCrypto.tbd */; };
+		8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D85E1C671D7300A11E31 /* ALView+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8671C671D7300A11E31 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8601C671D7300A11E31 /* NSArray+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8681C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8621C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
@@ -88,6 +90,9 @@
 		8339601C1C670D96007241D9 /* ATCMainContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainContentView.m; sourceTree = "<group>"; };
 		8368DD321C6AED6600005A7D /* ATCRefreshingTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCRefreshingTimer.h; sourceTree = "<group>"; };
 		8368DD331C6AED6600005A7D /* ATCRefreshingTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCRefreshingTimer.m; sourceTree = "<group>"; };
+		8368DD351C6B637200005A7D /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
+		8368DD371C6CC12500005A7D /* AGClock+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AGClock+ATCExtensions.h"; sourceTree = "<group>"; };
+		8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AGClock+ATCExtensions.m"; sourceTree = "<group>"; };
 		8373D85D1C671D7300A11E31 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
 		8373D85E1C671D7300A11E31 /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
 		8373D85F1C671D7300A11E31 /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
@@ -143,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8368DD361C6B637200005A7D /* libcommonCrypto.tbd in Frameworks */,
 				831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				831EC89F1C688830005DCD88 /* QuartzCore.framework */,
+				8368DD351C6B637200005A7D /* libcommonCrypto.tbd */,
 				8373D8801C67548C00A11E31 /* aerogear-otp.ios */,
 				8373D85C1C671D7300A11E31 /* PureLayout */,
 			);
@@ -303,6 +310,8 @@
 				8373D8771C67494300A11E31 /* NSBezierPath+ATCExtensions.h */,
 				8373D8781C67494300A11E31 /* NSAffineTransform+ATCExtensions.m */,
 				8373D8791C67494300A11E31 /* NSAffineTransform+ATCExtensions.h */,
+				8368DD371C6CC12500005A7D /* AGClock+ATCExtensions.h */,
+				8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -478,6 +487,7 @@
 				8368DD341C6AED6600005A7D /* ATCRefreshingTimer.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
 				8373D87A1C67494300A11E31 /* NSColor+ATCExtensions.m in Sources */,
+				8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */,
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
 				8373D87C1C67494300A11E31 /* NSAffineTransform+ATCExtensions.m in Sources */,
 				8373D87F1C67537500A11E31 /* ATCOTPBadgeView.m in Sources */,
@@ -633,6 +643,10 @@
 				GCC_PREFIX_HEADER = Authenticator/AuthenticatorPrefixHeader.pch;
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.Authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -648,6 +662,10 @@
 				GCC_PREFIX_HEADER = Authenticator/AuthenticatorPrefixHeader.pch;
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.Authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
