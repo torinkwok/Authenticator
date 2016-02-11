@@ -46,7 +46,7 @@
 - ( NSString* ) pinCodeRightNow
     {
     NSString* pin = [ agTotp_ now ];
-    NSLog( @"%llu", agTotp_.clock.remainingSecondsForRecalculation );
+    NSLog( @"%llu", [ AGClock remainingSecondsForRecalculation ] );
     return pin;
     }
 

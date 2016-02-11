@@ -13,6 +13,6 @@
 
 #pragma mark - Countdown
 
-@property ( assign, readonly ) uint64_t remainingSecondsForRecalculation;
++ ( uint64_t ) remainingSecondsForRecalculation;
 
 @end // AGClock + ATCExtensions

@@ -13,11 +13,9 @@
 
 #pragma mark - Countdown
 
-@dynamic remainingSecondsForRecalculation;
-
-- ( uint64_t ) remainingSecondsForRecalculation
++ ( uint64_t ) remainingSecondsForRecalculation
     {
-    return 30 - ( ( uint64_t )[ self.date timeIntervalSince1970 ] % 30 );
+    return ( 30 - ( ( uint64_t )[ [ NSDate date ] timeIntervalSince1970 ] % 30 ) );
     }
 
 @end // AGClock + ATCExtensions
