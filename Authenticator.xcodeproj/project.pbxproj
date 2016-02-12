@@ -19,7 +19,7 @@
 		833960171C670C73007241D9 /* ATCMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960161C670C73007241D9 /* ATCMainWindow.m */; settings = {ASSET_TAGS = (); }; };
 		8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960191C670CBB007241D9 /* ATCMainWindowController.m */; settings = {ASSET_TAGS = (); }; };
 		8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339601C1C670D96007241D9 /* ATCMainContentView.m */; settings = {ASSET_TAGS = (); }; };
-		8368DD341C6AED6600005A7D /* ATCRefreshingTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD331C6AED6600005A7D /* ATCRefreshingTimer.m */; settings = {ASSET_TAGS = (); }; };
+		8368DD341C6AED6600005A7D /* ATCNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */; settings = {ASSET_TAGS = (); }; };
 		8368DD361C6B637200005A7D /* libcommonCrypto.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8368DD351C6B637200005A7D /* libcommonCrypto.tbd */; };
 		8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D85E1C671D7300A11E31 /* ALView+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
@@ -90,8 +90,8 @@
 		833960191C670CBB007241D9 /* ATCMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainWindowController.m; sourceTree = "<group>"; };
 		8339601B1C670D96007241D9 /* ATCMainContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainContentView.h; sourceTree = "<group>"; };
 		8339601C1C670D96007241D9 /* ATCMainContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainContentView.m; sourceTree = "<group>"; };
-		8368DD321C6AED6600005A7D /* ATCRefreshingTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCRefreshingTimer.h; sourceTree = "<group>"; };
-		8368DD331C6AED6600005A7D /* ATCRefreshingTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCRefreshingTimer.m; sourceTree = "<group>"; };
+		8368DD321C6AED6600005A7D /* ATCNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCNotificationCenter.h; sourceTree = "<group>"; };
+		8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCNotificationCenter.m; sourceTree = "<group>"; };
 		8368DD351C6B637200005A7D /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		8368DD371C6CC12500005A7D /* AGClock+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AGClock+ATCExtensions.h"; sourceTree = "<group>"; };
 		8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AGClock+ATCExtensions.m"; sourceTree = "<group>"; };
@@ -204,8 +204,8 @@
 				8373D8731C67491D00A11E31 /* extensions */,
 				8373D8C51C6A322900A11E31 /* ATCConstants.h */,
 				8373D8C61C6A322900A11E31 /* ATCConstants.m */,
-				8368DD321C6AED6600005A7D /* ATCRefreshingTimer.h */,
-				8368DD331C6AED6600005A7D /* ATCRefreshingTimer.m */,
+				8368DD321C6AED6600005A7D /* ATCNotificationCenter.h */,
+				8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */,
 				8324B19E1C67073900153EC7 /* ATCAppDelegate.h */,
 				8324B19F1C67073900153EC7 /* ATCAppDelegate.m */,
 				833960181C670CBB007241D9 /* ATCMainWindowController.h */,
@@ -495,7 +495,7 @@
 				8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */,
 				8373D8BE1C697E2600A11E31 /* ATCSecretKeyManuallyInputView.m in Sources */,
 				8373D8B81C697D8D00A11E31 /* ATCSecretKeyManuallyInputWindow.m in Sources */,
-				8368DD341C6AED6600005A7D /* ATCRefreshingTimer.m in Sources */,
+				8368DD341C6AED6600005A7D /* ATCNotificationCenter.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
 				8373D87A1C67494300A11E31 /* NSColor+ATCExtensions.m in Sources */,
 				8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */,

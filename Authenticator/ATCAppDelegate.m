@@ -20,12 +20,12 @@
 
 //- ( void ) applicationWillResignActive: ( NSNotification* )_Notif
 //    {
-//    [ [ ATCRefreshingTimer sharedTimer ] stopTiming ];
+//    [ [ ATCNotificationCenter sharedTimer ] stopTiming ];
 //    }
 //
 //- ( void ) applicationWillBecomeActive: ( NSNotification* )_Notif
 //    {
-//    [ [ ATCRefreshingTimer sharedTimer ] startTiming ];
+//    [ [ ATCNotificationCenter sharedTimer ] startTiming ];
 //    }
 
 @end // ATCAppDelegate class
