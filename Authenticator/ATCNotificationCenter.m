@@ -80,6 +80,9 @@ ATCNotificationCenter static* sTimer;
     if ( ( YES ) )
         [ self postNotificationOnBehalfOfMeWithName: ATCHintFieldShouldUpdateNotif ];
 
+    if ( remainingSec == ATCWarningTimeStep )
+        [ self postNotificationOnBehalfOfMeWithName: ATCShouldShowWarningsNotif ];
+
     if ( remainingSec == ATCFixedTimeStep )
         [ self postNotificationOnBehalfOfMeWithName: ATCTotpBadgeViewShouldUpdateNotif ];
     }

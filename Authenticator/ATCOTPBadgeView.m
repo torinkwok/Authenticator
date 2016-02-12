@@ -19,13 +19,23 @@
                         };
 
     self.wantsLayer = YES;
+    isInWarning_ = NO;
 
     [ [ NSNotificationCenter defaultCenter ]
         addObserver: self selector: @selector( totpEntryShouldUpdate: ) name: ATCTotpBadgeViewShouldUpdateNotif object: nil ];
+
+    [ [ NSNotificationCenter defaultCenter ]
+        addObserver: self selector: @selector( totpEntryShouldUpdate: ) name: ATCShouldShowWarningsNotif object: nil ];
     }
 
 - ( void ) totpEntryShouldUpdate: ( NSNotification* )_Notif
     {
+    if ( [ _Notif.name isEqualToString: ATCShouldShowWarningsNotif ] )
+        isInWarning_ = YES;
+
+    if ( [ AGClock remainingSecondsForRecalculation ] > ATCWarningTimeStep )
+        isInWarning_ = NO;
+
     self.needsDisplay = YES;
     }
 
@@ -39,8 +49,8 @@
 - ( void ) drawRect: ( NSRect )_DirtyRect
     {
     [ super drawRect: _DirtyRect ];
-    
-    [ ATCNormalPINColor() set ];
+
+    isInWarning_ ? [ ATCWarningPINColor() set ] : [ ATCNormalPINColor() set ];
 
     NSBezierPath* roundedBoundsPath =
         [ NSBezierPath bezierPathWithRoundedRect: self.bounds

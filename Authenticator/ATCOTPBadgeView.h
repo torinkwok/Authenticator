@@ -16,6 +16,8 @@
 @private
     ATCTotpEntry __strong* optEntry_;
     NSDictionary __strong* optDrawingAttrs_;
+
+    BOOL isInWarning_;
     }
 
 @property ( strong, readwrite ) ATCTotpEntry* optEntry;
