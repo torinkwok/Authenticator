@@ -77,10 +77,10 @@ ATCNotificationCenter static* sTimer;
 
     [ self postNotificationOnBehalfOfMeWithName: ATCHintFieldShouldUpdateNotif ];
 
-    if ( [ AGClock remainingSecondsForRecalculation ] == 30 )
+    if ( [ AGClock remainingSecondsForRecalculation ] == ATCFixedTimeStep )
         [ self postNotificationOnBehalfOfMeWithName: ATCTotpBadgeViewShouldUpdateNotif ];
 
-    if ( [ AGClock remainingSecondsForRecalculation ] == 3 )
+    if ( [ AGClock remainingSecondsForRecalculation ] == ATCWarningTimeStep )
         [ self postNotificationOnBehalfOfMeWithName: ATCShouldShowWarningsNotif ];
     }
 

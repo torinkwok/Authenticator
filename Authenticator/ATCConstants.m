@@ -19,6 +19,7 @@ NSString* const kTotpEntry = @"kTotpEntry";
 
 // Constants
 uint64_t const ATCFixedTimeStep = 30;
+uint64_t const ATCWarningTimeStep = 3;
 
 // Shared Hex HTML Color
 NSString* const ATCHexNormalPINColor = @"52AAEE";
