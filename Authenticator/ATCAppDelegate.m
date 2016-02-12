@@ -18,14 +18,14 @@
 
 #pragma mark - Conforms to <NSApplicationDelegate>
 
-- ( void ) applicationWillResignActive: ( NSNotification* )_Notif
-    {
-    [ [ ATCRefreshingTimer sharedTimer ] stopTiming ];
-    }
-
-- ( void ) applicationWillBecomeActive: ( NSNotification* )_Notif
-    {
-    [ [ ATCRefreshingTimer sharedTimer ] startTiming ];
-    }
+//- ( void ) applicationWillResignActive: ( NSNotification* )_Notif
+//    {
+//    [ [ ATCRefreshingTimer sharedTimer ] stopTiming ];
+//    }
+//
+//- ( void ) applicationWillBecomeActive: ( NSNotification* )_Notif
+//    {
+//    [ [ ATCRefreshingTimer sharedTimer ] startTiming ];
+//    }
 
 @end // ATCAppDelegate class

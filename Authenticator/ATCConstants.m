@@ -19,3 +19,22 @@ NSString* const kTotpEntry = @"kTotpEntry";
 
 // Constants
 uint64_t const ATCFixedTimeStep = 30;
+
+// Shared Hex HTML Color
+NSString* const ATCHexNormalPINColor = @"52AAEE";
+NSString* const ATCHexWarningPINColor = @"C85044";
+
+inline NSColor* ATCNormalPINColor()
+    {
+    return [ NSColor colorWithHTMLColor: ATCHexNormalPINColor ];
+    }
+
+inline NSColor* ATCWarningPINColor()
+    {
+    return [ NSColor colorWithHTMLColor: ATCHexWarningPINColor ];
+    }
+
+inline NSColor* ATCAlternativeWarningPINColor()
+    {
+    return [ ATCWarningPINColor() colorWithAlphaComponent: .5f ];
+    }

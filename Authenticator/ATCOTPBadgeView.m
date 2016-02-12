@@ -40,7 +40,7 @@
     {
     [ super drawRect: _DirtyRect ];
     
-    [ [ NSColor colorWithHTMLColor: @"52AAEE" ] set ];
+    [ ATCNormalPINColor() set ];
 
     NSBezierPath* roundedBoundsPath =
         [ NSBezierPath bezierPathWithRoundedRect: self.bounds

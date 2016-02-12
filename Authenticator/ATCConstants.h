@@ -17,3 +17,11 @@ NSString extern* const kTotpEntry;
 
 // Constants
 uint64_t extern const ATCFixedTimeStep;
+
+// Shared Hex HTML Colorn
+NSString extern* const ATCHexNormalPINColor;
+NSString extern* const ATCHexWarningPINColor;
+
+NSColor* ATCNormalPINColor();
+NSColor* ATCWarningPINColor();
+NSColor* ATCAlternativeWarningPINColor();
