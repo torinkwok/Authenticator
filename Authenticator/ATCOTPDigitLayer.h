@@ -1,5 +1,5 @@
 //
-//  ATCOTPDigitBgLayer.h
+//  ATCOTPDigitLayer.h
 //  Authenticator
 //
 //  Created by Tong G. on 2/12/16.
@@ -8,7 +8,7 @@
 
 @import QuartzCore;
 
-// ATCOTPDigitBgLayer class
-@interface ATCOTPDigitBgLayer : CALayer
+// ATCOTPDigitLayer class
+@interface ATCOTPDigitLayer : CALayer
 
-@end // ATCOTPDigitBgLayer class
+@end // ATCOTPDigitLayer class
