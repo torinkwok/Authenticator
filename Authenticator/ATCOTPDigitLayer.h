@@ -9,6 +9,11 @@
 @import QuartzCore;
 
 // ATCOTPDigitLayer class
-@interface ATCOTPDigitLayer : CALayer
+@interface ATCOTPDigitLayer : CATextLayer
+
+#pragma mark - Initializations
+
+- ( instancetype ) initWithTextString: ( NSString* )_TextString delegate: ( id )_Delegate;
+- ( instancetype ) initWithTextString: ( NSString* )_TextString;
 
 @end // ATCOTPDigitLayer class
