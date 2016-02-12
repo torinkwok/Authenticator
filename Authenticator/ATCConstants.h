@@ -12,3 +12,6 @@ NSString extern* const ATCTotpEntryShouldUpdateNotif;
 
 // User Info Key
 NSString extern* const kTotpEntry;
+
+// Constants
+uint64_t extern const ATCFixedTimeStep;

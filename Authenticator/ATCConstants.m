@@ -14,3 +14,6 @@ NSString* const ATCTotpEntryShouldUpdateNotif = @"TotpEntry.Should.Update.Notif"
 
 // User Info Key
 NSString* const kTotpEntry = @"kTotpEntry";
+
+// Constants
+uint64_t const ATCFixedTimeStep = 30;

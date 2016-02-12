@@ -15,7 +15,7 @@
 
 + ( uint64_t ) remainingSecondsForRecalculation
     {
-    return ( 30 - ( ( uint64_t )[ [ NSDate date ] timeIntervalSince1970 ] % 30 ) );
+    return ( ATCFixedTimeStep - ( ( uint64_t )[ [ NSDate date ] timeIntervalSince1970 ] % ATCFixedTimeStep ) );
     }
 
 @end // AGClock + ATCExtensions
