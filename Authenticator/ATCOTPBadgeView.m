@@ -8,6 +8,7 @@
 
 #import "ATCOTPBadgeView.h"
 #import "ATCTotpEntry.h"
+#import "ATCOTPBadgeLayer.h"
 
 // ATCOTPBadgeView class
 @implementation ATCOTPBadgeView
@@ -39,6 +40,16 @@
         isInWarning_ = NO;
 
     self.needsDisplay = YES;
+    }
+
+#pragma mark - Animation
+
+- ( CALayer* ) makeBackingLayer
+    {
+    ATCOTPBadgeLayer* backingLayer = [ [ ATCOTPBadgeLayer alloc ] init ];
+    backingLayer.delegate = self;
+
+    return backingLayer;
     }
 
 #pragma mark - Drawing
