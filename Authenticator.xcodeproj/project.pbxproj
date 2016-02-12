@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		831EC89E1C688824005DCD88 /* ATCOTPDigitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 831EC89D1C688824005DCD88 /* ATCOTPDigitLayer.m */; settings = {ASSET_TAGS = (); }; };
+		831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */; settings = {ASSET_TAGS = (); }; };
 		831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831EC89F1C688830005DCD88 /* QuartzCore.framework */; };
 		8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B19F1C67073900153EC7 /* ATCAppDelegate.m */; };
 		8324B1A31C67073900153EC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B1A21C67073900153EC7 /* main.m */; };
@@ -66,8 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		831EC89C1C688824005DCD88 /* ATCOTPDigitLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPDigitLayer.h; sourceTree = "<group>"; };
-		831EC89D1C688824005DCD88 /* ATCOTPDigitLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPDigitLayer.m; sourceTree = "<group>"; };
+		831EC89C1C688824005DCD88 /* ATCOTPDigitTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPDigitTextLayer.h; sourceTree = "<group>"; };
+		831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPDigitTextLayer.m; sourceTree = "<group>"; };
 		831EC89F1C688830005DCD88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8324B19B1C67073900153EC7 /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8324B19E1C67073900153EC7 /* ATCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCAppDelegate.h; sourceTree = "<group>"; };
@@ -241,8 +241,8 @@
 				8373D87D1C67537500A11E31 /* ATCOTPBadgeView.m */,
 				83CEE8B21C6E03800027AE38 /* ATCOTPDigitBgLayer.h */,
 				83CEE8B31C6E03800027AE38 /* ATCOTPDigitBgLayer.m */,
-				831EC89C1C688824005DCD88 /* ATCOTPDigitLayer.h */,
-				831EC89D1C688824005DCD88 /* ATCOTPDigitLayer.m */,
+				831EC89C1C688824005DCD88 /* ATCOTPDigitTextLayer.h */,
+				831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */,
 				8324B1A11C67073900153EC7 /* Supporting Files */,
 			);
 			path = Authenticator;
@@ -496,7 +496,7 @@
 				83CEE8AE1C6CD0E90027AE38 /* ATCHintField.m in Sources */,
 				8373D8911C67548C00A11E31 /* AGStringEncoding.m in Sources */,
 				8373D8BB1C697E0500A11E31 /* ATCBeautifulView.m in Sources */,
-				831EC89E1C688824005DCD88 /* ATCOTPDigitLayer.m in Sources */,
+				831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */,
 				8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */,
 				8373D8BE1C697E2600A11E31 /* ATCSecretKeyManuallyInputView.m in Sources */,
 				8373D8B81C697D8D00A11E31 /* ATCSecretKeyManuallyInputWindow.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  ATCOTPDigitLayer.h
+//  ATCOTPDigitTextLayer.h
 //  Authenticator
 //
 //  Created by Tong G. on 2/8/16.
@@ -8,12 +8,12 @@
 
 @import QuartzCore;
 
-// ATCOTPDigitLayer class
-@interface ATCOTPDigitLayer : CATextLayer
+// ATCOTPDigitTextLayer class
+@interface ATCOTPDigitTextLayer : CATextLayer
 
 #pragma mark - Initializations
 
 - ( instancetype ) initWithTextString: ( NSString* )_TextString delegate: ( id )_Delegate;
 - ( instancetype ) initWithTextString: ( NSString* )_TextString;
 
-@end // ATCOTPDigitLayer class
+@end // ATCOTPDigitTextLayer class

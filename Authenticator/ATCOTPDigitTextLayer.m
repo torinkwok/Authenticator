@@ -1,15 +1,15 @@
 //
-//  ATCOTPDigitLayer.m
+//  ATCOTPDigitTextLayer.m
 //  Authenticator
 //
 //  Created by Tong G. on 2/8/16.
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-#import "ATCOTPDigitLayer.h"
+#import "ATCOTPDigitTextLayer.h"
 
-// ATCOTPDigitLayer class
-@implementation ATCOTPDigitLayer
+// ATCOTPDigitTextLayer class
+@implementation ATCOTPDigitTextLayer
 
 #pragma mark - Initializations
 
@@ -40,4 +40,4 @@
     // TODO:
     }
 
-@end // ATCOTPDigitLayer class
+@end // ATCOTPDigitTextLayer class
