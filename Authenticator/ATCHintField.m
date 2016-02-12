@@ -16,7 +16,7 @@
 
 @property ( assign, readwrite ) uint64_t remainingSeconds_;
 
-- ( void ) totpEntryShouldUpdate_: ( NSNotification* )_Notif;
+- ( void ) hintFieldShouldUpdate_: ( NSNotification* )_Notif;
 - ( void ) calculateCurrentRemainingSeconds_;
 
 @end // Private Interfaces
@@ -44,7 +44,7 @@
         [ self calculateCurrentRemainingSeconds_ ];
 
         [ [ NSNotificationCenter defaultCenter ]
-            addObserver: self selector: @selector( totpEntryShouldUpdate_: ) name: ATCTotpEntryShouldUpdateNotif object: nil ];
+            addObserver: self selector: @selector( hintFieldShouldUpdate_: ) name: ATCHintFieldShouldUpdateNotif object: nil ];
         }
 
     return self;
@@ -76,7 +76,7 @@
     self.attributedStringValue = attributedString;
     }
 
-- ( void ) totpEntryShouldUpdate_: ( NSNotification* )_Notif
+- ( void ) hintFieldShouldUpdate_: ( NSNotification* )_Notif
     {
     [ self calculateCurrentRemainingSeconds_ ];
     }

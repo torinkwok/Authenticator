@@ -10,7 +10,9 @@
 
 // Notification Names
 NSString* const ATCNewTotpEntryDidAddNotif = @"NewTotpEntry.DidAdd.Notif";
-NSString* const ATCTotpEntryShouldUpdateNotif = @"TotpEntry.Should.Update.Notif";
+NSString* const ATCTotpBadgeViewShouldUpdateNotif = @"TotpBadgeView.Should.Update.Notif";
+NSString* const ATCHintFieldShouldUpdateNotif = @"HintField.Should.Update.Notif";
+NSString* const ATCShouldShowWarningsNotif = @"Should.ShowWarnings.Notif";
 
 // User Info Key
 NSString* const kTotpEntry = @"kTotpEntry";

@@ -69,11 +69,19 @@ ATCRefreshingTimer static* sTimer;
 - ( void ) timerFire_: ( NSTimer* )_Timer
     {
     #if DEBUG
-    NSLog( @"Timer Fired: %@ ~ remaining seconds for recalculation: %llu", _Timer, [ AGClock remainingSecondsForRecalculation ] );
+    NSLog( @"Timer Fired: %@ ~ remaining seconds for recalculation: %llu"
+         , _Timer
+         , [ AGClock remainingSecondsForRecalculation ]
+         );
     #endif
 
-    [ [ NSNotificationCenter defaultCenter ]
-        postNotificationName: ATCTotpEntryShouldUpdateNotif object: self ];
+    [ self postNotificationOnBehalfOfMeWithName: ATCHintFieldShouldUpdateNotif ];
+
+    if ( [ AGClock remainingSecondsForRecalculation ] == 30 )
+        [ self postNotificationOnBehalfOfMeWithName: ATCTotpBadgeViewShouldUpdateNotif ];
+
+    if ( [ AGClock remainingSecondsForRecalculation ] == 3 )
+        [ self postNotificationOnBehalfOfMeWithName: ATCShouldShowWarningsNotif ];
     }
 
 @end // ATCRefreshingTimer class

@@ -21,7 +21,7 @@
     self.wantsLayer = YES;
 
     [ [ NSNotificationCenter defaultCenter ]
-        addObserver: self selector: @selector( totpEntryShouldUpdate: ) name: ATCTotpEntryShouldUpdateNotif object: nil ];
+        addObserver: self selector: @selector( totpEntryShouldUpdate: ) name: ATCTotpBadgeViewShouldUpdateNotif object: nil ];
     }
 
 - ( void ) totpEntryShouldUpdate: ( NSNotification* )_Notif

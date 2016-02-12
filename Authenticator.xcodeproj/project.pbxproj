@@ -42,6 +42,7 @@
 		8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C31C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C61C6A322900A11E31 /* ATCConstants.m */; settings = {ASSET_TAGS = (); }; };
 		83CEE8AE1C6CD0E90027AE38 /* ATCHintField.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8AD1C6CD0E90027AE38 /* ATCHintField.m */; settings = {ASSET_TAGS = (); }; };
+		83CEE8B11C6DB4B50027AE38 /* NSObject+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8B01C6DB4B50027AE38 /* NSObject+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BFC1C67148A007253E3 /* ATCTotpEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BFB1C67148A007253E3 /* ATCTotpEntry.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -140,6 +141,8 @@
 		8373D8C61C6A322900A11E31 /* ATCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCConstants.m; sourceTree = "<group>"; };
 		83CEE8AC1C6CD0E90027AE38 /* ATCHintField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCHintField.h; sourceTree = "<group>"; };
 		83CEE8AD1C6CD0E90027AE38 /* ATCHintField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCHintField.m; sourceTree = "<group>"; };
+		83CEE8AF1C6DB4B50027AE38 /* NSObject+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ATCExtensions.h"; sourceTree = "<group>"; };
+		83CEE8B01C6DB4B50027AE38 /* NSObject+ATCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ATCExtensions.m"; sourceTree = "<group>"; };
 		83D34BF71C67145B007253E3 /* ATCOTPEntryTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntryTableCellView.h; sourceTree = "<group>"; };
 		83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntryTableCellView.m; sourceTree = "<group>"; };
 		83D34BFA1C67148A007253E3 /* ATCTotpEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCTotpEntry.h; sourceTree = "<group>"; };
@@ -309,14 +312,16 @@
 		8373D8731C67491D00A11E31 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8373D8741C67494300A11E31 /* NSColor+ATCExtensions.m */,
 				8373D8751C67494300A11E31 /* NSColor+ATCExtensions.h */,
-				8373D8761C67494300A11E31 /* NSBezierPath+ATCExtensions.m */,
+				8373D8741C67494300A11E31 /* NSColor+ATCExtensions.m */,
 				8373D8771C67494300A11E31 /* NSBezierPath+ATCExtensions.h */,
-				8373D8781C67494300A11E31 /* NSAffineTransform+ATCExtensions.m */,
+				8373D8761C67494300A11E31 /* NSBezierPath+ATCExtensions.m */,
 				8373D8791C67494300A11E31 /* NSAffineTransform+ATCExtensions.h */,
+				8373D8781C67494300A11E31 /* NSAffineTransform+ATCExtensions.m */,
 				8368DD371C6CC12500005A7D /* AGClock+ATCExtensions.h */,
 				8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */,
+				83CEE8AF1C6DB4B50027AE38 /* NSObject+ATCExtensions.h */,
+				83CEE8B01C6DB4B50027AE38 /* NSObject+ATCExtensions.m */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -513,6 +518,7 @@
 				8373D8921C67548C00A11E31 /* AGTotp.m in Sources */,
 				8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */,
 				8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */,
+				83CEE8B11C6DB4B50027AE38 /* NSObject+ATCExtensions.m in Sources */,
 				8373D87B1C67494300A11E31 /* NSBezierPath+ATCExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
