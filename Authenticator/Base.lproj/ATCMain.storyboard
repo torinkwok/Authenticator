@@ -656,6 +656,9 @@
                         <windowPositionMask key="initialPositionMask" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="451" width="389" height="438"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="dVr-Un-KqX"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>

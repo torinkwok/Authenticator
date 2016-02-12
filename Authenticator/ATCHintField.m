@@ -38,7 +38,7 @@
         self.textColor = [ [ NSColor colorWithHTMLColor: @"494B48" ] colorWithAlphaComponent: .85f ];
 
         leadingHalf_ = [ [ NSAttributedString alloc ] initWithString: @"Your tokens expire in " ];
-        middleHalf_ = [ [ NSAttributedString alloc ] initWithString: @"-1" attributes: @{ NSForegroundColorAttributeName : [ NSColor colorWithHTMLColor: @"52AAEE" ] } ];
+        middleHalf_ = [ [ NSAttributedString alloc ] initWithString: @"-1" ];
         trailingHalf_ = [ [ NSAttributedString alloc ] initWithString: @" seconds" ];
 
         [ self calculateCurrentRemainingSeconds_ ];
@@ -63,9 +63,10 @@
     {
     NSMutableAttributedString* attributedString = [ [ NSMutableAttributedString alloc ] initWithString: @"" ];
 
-    NSRange range = NSMakeRange( 0, middleHalf_.length );
-    middleHalf_ = [ [ NSAttributedString alloc ] initWithString: ( _New < 10 ) ? [ NSString stringWithFormat: @"0%llu", _New ] : @( _New ).stringValue
-                                                     attributes: [ middleHalf_ attributesAtIndex: 0 effectiveRange: &range ] ];
+    middleHalf_ = [ [ NSAttributedString alloc ]
+        initWithString: ( _New < 10 ) ? [ NSString stringWithFormat: @"0%llu", _New ] : @( _New ).stringValue
+            attributes: @{ NSForegroundColorAttributeName
+                            : ( _New > ATCWarningTimeStep ) ? ATCNormalPINColor() : ATCWarningPINColor() } ];
 
     [ attributedString appendAttributedString: leadingHalf_ ];
     [ attributedString appendAttributedString: middleHalf_ ];

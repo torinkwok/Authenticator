@@ -9,6 +9,6 @@
 @import Cocoa;
 
 // ATCMainWindowController class
-@interface ATCMainWindowController : NSWindowController
+@interface ATCMainWindowController : NSWindowController <NSWindowDelegate>
 
 @end // ATCMainWindowController class

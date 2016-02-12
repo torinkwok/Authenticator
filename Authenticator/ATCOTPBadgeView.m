@@ -47,7 +47,7 @@
                        withRadiusOfTopLeftCorner: 6.f
                                 bottomLeftCorner: 6.f
                                   topRightCorner: 6.f
-                               bottomRightCorner:6.f
+                               bottomRightCorner: 6.f
                                        isFlipped: NO ];
 
     [ roundedBoundsPath fill ];

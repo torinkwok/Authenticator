@@ -23,4 +23,11 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
 
+#pragma mark - Conforms to <NSWindowDelegate> 
+
+- ( void ) windowDidEndLiveResize: ( NSNotification* )_Notif
+    {
+    [ self postNotificationOnBehalfOfMeWithName: ATCTotpBadgeViewShouldUpdateNotif ];
+    }
+
 @end // ATCMainWindowController class
