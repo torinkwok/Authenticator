@@ -6,9 +6,13 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-@import QuartzCore;
+@class ATCOTPDigitTextLayer;
 
 // ATCOTPDigitLayer class
 @interface ATCOTPDigitLayer : CALayer
+    {
+@protected
+    ATCOTPDigitTextLayer __strong* digitTextLayer_;
+    }
 
 @end // ATCOTPDigitLayer class

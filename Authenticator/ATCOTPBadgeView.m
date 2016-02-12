@@ -19,7 +19,6 @@
                         };
 
     self.wantsLayer = YES;
-    isInWarning_ = [ AGClock remainingSecondsForRecalculation ] < ATCWarningTimeStep;
 
     [ [ NSNotificationCenter defaultCenter ]
         addObserver: self selector: @selector( totpEntryShouldUpdate: ) name: ATCTotpBadgeViewShouldUpdateNotif object: nil ];
@@ -27,6 +26,7 @@
     [ [ NSNotificationCenter defaultCenter ]
         addObserver: self selector: @selector( totpEntryShouldUpdate: ) name: ATCShouldShowWarningsNotif object: nil ];
 
+    isInWarning_ = [ AGClock remainingSecondsForRecalculation ] < ATCWarningTimeStep;
     self.needsDisplay = YES;
     }
 
