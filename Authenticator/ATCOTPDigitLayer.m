@@ -9,6 +9,14 @@
 #import "ATCOTPDigitLayer.h"
 #import "ATCOTPDigitTextLayer.h"
 
+// Private Interfaces
+@interface ATCOTPDigitLayer ()
+
+// Notification Selectors
+- ( void ) shouldRedraw_: ( NSNotification* )_Notif;
+
+@end // Private Interfaces
+
 // ATCOTPDigitLayer class
 @implementation ATCOTPDigitLayer
 
@@ -47,15 +55,6 @@
     return self;
     }
 
-- ( void ) shouldRedraw_: ( NSNotification* )_Notif
-    {
-    if ( [ _Notif.name isEqualToString: ATCShouldShowWarningsNotif ] )
-        self.isInWarning = YES;
-
-    if ( [ AGClock remainingSecondsForRecalculation ] > ATCWarningTimeStep )
-        self.isInWarning = NO;
-    }
-
 #pragma mark - Dynamic Properties
 
 @dynamic digitString;
@@ -80,6 +79,18 @@
 - ( BOOL ) isInWarning
     {
     return isInWarning_;
+    }
+
+#pragma mark - Private Interfaces
+
+// Notification Selectors
+- ( void ) shouldRedraw_: ( NSNotification* )_Notif
+    {
+    if ( [ _Notif.name isEqualToString: ATCShouldShowWarningsNotif ] )
+        self.isInWarning = YES;
+
+    if ( [ AGClock remainingSecondsForRecalculation ] > ATCWarningTimeStep )
+        self.isInWarning = NO;
     }
 
 @end // ATCOTPDigitLayer class

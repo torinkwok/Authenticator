@@ -10,6 +10,17 @@
 #import "ATCTotpEntry.h"
 #import "ATCOTPBadgeLayer.h"
 
+// Private Interfaces
+@interface ATCOTPBadgeView ()
+
+// Drawing
+- ( void ) recalculateAndRerenderOTP_;
+
+// Notification Selectors
+- ( void ) shouldUpdateOTP_: ( NSNotification* )_Notif;
+
+@end // Private Interfaces
+
 // ATCOTPBadgeView class
 @implementation ATCOTPBadgeView
 
@@ -19,12 +30,7 @@
     self.layerContentsRedrawPolicy = NSViewLayerContentsRedrawOnSetNeedsDisplay;
 
     [ [ NSNotificationCenter defaultCenter ]
-        addObserver: self selector: @selector( shouldRedraw_: ) name: ATCTotpBadgeViewShouldUpdateNotif object: nil ];
-    }
-
-- ( void ) shouldRedraw_: ( NSNotification* )_Notif
-    {
-    [ ( ATCOTPBadgeLayer* )( self.layer ) setPinCode: optEntry_.pinCodeRightNow ];
+        addObserver: self selector: @selector( shouldUpdateOTP_: ) name: ATCTotpBadgeViewShouldUpdateNotif object: nil ];
     }
 
 #pragma mark - Animation
@@ -53,14 +59,27 @@
     if ( optEntry_ != _NewEntry )
         {
         optEntry_ = _NewEntry;
-//        NSLog( @"%@", optEntry_.pinCodeRightNow );
-        [ ( ATCOTPBadgeLayer* )( self.layer ) setPinCode: optEntry_.pinCodeRightNow ];
+        [ self recalculateAndRerenderOTP_ ];
         }
     }
 
 - ( ATCTotpEntry* ) optEntry
     {
     return optEntry_;
+    }
+
+#pragma mark - Private Interfaces
+
+// Drawing
+- ( void ) recalculateAndRerenderOTP_
+    {
+    [ ( ATCOTPBadgeLayer* )( self.layer ) setPinCode: optEntry_.pinCodeRightNow ];
+    }
+
+// Notification Selectors
+- ( void ) shouldUpdateOTP_: ( NSNotification* )_Notif
+    {
+    [ self recalculateAndRerenderOTP_ ];
     }
 
 @end // ATCOTPBadgeView class
