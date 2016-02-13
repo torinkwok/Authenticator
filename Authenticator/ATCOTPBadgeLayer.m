@@ -35,7 +35,7 @@
             [ digitLayers_ addObject: [ [ ATCOTPDigitLayer alloc ] initWithTextString: @"-" ] ];
 
         dashLayer_ = [ [ CALayer alloc ] init ];
-        dashLayer_.backgroundColor = [ NSColor grayColor ].CGColor;
+        dashLayer_.backgroundColor = [ NSColor lightGrayColor ].CGColor;
         dashLayer_.bounds = NSMakeRect( 0, 0, kDashWidth, 2 );
 
         [ digitLayers_ insertObjects: @[ dashLayer_ ] atIndexes: dashIndex_ ];

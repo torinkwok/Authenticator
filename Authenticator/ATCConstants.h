@@ -26,3 +26,4 @@ NSString extern* const ATCHexWarningPINColor;
 NSColor* ATCNormalPINColor();
 NSColor* ATCWarningPINColor();
 NSColor* ATCAlternativeWarningPINColor();
+NSColor* ATCControlColor();

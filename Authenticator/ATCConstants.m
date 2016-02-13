@@ -39,3 +39,8 @@ inline NSColor* ATCAlternativeWarningPINColor()
     {
     return [ ATCWarningPINColor() colorWithAlphaComponent: .5f ];
     }
+
+inline NSColor* ATCControlColor()
+    {
+    return [ [ NSColor colorWithHTMLColor: @"494B48" ] colorWithAlphaComponent: .85f ];
+    }
