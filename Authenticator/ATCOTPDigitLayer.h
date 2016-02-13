@@ -13,7 +13,11 @@
     {
 @protected
     ATCOTPDigitTextLayer __strong* digitTextLayer_;
+    BOOL isInWarning_;
     }
+
+@property ( strong, readwrite ) NSString* digitString;
+@property ( assign, readwrite ) BOOL isInWarning;
 
 #pragma mark - Initializations
 

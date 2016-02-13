@@ -18,10 +18,10 @@
     {
     if ( self = [ super init ] )
         {
-        self.layoutManager = [ CAConstraintLayoutManager layoutManager ];
+        self.isInWarning = [ AGClock remainingSecondsForRecalculation ] < ATCWarningTimeStep;
 
+        self.layoutManager = [ CAConstraintLayoutManager layoutManager ];
         self.cornerRadius = 6.f;
-        self.backgroundColor = ATCNormalPINColor().CGColor;
 
         digitTextLayer_ = [ [ ATCOTPDigitTextLayer alloc ] initWithTextString: _TextString ];
 
@@ -36,9 +36,50 @@
         [ self addSublayer: digitTextLayer_ ];
 
         self.contentsScale = 2.0f;
+
+        [ [ NSNotificationCenter defaultCenter ]
+            addObserver: self selector: @selector( shouldRedraw_: ) name: ATCTotpBadgeViewShouldUpdateNotif object: nil ];
+
+        [ [ NSNotificationCenter defaultCenter ]
+            addObserver: self selector: @selector( shouldRedraw_: ) name: ATCShouldShowWarningsNotif object: nil ];
         }
 
     return self;
+    }
+
+- ( void ) shouldRedraw_: ( NSNotification* )_Notif
+    {
+    if ( [ _Notif.name isEqualToString: ATCShouldShowWarningsNotif ] )
+        self.isInWarning = YES;
+
+    if ( [ AGClock remainingSecondsForRecalculation ] > ATCWarningTimeStep )
+        self.isInWarning = NO;
+    }
+
+#pragma mark - Dynamic Properties
+
+@dynamic digitString;
+@dynamic isInWarning;
+
+- ( void ) setDigitString: ( NSString* )_DigitString
+    {
+    digitTextLayer_.string = _DigitString;
+    }
+
+- ( NSString* ) digitString
+    {
+    return digitTextLayer_.string;
+    }
+
+- ( void ) setIsInWarning: ( BOOL )_Flag
+    {
+    isInWarning_ = _Flag;
+    self.backgroundColor = ( isInWarning_ ? ATCWarningPINColor() : ATCNormalPINColor() ).CGColor;
+    }
+
+- ( BOOL ) isInWarning
+    {
+    return isInWarning_;
     }
 
 @end // ATCOTPDigitLayer class
