@@ -13,6 +13,7 @@
     {
 @protected
     NSMutableOrderedSet <ATCOTPDigitLayer*> __strong* digitLayers_;
+    CALayer __strong* dashLayer_;
     }
 
 @end // ATCOTPBadgeLayer class
