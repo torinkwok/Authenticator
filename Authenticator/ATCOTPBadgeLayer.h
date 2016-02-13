@@ -12,7 +12,7 @@
 @interface ATCOTPBadgeLayer : CALayer
     {
 @protected
-    NSMutableOrderedSet <ATCOTPDigitLayer*> __strong* digitLayers_;
+    NSMutableOrderedSet <CALayer*> __strong* digitLayers_;
     CALayer __strong* dashLayer_;
     }
 
