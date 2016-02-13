@@ -15,14 +15,13 @@
 #pragma mark - Initializations
 
 - ( instancetype ) initWithTextString: ( NSString* )_TextString
-                             delegate: ( id )_Delegate
     {
-    if ( self = [ super initWithTextString: _TextString delegate: _Delegate ] )
+    if ( self = [ super init ] )
         {
         self.cornerRadius = 5.f;
         self.backgroundColor = ATCNormalPINColor().CGColor;
 
-        digitTextLayer_ = [ [ ATCOTPDigitTextLayer alloc ] initWithTextString: _TextString delegate: _Delegate ];
+        digitTextLayer_ = [ [ ATCOTPDigitTextLayer alloc ] initWithTextString: _TextString ];
 
         NSString* superlayer = @"superlayer";
         [ digitTextLayer_ addConstraint:

@@ -15,4 +15,6 @@
     ATCOTPDigitTextLayer __strong* digitTextLayer_;
     }
 
+- ( instancetype ) initWithTextString: ( NSString* )_TextString;
+
 @end // ATCOTPDigitLayer class

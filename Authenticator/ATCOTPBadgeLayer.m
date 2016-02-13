@@ -19,7 +19,7 @@
 //        self.backgroundColor = [ NSColor blueColor ].CGColor;
 
         for ( int _Index = 0; _Index < 6; _Index++ )
-            [ digitLayers_ addObject: [ [ ATCOTPDigitLayer alloc ] initWithTextString: @"0" delegate: self ] ];
+            [ digitLayers_ addObject: [ [ ATCOTPDigitLayer alloc ] initWithTextString: @"0" ] ];
 
         [ self addSublayer: digitLayers_.firstObject ];
         }

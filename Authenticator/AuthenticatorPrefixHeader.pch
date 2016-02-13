@@ -28,6 +28,5 @@
 #import "NSBezierPath+ATCExtensions.h"
 #import "AGClock+ATCExtensions.h"
 #import "NSObject+ATCExtensions.h"
-#import "CALayer+ATCExtensions.h"
 
 #endif /* AuthenticatorPrefixHeader_pch */
