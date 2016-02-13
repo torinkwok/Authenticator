@@ -25,6 +25,8 @@ CGFloat const kDashWidth = 8.f;
 
 NSUInteger const kDashIndex = 3;
 
+NSString* const kDigitLayerNameTemplate = @"digit-layer-%lu";
+
 - ( void ) layoutSublayers
     {
     [ super layoutSublayers ];
@@ -51,7 +53,7 @@ NSUInteger const kDashIndex = 3;
         [ digitLayers_ enumerateObjectsUsingBlock:
             ^( CALayer* _Nonnull _DigitLayer, NSUInteger _Index, BOOL* _Nonnull _Stop )
                 {
-                _DigitLayer.name = [ NSString stringWithFormat: @"digit-layer-%lu", _Index ];
+                _DigitLayer.name = [ NSString stringWithFormat: kDigitLayerNameTemplate, _Index ];
 
                 if ( _Index != kDashIndex )
                     [ _DigitLayer setBounds: NSMakeRect( 0, 0, digitWidth, digitHeight ) ];
@@ -65,7 +67,7 @@ NSUInteger const kDashIndex = 3;
                     }
                 else
                     {
-                    NSString* sibling = [ NSString stringWithFormat: @"digit-layer-%lu", _Index - 1 ];
+                    NSString* sibling = [ NSString stringWithFormat: kDigitLayerNameTemplate, _Index - 1 ];
 
                     [ _DigitLayer addConstraint:
                         [ CAConstraint constraintWithAttribute: kCAConstraintMinX relativeTo: sibling attribute: kCAConstraintMaxX offset: kDigitsGap ] ];

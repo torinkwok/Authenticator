@@ -28,13 +28,12 @@
         NSString* superlayer = @"superlayer";
 
         [ digitTextLayer_ addConstraint:
-            [ CAConstraint constraintWithAttribute: kCAConstraintMidY relativeTo: superlayer attribute: kCAConstraintMidY ] ];
+            [ CAConstraint constraintWithAttribute: kCAConstraintMidY relativeTo: superlayer attribute: kCAConstraintMidY offset: 2.f ] ];
 
         [ digitTextLayer_ addConstraint:
             [ CAConstraint constraintWithAttribute: kCAConstraintMidX relativeTo: superlayer attribute: kCAConstraintMidX ] ];
 
         [ self addSublayer: digitTextLayer_ ];
-//        [ self setBounds: NSMakeRect( 0, 0, 35, 50 ) ];
 
         self.contentsScale = 2.0f;
         }

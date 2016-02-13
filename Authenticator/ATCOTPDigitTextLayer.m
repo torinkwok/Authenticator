@@ -19,7 +19,8 @@
         {
         self.string = _TextString;
 
-        self.fontSize = 40.f;
+        self.fontSize = 45.f;
+        self.font = ( __bridge CFTypeRef _Nullable )( @"Courier New" );
         self.foregroundColor = [ NSColor whiteColor ].CGColor;
         self.alignmentMode = kCAAlignmentCenter;
 
