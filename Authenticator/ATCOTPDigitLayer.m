@@ -73,7 +73,43 @@
 - ( void ) setIsInWarning: ( BOOL )_Flag
     {
     isInWarning_ = _Flag;
-    self.backgroundColor = ( isInWarning_ ? ATCWarningPINColor() : ATCNormalPINColor() ).CGColor;
+
+    if ( _Flag )
+        {
+        [ CATransaction begin ];
+        [ CATransaction setDisableActions: YES ];
+            self.backgroundColor = ATCWarningPINColor().CGColor;
+        [ CATransaction commit ];
+
+        [ CATransaction setCompletionBlock:
+           ^{
+            #if DEBUG
+            NSLog( @"Transaction Commited" );
+            #endif
+            } ];
+
+        [ CATransaction begin ];
+            {
+            CABasicAnimation* basicAmin = [ CABasicAnimation animationWithKeyPath: @"opacity" ];
+            [ basicAmin setFromValue: @1.f ];
+            [ basicAmin setToValue: @.6f ];
+            [ basicAmin setDuration: ( NSTimeInterval ).5f ];
+            [ basicAmin setTimingFunction: [ CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut ] ];
+            [ basicAmin setAutoreverses: YES ];
+            [ basicAmin setRepeatCount: 5 ];
+
+            [ self addAnimation:basicAmin forKey: @"opacity" ];
+            }
+        [ CATransaction commit ];
+        }
+    else
+        {
+        [ self removeAnimationForKey: @"opacity" ];
+
+        [ CATransaction begin ];
+            self.backgroundColor = ATCNormalPINColor().CGColor;
+        [ CATransaction commit ];
+        }
     }
 
 - ( BOOL ) isInWarning
