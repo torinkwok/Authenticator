@@ -9,6 +9,8 @@
 // ATCOTPDigitTextLayer class
 @interface ATCOTPDigitTextLayer : CATextLayer
 
+#pragma mark - Initializations
+
 - ( instancetype ) initWithTextString: ( NSString* )_TextString;
 
 @end // ATCOTPDigitTextLayer class

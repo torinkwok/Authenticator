@@ -19,20 +19,14 @@
         {
         self.string = _TextString;
 
-        self.fontSize = 30.f;
-        self.font = ( __bridge CFTypeRef _Nullable )( [ NSFont fontWithName: @"Courier New Regular" size: self.fontSize ] );
+        self.fontSize = 40.f;
         self.foregroundColor = [ NSColor whiteColor ].CGColor;
         self.alignmentMode = kCAAlignmentCenter;
+
+        self.contentsScale = 2.0f;
         }
 
     return self;
-    }
-
-#pragma mark - Drawing
-
-- ( void ) drawInContext: ( CGContextRef )_Ctx
-    {
-    // TODO:
     }
 
 @end // ATCOTPDigitTextLayer class

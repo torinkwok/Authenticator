@@ -15,6 +15,8 @@
     ATCOTPDigitTextLayer __strong* digitTextLayer_;
     }
 
+#pragma mark - Initializations
+
 - ( instancetype ) initWithTextString: ( NSString* )_TextString;
 
 @end // ATCOTPDigitLayer class

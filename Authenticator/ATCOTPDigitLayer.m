@@ -18,12 +18,15 @@
     {
     if ( self = [ super init ] )
         {
-        self.cornerRadius = 5.f;
+        self.layoutManager = [ CAConstraintLayoutManager layoutManager ];
+
+        self.cornerRadius = 6.f;
         self.backgroundColor = ATCNormalPINColor().CGColor;
 
         digitTextLayer_ = [ [ ATCOTPDigitTextLayer alloc ] initWithTextString: _TextString ];
 
         NSString* superlayer = @"superlayer";
+
         [ digitTextLayer_ addConstraint:
             [ CAConstraint constraintWithAttribute: kCAConstraintMidY relativeTo: superlayer attribute: kCAConstraintMidY ] ];
 
@@ -31,6 +34,9 @@
             [ CAConstraint constraintWithAttribute: kCAConstraintMidX relativeTo: superlayer attribute: kCAConstraintMidX ] ];
 
         [ self addSublayer: digitTextLayer_ ];
+//        [ self setBounds: NSMakeRect( 0, 0, 35, 50 ) ];
+
+        self.contentsScale = 2.0f;
         }
 
     return self;
