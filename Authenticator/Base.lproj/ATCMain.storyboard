@@ -644,6 +644,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="ATCAppDelegate"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="0RB-tK-YKz" customClass="ATCNotificationCenter"/>
+                <customObject id="nvx-hi-5YL" customClass="ATCSecretKeyManager"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>

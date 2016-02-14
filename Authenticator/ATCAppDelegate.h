@@ -11,5 +11,4 @@
 // ATCAppDelegate class
 @interface ATCAppDelegate : NSObject <NSApplicationDelegate>
 
-
 @end // ATCAppDelegate class

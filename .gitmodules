@@ -4,3 +4,6 @@
 [submodule "/Users/EsquireTongG/git/Authenticator/Authenticator/vendors/aerogear-otp"]
 	path = /Users/EsquireTongG/git/Authenticator/Authenticator/vendors/aerogear-otp
 	url = https://github.com/TongKuo/aerogear-otp.git
+[submodule "/Users/EsquireTongG/git/Authenticator/Authenticator/vendors/SSKeychain"]
+	path = /Users/EsquireTongG/git/Authenticator/Authenticator/vendors/SSKeychain
+	url = https://github.com/TongKuo/sskeychain.git
