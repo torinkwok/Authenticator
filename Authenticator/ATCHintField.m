@@ -34,7 +34,7 @@
         self.selectable = NO;
         self.bordered = NO;
         self.drawsBackground = NO;
-        self.font = [ NSFont fontWithName: @"Helvetica Neue Light" size: 20.f ];
+        self.font = [ NSFont fontWithName: @"Helvetica Neue Light" size: 22.f ];
         self.textColor = ATCControlColor();
 
         leadingHalf_ = [ [ NSAttributedString alloc ] initWithString: @"Your tokens expire in " ];

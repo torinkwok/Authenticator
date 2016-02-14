@@ -683,7 +683,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="81" rowSizeStyle="automatic" viewBased="YES" id="d6W-DR-s03">
-                                            <rect key="frame" x="0.0" y="0.0" width="424" height="0.0"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="424" height="416"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -852,9 +852,9 @@
                                 <font key="titleFont" metaFont="system"/>
                             </box>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yD9-ie-RIJ" customClass="ATCHintField">
-                                <rect key="frame" x="20" y="449" width="384" height="24"/>
+                                <rect key="frame" x="20" y="443" width="384" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="0Qh-tq-fsn"/>
+                                    <constraint firstAttribute="height" constant="30" id="0Qh-tq-fsn"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="384" id="2a4-Bl-p0u"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="rQ9-U2-Uhu">
@@ -874,7 +874,7 @@
                             <constraint firstAttribute="trailing" secondItem="nYK-8S-80v" secondAttribute="trailing" constant="10" id="SUr-Dc-6wz"/>
                             <constraint firstAttribute="trailing" secondItem="yD9-ie-RIJ" secondAttribute="trailing" constant="20" id="d4H-6m-2gs"/>
                             <constraint firstItem="yD9-ie-RIJ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="eDj-HS-dD5"/>
-                            <constraint firstItem="QXz-hh-4zp" firstAttribute="top" secondItem="yD9-ie-RIJ" secondAttribute="bottom" constant="32" id="epH-6W-dmj"/>
+                            <constraint firstItem="BEz-oe-qrV" firstAttribute="top" secondItem="yD9-ie-RIJ" secondAttribute="bottom" constant="27" id="lNj-YA-6zZ"/>
                             <constraint firstAttribute="trailing" secondItem="BEz-oe-qrV" secondAttribute="trailing" id="qvd-78-naX"/>
                             <constraint firstItem="nYK-8S-80v" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="5" id="r1F-S0-eK1"/>
                             <constraint firstItem="yD9-ie-RIJ" firstAttribute="top" secondItem="nYK-8S-80v" secondAttribute="bottom" constant="8" id="rQK-YN-48M"/>

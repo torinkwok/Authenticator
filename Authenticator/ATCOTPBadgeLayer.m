@@ -61,7 +61,7 @@ NSString* const kDigitLayerNameTemplate = @"digit-layer-%lu";
 
     NSView* del = self.delegate;
     CGFloat digitWidth = ( NSWidth( del.frame ) - kDigitsGap * 6 - kDashWidth * 2 ) / 6;
-    CGFloat digitHeight = NSHeight( del.frame ) - 6.f;
+    CGFloat digitHeight = NSHeight( del.frame ) - 10.f;
 
     [ digitLayers_ enumerateObjectsUsingBlock:
         ^( CALayer* _Nonnull _DigitLayer, NSUInteger _Index, BOOL* _Nonnull _Stop )
