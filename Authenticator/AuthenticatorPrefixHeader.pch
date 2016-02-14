@@ -30,4 +30,6 @@
 #import "AGClock+ATCExtensions.h"
 #import "NSObject+ATCExtensions.h"
 
+#import "WaxSealCore-Prefix.pch"
+
 #endif /* AuthenticatorPrefixHeader_pch */

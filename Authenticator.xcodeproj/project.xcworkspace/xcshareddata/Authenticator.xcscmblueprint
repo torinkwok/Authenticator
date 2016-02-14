@@ -6,6 +6,7 @@
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "6C9B4099E356BEF9360D39C09EA0815D4E5A638F" : 0,
     "C16576B571172538D95183F9515DC5DB064EAF7F" : 0,
+    "C21F6753D9C541D718E805E5CEFEDABA86D27046" : 0,
     "ADE175390EE0E26CF5CA9FFC8EDDA387CBEE97E5" : 0,
     "E6248D77DBBC6B1D6F6059D14C6A0B9ED1677585" : 0
   },
@@ -13,6 +14,7 @@
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "6C9B4099E356BEF9360D39C09EA0815D4E5A638F" : "Authenticator\/",
     "C16576B571172538D95183F9515DC5DB064EAF7F" : "Authenticator\/Authenticator\/vendors\/SSKeychain\/",
+    "C21F6753D9C541D718E805E5CEFEDABA86D27046" : "Authenticator\/Authenticator\/vendors\/WaxSealCore\/",
     "ADE175390EE0E26CF5CA9FFC8EDDA387CBEE97E5" : "Authenticator\/Authenticator\/vendors\/aerogear-otp-ios\/",
     "E6248D77DBBC6B1D6F6059D14C6A0B9ED1677585" : "Authenticator\/Authenticator\/vendors\/PureLayout\/"
   },
@@ -34,6 +36,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TongKuo\/sskeychain.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C16576B571172538D95183F9515DC5DB064EAF7F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TongKuo\/WaxSealCore.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C21F6753D9C541D718E805E5CEFEDABA86D27046"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TongKuo\/PureLayout.git",

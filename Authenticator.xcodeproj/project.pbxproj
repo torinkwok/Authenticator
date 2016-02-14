@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		830AD19C1C706844006D909C /* _WSCCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1711C706844006D909C /* _WSCCommon.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD19D1C706844006D909C /* _WSCCommonForUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1731C706844006D909C /* _WSCCommonForUnitTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD19E1C706844006D909C /* _WSCKeychainErrorPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1751C706844006D909C /* _WSCKeychainErrorPrivate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD19F1C706844006D909C /* NSString+_OMCString.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD17E1C706844006D909C /* NSString+_OMCString.m */; settings = {ASSET_TAGS = (); }; };
+		830AD1A01C706844006D909C /* NSDate+WSCCocoaDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1811C706844006D909C /* NSDate+WSCCocoaDate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD1A11C706844006D909C /* NSURL+WSCKeychainURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1831C706844006D909C /* NSURL+WSCKeychainURL.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD1A21C706844006D909C /* WSCCertificateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1861C706844006D909C /* WSCCertificateItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD1A31C706844006D909C /* WSCKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1881C706844006D909C /* WSCKey.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD1A41C706844006D909C /* WSCKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD18A1C706844006D909C /* WSCKeychain.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD1A51C706844006D909C /* WSCKeychainError.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD18C1C706844006D909C /* WSCKeychainError.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD1A61C706844006D909C /* WSCKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD18E1C706844006D909C /* WSCKeychainItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD1A71C706844006D909C /* WSCKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1901C706844006D909C /* WSCKeychainManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD1A81C706844006D909C /* WSCPassphraseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1921C706844006D909C /* WSCPassphraseItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD1A91C706844006D909C /* WSCPermittedOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1941C706844006D909C /* WSCPermittedOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD1AA1C706844006D909C /* WSCProtectedKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1961C706844006D909C /* WSCProtectedKeychainItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD1AB1C706844006D909C /* WSCTrustedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1981C706844006D909C /* WSCTrustedApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */; settings = {ASSET_TAGS = (); }; };
 		831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831EC89F1C688830005DCD88 /* QuartzCore.framework */; };
 		8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B19F1C67073900153EC7 /* ATCAppDelegate.m */; };
@@ -70,6 +86,48 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		830AD16F1C706844006D909C /* _WSCCertificateItemPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCCertificateItemPrivate.h; sourceTree = "<group>"; };
+		830AD1701C706844006D909C /* _WSCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCCommon.h; sourceTree = "<group>"; };
+		830AD1711C706844006D909C /* _WSCCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _WSCCommon.m; sourceTree = "<group>"; };
+		830AD1721C706844006D909C /* _WSCCommonForUnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCCommonForUnitTests.h; sourceTree = "<group>"; };
+		830AD1731C706844006D909C /* _WSCCommonForUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _WSCCommonForUnitTests.m; sourceTree = "<group>"; };
+		830AD1741C706844006D909C /* _WSCKeychainErrorPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCKeychainErrorPrivate.h; sourceTree = "<group>"; };
+		830AD1751C706844006D909C /* _WSCKeychainErrorPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _WSCKeychainErrorPrivate.m; sourceTree = "<group>"; };
+		830AD1761C706844006D909C /* _WSCKeychainItemPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCKeychainItemPrivate.h; sourceTree = "<group>"; };
+		830AD1771C706844006D909C /* _WSCKeychainManagerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCKeychainManagerPrivate.h; sourceTree = "<group>"; };
+		830AD1781C706844006D909C /* _WSCKeychainPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCKeychainPrivate.h; sourceTree = "<group>"; };
+		830AD1791C706844006D909C /* _WSCKeyPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCKeyPrivate.h; sourceTree = "<group>"; };
+		830AD17A1C706844006D909C /* _WSCPassphraseItemPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCPassphraseItemPrivate.h; sourceTree = "<group>"; };
+		830AD17B1C706844006D909C /* _WSCPermittedOperationPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCPermittedOperationPrivate.h; sourceTree = "<group>"; };
+		830AD17C1C706844006D909C /* _WSCTrustedApplicationPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCTrustedApplicationPrivate.h; sourceTree = "<group>"; };
+		830AD17D1C706844006D909C /* NSString+_OMCString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+_OMCString.h"; sourceTree = "<group>"; };
+		830AD17E1C706844006D909C /* NSString+_OMCString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+_OMCString.m"; sourceTree = "<group>"; };
+		830AD1801C706844006D909C /* NSDate+WSCCocoaDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+WSCCocoaDate.h"; sourceTree = "<group>"; };
+		830AD1811C706844006D909C /* NSDate+WSCCocoaDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+WSCCocoaDate.m"; sourceTree = "<group>"; };
+		830AD1821C706844006D909C /* NSURL+WSCKeychainURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+WSCKeychainURL.h"; sourceTree = "<group>"; };
+		830AD1831C706844006D909C /* NSURL+WSCKeychainURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+WSCKeychainURL.m"; sourceTree = "<group>"; };
+		830AD1841C706844006D909C /* WaxSealCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaxSealCore.h; sourceTree = "<group>"; };
+		830AD1851C706844006D909C /* WSCCertificateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCCertificateItem.h; sourceTree = "<group>"; };
+		830AD1861C706844006D909C /* WSCCertificateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCCertificateItem.m; sourceTree = "<group>"; };
+		830AD1871C706844006D909C /* WSCKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCKey.h; sourceTree = "<group>"; };
+		830AD1881C706844006D909C /* WSCKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCKey.m; sourceTree = "<group>"; };
+		830AD1891C706844006D909C /* WSCKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCKeychain.h; sourceTree = "<group>"; };
+		830AD18A1C706844006D909C /* WSCKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCKeychain.m; sourceTree = "<group>"; };
+		830AD18B1C706844006D909C /* WSCKeychainError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCKeychainError.h; sourceTree = "<group>"; };
+		830AD18C1C706844006D909C /* WSCKeychainError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCKeychainError.m; sourceTree = "<group>"; };
+		830AD18D1C706844006D909C /* WSCKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCKeychainItem.h; sourceTree = "<group>"; };
+		830AD18E1C706844006D909C /* WSCKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCKeychainItem.m; sourceTree = "<group>"; };
+		830AD18F1C706844006D909C /* WSCKeychainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCKeychainManager.h; sourceTree = "<group>"; };
+		830AD1901C706844006D909C /* WSCKeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCKeychainManager.m; sourceTree = "<group>"; };
+		830AD1911C706844006D909C /* WSCPassphraseItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCPassphraseItem.h; sourceTree = "<group>"; };
+		830AD1921C706844006D909C /* WSCPassphraseItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCPassphraseItem.m; sourceTree = "<group>"; };
+		830AD1931C706844006D909C /* WSCPermittedOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCPermittedOperation.h; sourceTree = "<group>"; };
+		830AD1941C706844006D909C /* WSCPermittedOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCPermittedOperation.m; sourceTree = "<group>"; };
+		830AD1951C706844006D909C /* WSCProtectedKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCProtectedKeychainItem.h; sourceTree = "<group>"; };
+		830AD1961C706844006D909C /* WSCProtectedKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCProtectedKeychainItem.m; sourceTree = "<group>"; };
+		830AD1971C706844006D909C /* WSCTrustedApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCTrustedApplication.h; sourceTree = "<group>"; };
+		830AD1981C706844006D909C /* WSCTrustedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCTrustedApplication.m; sourceTree = "<group>"; };
+		830AD19A1C706844006D909C /* WaxSealCore-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WaxSealCore-Prefix.pch"; sourceTree = "<group>"; };
 		831EC89C1C688824005DCD88 /* ATCOTPDigitTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPDigitTextLayer.h; sourceTree = "<group>"; };
 		831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPDigitTextLayer.m; sourceTree = "<group>"; };
 		831EC89F1C688830005DCD88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -191,6 +249,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		830AD16B1C706844006D909C /* WaxSealCore */ = {
+			isa = PBXGroup;
+			children = (
+				830AD16E1C706844006D909C /* Private */,
+				830AD17F1C706844006D909C /* Public */,
+				830AD19A1C706844006D909C /* WaxSealCore-Prefix.pch */,
+			);
+			name = WaxSealCore;
+			path = Authenticator/vendors/WaxSealCore/WaxSealCore;
+			sourceTree = "<group>";
+		};
+		830AD16E1C706844006D909C /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				830AD16F1C706844006D909C /* _WSCCertificateItemPrivate.h */,
+				830AD1701C706844006D909C /* _WSCCommon.h */,
+				830AD1711C706844006D909C /* _WSCCommon.m */,
+				830AD1721C706844006D909C /* _WSCCommonForUnitTests.h */,
+				830AD1731C706844006D909C /* _WSCCommonForUnitTests.m */,
+				830AD1741C706844006D909C /* _WSCKeychainErrorPrivate.h */,
+				830AD1751C706844006D909C /* _WSCKeychainErrorPrivate.m */,
+				830AD1761C706844006D909C /* _WSCKeychainItemPrivate.h */,
+				830AD1771C706844006D909C /* _WSCKeychainManagerPrivate.h */,
+				830AD1781C706844006D909C /* _WSCKeychainPrivate.h */,
+				830AD1791C706844006D909C /* _WSCKeyPrivate.h */,
+				830AD17A1C706844006D909C /* _WSCPassphraseItemPrivate.h */,
+				830AD17B1C706844006D909C /* _WSCPermittedOperationPrivate.h */,
+				830AD17C1C706844006D909C /* _WSCTrustedApplicationPrivate.h */,
+				830AD17D1C706844006D909C /* NSString+_OMCString.h */,
+				830AD17E1C706844006D909C /* NSString+_OMCString.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		830AD17F1C706844006D909C /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				830AD1801C706844006D909C /* NSDate+WSCCocoaDate.h */,
+				830AD1811C706844006D909C /* NSDate+WSCCocoaDate.m */,
+				830AD1821C706844006D909C /* NSURL+WSCKeychainURL.h */,
+				830AD1831C706844006D909C /* NSURL+WSCKeychainURL.m */,
+				830AD1841C706844006D909C /* WaxSealCore.h */,
+				830AD1851C706844006D909C /* WSCCertificateItem.h */,
+				830AD1861C706844006D909C /* WSCCertificateItem.m */,
+				830AD1871C706844006D909C /* WSCKey.h */,
+				830AD1881C706844006D909C /* WSCKey.m */,
+				830AD1891C706844006D909C /* WSCKeychain.h */,
+				830AD18A1C706844006D909C /* WSCKeychain.m */,
+				830AD18B1C706844006D909C /* WSCKeychainError.h */,
+				830AD18C1C706844006D909C /* WSCKeychainError.m */,
+				830AD18D1C706844006D909C /* WSCKeychainItem.h */,
+				830AD18E1C706844006D909C /* WSCKeychainItem.m */,
+				830AD18F1C706844006D909C /* WSCKeychainManager.h */,
+				830AD1901C706844006D909C /* WSCKeychainManager.m */,
+				830AD1911C706844006D909C /* WSCPassphraseItem.h */,
+				830AD1921C706844006D909C /* WSCPassphraseItem.m */,
+				830AD1931C706844006D909C /* WSCPermittedOperation.h */,
+				830AD1941C706844006D909C /* WSCPermittedOperation.m */,
+				830AD1951C706844006D909C /* WSCProtectedKeychainItem.h */,
+				830AD1961C706844006D909C /* WSCProtectedKeychainItem.m */,
+				830AD1971C706844006D909C /* WSCTrustedApplication.h */,
+				830AD1981C706844006D909C /* WSCTrustedApplication.m */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
 		8324B1921C67073900153EC7 = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +431,7 @@
 		8373D85B1C671D6300A11E31 /* vendors */ = {
 			isa = PBXGroup;
 			children = (
+				830AD16B1C706844006D909C /* WaxSealCore */,
 				83A650E81C70516B009D2FA7 /* Security.framework */,
 				831EC89F1C688830005DCD88 /* QuartzCore.framework */,
 				8368DD351C6B637200005A7D /* libcommonCrypto.tbd */,
@@ -514,24 +639,38 @@
 			files = (
 				83A650FD1C705BFE009D2FA7 /* ATCKeychain.m in Sources */,
 				83CEE8AE1C6CD0E90027AE38 /* ATCHintField.m in Sources */,
+				830AD1A51C706844006D909C /* WSCKeychainError.m in Sources */,
 				8373D8911C67548C00A11E31 /* AGStringEncoding.m in Sources */,
 				8373D8BB1C697E0500A11E31 /* ATCBeautifulView.m in Sources */,
+				830AD19D1C706844006D909C /* _WSCCommonForUnitTests.m in Sources */,
 				831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */,
+				830AD1AA1C706844006D909C /* WSCProtectedKeychainItem.m in Sources */,
+				830AD1A11C706844006D909C /* NSURL+WSCKeychainURL.m in Sources */,
+				830AD19E1C706844006D909C /* _WSCKeychainErrorPrivate.m in Sources */,
 				8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */,
+				830AD19F1C706844006D909C /* NSString+_OMCString.m in Sources */,
 				8373D8BE1C697E2600A11E31 /* ATCSecretKeyManuallyInputView.m in Sources */,
 				8373D8B81C697D8D00A11E31 /* ATCSecretKeyManuallyInputWindow.m in Sources */,
 				8368DD341C6AED6600005A7D /* ATCNotificationCenter.m in Sources */,
+				830AD1A81C706844006D909C /* WSCPassphraseItem.m in Sources */,
+				830AD1A31C706844006D909C /* WSCKey.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
 				8373D87A1C67494300A11E31 /* NSColor+ATCExtensions.m in Sources */,
 				8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */,
+				830AD1A41C706844006D909C /* WSCKeychain.m in Sources */,
+				830AD1A71C706844006D909C /* WSCKeychainManager.m in Sources */,
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
 				8373D87C1C67494300A11E31 /* NSAffineTransform+ATCExtensions.m in Sources */,
 				8373D87F1C67537500A11E31 /* ATCOTPBadgeView.m in Sources */,
+				830AD1A91C706844006D909C /* WSCPermittedOperation.m in Sources */,
 				8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */,
+				830AD1A61C706844006D909C /* WSCKeychainItem.m in Sources */,
 				83CEE8C01C6E13090027AE38 /* ATCOTPBadgeLayer.m in Sources */,
+				830AD1A21C706844006D909C /* WSCCertificateItem.m in Sources */,
 				8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */,
 				83A650EC1C705279009D2FA7 /* ATCSecretKeyManager.m in Sources */,
 				8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */,
+				830AD19C1C706844006D909C /* _WSCCommon.m in Sources */,
 				8373D8901C67548C00A11E31 /* AGOtp.m in Sources */,
 				8373D8B51C697D4D00A11E31 /* ATCBeautifulWindow.m in Sources */,
 				8373D8671C671D7300A11E31 /* NSArray+PureLayout.m in Sources */,
@@ -543,10 +682,12 @@
 				8373D8681C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				8373D88F1C67548C00A11E31 /* AGClock.m in Sources */,
 				8373D8921C67548C00A11E31 /* AGTotp.m in Sources */,
+				830AD1A01C706844006D909C /* NSDate+WSCCocoaDate.m in Sources */,
 				83CEE8B41C6E03800027AE38 /* ATCOTPDigitLayer.m in Sources */,
 				8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */,
 				8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */,
 				83CEE8B11C6DB4B50027AE38 /* NSObject+ATCExtensions.m in Sources */,
+				830AD1AB1C706844006D909C /* WSCTrustedApplication.m in Sources */,
 				8373D87B1C67494300A11E31 /* NSBezierPath+ATCExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -679,6 +820,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Authenticator/Authenticator.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Authenticator/AuthenticatorPrefixHeader.pch;
 				INFOPLIST_FILE = Authenticator/Info.plist;
@@ -698,6 +840,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Authenticator/Authenticator.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Authenticator/AuthenticatorPrefixHeader.pch;
 				INFOPLIST_FILE = Authenticator/Info.plist;

@@ -7,3 +7,6 @@
 [submodule "/Users/EsquireTongG/git/Authenticator/Authenticator/vendors/SSKeychain"]
 	path = /Users/EsquireTongG/git/Authenticator/Authenticator/vendors/SSKeychain
 	url = https://github.com/TongKuo/sskeychain.git
+[submodule "Authenticator/vendors/WaxSealCore"]
+	path = Authenticator/vendors/WaxSealCore
+	url = https://github.com/TongKuo/WaxSealCore.git
