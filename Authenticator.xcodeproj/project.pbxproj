@@ -820,7 +820,8 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
-					"__debug_Lazy_Rendering_=0",
+					"__debug_Lazy_Rendering__=0",
+					"__debug_Global_Timer__=1",
 				);
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

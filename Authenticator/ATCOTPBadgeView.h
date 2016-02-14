@@ -18,5 +18,7 @@
     }
 
 @property ( strong, readwrite ) ATCTotpEntry* optEntry;
+@property ( strong, readwrite ) NSString* pinCode;
+@property ( assign, readwrite ) BOOL isInWarning;
 
 @end // ATCOTPBadgeView class

@@ -105,7 +105,7 @@ NSString* const kDigitLayerNameTemplate = @"digit-layer-%lu";
 
 - ( void ) setPinCode: ( NSString* )_PinCode
     {
-    #if __debug_Lazy_Rendering_
+    #if __debug_Lazy_Rendering__
     NSLog( @"Attempting to reset the PIN code…" );
     #endif
 
@@ -113,7 +113,7 @@ NSString* const kDigitLayerNameTemplate = @"digit-layer-%lu";
         {
         pinCode_ = _PinCode;
 
-        #if __debug_Lazy_Rendering_
+        #if __debug_Lazy_Rendering__
         NSLog( @"✨Have already reset it ~ new PIN code is: %@✨", pinCode_ );
         #endif
 
@@ -138,7 +138,7 @@ NSString* const kDigitLayerNameTemplate = @"digit-layer-%lu";
 
 - ( void ) setIsInWarning: ( BOOL )_IsInWarning
     {
-    #if __debug_Lazy_Rendering_
+    #if __debug_Lazy_Rendering__
     NSLog( @"Attempting to reset is-in-warning state…" );
     #endif
 
@@ -146,7 +146,7 @@ NSString* const kDigitLayerNameTemplate = @"digit-layer-%lu";
         {
         isInWarning_ = _IsInWarning;
 
-        #if __debug_Lazy_Rendering_
+        #if __debug_Lazy_Rendering__
         NSLog( @"✨Have already reset it ~ new warning state is: %@✨", isInWarning_ ? @"YES" : @"NO" );
         #endif
 

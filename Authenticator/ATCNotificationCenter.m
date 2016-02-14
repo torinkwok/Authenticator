@@ -68,7 +68,7 @@ ATCNotificationCenter static* sTimer;
 // Timer Selector
 - ( void ) timerFire_: ( NSTimer* )_Timer
     {
-    #if DEBUG
+    #if __debug_Global_Timer__
     NSLog( @"Timer Fired: %@ ~ remaining seconds for recalculation: %llu"
          , _Timer
          , [ AGClock remainingSecondsForRecalculation ]

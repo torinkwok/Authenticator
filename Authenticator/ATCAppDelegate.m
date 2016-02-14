@@ -20,7 +20,7 @@
 
 - ( void ) applicationDidFinishLaunching: ( NSNotification* )_Notif
     {
-    NSLog( @"%d", [ [ ATCOTPEntriesManager defaultManager ] presistentEntry: nil ] );
+//    NSLog( @"%d", [ [ ATCOTPEntriesManager defaultManager ] presistentEntry: nil ] );
     }
 
 //- ( void ) applicationWillResignActive: ( NSNotification* )_Notif
