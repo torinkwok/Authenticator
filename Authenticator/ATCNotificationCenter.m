@@ -53,7 +53,7 @@ ATCNotificationCenter static* sTimer;
     if ( !timer_ )
         {
         timer_ = [ NSTimer timerWithTimeInterval: 1.f target: self selector: @selector( timerFire_: ) userInfo: nil repeats: YES ];
-        [ currentRunLoop_ addTimer: timer_ forMode: NSDefaultRunLoopMode ];
+        [ currentRunLoop_ addTimer: timer_ forMode: NSRunLoopCommonModes ];
         }
     }
 
