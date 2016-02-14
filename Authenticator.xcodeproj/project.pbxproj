@@ -41,6 +41,8 @@
 		8373D8C11C69801900A11E31 /* ATCSecretKeyManuallyInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C01C69801900A11E31 /* ATCSecretKeyManuallyInputViewController.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C31C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C61C6A322900A11E31 /* ATCConstants.m */; settings = {ASSET_TAGS = (); }; };
+		83A650E71C70515D009D2FA7 /* ATCKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A650E61C70515D009D2FA7 /* ATCKeychain.m */; settings = {ASSET_TAGS = (); }; };
+		83A650E91C70516B009D2FA7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A650E81C70516B009D2FA7 /* Security.framework */; };
 		83CEE8AE1C6CD0E90027AE38 /* ATCHintField.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8AD1C6CD0E90027AE38 /* ATCHintField.m */; settings = {ASSET_TAGS = (); }; };
 		83CEE8B11C6DB4B50027AE38 /* NSObject+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8B01C6DB4B50027AE38 /* NSObject+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		83CEE8B41C6E03800027AE38 /* ATCOTPDigitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8B31C6E03800027AE38 /* ATCOTPDigitLayer.m */; settings = {ASSET_TAGS = (); }; };
@@ -141,6 +143,9 @@
 		8373D8C31C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCSecretKeyManuallyInputWindowController.m; sourceTree = "<group>"; };
 		8373D8C51C6A322900A11E31 /* ATCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCConstants.h; sourceTree = "<group>"; };
 		8373D8C61C6A322900A11E31 /* ATCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCConstants.m; sourceTree = "<group>"; };
+		83A650E51C70515D009D2FA7 /* ATCKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCKeychain.h; sourceTree = "<group>"; };
+		83A650E61C70515D009D2FA7 /* ATCKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCKeychain.m; sourceTree = "<group>"; };
+		83A650E81C70516B009D2FA7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		83CEE8AC1C6CD0E90027AE38 /* ATCHintField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCHintField.h; sourceTree = "<group>"; };
 		83CEE8AD1C6CD0E90027AE38 /* ATCHintField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCHintField.m; sourceTree = "<group>"; };
 		83CEE8AF1C6DB4B50027AE38 /* NSObject+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ATCExtensions.h"; sourceTree = "<group>"; };
@@ -160,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A650E91C70516B009D2FA7 /* Security.framework in Frameworks */,
 				8368DD361C6B637200005A7D /* libcommonCrypto.tbd in Frameworks */,
 				831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */,
 			);
@@ -210,6 +216,8 @@
 				8373D8731C67491D00A11E31 /* extensions */,
 				8373D8C51C6A322900A11E31 /* ATCConstants.h */,
 				8373D8C61C6A322900A11E31 /* ATCConstants.m */,
+				83A650E51C70515D009D2FA7 /* ATCKeychain.h */,
+				83A650E61C70515D009D2FA7 /* ATCKeychain.m */,
 				8368DD321C6AED6600005A7D /* ATCNotificationCenter.h */,
 				8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */,
 				8324B19E1C67073900153EC7 /* ATCAppDelegate.h */,
@@ -294,6 +302,7 @@
 		8373D85B1C671D6300A11E31 /* vendors */ = {
 			isa = PBXGroup;
 			children = (
+				83A650E81C70516B009D2FA7 /* Security.framework */,
 				831EC89F1C688830005DCD88 /* QuartzCore.framework */,
 				8368DD351C6B637200005A7D /* libcommonCrypto.tbd */,
 				8373D8801C67548C00A11E31 /* aerogear-otp.ios */,
@@ -515,6 +524,7 @@
 				8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */,
 				83CEE8C01C6E13090027AE38 /* ATCOTPBadgeLayer.m in Sources */,
 				8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */,
+				83A650E71C70515D009D2FA7 /* ATCKeychain.m in Sources */,
 				8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */,
 				8373D8901C67548C00A11E31 /* AGOtp.m in Sources */,
 				8373D8B51C697D4D00A11E31 /* ATCBeautifulWindow.m in Sources */,
