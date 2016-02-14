@@ -96,10 +96,6 @@
     {
     self.pinCode = optEntry_.pinCodeRightNow;
     self.isInWarning = [ AGClock remainingSecondsForRecalculation ] <= ATCWarningTimeStep;
-//    ATCOTPBadgeLayer* badgeLayer = ( ATCOTPBadgeLayer* )( self.layer );
-
-//    [ badgeLayer setPinCode: optEntry_.pinCodeRightNow ];
-//    [ badgeLayer setIsInWarning: [ AGClock remainingSecondsForRecalculation ] <= ATCWarningTimeStep ];
     }
 
 // Notification Selectors
