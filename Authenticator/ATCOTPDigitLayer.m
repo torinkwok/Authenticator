@@ -26,7 +26,7 @@
     {
     if ( self = [ super init ] )
         {
-        self.isInWarning = [ AGClock remainingSecondsForRecalculation ] < ATCWarningTimeStep;
+        self.isInWarning = self.shouldBecomeWarningState;
 
         self.layoutManager = [ CAConstraintLayoutManager layoutManager ];
         self.cornerRadius = 6.f;
@@ -59,6 +59,7 @@
 
 @dynamic digitString;
 @dynamic isInWarning;
+@dynamic shouldBecomeWarningState;
 
 - ( void ) setDigitString: ( NSString* )_DigitString
     {
@@ -115,6 +116,11 @@
 - ( BOOL ) isInWarning
     {
     return isInWarning_;
+    }
+
+- ( BOOL ) shouldBecomeWarningState
+    {
+    return [ AGClock remainingSecondsForRecalculation ] <= ATCWarningTimeStep;
     }
 
 #pragma mark - Private Interfaces

@@ -18,6 +18,7 @@
 
 @property ( strong, readwrite ) NSString* digitString;
 @property ( assign, readwrite ) BOOL isInWarning;
+@property ( assign, readonly ) BOOL shouldBecomeWarningState;
 
 #pragma mark - Initializations
 

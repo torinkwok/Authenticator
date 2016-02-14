@@ -18,11 +18,16 @@
 
 #pragma mark - Conforms to <NSApplicationDelegate>
 
+- ( void ) applicationDidFinishLaunching: ( NSNotification* )_Notif
+    {
+    NSLog( @"%d", [ [ ATCOTPEntriesManager defaultManager ] presistentEntry: nil ] );
+    }
+
 //- ( void ) applicationWillResignActive: ( NSNotification* )_Notif
 //    {
 //    [ [ ATCNotificationCenter sharedTimer ] stopTiming ];
 //    }
-//
+
 //- ( void ) applicationWillBecomeActive: ( NSNotification* )_Notif
 //    {
 //    [ [ ATCNotificationCenter sharedTimer ] startTiming ];

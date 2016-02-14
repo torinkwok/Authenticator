@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		830AD19C1C706844006D909C /* _WSCCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1711C706844006D909C /* _WSCCommon.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		830AD19D1C706844006D909C /* _WSCCommonForUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1731C706844006D909C /* _WSCCommonForUnitTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		830AD19E1C706844006D909C /* _WSCKeychainErrorPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1751C706844006D909C /* _WSCKeychainErrorPrivate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		830AD19F1C706844006D909C /* NSString+_OMCString.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD17E1C706844006D909C /* NSString+_OMCString.m */; settings = {ASSET_TAGS = (); }; };
 		830AD1A01C706844006D909C /* NSDate+WSCCocoaDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1811C706844006D909C /* NSDate+WSCCocoaDate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -58,7 +57,7 @@
 		8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C31C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C61C6A322900A11E31 /* ATCConstants.m */; settings = {ASSET_TAGS = (); }; };
 		83A650E91C70516B009D2FA7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A650E81C70516B009D2FA7 /* Security.framework */; };
-		83A650EC1C705279009D2FA7 /* ATCSecretKeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A650EB1C705279009D2FA7 /* ATCSecretKeyManager.m */; settings = {ASSET_TAGS = (); }; };
+		83A650EC1C705279009D2FA7 /* ATCOTPEntriesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A650EB1C705279009D2FA7 /* ATCOTPEntriesManager.m */; settings = {ASSET_TAGS = (); }; };
 		83A650FD1C705BFE009D2FA7 /* ATCKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A650FB1C705BFE009D2FA7 /* ATCKeychain.m */; settings = {ASSET_TAGS = (); }; };
 		83CEE8AE1C6CD0E90027AE38 /* ATCHintField.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8AD1C6CD0E90027AE38 /* ATCHintField.m */; settings = {ASSET_TAGS = (); }; };
 		83CEE8B11C6DB4B50027AE38 /* NSObject+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8B01C6DB4B50027AE38 /* NSObject+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
@@ -89,8 +88,6 @@
 		830AD16F1C706844006D909C /* _WSCCertificateItemPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCCertificateItemPrivate.h; sourceTree = "<group>"; };
 		830AD1701C706844006D909C /* _WSCCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCCommon.h; sourceTree = "<group>"; };
 		830AD1711C706844006D909C /* _WSCCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _WSCCommon.m; sourceTree = "<group>"; };
-		830AD1721C706844006D909C /* _WSCCommonForUnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCCommonForUnitTests.h; sourceTree = "<group>"; };
-		830AD1731C706844006D909C /* _WSCCommonForUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _WSCCommonForUnitTests.m; sourceTree = "<group>"; };
 		830AD1741C706844006D909C /* _WSCKeychainErrorPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCKeychainErrorPrivate.h; sourceTree = "<group>"; };
 		830AD1751C706844006D909C /* _WSCKeychainErrorPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _WSCKeychainErrorPrivate.m; sourceTree = "<group>"; };
 		830AD1761C706844006D909C /* _WSCKeychainItemPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WSCKeychainItemPrivate.h; sourceTree = "<group>"; };
@@ -203,8 +200,8 @@
 		8373D8C51C6A322900A11E31 /* ATCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCConstants.h; sourceTree = "<group>"; };
 		8373D8C61C6A322900A11E31 /* ATCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCConstants.m; sourceTree = "<group>"; };
 		83A650E81C70516B009D2FA7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		83A650EA1C705279009D2FA7 /* ATCSecretKeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCSecretKeyManager.h; sourceTree = "<group>"; };
-		83A650EB1C705279009D2FA7 /* ATCSecretKeyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCSecretKeyManager.m; sourceTree = "<group>"; };
+		83A650EA1C705279009D2FA7 /* ATCOTPEntriesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntriesManager.h; sourceTree = "<group>"; };
+		83A650EB1C705279009D2FA7 /* ATCOTPEntriesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntriesManager.m; sourceTree = "<group>"; };
 		83A650FB1C705BFE009D2FA7 /* ATCKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCKeychain.m; sourceTree = "<group>"; };
 		83A650FC1C705BFE009D2FA7 /* ATCKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCKeychain.h; sourceTree = "<group>"; };
 		83CEE8AC1C6CD0E90027AE38 /* ATCHintField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCHintField.h; sourceTree = "<group>"; };
@@ -266,8 +263,6 @@
 				830AD16F1C706844006D909C /* _WSCCertificateItemPrivate.h */,
 				830AD1701C706844006D909C /* _WSCCommon.h */,
 				830AD1711C706844006D909C /* _WSCCommon.m */,
-				830AD1721C706844006D909C /* _WSCCommonForUnitTests.h */,
-				830AD1731C706844006D909C /* _WSCCommonForUnitTests.m */,
 				830AD1741C706844006D909C /* _WSCKeychainErrorPrivate.h */,
 				830AD1751C706844006D909C /* _WSCKeychainErrorPrivate.m */,
 				830AD1761C706844006D909C /* _WSCKeychainItemPrivate.h */,
@@ -345,8 +340,8 @@
 				8373D8C61C6A322900A11E31 /* ATCConstants.m */,
 				83A650FC1C705BFE009D2FA7 /* ATCKeychain.h */,
 				83A650FB1C705BFE009D2FA7 /* ATCKeychain.m */,
-				83A650EA1C705279009D2FA7 /* ATCSecretKeyManager.h */,
-				83A650EB1C705279009D2FA7 /* ATCSecretKeyManager.m */,
+				83A650EA1C705279009D2FA7 /* ATCOTPEntriesManager.h */,
+				83A650EB1C705279009D2FA7 /* ATCOTPEntriesManager.m */,
 				8368DD321C6AED6600005A7D /* ATCNotificationCenter.h */,
 				8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */,
 				8324B19E1C67073900153EC7 /* ATCAppDelegate.h */,
@@ -431,12 +426,12 @@
 		8373D85B1C671D6300A11E31 /* vendors */ = {
 			isa = PBXGroup;
 			children = (
-				830AD16B1C706844006D909C /* WaxSealCore */,
 				83A650E81C70516B009D2FA7 /* Security.framework */,
 				831EC89F1C688830005DCD88 /* QuartzCore.framework */,
 				8368DD351C6B637200005A7D /* libcommonCrypto.tbd */,
 				8373D8801C67548C00A11E31 /* aerogear-otp.ios */,
 				8373D85C1C671D7300A11E31 /* PureLayout */,
+				830AD16B1C706844006D909C /* WaxSealCore */,
 			);
 			name = vendors;
 			sourceTree = "<group>";
@@ -642,7 +637,6 @@
 				830AD1A51C706844006D909C /* WSCKeychainError.m in Sources */,
 				8373D8911C67548C00A11E31 /* AGStringEncoding.m in Sources */,
 				8373D8BB1C697E0500A11E31 /* ATCBeautifulView.m in Sources */,
-				830AD19D1C706844006D909C /* _WSCCommonForUnitTests.m in Sources */,
 				831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */,
 				830AD1AA1C706844006D909C /* WSCProtectedKeychainItem.m in Sources */,
 				830AD1A11C706844006D909C /* NSURL+WSCKeychainURL.m in Sources */,
@@ -668,7 +662,7 @@
 				83CEE8C01C6E13090027AE38 /* ATCOTPBadgeLayer.m in Sources */,
 				830AD1A21C706844006D909C /* WSCCertificateItem.m in Sources */,
 				8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */,
-				83A650EC1C705279009D2FA7 /* ATCSecretKeyManager.m in Sources */,
+				83A650EC1C705279009D2FA7 /* ATCOTPEntriesManager.m in Sources */,
 				8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */,
 				830AD19C1C706844006D909C /* _WSCCommon.m in Sources */,
 				8373D8901C67548C00A11E31 /* AGOtp.m in Sources */,
@@ -823,12 +817,18 @@
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Authenticator/AuthenticatorPrefixHeader.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"__debug_Lazy_Rendering_=0",
+				);
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 				);
+				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.Authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -849,6 +849,7 @@
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 				);
+				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.Authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

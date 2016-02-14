@@ -42,6 +42,9 @@
 
         // self->pinCode_
         pinCode_ = @"--- ---";
+
+        // self->isInWarning_
+        isInWarning_ = NO;
         }
 
     return self;
@@ -97,25 +100,69 @@ NSString* const kDigitLayerNameTemplate = @"digit-layer-%lu";
 
 #pragma mark - Dynamic Properties
 
+@dynamic pinCode;
+@dynamic isInWarning;
+
 - ( void ) setPinCode: ( NSString* )_PinCode
     {
-    NSMutableString* tmpMutablePIN = [ _PinCode mutableCopy ];
-    [ tmpMutablePIN insertString: @" " atIndex: dashIndex_.firstIndex ];
-    pinCode_ = [ tmpMutablePIN copy ];
+    #if __debug_Lazy_Rendering_
+    NSLog( @"Attempting to reset the PIN code…" );
+    #endif
 
-    [ digitLayers_ enumerateObjectsAtIndexes: digitsIndexes_
-                                     options: NSEnumerationConcurrent
-                                  usingBlock:
-        ^( CALayer* _Nonnull _Layer, NSUInteger _Index, BOOL* _Nonnull _Stop )
-            {
-            [ ( ATCOTPDigitLayer* )_Layer setDigitString:
-                [ pinCode_ substringWithRange: NSMakeRange( _Index, 1 ) ] ];
-            } ];
+    if ( ![ pinCode_ isEqualToString: _PinCode ] )
+        {
+        pinCode_ = _PinCode;
+
+        #if __debug_Lazy_Rendering_
+        NSLog( @"✨Have already reset it ~ new PIN code is: %@✨", pinCode_ );
+        #endif
+
+        NSMutableString* tmpMutablePIN = [ pinCode_ mutableCopy ];
+        [ tmpMutablePIN insertString: @" " atIndex: dashIndex_.firstIndex ];
+
+        [ digitLayers_ enumerateObjectsAtIndexes: digitsIndexes_
+                                         options: NSEnumerationConcurrent
+                                      usingBlock:
+            ^( CALayer* _Nonnull _Layer, NSUInteger _Index, BOOL* _Nonnull _Stop )
+                {
+                [ ( ATCOTPDigitLayer* )_Layer setDigitString:
+                    [ tmpMutablePIN substringWithRange: NSMakeRange( _Index, 1 ) ] ];
+                } ];
+        }
     }
 
 - ( NSString* ) pinCode
     {
     return pinCode_;
+    }
+
+- ( void ) setIsInWarning: ( BOOL )_IsInWarning
+    {
+    #if __debug_Lazy_Rendering_
+    NSLog( @"Attempting to reset is-in-warning state…" );
+    #endif
+
+    if ( isInWarning_ != _IsInWarning )
+        {
+        isInWarning_ = _IsInWarning;
+
+        #if __debug_Lazy_Rendering_
+        NSLog( @"✨Have already reset it ~ new warning state is: %@✨", isInWarning_ ? @"YES" : @"NO" );
+        #endif
+
+        [ digitLayers_ enumerateObjectsAtIndexes: digitsIndexes_
+                                         options: NSEnumerationConcurrent
+                                      usingBlock:
+            ^( CALayer* _Nonnull _Layer, NSUInteger _Index, BOOL* _Nonnull _Stop )
+                {
+                [ ( ATCOTPDigitLayer* )_Layer setIsInWarning: isInWarning_ ];
+                } ];
+        }
+    }
+
+- ( BOOL ) isInWarning
+    {
+    return isInWarning_;
     }
 
 @end // ATCOTPBadgeLayer class

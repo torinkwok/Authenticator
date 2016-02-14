@@ -19,9 +19,11 @@
 
     CALayer __strong* dashLayer_;
 
-    NSString* pinCode_;
+    NSString __strong* pinCode_;
+    BOOL isInWarning_;
     }
 
 @property ( strong, readwrite ) NSString* pinCode;
+@property ( assign, readwrite ) BOOL isInWarning;
 
 @end // ATCOTPBadgeLayer class

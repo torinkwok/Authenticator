@@ -19,17 +19,19 @@
 // Third Party Modules
 #import "PureLayout.h"
 #import "AeroGearOTP.h"
+#import "WaxSealCore.h"
 
 // Frequently Used Headers
 #import "ATCConstants.h"
 #import "ATCNotificationCenter.h"
-#import "ATCSecretKeyManager.h"
+#import "ATCOTPEntriesManager.h"
 #import "NSColor+ATCExtensions.h"
 #import "NSAffineTransform+ATCExtensions.h"
 #import "NSBezierPath+ATCExtensions.h"
 #import "AGClock+ATCExtensions.h"
 #import "NSObject+ATCExtensions.h"
 
+// External Prefix-Compiled Headers
 #import "WaxSealCore-Prefix.pch"
 
 #endif /* AuthenticatorPrefixHeader_pch */

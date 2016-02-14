@@ -44,3 +44,5 @@ inline NSColor* ATCControlColor()
     {
     return [ [ NSColor colorWithHTMLColor: @"494B48" ] colorWithAlphaComponent: .85f ];
     }
+
+NSString* const ATCTotpAuthURLTemplate = @"otpauth://totp/%@%@?secret=%@&issuer=%@";

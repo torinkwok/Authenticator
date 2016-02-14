@@ -27,3 +27,5 @@ NSColor* ATCNormalPINColor();
 NSColor* ATCWarningPINColor();
 NSColor* ATCAlternativeWarningPINColor();
 NSColor* ATCControlColor();
+
+NSString extern* const ATCTotpAuthURLTemplate;

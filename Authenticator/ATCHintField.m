@@ -44,7 +44,7 @@
         [ self calculateCurrentRemainingSeconds_ ];
 
         [ [ NSNotificationCenter defaultCenter ]
-            addObserver: self selector: @selector( hintFieldShouldUpdate_: ) name: ATCHintFieldShouldUpdateNotif object: nil ];
+            addObserver: self selector: @selector( hintFieldShouldUpdate_: ) name: ATCTotpBadgeViewShouldUpdateNotif object: nil ];
         }
 
     return self;
