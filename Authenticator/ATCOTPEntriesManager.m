@@ -122,6 +122,9 @@ ATCOTPEntriesManager static* sSecretManager;
             }
         }
 
+    if ( defaultVault_ )
+        [ self.defaultVaultsManager unlockKeychain: defaultVault_ withPassphrase: @"fuckyou" error: nil ];
+
     return defaultVault_;
     }
 
