@@ -11,4 +11,6 @@
 // ATCOTPVaultsManager class
 @interface ATCOTPVaultsManager : WSCKeychainManager
 
++ ( instancetype ) defaultManager;
+
 @end // ATCOTPVaultsManager class

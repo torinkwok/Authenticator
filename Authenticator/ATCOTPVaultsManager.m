@@ -11,4 +11,9 @@
 // ATCOTPVaultsManager class
 @implementation ATCOTPVaultsManager
 
++ ( instancetype ) defaultManager
+    {
+    return [ super defaultManager ];
+    }
+
 @end // ATCOTPVaultsManager class

@@ -84,7 +84,7 @@
 
         [ CATransaction setCompletionBlock:
            ^{
-            #if DEBUG
+            #if __debug_Animation__
             NSLog( @"Transaction Commited" );
             #endif
             } ];

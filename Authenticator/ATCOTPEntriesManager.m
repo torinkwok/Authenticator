@@ -7,11 +7,14 @@
 //
 
 #import "ATCOTPEntriesManager.h"
+#import "ATCOTPVaultsManager.h"
 #import "ATCOTPVault.h"
+#import "ATCOTPVaultItem.h"
 
 // Private Interfaces
 @interface ATCOTPEntriesManager ()
 
+@property ( weak, readonly ) WSCKeychainManager* defaultVaultsManager;
 @property ( strong, readonly ) WSCKeychain* defaultVault;
 
 @end // Private Interfaces
@@ -37,14 +40,9 @@ ATCOTPEntriesManager static* sSecretManager;
 
             totpEntries_ = [ NSMutableArray array ];
 
-            WSCKeychain* defaultVault = [ [ WSCKeychainManager defaultManager ]
-                createKeychainWithURL: [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.otpvault" ]
-                           passphrase: @"fuckyou"
-                       becomesDefault: NO error: &error ];
-
-            if ( defaultVault )
+            if ( self.defaultVault )
                 {
-                NSSet* matchedItems = [ defaultVault
+                NSSet* matchedItems = [ self.defaultVault
                     findAllKeychainItemsSatisfyingSearchCriteria: @{ WSCKeychainItemAttributeServiceName : [ [ NSBundle mainBundle ] bundleIdentifier ] }
                                                        itemClass: WSCKeychainItemClassApplicationPassphraseItem
                                                            error: &error ];
@@ -65,20 +63,66 @@ ATCOTPEntriesManager static* sSecretManager;
     return sSecretManager;
     }
 
-#pragma mark - Accessing Secret Keys
+#pragma mark - Dynamic Properties
 
-- ( BOOL ) presistentEntry: ( ATCTotpEntry* )_Entry
+@dynamic defaultVaultsManager;
+@dynamic defaultVault;
+
+- ( ATCOTPVaultsManager* ) defaultVaultsManager
     {
-    BOOL isSuccess = NO;
+    ATCOTPVaultsManager* defaultManager = [ ATCOTPVaultsManager defaultManager ];
+    if ( self != defaultManager.delegate )
+        defaultManager.delegate = self;
 
-    NSArray* urlPathComponents = @[ [ @"Google:contact@tong-kuo.me" stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet URLPathAllowedCharacterSet ] ]
-                                  , [ @"secret=jwslphwytg6oxjvgyufwqciayhoapusg" stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet URLPathAllowedCharacterSet ] ]
-                                  , [ @"issuer=Google" stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet URLPathAllowedCharacterSet ] ]
-                                  ];
-    NSString* path = [ NSString pathWithComponents: urlPathComponents ];
-    NSString* escapedPath = [ path stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet URLPathAllowedCharacterSet ] ];
+    return defaultManager;
+    }
 
-    return isSuccess;
+- ( WSCKeychain* ) defaultVault
+    {
+    if ( defaultVault_ )
+        return defaultVault_;
+
+    NSError* error = nil;
+
+    NSURL* defaultVaultURL = [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.optvault" ];
+    BOOL isDir = NO;
+
+    if ( [ [ NSFileManager defaultManager ] fileExistsAtPath: defaultVaultURL.path
+                                                 isDirectory: &isDir ]
+            && !isDir )
+        defaultVault_ = [ self.defaultVaultsManager openExistingKeychainAtURL: defaultVaultURL error: &error ];
+
+    if ( !defaultVault_ )
+        {
+        #if __debug_Vault__
+        NSLog( @"Failed to open exsisting default.optvault attempting to recreate one…: %@", error );
+        #endif
+
+        if ( [ defaultVaultURL checkResourceIsReachableAndReturnError: &error ] )
+            {
+            if ( ![ [ NSFileManager defaultManager ] removeItemAtURL: defaultVaultURL error: &error ] )
+                {
+                #if __debug_Vault__
+                NSLog( @"Failed to remove the damaged vault: %@", error );
+                #elif ;
+                #endif
+
+                return defaultVault_;
+                }
+            }
+
+        if ( !( defaultVault_ = [ self.defaultVaultsManager createKeychainWithURL: defaultVaultURL
+                                                                       passphrase: @"fuckyou"
+                                                                   becomesDefault: NO
+                                                                            error: &error ] ) )
+            {
+            #if __debug_Vault__
+            NSLog( @"Failed to create a new default.optvault: %@", error );
+            #endif
+            }
+        }
+
+    return defaultVault_;
     }
 
 @end // ATCOTPEntriesManager class
