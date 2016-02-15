@@ -25,7 +25,7 @@ ATCOTPEntriesManager static* sSecretManager;
         {
         if ( self = [ super init ] )
             {
-            NSLog( @"%@", ATCVaultsDirURL() );
+            NSLog( @"%@", ATCDefaultVaultsDirURL() );
 
             totpEntries_ = [ NSMutableArray array ];
 

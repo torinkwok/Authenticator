@@ -56,25 +56,48 @@ inline NSURL* ATCVaultsDirURL()
                     sFileManager = [ [ NSFileManager alloc ] init ];
                     } );
 
-    NSURL* sandboxedLibURL = [ sFileManager
-        URLForDirectory: NSLibraryDirectory inDomain: NSUserDomainMask appropriateForURL: nil create: YES error: nil ];
+    NSError* error = nil;
+    NSURL* vaultsDirURL = nil;
 
-    NSURL* vaultsURL = [ sandboxedLibURL URLByAppendingPathComponent:
-        [ NSString stringWithFormat: @"Application Support/%@/Vaults", @"Authenticator" ] ];
+    NSURL* sandboxedLibDirURL = [ sFileManager
+        URLForDirectory: NSLibraryDirectory inDomain: NSUserDomainMask appropriateForURL: nil create: YES error: &error ];
 
-    [ sFileManager createDirectoryAtURL: vaultsURL withIntermediateDirectories: YES attributes: nil error: nil ];
+    if ( sandboxedLibDirURL )
+        {
+        vaultsDirURL = [ sandboxedLibDirURL URLByAppendingPathComponent:
+            [ NSString stringWithFormat: @"Application Support/%@/Vaults", @"Authenticator" ] ];
 
-    return vaultsURL;
+        [ sFileManager createDirectoryAtURL: vaultsDirURL withIntermediateDirectories: YES attributes: nil error: &error ];
+        }
+
+    if ( error )
+        NSLog( @"Failed to created general Vaults dir in %s: %@", __PRETTY_FUNCTION__, error );
+
+    return vaultsDirURL;
     }
 
 NSURL* ATCDefaultVaultsDirURL()
     {
-    return [ ATCVaultsDirURL() URLByAppendingPathComponent: @"Defaults" ];
+    NSError* error = nil;
+    NSURL* defaultVaultsDir = [ ATCVaultsDirURL() URLByAppendingPathComponent: @"Defaults" ];
+    [ sFileManager createDirectoryAtURL: defaultVaultsDir withIntermediateDirectories: YES attributes: nil error: &error ];
+
+    if ( error )
+        NSLog( @"Failed to created default Vaults dir in %s: %@", __PRETTY_FUNCTION__, error );
+
+    return defaultVaultsDir;
     }
 
 NSURL* ATCImportedVaultsDirURL()
     {
-    return [ ATCVaultsDirURL() URLByAppendingPathComponent: @"Imported" ];
+    NSError* error = nil;
+    NSURL* importedVaultsDir = [ ATCVaultsDirURL() URLByAppendingPathComponent: @"Imported" ];
+    [ sFileManager createDirectoryAtURL: importedVaultsDir withIntermediateDirectories: YES attributes: nil error: nil ];
+
+    if ( error )
+        NSLog( @"Failed to created imported Vaults dir in %s: %@", __PRETTY_FUNCTION__, error );
+
+    return importedVaultsDir;
     }
 
 NSString* const ATCTotpAuthURLTemplate = @"otpauth://totp/%@%@?secret=%@&issuer=%@";
