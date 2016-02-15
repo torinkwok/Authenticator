@@ -45,4 +45,36 @@ inline NSColor* ATCControlColor()
     return [ [ NSColor colorWithHTMLColor: @"494B48" ] colorWithAlphaComponent: .85f ];
     }
 
+NSFileManager static* sFileManager;
+inline NSURL* ATCVaultsDirURL()
+    {
+    dispatch_once_t static onceToken;
+
+    dispatch_once( &onceToken
+                 , ( dispatch_block_t )^( void )
+                    {
+                    sFileManager = [ [ NSFileManager alloc ] init ];
+                    } );
+
+    NSURL* sandboxedLibURL = [ sFileManager
+        URLForDirectory: NSLibraryDirectory inDomain: NSUserDomainMask appropriateForURL: nil create: YES error: nil ];
+
+    NSURL* vaultsURL = [ sandboxedLibURL URLByAppendingPathComponent:
+        [ NSString stringWithFormat: @"Application Support/%@/Vaults", @"Authenticator" ] ];
+
+    [ sFileManager createDirectoryAtURL: vaultsURL withIntermediateDirectories: YES attributes: nil error: nil ];
+
+    return vaultsURL;
+    }
+
+NSURL* ATCDefaultVaultsURL()
+    {
+    return [ ATCVaultsDirURL() URLByAppendingPathComponent: @"Defaults" ];
+    }
+
+NSURL* ATCImportedVaultsURL()
+    {
+    return [ ATCVaultsDirURL() URLByAppendingPathComponent: @"Imported" ];
+    }
+
 NSString* const ATCTotpAuthURLTemplate = @"otpauth://totp/%@%@?secret=%@&issuer=%@";

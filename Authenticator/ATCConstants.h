@@ -28,4 +28,8 @@ NSColor* ATCWarningPINColor();
 NSColor* ATCAlternativeWarningPINColor();
 NSColor* ATCControlColor();
 
+NSURL* ATCVaultsDirURL();
+NSURL* ATCDefaultVaultsURL();
+NSURL* ATCImportedVaultsURL();
+
 NSString extern* const ATCTotpAuthURLTemplate;
