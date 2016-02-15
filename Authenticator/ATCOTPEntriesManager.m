@@ -7,6 +7,14 @@
 //
 
 #import "ATCOTPEntriesManager.h"
+#import "ATCOTPVault.h"
+
+// Private Interfaces
+@interface ATCOTPEntriesManager ()
+
+@property ( strong, readonly ) WSCKeychain* defaultVault;
+
+@end // Private Interfaces
 
 // ATCOTPEntriesManager class
 @implementation ATCOTPEntriesManager
@@ -25,38 +33,30 @@ ATCOTPEntriesManager static* sSecretManager;
         {
         if ( self = [ super init ] )
             {
-            NSLog( @"%@", ATCDefaultVaultsDirURL() );
+            NSError* error = nil;
 
             totpEntries_ = [ NSMutableArray array ];
 
-            NSError* error = nil;
+            WSCKeychain* defaultVault = [ [ WSCKeychainManager defaultManager ]
+                createKeychainWithURL: [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.otpvault" ]
+                           passphrase: @"fuckyou"
+                       becomesDefault: NO error: &error ];
 
-            WSCKeychain* defaultKeychain = [ [ WSCKeychainManager defaultManager ] currentDefaultKeychain: &error ];
-            if ( defaultKeychain )
+            if ( defaultVault )
                 {
-                NSSet* matchedItems = [ defaultKeychain
-                    findAllKeychainItemsSatisfyingSearchCriteria: @{ WSCKeychainItemAttributeServiceName : @"com.google.otp.authentication" }
+                NSSet* matchedItems = [ defaultVault
+                    findAllKeychainItemsSatisfyingSearchCriteria: @{ WSCKeychainItemAttributeServiceName : [ [ NSBundle mainBundle ] bundleIdentifier ] }
                                                        itemClass: WSCKeychainItemClassApplicationPassphraseItem
                                                            error: &error ];
                 [ matchedItems enumerateObjectsUsingBlock:
                     ^( WSCPassphraseItem* _Item, BOOL* _Nonnull _Stop )
                         {
-                        // TODO: To apply a regular expression to determine whether the _Item.passphrase is valid
 
-                        if ( !_Item.userDefinedData )
-                            {
-                            NSData* data = [ NSJSONSerialization dataWithJSONObject: @{ @"os" : @"OS X"
-                                                                                      , @"version" : @"10.11"
-                                                                                      }
-                                                                            options: NSJSONWritingPrettyPrinted error: nil ];
-                            [ _Item setUserDefinedData: data ];
-                            }
-                        else
-                            {
-                            NSLog( @"%@", [ NSJSONSerialization JSONObjectWithData: _Item.userDefinedData options: 0 error: nil ] );
-                            }
                         } ];
                 }
+
+            if ( error )
+                NSLog( @"Error occured while constructing the OTP entries manager: %@", error );
 
             sSecretManager = self;
             }

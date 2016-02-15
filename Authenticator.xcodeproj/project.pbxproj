@@ -22,6 +22,9 @@
 		830AD1A91C706844006D909C /* WSCPermittedOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1941C706844006D909C /* WSCPermittedOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		830AD1AA1C706844006D909C /* WSCProtectedKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1961C706844006D909C /* WSCProtectedKeychainItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		830AD1AB1C706844006D909C /* WSCTrustedApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1981C706844006D909C /* WSCTrustedApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		830AD1E21C71CE49006D909C /* ATCOTPVault.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1E11C71CE49006D909C /* ATCOTPVault.m */; settings = {ASSET_TAGS = (); }; };
+		830AD1E51C71CE93006D909C /* ATCOTPVaultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1E41C71CE93006D909C /* ATCOTPVaultItem.m */; settings = {ASSET_TAGS = (); }; };
+		830AD1E81C71CED3006D909C /* ATCOTPVaultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1E71C71CED3006D909C /* ATCOTPVaultsManager.m */; settings = {ASSET_TAGS = (); }; };
 		831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */; settings = {ASSET_TAGS = (); }; };
 		831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831EC89F1C688830005DCD88 /* QuartzCore.framework */; };
 		8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B19F1C67073900153EC7 /* ATCAppDelegate.m */; };
@@ -58,7 +61,6 @@
 		8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C61C6A322900A11E31 /* ATCConstants.m */; settings = {ASSET_TAGS = (); }; };
 		83A650E91C70516B009D2FA7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A650E81C70516B009D2FA7 /* Security.framework */; };
 		83A650EC1C705279009D2FA7 /* ATCOTPEntriesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A650EB1C705279009D2FA7 /* ATCOTPEntriesManager.m */; settings = {ASSET_TAGS = (); }; };
-		83A650FD1C705BFE009D2FA7 /* ATCKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A650FB1C705BFE009D2FA7 /* ATCKeychain.m */; settings = {ASSET_TAGS = (); }; };
 		83CEE8AE1C6CD0E90027AE38 /* ATCHintField.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8AD1C6CD0E90027AE38 /* ATCHintField.m */; settings = {ASSET_TAGS = (); }; };
 		83CEE8B11C6DB4B50027AE38 /* NSObject+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8B01C6DB4B50027AE38 /* NSObject+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		83CEE8B41C6E03800027AE38 /* ATCOTPDigitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8B31C6E03800027AE38 /* ATCOTPDigitLayer.m */; settings = {ASSET_TAGS = (); }; };
@@ -125,6 +127,12 @@
 		830AD1971C706844006D909C /* WSCTrustedApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCTrustedApplication.h; sourceTree = "<group>"; };
 		830AD1981C706844006D909C /* WSCTrustedApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCTrustedApplication.m; sourceTree = "<group>"; };
 		830AD19A1C706844006D909C /* WaxSealCore-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WaxSealCore-Prefix.pch"; sourceTree = "<group>"; };
+		830AD1E01C71CE49006D909C /* ATCOTPVault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPVault.h; sourceTree = "<group>"; };
+		830AD1E11C71CE49006D909C /* ATCOTPVault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPVault.m; sourceTree = "<group>"; };
+		830AD1E31C71CE93006D909C /* ATCOTPVaultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPVaultItem.h; sourceTree = "<group>"; };
+		830AD1E41C71CE93006D909C /* ATCOTPVaultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPVaultItem.m; sourceTree = "<group>"; };
+		830AD1E61C71CED3006D909C /* ATCOTPVaultsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPVaultsManager.h; sourceTree = "<group>"; };
+		830AD1E71C71CED3006D909C /* ATCOTPVaultsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPVaultsManager.m; sourceTree = "<group>"; };
 		831EC89C1C688824005DCD88 /* ATCOTPDigitTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPDigitTextLayer.h; sourceTree = "<group>"; };
 		831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPDigitTextLayer.m; sourceTree = "<group>"; };
 		831EC89F1C688830005DCD88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -202,8 +210,6 @@
 		83A650E81C70516B009D2FA7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		83A650EA1C705279009D2FA7 /* ATCOTPEntriesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntriesManager.h; sourceTree = "<group>"; };
 		83A650EB1C705279009D2FA7 /* ATCOTPEntriesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntriesManager.m; sourceTree = "<group>"; };
-		83A650FB1C705BFE009D2FA7 /* ATCKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCKeychain.m; sourceTree = "<group>"; };
-		83A650FC1C705BFE009D2FA7 /* ATCKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCKeychain.h; sourceTree = "<group>"; };
 		83CEE8AC1C6CD0E90027AE38 /* ATCHintField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCHintField.h; sourceTree = "<group>"; };
 		83CEE8AD1C6CD0E90027AE38 /* ATCHintField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCHintField.m; sourceTree = "<group>"; };
 		83CEE8AF1C6DB4B50027AE38 /* NSObject+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ATCExtensions.h"; sourceTree = "<group>"; };
@@ -338,10 +344,14 @@
 				8373D8731C67491D00A11E31 /* extensions */,
 				8373D8C51C6A322900A11E31 /* ATCConstants.h */,
 				8373D8C61C6A322900A11E31 /* ATCConstants.m */,
-				83A650FC1C705BFE009D2FA7 /* ATCKeychain.h */,
-				83A650FB1C705BFE009D2FA7 /* ATCKeychain.m */,
 				83A650EA1C705279009D2FA7 /* ATCOTPEntriesManager.h */,
 				83A650EB1C705279009D2FA7 /* ATCOTPEntriesManager.m */,
+				830AD1E61C71CED3006D909C /* ATCOTPVaultsManager.h */,
+				830AD1E71C71CED3006D909C /* ATCOTPVaultsManager.m */,
+				830AD1E01C71CE49006D909C /* ATCOTPVault.h */,
+				830AD1E11C71CE49006D909C /* ATCOTPVault.m */,
+				830AD1E31C71CE93006D909C /* ATCOTPVaultItem.h */,
+				830AD1E41C71CE93006D909C /* ATCOTPVaultItem.m */,
 				8368DD321C6AED6600005A7D /* ATCNotificationCenter.h */,
 				8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */,
 				8324B19E1C67073900153EC7 /* ATCAppDelegate.h */,
@@ -633,7 +643,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83A650FD1C705BFE009D2FA7 /* ATCKeychain.m in Sources */,
 				83CEE8AE1C6CD0E90027AE38 /* ATCHintField.m in Sources */,
 				830AD1A51C706844006D909C /* WSCKeychainError.m in Sources */,
 				8373D8911C67548C00A11E31 /* AGStringEncoding.m in Sources */,
@@ -647,6 +656,7 @@
 				8373D8BE1C697E2600A11E31 /* ATCSecretKeyManuallyInputView.m in Sources */,
 				8373D8B81C697D8D00A11E31 /* ATCSecretKeyManuallyInputWindow.m in Sources */,
 				8368DD341C6AED6600005A7D /* ATCNotificationCenter.m in Sources */,
+				830AD1E21C71CE49006D909C /* ATCOTPVault.m in Sources */,
 				830AD1A81C706844006D909C /* WSCPassphraseItem.m in Sources */,
 				830AD1A31C706844006D909C /* WSCKey.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
@@ -664,6 +674,7 @@
 				830AD1A21C706844006D909C /* WSCCertificateItem.m in Sources */,
 				8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */,
 				83A650EC1C705279009D2FA7 /* ATCOTPEntriesManager.m in Sources */,
+				830AD1E81C71CED3006D909C /* ATCOTPVaultsManager.m in Sources */,
 				8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */,
 				830AD19C1C706844006D909C /* _WSCCommon.m in Sources */,
 				8373D8901C67548C00A11E31 /* AGOtp.m in Sources */,
@@ -679,6 +690,7 @@
 				8373D8921C67548C00A11E31 /* AGTotp.m in Sources */,
 				830AD1A01C706844006D909C /* NSDate+WSCCocoaDate.m in Sources */,
 				83CEE8B41C6E03800027AE38 /* ATCOTPDigitLayer.m in Sources */,
+				830AD1E51C71CE93006D909C /* ATCOTPVaultItem.m in Sources */,
 				8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */,
 				8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */,
 				83CEE8B11C6DB4B50027AE38 /* NSObject+ATCExtensions.m in Sources */,
