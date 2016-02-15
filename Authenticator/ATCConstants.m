@@ -67,7 +67,7 @@ inline NSURL* ATCVaultsDirURL()
     return vaultsURL;
     }
 
-NSURL* ATCDefaultVaultsURL()
+NSURL* ATCDefaultVaultsDirURL()
     {
     return [ ATCVaultsDirURL() URLByAppendingPathComponent: @"Defaults" ];
     }
