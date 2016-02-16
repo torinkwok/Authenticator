@@ -32,7 +32,7 @@
     [ newAuthVault writeToFile: path atomically: YES ];
     #endif
 
-    #if __debug_AuthVault_Validator__
+    #if __debug_AuthVault_Parser__
     ATCAuthVault* authVault = [ ATCAuthVaultSerialization authVaultWithContentsOfURL: url error: &error ];
     if ( !authVault )
         NSLog( @"%@", error );

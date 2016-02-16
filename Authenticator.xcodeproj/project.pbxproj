@@ -873,9 +873,8 @@
 					"__debug_Global_Timer__=0",
 					"__debug_Vault__=1",
 					"__debug_Animation__=0",
-					"__debug_AuthVault_Parser__=0",
 					"__debug_AuthVault_Generator__=0",
-					"__debug_AuthVault_Validator__=1",
+					"__debug_AuthVault_Parser__=1",
 				);
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
