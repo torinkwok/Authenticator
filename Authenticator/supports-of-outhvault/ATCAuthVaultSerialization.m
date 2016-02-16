@@ -17,7 +17,7 @@
 
 - ( instancetype ) initWithPropertyList_: ( NSDictionary* )_PlistDict;
 
-@end
+@end // ATCAuthVault + ATCFriends
 
 // Private Interfaces
 @interface ATCAuthVaultSerialization ()
@@ -32,11 +32,11 @@
 
 #pragma mark - Serializing an Auth Vault
 
-unsigned int kFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
-                            , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
-                            , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
-                            , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
-                            };
+unsigned int kVeriFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
+                                , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
+                                , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
+                                , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
+                                };
 
 + ( NSData* ) dataWithEmptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase
                                                  error: ( NSError** )_Error
@@ -106,7 +106,7 @@ unsigned int kFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
                                                                            options: 0
                                                                              error: &error ];
 
-            NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kFlags length: sizeof kFlags ];
+            NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kVeriFlags length: sizeof kVeriFlags ];
 
             [ tmpVaultData appendData: [ plistData base64EncodedDataWithOptions:
                 NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ] ];
@@ -155,7 +155,7 @@ unsigned int kFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
         if ( [ self hasValidFlags_: contentsOfURL ] )
             {
             NSData* base64DecodedData = [ [ NSData alloc ]
-                initWithBase64EncodedData: [ contentsOfURL subdataWithRange: NSMakeRange( sizeof kFlags, contentsOfURL.length - sizeof kFlags ) ]
+                initWithBase64EncodedData: [ contentsOfURL subdataWithRange: NSMakeRange( sizeof kVeriFlags, contentsOfURL.length - sizeof kVeriFlags ) ]
                                   options: NSDataBase64DecodingIgnoreUnknownCharacters ];
             if ( base64DecodedData )
                 {
@@ -234,18 +234,18 @@ unsigned int kFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
 
 + ( BOOL ) hasValidFlags_: ( NSData* )_Data
     {
-    if ( _Data.length < sizeof kFlags )
+    if ( _Data.length < sizeof kVeriFlags )
         return NO;
 
     BOOL isValid = YES;
 
-    NSData* flagsSubData = [ _Data subdataWithRange: NSMakeRange( 0, sizeof kFlags ) ];
-    for ( int _Index = 0; _Index < sizeof kFlags; _Index += sizeof( int ) )
+    NSData* flagsSubData = [ _Data subdataWithRange: NSMakeRange( 0, sizeof kVeriFlags ) ];
+    for ( int _Index = 0; _Index < sizeof kVeriFlags; _Index += sizeof( int ) )
         {
         unsigned int flag = 0U;
         [ flagsSubData getBytes: &flag range: NSMakeRange( _Index, sizeof( int ) ) ];
 
-        if ( flag != kFlags[ ( _Index / sizeof( int ) ) ] )
+        if ( flag != kVeriFlags[ ( _Index / sizeof( int ) ) ] )
             {
             isValid = NO;
             break;
@@ -257,6 +257,7 @@ unsigned int kFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
 
 @end // ATCAuthVaultSerialization class
 
+// ATCAuthVault + ATCFriends
 @implementation ATCAuthVault ( ATCFriends )
 
 #pragma mark - Initializations
