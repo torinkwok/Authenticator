@@ -8,6 +8,17 @@
 
 #import "ATCAuthVaultSerialization.h"
 
+#import "ATCAuthVault.h"
+
+// ATCAuthVault + ATCFriends
+@interface ATCAuthVault ( ATCFriends )
+
+#pragma mark - Initializations
+
+- ( instancetype ) initWithPropertyList_: ( NSDictionary* )_PlistDict;
+
+@end
+
 // Private Interfaces
 @interface ATCAuthVaultSerialization ()
 
@@ -113,24 +124,32 @@ unsigned int kFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
 
 #pragma mark - Deserializing a Property List
 
-+ ( ATCAuthVault* ) authVaultWithData: ( NSData* )_Data
-    {
-    ATCAuthVault* authVault = nil;
-
-
-
-    return authVault;
-    }
-
-+ ( BOOL ) isContentsOfURLValidAuthVault: ( NSURL* )_URL
++ ( ATCAuthVault* ) authVaultWithContentsOfURL: ( NSURL* )_URL
+                                         error: ( NSError** )_Error
     {
     if ( ![ _URL.scheme isEqualToString: @"file" ] )
         return NO;
 
-    BOOL isValid = NO;
     NSError* error = nil;
+    ATCAuthVault* authVault = nil;
 
-    NSData* contentsOfURL = [ NSData dataWithContentsOfURL: _URL options: 0 error: &error ];
+    NSData* data = [ NSData dataWithContentsOfURL: _URL options: 0 error: &error ];
+    if ( data )
+        authVault = [ self authVaultWithData: data error: &error ];
+
+    if ( error )
+        *_Error = error;
+
+    return authVault;
+    }
+
++ ( ATCAuthVault* ) authVaultWithData: ( NSData* )_Data
+                                error: ( NSError** )_Error
+    {
+    NSError* error = nil;
+    ATCAuthVault* authVault = nil;
+
+    NSData* contentsOfURL = _Data;
     if ( contentsOfURL )
         {
         if ( [ self hasValidFlags_: contentsOfURL ] )
@@ -178,8 +197,9 @@ unsigned int kFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
 
                         if ( [ lhsCheckSum isEqualToString: rhsCheckSum ] )
                             {
-                            isValid = YES;
                             NSLog( @"YES! 🍉" );
+
+                            authVault = [ [ ATCAuthVault alloc ] initWithPropertyList_: plistDict ];
                             }
                         }
                     else
@@ -193,7 +213,7 @@ unsigned int kFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
             ; // TODO: To construct an error object that contains the information about this failure
         }
 
-    return isValid;
+    return authVault;
     }
 
 #pragma mark - Private Interfaces
@@ -220,12 +240,12 @@ unsigned int kFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
     BOOL isValid = YES;
 
     NSData* flagsSubData = [ _Data subdataWithRange: NSMakeRange( 0, sizeof kFlags ) ];
-    for ( int _Index = 0; _Index < sizeof kFlags; _Index += 4 )
+    for ( int _Index = 0; _Index < sizeof kFlags; _Index += sizeof( int ) )
         {
         unsigned int flag = 0U;
-        [ flagsSubData getBytes: &flag range: NSMakeRange( _Index, 4 ) ];
+        [ flagsSubData getBytes: &flag range: NSMakeRange( _Index, sizeof( int ) ) ];
 
-        if ( flag != kFlags[ _Index / 4 ] )
+        if ( flag != kFlags[ ( _Index / sizeof( int ) ) ] )
             {
             isValid = NO;
             break;
@@ -237,26 +257,14 @@ unsigned int kFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
 
 @end // ATCAuthVaultSerialization class
 
-#import "ATCAuthVault.h"
-
-// ATCAuthVault + ATCFriends
-@interface ATCAuthVault ( ATCFriends )
-
-#pragma mark - Initializations
-
-- ( instancetype ) initWithPropertyList: ( NSDictionary* )_PlistDict keychain: ( WSCKeychain* )_BackingStore;
-
-@end
-
 @implementation ATCAuthVault ( ATCFriends )
 
 #pragma mark - Initializations
 
-- ( instancetype ) initWithPropertyList: ( NSDictionary* )_PlistDict
-                               keychain: ( WSCKeychain* )_BackingStore
+- ( instancetype ) initWithPropertyList_: ( NSDictionary* )_PlistDict
     {
     if ( self = [ super init ] )
-        backingStore_ = _BackingStore;
+        ;
 
     return self;
     }

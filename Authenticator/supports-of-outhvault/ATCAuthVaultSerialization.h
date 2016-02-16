@@ -19,9 +19,7 @@
 
 #pragma mark - Deserializing a Property List
 
-+ ( ATCAuthVault* ) authVaultWithContentsOfURL: ( NSURL* )_URL;
-+ ( ATCAuthVault* ) authVaultWithData: ( NSData* )_Data;
-
-+ ( BOOL ) isContentsOfURLValidAuthVault: ( NSURL* )_URL;
++ ( ATCAuthVault* ) authVaultWithContentsOfURL: ( NSURL* )_URL error: ( NSError** )_Error;
++ ( ATCAuthVault* ) authVaultWithData: ( NSData* )_Data error: ( NSError** )_Error;
 
 @end // ATCAuthVaultSerialization class

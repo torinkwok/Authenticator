@@ -8,6 +8,7 @@
 
 #import "ATCAppDelegate.h"
 #import "ATCAuthVaultSerialization.h"
+#import "ATCAuthVault.h"
 
 // Private Interfaces
 @interface ATCAppDelegate ()
@@ -21,6 +22,8 @@
 
 - ( void ) applicationDidFinishLaunching: ( NSNotification* )_Notif
     {
+    NSError* error = nil;
+
     NSString* path = [ NSHomeDirectory() stringByAppendingPathComponent: @"test.authvault" ];
     NSURL* url = [ NSURL URLWithString: [ NSString stringWithFormat: @"file://%@", path ] ];
 
@@ -30,7 +33,9 @@
     #endif
 
     #if __debug_AuthVault_Validator__
-    BOOL isValid = [ ATCAuthVaultSerialization isContentsOfURLValidAuthVault: url ];
+    ATCAuthVault* authVault = [ ATCAuthVaultSerialization authVaultWithContentsOfURL: url error: &error ];
+    if ( !authVault )
+        NSLog( @"%@", error );
     #endif
 
     // Encoding
