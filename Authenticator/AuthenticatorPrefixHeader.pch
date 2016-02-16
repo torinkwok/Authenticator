@@ -15,11 +15,13 @@
 // System Frameworks
 @import Cocoa;
 @import QuartzCore;
+#import <CommonCrypto/CommonCrypto.h>
 
 // Third Party Modules
 #import "PureLayout.h"
 #import "AeroGearOTP.h"
 #import "WaxSealCore.h"
+#import "OAuthSigningConstants.h"
 
 // Frequently Used Headers
 #import "ATCConstants.h"

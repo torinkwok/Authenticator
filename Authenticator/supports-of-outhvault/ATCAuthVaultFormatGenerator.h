@@ -11,4 +11,6 @@
 // ATCAuthVaultFormatGenerator class
 @interface ATCAuthVaultFormatGenerator : NSObject
 
++ ( NSData* ) dataOfEmptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase error: ( NSError** )_Error;
+
 @end // ATCAuthVaultFormatGenerator class

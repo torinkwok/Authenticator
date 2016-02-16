@@ -7,6 +7,7 @@
 //
 
 #import "ATCAppDelegate.h"
+#import "ATCAuthVaultFormatGenerator.h"
 
 // Private Interfaces
 @interface ATCAppDelegate ()
@@ -20,9 +21,15 @@
 
 - ( void ) applicationDidFinishLaunching: ( NSNotification* )_Notif
     {
+    #if __debug_AuthVault_Generator__
+    NSData* newAuthVault = [ ATCAuthVaultFormatGenerator dataOfEmptyAuthVaultWithMasterPassphrase: @"authenticator" error: nil ];
+    [ newAuthVault writeToFile: [ NSHomeDirectory() stringByAppendingPathComponent: @"test.authvault" ] atomically: YES ];
+    #endif
+
     // Encoding
-//    NSLog( @"%@", [ NSHomeDirectory() stringByAppendingPathComponent: @"login.keychain" ] );
 //    NSData* keychainData = [ NSData dataWithContentsOfFile: [ NSHomeDirectory() stringByAppendingPathComponent: @"lab.keychain" ] ];
+//
+//
 //    NSData* base64edData = [ keychainData base64EncodedDataWithOptions:
 //        NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
 //
@@ -30,18 +37,7 @@
 //
 //    // Decoding
 //    NSData* decodedKeychainData = [ [ NSData alloc ] initWithBase64EncodedString: base64edString options: 0 ];
-////    [ decodedKeychainData writeToFile: [ NSHomeDirectory() stringByAppendingPathComponent: @"copy.keychain" ] atomically: YES ];
-//    NSLog( @"%@", decodedKeychainData );
+//    [ decodedKeychainData writeToFile: [ NSHomeDirectory() stringByAppendingPathComponent: @"test.authvault" ] atomically: YES ];
     }
-
-//- ( void ) applicationWillResignActive: ( NSNotification* )_Notif
-//    {
-//    [ [ ATCNotificationCenter sharedTimer ] stopTiming ];
-//    }
-
-//- ( void ) applicationWillBecomeActive: ( NSNotification* )_Notif
-//    {
-//    [ [ ATCNotificationCenter sharedTimer ] startTiming ];
-//    }
 
 @end // ATCAppDelegate class
