@@ -29,6 +29,8 @@
 		830AD2071C7308FC006D909C /* ATCAuthVaultFormatParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD2061C7308FC006D909C /* ATCAuthVaultFormatParser.m */; settings = {ASSET_TAGS = (); }; };
 		830AD20B1C730BE5006D909C /* OAuthSigningConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD20A1C730BE5006D909C /* OAuthSigningConstants.m */; settings = {ASSET_TAGS = (); }; };
 		830AD20E1C731F35006D909C /* ATCAuthVaultFormatValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD20D1C731F35006D909C /* ATCAuthVaultFormatValidator.m */; settings = {ASSET_TAGS = (); }; };
+		830AD2111C7335FE006D909C /* ATCAuthVaultSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD2101C7335FE006D909C /* ATCAuthVaultSerialization.m */; settings = {ASSET_TAGS = (); }; };
+		830AD2141C733674006D909C /* ATCAuthVault.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD2131C733674006D909C /* ATCAuthVault.m */; settings = {ASSET_TAGS = (); }; };
 		831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */; settings = {ASSET_TAGS = (); }; };
 		831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831EC89F1C688830005DCD88 /* QuartzCore.framework */; };
 		8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B19F1C67073900153EC7 /* ATCAppDelegate.m */; };
@@ -145,6 +147,10 @@
 		830AD20A1C730BE5006D909C /* OAuthSigningConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthSigningConstants.m; sourceTree = "<group>"; };
 		830AD20C1C731F35006D909C /* ATCAuthVaultFormatValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVaultFormatValidator.h; sourceTree = "<group>"; };
 		830AD20D1C731F35006D909C /* ATCAuthVaultFormatValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVaultFormatValidator.m; sourceTree = "<group>"; };
+		830AD20F1C7335FE006D909C /* ATCAuthVaultSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVaultSerialization.h; sourceTree = "<group>"; };
+		830AD2101C7335FE006D909C /* ATCAuthVaultSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVaultSerialization.m; sourceTree = "<group>"; };
+		830AD2121C733674006D909C /* ATCAuthVault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVault.h; sourceTree = "<group>"; };
+		830AD2131C733674006D909C /* ATCAuthVault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVault.m; sourceTree = "<group>"; };
 		831EC89C1C688824005DCD88 /* ATCOTPDigitTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPDigitTextLayer.h; sourceTree = "<group>"; };
 		831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPDigitTextLayer.m; sourceTree = "<group>"; };
 		831EC89F1C688830005DCD88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -337,6 +343,10 @@
 				830AD2061C7308FC006D909C /* ATCAuthVaultFormatParser.m */,
 				830AD20C1C731F35006D909C /* ATCAuthVaultFormatValidator.h */,
 				830AD20D1C731F35006D909C /* ATCAuthVaultFormatValidator.m */,
+				830AD20F1C7335FE006D909C /* ATCAuthVaultSerialization.h */,
+				830AD2101C7335FE006D909C /* ATCAuthVaultSerialization.m */,
+				830AD2121C733674006D909C /* ATCAuthVault.h */,
+				830AD2131C733674006D909C /* ATCAuthVault.m */,
 			);
 			path = "supports-of-outhvault";
 			sourceTree = "<group>";
@@ -687,6 +697,7 @@
 				831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */,
 				830AD1AA1C706844006D909C /* WSCProtectedKeychainItem.m in Sources */,
 				830AD1A11C706844006D909C /* NSURL+WSCKeychainURL.m in Sources */,
+				830AD2141C733674006D909C /* ATCAuthVault.m in Sources */,
 				830AD19E1C706844006D909C /* _WSCKeychainErrorPrivate.m in Sources */,
 				8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */,
 				830AD19F1C706844006D909C /* NSString+_OMCString.m in Sources */,
@@ -702,6 +713,7 @@
 				830AD1A41C706844006D909C /* WSCKeychain.m in Sources */,
 				830AD1A71C706844006D909C /* WSCKeychainManager.m in Sources */,
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
+				830AD2111C7335FE006D909C /* ATCAuthVaultSerialization.m in Sources */,
 				830AD2041C7308EF006D909C /* ATCAuthVaultFormatGenerator.m in Sources */,
 				830AD20B1C730BE5006D909C /* OAuthSigningConstants.m in Sources */,
 				8373D87C1C67494300A11E31 /* NSAffineTransform+ATCExtensions.m in Sources */,

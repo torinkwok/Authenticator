@@ -11,7 +11,7 @@
 // ATCAuthVaultFormatGenerator class
 @implementation ATCAuthVaultFormatGenerator
 
-+ ( NSData* ) dataOfEmptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase
++ ( NSData* ) dataWithEmptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase
                                                  error: ( NSError** )_Error
     {
     NSParameterAssert( ( _MasterPassphrase.length ) >= 6 );

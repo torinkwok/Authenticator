@@ -1,5 +1,5 @@
 //
-//  ATCAuthVaultFormatGenerator.h
+//  ATCAuthVaultSerialization.h
 //  Authenticator
 //
 //  Created by Tong G. on 2/16/16.
@@ -8,9 +8,14 @@
 
 @import Foundation;
 
-// ATCAuthVaultFormatGenerator class
-@interface ATCAuthVaultFormatGenerator : NSObject
+// ATCAuthVaultSerialization class
+@interface ATCAuthVaultSerialization : NSObject
+
+#pragma mark - Serializing an Auth Vault
 
 + ( NSData* ) dataWithEmptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase error: ( NSError** )_Error;
 
-@end // ATCAuthVaultFormatGenerator class
+#pragma mark - Deserializing a Property List
+
+
+@end // ATCAuthVaultSerialization class
