@@ -27,16 +27,25 @@
 
 @end // Private Interfaces
 
-// ATCAuthVaultSerialization class
-@implementation ATCAuthVaultSerialization
-
-#pragma mark - Serializing an Auth Vault
-
 unsigned int kVeriFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
                                 , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
                                 , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
                                 , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
                                 };
+
+NSString* const kUnitedTypeIdentifier = @"home.bedroom.TongKuo.Authenticator.AuthVault";
+
+NSString* const kVersionKey = @"auth-vault-version";
+NSString* const kUUIDKey = @"uuid";
+NSString* const kCreatedDateKey = @"created-date";
+NSString* const kModifiedDateKey = @"modified-date";
+NSString* const kPrivateBLOBKey = @"private-blob";
+NSString* const kCheckSumKey = @"check-sum";
+
+// ATCAuthVaultSerialization class
+@implementation ATCAuthVaultSerialization
+
+#pragma mark - Serializing an Auth Vault
 
 + ( NSData* ) dataWithEmptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase
                                                  error: ( NSError** )_Error
@@ -66,29 +75,29 @@ unsigned int kVeriFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
             NSMutableDictionary* plistDict = [ NSMutableDictionary dictionary ];
 
             // auth-vault-version key
-            NSString* version = @"1.0";
-            NSData* versionDat = [ version dataUsingEncoding: NSUTF8StringEncoding ];
-            [ plistDict addEntriesFromDictionary: @{ @"auth-vault-version" : version } ];
+            ATCAuthVaultVersion version = ATCAuthVault_v1_0;
+            NSData* versionDat = [ NSData dataWithBytes: &version length: sizeof version ];
+            [ plistDict addEntriesFromDictionary: @{ kVersionKey : @( version ).stringValue } ];
 
             // uuid key
             NSString* uuid = TKNonce();
             NSData* uuidDat = [ uuid dataUsingEncoding: NSUTF8StringEncoding ];
-            [ plistDict addEntriesFromDictionary: @{ @"uuid" : uuid } ];
+            [ plistDict addEntriesFromDictionary: @{ kUUIDKey : uuid } ];
 
             // created-date key
             NSTimeInterval createdDate = [ [ NSDate date ] timeIntervalSince1970 ];
             NSData* createdDateDat = [ NSData dataWithBytes: &createdDate length: sizeof( createdDate ) ];
-            [ plistDict addEntriesFromDictionary: @{ @"created-date" : @( createdDate ) } ];
+            [ plistDict addEntriesFromDictionary: @{ kCreatedDateKey : @( createdDate ) } ];
 
             // modified-date key
             NSTimeInterval modifiedDate = createdDate;
             NSData* modifiedDateDat = [ NSData dataWithBytes: &modifiedDate length: sizeof( modifiedDate ) ];
-            [ plistDict addEntriesFromDictionary: @{ @"modified-date" : @( modifiedDate ) } ];
+            [ plistDict addEntriesFromDictionary: @{ kModifiedDateKey : @( modifiedDate ) } ];
 
             // BLOB key
             NSData* tmpKeychainDat = [ [ NSData dataWithContentsOfURL: tmpKeychainURL ]
                 base64EncodedDataWithOptions: NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
-            [ plistDict addEntriesFromDictionary: @{ @"BLOB" : tmpKeychainDat } ];
+            [ plistDict addEntriesFromDictionary: @{ kPrivateBLOBKey : tmpKeychainDat } ];
 
             // digest key
             NSMutableArray* subCheckSums = [ NSMutableArray arrayWithCapacity: 5 ];
@@ -99,10 +108,10 @@ unsigned int kVeriFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
             [ subCheckSums addObject: [ self checkSumOfData_: tmpKeychainDat ] ];
 
             NSData* subCheckSumsDat = [ [ subCheckSums componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ];
-            [ plistDict addEntriesFromDictionary: @{ @"check-sum" : [ self checkSumOfData_: subCheckSumsDat ] } ];
+            [ plistDict addEntriesFromDictionary: @{ kCheckSumKey : [ self checkSumOfData_: subCheckSumsDat ] } ];
 
             NSData* plistData = [ NSPropertyListSerialization dataWithPropertyList: plistDict
-                                                                            format: NSPropertyListXMLFormat_v1_0
+                                                                            format: NSPropertyListBinaryFormat_v1_0
                                                                            options: 0
                                                                              error: &error ];
 
@@ -168,21 +177,21 @@ unsigned int kVeriFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
                                    error: &error ];
                 if ( plistDict )
                     {
-                    if ( propertyListFormat == NSPropertyListXMLFormat_v1_0 )
+                    if ( propertyListFormat == NSPropertyListBinaryFormat_v1_0 )
                         {
-                        NSString* version = plistDict[ @"auth-vault-version" ];
-                        NSData* versionDat = [ version dataUsingEncoding: NSUTF8StringEncoding ];
+                        ATCAuthVaultVersion version = ( ATCAuthVaultVersion )[ plistDict[ kVersionKey ] intValue ];
+                        NSData* versionDat = [ NSData dataWithBytes: &version length: sizeof version ];
 
-                        NSString* uuid = plistDict[ @"uuid" ];
+                        NSString* uuid = plistDict[ kUUIDKey ];
                         NSData* uuidDat = [ uuid dataUsingEncoding: NSUTF8StringEncoding ];
 
-                        NSTimeInterval createdDate = [ plistDict[ @"created-date" ] doubleValue ];
+                        NSTimeInterval createdDate = [ plistDict[ kCreatedDateKey ] doubleValue ];
                         NSData* createdDateDat = [ NSData dataWithBytes: &createdDate length: sizeof( createdDate ) ];
 
-                        NSTimeInterval modifiedDate = [ plistDict[ @"modified-date" ] doubleValue ];
+                        NSTimeInterval modifiedDate = [ plistDict[ kModifiedDateKey ] doubleValue ];
                         NSData* modifiedDateDat = [ NSData dataWithBytes: &modifiedDate length: sizeof( modifiedDate ) ];
 
-                        NSData* BLOB = plistDict[ @"BLOB" ];
+                        NSData* BLOB = plistDict[ kPrivateBLOBKey ];
 
                         NSMutableArray* subCheckSums = [ NSMutableArray arrayWithCapacity: 5 ];
                         [ subCheckSums addObject: [ self checkSumOfData_: versionDat ] ];
@@ -193,7 +202,7 @@ unsigned int kVeriFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
 
                         NSData* subCheckSumsDat = [ [ subCheckSums componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ];
                         NSString* lhsCheckSum = [ self checkSumOfData_: subCheckSumsDat ];
-                        NSString* rhsCheckSum = plistDict[ @"check-sum" ];
+                        NSString* rhsCheckSum = plistDict[ kCheckSumKey ];
 
                         if ( [ lhsCheckSum isEqualToString: rhsCheckSum ] )
                             {
@@ -221,8 +230,7 @@ unsigned int kVeriFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
 + ( NSString* ) checkSumOfData_: ( NSData* )_Data
     {
     unsigned char buffer[ CC_SHA512_DIGEST_LENGTH ];
-    NSString* secretKey = [ [ [ NSBundle mainBundle ] bundleIdentifier ] stringByAppendingString: @".AuthVault" ];
-    CCHmac( kCCHmacAlgSHA512, secretKey.UTF8String, secretKey.length, _Data.bytes, _Data.length, buffer );
+    CCHmac( kCCHmacAlgSHA512, kUnitedTypeIdentifier.UTF8String, kUnitedTypeIdentifier.length, _Data.bytes, _Data.length, buffer );
 
     NSData* macData = [ NSData dataWithBytes: buffer length: CC_SHA512_DIGEST_LENGTH ];
     NSString* digest =
@@ -237,7 +245,7 @@ unsigned int kVeriFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
     if ( _Data.length < sizeof kVeriFlags )
         return NO;
 
-    BOOL isValid = YES;
+    BOOL hasValidFlags = YES;
 
     NSData* flagsSubData = [ _Data subdataWithRange: NSMakeRange( 0, sizeof kVeriFlags ) ];
     for ( int _Index = 0; _Index < sizeof kVeriFlags; _Index += sizeof( int ) )
@@ -247,12 +255,12 @@ unsigned int kVeriFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
 
         if ( flag != kVeriFlags[ ( _Index / sizeof( int ) ) ] )
             {
-            isValid = NO;
+            hasValidFlags = NO;
             break;
             }
         }
 
-    return isValid;
+    return hasValidFlags;
     }
 
 @end // ATCAuthVaultSerialization class

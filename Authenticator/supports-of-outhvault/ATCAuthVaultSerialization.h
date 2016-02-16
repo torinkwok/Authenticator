@@ -10,6 +10,10 @@
 
 @class ATCAuthVault;
 
+typedef NS_ENUM ( uint32_t, ATCAuthVaultVersion )
+    { ATCAuthVault_v1_0 = 1
+    };
+
 // ATCAuthVaultSerialization class
 @interface ATCAuthVaultSerialization : NSObject
 
