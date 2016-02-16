@@ -8,6 +8,8 @@
 
 @import Foundation;
 
+@class ATCAuthVault;
+
 // ATCAuthVaultSerialization class
 @interface ATCAuthVaultSerialization : NSObject
 
@@ -17,5 +19,9 @@
 
 #pragma mark - Deserializing a Property List
 
++ ( ATCAuthVault* ) authVaultWithContentsOfURL: ( NSURL* )_URL;
++ ( ATCAuthVault* ) authVaultWithData: ( NSData* )_Data;
+
++ ( BOOL ) isContentsOfURLValidAuthVault: ( NSURL* )_URL;
 
 @end // ATCAuthVaultSerialization class

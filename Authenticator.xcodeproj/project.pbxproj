@@ -25,10 +25,7 @@
 		830AD1E21C71CE49006D909C /* ATCOTPVault.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1E11C71CE49006D909C /* ATCOTPVault.m */; settings = {ASSET_TAGS = (); }; };
 		830AD1E51C71CE93006D909C /* ATCOTPVaultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1E41C71CE93006D909C /* ATCOTPVaultItem.m */; settings = {ASSET_TAGS = (); }; };
 		830AD1E81C71CED3006D909C /* ATCOTPVaultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1E71C71CED3006D909C /* ATCOTPVaultsManager.m */; settings = {ASSET_TAGS = (); }; };
-		830AD2041C7308EF006D909C /* ATCAuthVaultFormatGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD2031C7308EF006D909C /* ATCAuthVaultFormatGenerator.m */; settings = {ASSET_TAGS = (); }; };
-		830AD2071C7308FC006D909C /* ATCAuthVaultFormatParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD2061C7308FC006D909C /* ATCAuthVaultFormatParser.m */; settings = {ASSET_TAGS = (); }; };
 		830AD20B1C730BE5006D909C /* OAuthSigningConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD20A1C730BE5006D909C /* OAuthSigningConstants.m */; settings = {ASSET_TAGS = (); }; };
-		830AD20E1C731F35006D909C /* ATCAuthVaultFormatValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD20D1C731F35006D909C /* ATCAuthVaultFormatValidator.m */; settings = {ASSET_TAGS = (); }; };
 		830AD2111C7335FE006D909C /* ATCAuthVaultSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD2101C7335FE006D909C /* ATCAuthVaultSerialization.m */; settings = {ASSET_TAGS = (); }; };
 		830AD2141C733674006D909C /* ATCAuthVault.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD2131C733674006D909C /* ATCAuthVault.m */; settings = {ASSET_TAGS = (); }; };
 		831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */; settings = {ASSET_TAGS = (); }; };
@@ -139,14 +136,8 @@
 		830AD1E41C71CE93006D909C /* ATCOTPVaultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPVaultItem.m; sourceTree = "<group>"; };
 		830AD1E61C71CED3006D909C /* ATCOTPVaultsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPVaultsManager.h; sourceTree = "<group>"; };
 		830AD1E71C71CED3006D909C /* ATCOTPVaultsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPVaultsManager.m; sourceTree = "<group>"; };
-		830AD2021C7308EF006D909C /* ATCAuthVaultFormatGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVaultFormatGenerator.h; sourceTree = "<group>"; };
-		830AD2031C7308EF006D909C /* ATCAuthVaultFormatGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVaultFormatGenerator.m; sourceTree = "<group>"; };
-		830AD2051C7308FC006D909C /* ATCAuthVaultFormatParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVaultFormatParser.h; sourceTree = "<group>"; };
-		830AD2061C7308FC006D909C /* ATCAuthVaultFormatParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVaultFormatParser.m; sourceTree = "<group>"; };
 		830AD2091C730BE5006D909C /* OAuthSigningConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthSigningConstants.h; sourceTree = "<group>"; };
 		830AD20A1C730BE5006D909C /* OAuthSigningConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthSigningConstants.m; sourceTree = "<group>"; };
-		830AD20C1C731F35006D909C /* ATCAuthVaultFormatValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVaultFormatValidator.h; sourceTree = "<group>"; };
-		830AD20D1C731F35006D909C /* ATCAuthVaultFormatValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVaultFormatValidator.m; sourceTree = "<group>"; };
 		830AD20F1C7335FE006D909C /* ATCAuthVaultSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVaultSerialization.h; sourceTree = "<group>"; };
 		830AD2101C7335FE006D909C /* ATCAuthVaultSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVaultSerialization.m; sourceTree = "<group>"; };
 		830AD2121C733674006D909C /* ATCAuthVault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVault.h; sourceTree = "<group>"; };
@@ -337,12 +328,6 @@
 		830AD2011C7308CD006D909C /* supports-of-outhvault */ = {
 			isa = PBXGroup;
 			children = (
-				830AD2021C7308EF006D909C /* ATCAuthVaultFormatGenerator.h */,
-				830AD2031C7308EF006D909C /* ATCAuthVaultFormatGenerator.m */,
-				830AD2051C7308FC006D909C /* ATCAuthVaultFormatParser.h */,
-				830AD2061C7308FC006D909C /* ATCAuthVaultFormatParser.m */,
-				830AD20C1C731F35006D909C /* ATCAuthVaultFormatValidator.h */,
-				830AD20D1C731F35006D909C /* ATCAuthVaultFormatValidator.m */,
 				830AD20F1C7335FE006D909C /* ATCAuthVaultSerialization.h */,
 				830AD2101C7335FE006D909C /* ATCAuthVaultSerialization.m */,
 				830AD2121C733674006D909C /* ATCAuthVault.h */,
@@ -714,7 +699,6 @@
 				830AD1A71C706844006D909C /* WSCKeychainManager.m in Sources */,
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
 				830AD2111C7335FE006D909C /* ATCAuthVaultSerialization.m in Sources */,
-				830AD2041C7308EF006D909C /* ATCAuthVaultFormatGenerator.m in Sources */,
 				830AD20B1C730BE5006D909C /* OAuthSigningConstants.m in Sources */,
 				8373D87C1C67494300A11E31 /* NSAffineTransform+ATCExtensions.m in Sources */,
 				8373D87F1C67537500A11E31 /* ATCOTPBadgeView.m in Sources */,
@@ -730,7 +714,6 @@
 				830AD19C1C706844006D909C /* _WSCCommon.m in Sources */,
 				8373D8901C67548C00A11E31 /* AGOtp.m in Sources */,
 				8373D8B51C697D4D00A11E31 /* ATCBeautifulWindow.m in Sources */,
-				830AD2071C7308FC006D909C /* ATCAuthVaultFormatParser.m in Sources */,
 				8373D8671C671D7300A11E31 /* NSArray+PureLayout.m in Sources */,
 				83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */,
 				83D34BFC1C67148A007253E3 /* ATCTotpEntry.m in Sources */,
@@ -743,7 +726,6 @@
 				830AD1A01C706844006D909C /* NSDate+WSCCocoaDate.m in Sources */,
 				83CEE8B41C6E03800027AE38 /* ATCOTPDigitLayer.m in Sources */,
 				830AD1E51C71CE93006D909C /* ATCOTPVaultItem.m in Sources */,
-				830AD20E1C731F35006D909C /* ATCAuthVaultFormatValidator.m in Sources */,
 				8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */,
 				8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */,
 				83CEE8B11C6DB4B50027AE38 /* NSObject+ATCExtensions.m in Sources */,

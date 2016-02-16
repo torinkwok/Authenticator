@@ -7,8 +7,7 @@
 //
 
 #import "ATCAppDelegate.h"
-#import "ATCAuthVaultFormatGenerator.h"
-#import "ATCAuthVaultFormatValidator.h"
+#import "ATCAuthVaultSerialization.h"
 
 // Private Interfaces
 @interface ATCAppDelegate ()
@@ -26,12 +25,12 @@
     NSURL* url = [ NSURL URLWithString: [ NSString stringWithFormat: @"file://%@", path ] ];
 
     #if __debug_AuthVault_Generator__
-    NSData* newAuthVault = [ ATCAuthVaultFormatGenerator dataWithEmptyAuthVaultWithMasterPassphrase: @"authenticator" error: nil ];
+    NSData* newAuthVault = [ ATCAuthVaultSerialization dataWithEmptyAuthVaultWithMasterPassphrase: @"authenticator" error: nil ];
     [ newAuthVault writeToFile: path atomically: YES ];
     #endif
 
     #if __debug_AuthVault_Validator__
-    BOOL isValid = [ ATCAuthVaultFormatValidator isContentsOfURLValidAuthVault: url ];
+    BOOL isValid = [ ATCAuthVaultSerialization isContentsOfURLValidAuthVault: url ];
     #endif
 
     // Encoding
