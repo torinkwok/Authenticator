@@ -25,6 +25,8 @@
 		830AD1E21C71CE49006D909C /* ATCOTPVault.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1E11C71CE49006D909C /* ATCOTPVault.m */; settings = {ASSET_TAGS = (); }; };
 		830AD1E51C71CE93006D909C /* ATCOTPVaultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1E41C71CE93006D909C /* ATCOTPVaultItem.m */; settings = {ASSET_TAGS = (); }; };
 		830AD1E81C71CED3006D909C /* ATCOTPVaultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1E71C71CED3006D909C /* ATCOTPVaultsManager.m */; settings = {ASSET_TAGS = (); }; };
+		830AD2041C7308EF006D909C /* ATCAuthVaultFormatGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD2031C7308EF006D909C /* ATCAuthVaultFormatGenerator.m */; settings = {ASSET_TAGS = (); }; };
+		830AD2071C7308FC006D909C /* ATCAuthVaultFormatParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD2061C7308FC006D909C /* ATCAuthVaultFormatParser.m */; settings = {ASSET_TAGS = (); }; };
 		831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */; settings = {ASSET_TAGS = (); }; };
 		831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831EC89F1C688830005DCD88 /* QuartzCore.framework */; };
 		8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B19F1C67073900153EC7 /* ATCAppDelegate.m */; };
@@ -133,6 +135,10 @@
 		830AD1E41C71CE93006D909C /* ATCOTPVaultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPVaultItem.m; sourceTree = "<group>"; };
 		830AD1E61C71CED3006D909C /* ATCOTPVaultsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPVaultsManager.h; sourceTree = "<group>"; };
 		830AD1E71C71CED3006D909C /* ATCOTPVaultsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPVaultsManager.m; sourceTree = "<group>"; };
+		830AD2021C7308EF006D909C /* ATCAuthVaultFormatGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVaultFormatGenerator.h; sourceTree = "<group>"; };
+		830AD2031C7308EF006D909C /* ATCAuthVaultFormatGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVaultFormatGenerator.m; sourceTree = "<group>"; };
+		830AD2051C7308FC006D909C /* ATCAuthVaultFormatParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVaultFormatParser.h; sourceTree = "<group>"; };
+		830AD2061C7308FC006D909C /* ATCAuthVaultFormatParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVaultFormatParser.m; sourceTree = "<group>"; };
 		831EC89C1C688824005DCD88 /* ATCOTPDigitTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPDigitTextLayer.h; sourceTree = "<group>"; };
 		831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPDigitTextLayer.m; sourceTree = "<group>"; };
 		831EC89F1C688830005DCD88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -316,6 +322,17 @@
 			path = Public;
 			sourceTree = "<group>";
 		};
+		830AD2011C7308CD006D909C /* supports-of-outhvault */ = {
+			isa = PBXGroup;
+			children = (
+				830AD2021C7308EF006D909C /* ATCAuthVaultFormatGenerator.h */,
+				830AD2031C7308EF006D909C /* ATCAuthVaultFormatGenerator.m */,
+				830AD2051C7308FC006D909C /* ATCAuthVaultFormatParser.h */,
+				830AD2061C7308FC006D909C /* ATCAuthVaultFormatParser.m */,
+			);
+			path = "supports-of-outhvault";
+			sourceTree = "<group>";
+		};
 		8324B1921C67073900153EC7 = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +357,7 @@
 		8324B19D1C67073900153EC7 /* Authenticator */ = {
 			isa = PBXGroup;
 			children = (
+				830AD2011C7308CD006D909C /* supports-of-outhvault */,
 				8339601E1C670E69007241D9 /* wysiwyg */,
 				8373D8731C67491D00A11E31 /* extensions */,
 				8373D8C51C6A322900A11E31 /* ATCConstants.h */,
@@ -665,6 +683,7 @@
 				830AD1A41C706844006D909C /* WSCKeychain.m in Sources */,
 				830AD1A71C706844006D909C /* WSCKeychainManager.m in Sources */,
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
+				830AD2041C7308EF006D909C /* ATCAuthVaultFormatGenerator.m in Sources */,
 				8373D87C1C67494300A11E31 /* NSAffineTransform+ATCExtensions.m in Sources */,
 				8373D87F1C67537500A11E31 /* ATCOTPBadgeView.m in Sources */,
 				830AD1A91C706844006D909C /* WSCPermittedOperation.m in Sources */,
@@ -679,6 +698,7 @@
 				830AD19C1C706844006D909C /* _WSCCommon.m in Sources */,
 				8373D8901C67548C00A11E31 /* AGOtp.m in Sources */,
 				8373D8B51C697D4D00A11E31 /* ATCBeautifulWindow.m in Sources */,
+				830AD2071C7308FC006D909C /* ATCAuthVaultFormatParser.m in Sources */,
 				8373D8671C671D7300A11E31 /* NSArray+PureLayout.m in Sources */,
 				83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */,
 				83D34BFC1C67148A007253E3 /* ATCTotpEntry.m in Sources */,
