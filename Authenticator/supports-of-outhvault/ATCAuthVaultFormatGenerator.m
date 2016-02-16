@@ -17,7 +17,7 @@
     NSParameterAssert( ( _MasterPassphrase.length ) >= 6 );
 
     NSError* error = nil;
-    NSData* plistData = nil;
+    NSData* vaultData = nil;
 
     NSURL* cachesDirURL = nil;
     if ( ( cachesDirURL = [ [ NSFileManager defaultManager ]
@@ -54,9 +54,9 @@
             [ plistDict addEntriesFromDictionary: @{ @"created-date" : @( createdDate ) } ];
 
             // modified-date key
-            NSTimeInterval motifiedDate = createdDate;
-            NSData* motifiedDateDat = [ NSData dataWithBytes: &motifiedDate length: sizeof( motifiedDate ) ];
-            [ plistDict addEntriesFromDictionary: @{ @"modified-date" : @( motifiedDate ) } ];
+            NSTimeInterval modifiedDate = createdDate;
+            NSData* modifiedDateDat = [ NSData dataWithBytes: &modifiedDate length: sizeof( modifiedDate ) ];
+            [ plistDict addEntriesFromDictionary: @{ @"modified-date" : @( modifiedDate ) } ];
 
             // BLOB key
             NSData* tmpKeychainDat = [ [ NSData dataWithContentsOfURL: tmpKeychainURL ]
@@ -64,19 +64,23 @@
             [ plistDict addEntriesFromDictionary: @{ @"BLOB" : tmpKeychainDat } ];
 
             // digest key
-            NSMutableArray* subCheckSums = [ NSMutableArray arrayWithCapacity: 3 ];
+            NSMutableArray* subCheckSums = [ NSMutableArray arrayWithCapacity: 5 ];
             [ subCheckSums addObject: [ self checkSumOfData_: versionDat ] ];
             [ subCheckSums addObject: [ self checkSumOfData_: uuidDat ] ];
             [ subCheckSums addObject: [ self checkSumOfData_: createdDateDat ] ];
-            [ subCheckSums addObject: [ self checkSumOfData_: motifiedDateDat ] ];
+            [ subCheckSums addObject: [ self checkSumOfData_: modifiedDateDat ] ];
             [ subCheckSums addObject: [ self checkSumOfData_: tmpKeychainDat ] ];
 
             NSData* subCheckSumsDat = [ [ subCheckSums componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ];
             [ plistDict addEntriesFromDictionary: @{ @"check-sum" : [ self checkSumOfData_: subCheckSumsDat ] } ];
 
-            plistData = [ NSPropertyListSerialization dataWithPropertyList: plistDict
-                                                                    format: NSPropertyListXMLFormat_v1_0
-                                                                   options: 0 error: &error ];
+            NSData* plistData = [ NSPropertyListSerialization dataWithPropertyList: plistDict
+                                                                            format: NSPropertyListXMLFormat_v1_0
+                                                                           options: 0
+                                                                             error: &error ];
+
+            vaultData = [ plistData base64EncodedDataWithOptions:
+                NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
             }
         }
 
@@ -84,7 +88,7 @@
         if ( _Error )
             *_Error = error;
 
-    return plistData;
+    return vaultData;
     }
 
 + ( NSString* ) checkSumOfData_: ( NSData* )_Data

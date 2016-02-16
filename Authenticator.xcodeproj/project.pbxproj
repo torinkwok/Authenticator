@@ -28,6 +28,7 @@
 		830AD2041C7308EF006D909C /* ATCAuthVaultFormatGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD2031C7308EF006D909C /* ATCAuthVaultFormatGenerator.m */; settings = {ASSET_TAGS = (); }; };
 		830AD2071C7308FC006D909C /* ATCAuthVaultFormatParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD2061C7308FC006D909C /* ATCAuthVaultFormatParser.m */; settings = {ASSET_TAGS = (); }; };
 		830AD20B1C730BE5006D909C /* OAuthSigningConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD20A1C730BE5006D909C /* OAuthSigningConstants.m */; settings = {ASSET_TAGS = (); }; };
+		830AD20E1C731F35006D909C /* ATCAuthVaultFormatValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD20D1C731F35006D909C /* ATCAuthVaultFormatValidator.m */; settings = {ASSET_TAGS = (); }; };
 		831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */; settings = {ASSET_TAGS = (); }; };
 		831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831EC89F1C688830005DCD88 /* QuartzCore.framework */; };
 		8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B19F1C67073900153EC7 /* ATCAppDelegate.m */; };
@@ -142,6 +143,8 @@
 		830AD2061C7308FC006D909C /* ATCAuthVaultFormatParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVaultFormatParser.m; sourceTree = "<group>"; };
 		830AD2091C730BE5006D909C /* OAuthSigningConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthSigningConstants.h; sourceTree = "<group>"; };
 		830AD20A1C730BE5006D909C /* OAuthSigningConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthSigningConstants.m; sourceTree = "<group>"; };
+		830AD20C1C731F35006D909C /* ATCAuthVaultFormatValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVaultFormatValidator.h; sourceTree = "<group>"; };
+		830AD20D1C731F35006D909C /* ATCAuthVaultFormatValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVaultFormatValidator.m; sourceTree = "<group>"; };
 		831EC89C1C688824005DCD88 /* ATCOTPDigitTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPDigitTextLayer.h; sourceTree = "<group>"; };
 		831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPDigitTextLayer.m; sourceTree = "<group>"; };
 		831EC89F1C688830005DCD88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -332,6 +335,8 @@
 				830AD2031C7308EF006D909C /* ATCAuthVaultFormatGenerator.m */,
 				830AD2051C7308FC006D909C /* ATCAuthVaultFormatParser.h */,
 				830AD2061C7308FC006D909C /* ATCAuthVaultFormatParser.m */,
+				830AD20C1C731F35006D909C /* ATCAuthVaultFormatValidator.h */,
+				830AD20D1C731F35006D909C /* ATCAuthVaultFormatValidator.m */,
 			);
 			path = "supports-of-outhvault";
 			sourceTree = "<group>";
@@ -726,6 +731,7 @@
 				830AD1A01C706844006D909C /* NSDate+WSCCocoaDate.m in Sources */,
 				83CEE8B41C6E03800027AE38 /* ATCOTPDigitLayer.m in Sources */,
 				830AD1E51C71CE93006D909C /* ATCOTPVaultItem.m in Sources */,
+				830AD20E1C731F35006D909C /* ATCAuthVaultFormatValidator.m in Sources */,
 				8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */,
 				8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */,
 				83CEE8B11C6DB4B50027AE38 /* NSObject+ATCExtensions.m in Sources */,
@@ -873,8 +879,9 @@
 					"__debug_Global_Timer__=0",
 					"__debug_Vault__=1",
 					"__debug_Animation__=0",
-					"__debug_AuthVault_Parser__=1",
-					"__debug_AuthVault_Generator__=1",
+					"__debug_AuthVault_Parser__=0",
+					"__debug_AuthVault_Generator__=0",
+					"__debug_AuthVault_Validator__=1",
 				);
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
