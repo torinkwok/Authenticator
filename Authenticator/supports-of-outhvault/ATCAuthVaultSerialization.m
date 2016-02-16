@@ -10,13 +10,22 @@
 
 // Private Interfaces
 @interface ATCAuthVaultSerialization ()
+
 + ( NSString* ) checkSumOfData_: ( NSData* )_Data;
++ ( BOOL ) hasValidFlags_: ( NSData* )_Data;
+
 @end // Private Interfaces
 
 // ATCAuthVaultSerialization class
 @implementation ATCAuthVaultSerialization
 
 #pragma mark - Serializing an Auth Vault
+
+unsigned int kFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
+                            , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
+                            , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
+                            , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
+                            };
 
 + ( NSData* ) dataWithEmptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase
                                                  error: ( NSError** )_Error
@@ -86,8 +95,12 @@
                                                                            options: 0
                                                                              error: &error ];
 
-            vaultData = [ plistData base64EncodedDataWithOptions:
-                NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
+            NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kFlags length: sizeof kFlags ];
+
+            [ tmpVaultData appendData: [ plistData base64EncodedDataWithOptions:
+                NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ] ];
+
+            vaultData = [ tmpVaultData copy ];
             }
         }
 
@@ -120,59 +133,64 @@
     NSData* contentsOfURL = [ NSData dataWithContentsOfURL: _URL options: 0 error: &error ];
     if ( contentsOfURL )
         {
-        NSData* base64DecodedData =
-            [ [ NSData alloc ] initWithBase64EncodedData: contentsOfURL
-                                                 options: NSDataBase64DecodingIgnoreUnknownCharacters ];
-        if ( base64DecodedData )
+        if ( [ self hasValidFlags_: contentsOfURL ] )
             {
-            NSPropertyListFormat propertyListFormat = 0;
-            NSDictionary* plistDict = [ NSPropertyListSerialization propertyListWithData: base64DecodedData
-                                                                                 options: 0
-                                                                                  format: &propertyListFormat
-                                                                                   error: &error ];
-            if ( plistDict )
+            NSData* base64DecodedData = [ [ NSData alloc ]
+                initWithBase64EncodedData: [ contentsOfURL subdataWithRange: NSMakeRange( sizeof kFlags, contentsOfURL.length - sizeof kFlags ) ]
+                                  options: NSDataBase64DecodingIgnoreUnknownCharacters ];
+            if ( base64DecodedData )
                 {
-                if ( propertyListFormat == NSPropertyListXMLFormat_v1_0 )
+                NSPropertyListFormat propertyListFormat = 0;
+
+                NSDictionary* plistDict = [ NSPropertyListSerialization
+                    propertyListWithData: base64DecodedData
+                                 options: 0
+                                  format: &propertyListFormat
+                                   error: &error ];
+                if ( plistDict )
                     {
-                    NSString* version = plistDict[ @"auth-vault-version" ];
-                    NSData* versionDat = [ version dataUsingEncoding: NSUTF8StringEncoding ];
-
-                    NSString* uuid = plistDict[ @"uuid" ];
-                    NSData* uuidDat = [ uuid dataUsingEncoding: NSUTF8StringEncoding ];
-
-                    NSTimeInterval createdDate = [ plistDict[ @"created-date" ] doubleValue ];
-                    NSData* createdDateDat = [ NSData dataWithBytes: &createdDate length: sizeof( createdDate ) ];
-
-                    NSTimeInterval modifiedDate = [ plistDict[ @"modified-date" ] doubleValue ];
-                    NSData* modifiedDateDat = [ NSData dataWithBytes: &modifiedDate length: sizeof( modifiedDate ) ];
-
-                    NSData* BLOB = plistDict[ @"BLOB" ];
-
-                    NSMutableArray* subCheckSums = [ NSMutableArray arrayWithCapacity: 5 ];
-                    [ subCheckSums addObject: [ self checkSumOfData_: versionDat ] ];
-                    [ subCheckSums addObject: [ self checkSumOfData_: uuidDat ] ];
-                    [ subCheckSums addObject: [ self checkSumOfData_: createdDateDat ] ];
-                    [ subCheckSums addObject: [ self checkSumOfData_: modifiedDateDat ] ];
-                    [ subCheckSums addObject: [ self checkSumOfData_: BLOB ] ];
-
-                    NSData* subCheckSumsDat = [ [ subCheckSums componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ];
-                    NSString* lhsCheckSum = [ self checkSumOfData_: subCheckSumsDat ];
-                    NSString* rhsCheckSum = plistDict[ @"check-sum" ];
-
-                    if ( [ lhsCheckSum isEqualToString: rhsCheckSum ] )
+                    if ( propertyListFormat == NSPropertyListXMLFormat_v1_0 )
                         {
-                        isValid = YES;
-                        NSLog( @"YES! 🍉" );
+                        NSString* version = plistDict[ @"auth-vault-version" ];
+                        NSData* versionDat = [ version dataUsingEncoding: NSUTF8StringEncoding ];
+
+                        NSString* uuid = plistDict[ @"uuid" ];
+                        NSData* uuidDat = [ uuid dataUsingEncoding: NSUTF8StringEncoding ];
+
+                        NSTimeInterval createdDate = [ plistDict[ @"created-date" ] doubleValue ];
+                        NSData* createdDateDat = [ NSData dataWithBytes: &createdDate length: sizeof( createdDate ) ];
+
+                        NSTimeInterval modifiedDate = [ plistDict[ @"modified-date" ] doubleValue ];
+                        NSData* modifiedDateDat = [ NSData dataWithBytes: &modifiedDate length: sizeof( modifiedDate ) ];
+
+                        NSData* BLOB = plistDict[ @"BLOB" ];
+
+                        NSMutableArray* subCheckSums = [ NSMutableArray arrayWithCapacity: 5 ];
+                        [ subCheckSums addObject: [ self checkSumOfData_: versionDat ] ];
+                        [ subCheckSums addObject: [ self checkSumOfData_: uuidDat ] ];
+                        [ subCheckSums addObject: [ self checkSumOfData_: createdDateDat ] ];
+                        [ subCheckSums addObject: [ self checkSumOfData_: modifiedDateDat ] ];
+                        [ subCheckSums addObject: [ self checkSumOfData_: BLOB ] ];
+
+                        NSData* subCheckSumsDat = [ [ subCheckSums componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ];
+                        NSString* lhsCheckSum = [ self checkSumOfData_: subCheckSumsDat ];
+                        NSString* rhsCheckSum = plistDict[ @"check-sum" ];
+
+                        if ( [ lhsCheckSum isEqualToString: rhsCheckSum ] )
+                            {
+                            isValid = YES;
+                            NSLog( @"YES! 🍉" );
+                            }
                         }
+                    else
+                        ; // TODO: To construct an error object that contains the information about the format is invalid
                     }
-                else
-                    ;
-                    // TODO: To construct an error object that contains the information about the format is invalid
                 }
+            else
+                ; // TODO: To construct an error object that contains the information about this failure
             }
         else
-            // TODO: To construct an error object that contains the information about this failure
-            ;
+            ; // TODO: To construct an error object that contains the information about this failure
         }
 
     return isValid;
@@ -192,6 +210,29 @@
             stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet alphanumericCharacterSet ] ];
 
     return digest;
+    }
+
++ ( BOOL ) hasValidFlags_: ( NSData* )_Data
+    {
+    if ( _Data.length < sizeof kFlags )
+        return NO;
+
+    BOOL isValid = YES;
+
+    NSData* flagsSubData = [ _Data subdataWithRange: NSMakeRange( 0, sizeof kFlags ) ];
+    for ( int _Index = 0; _Index < sizeof kFlags; _Index += 4 )
+        {
+        unsigned int flag = 0U;
+        [ flagsSubData getBytes: &flag range: NSMakeRange( _Index, 4 ) ];
+
+        if ( flag != kFlags[ _Index / 4 ] )
+            {
+            isValid = NO;
+            break;
+            }
+        }
+
+    return isValid;
     }
 
 @end // ATCAuthVaultSerialization class
