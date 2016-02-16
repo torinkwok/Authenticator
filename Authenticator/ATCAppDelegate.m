@@ -20,7 +20,18 @@
 
 - ( void ) applicationDidFinishLaunching: ( NSNotification* )_Notif
     {
-//    NSLog( @"%d", [ [ ATCOTPEntriesManager defaultManager ] presistentEntry: nil ] );
+    // Encoding
+//    NSLog( @"%@", [ NSHomeDirectory() stringByAppendingPathComponent: @"login.keychain" ] );
+//    NSData* keychainData = [ NSData dataWithContentsOfFile: [ NSHomeDirectory() stringByAppendingPathComponent: @"lab.keychain" ] ];
+//    NSData* base64edData = [ keychainData base64EncodedDataWithOptions:
+//        NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
+//
+//    NSString* base64edString = [ [ NSString alloc ] initWithData: base64edData encoding: NSUTF8StringEncoding ];
+//
+//    // Decoding
+//    NSData* decodedKeychainData = [ [ NSData alloc ] initWithBase64EncodedString: base64edString options: 0 ];
+////    [ decodedKeychainData writeToFile: [ NSHomeDirectory() stringByAppendingPathComponent: @"copy.keychain" ] atomically: YES ];
+//    NSLog( @"%@", decodedKeychainData );
     }
 
 //- ( void ) applicationWillResignActive: ( NSNotification* )_Notif
