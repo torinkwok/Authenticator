@@ -29,6 +29,11 @@
 + ( BOOL ) verifyPrivateBLOB_: ( NSData* )_PrivateBLOB;
 + ( NSString* ) calculateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict;
 
++ ( BOOL ) matchBytes_: ( uint32_t const [] )_Bytes
+               length_: ( size_t )_Length
+               inData_: ( NSData* )_Data
+              options_: ( NSDataSearchOptions )_SearchOptions;
+
 // Serializing an Auth Vault
 
 + ( NSString* ) generateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict;
@@ -237,22 +242,6 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     return hasValidFlags;
     }
 
-+ ( BOOL ) matchBytes: ( uint32_t const [] )_Bytes
-               length: ( size_t )_Length
-               inData: ( NSData* )_Data
-              options: ( NSDataSearchOptions )_SearchOptions
-    {
-    uint32_t processedBytes[ _Length ];
-    for ( int _Index = 0; _Index < _Length; _Index++ )
-        processedBytes[ _Index ] = kExchangeEndianness_( _Bytes[ _Index ] );
-
-    NSRange searchRange = NSMakeRange( 0, _Data.length );
-    NSData* data = [ NSData dataWithBytes: processedBytes length: _Length * sizeof( uint32_t ) ];
-    NSRange resultRange = [ _Data rangeOfData: data options: 0 range: searchRange ];
-
-    return resultRange.location != NSNotFound;
-    }
-
 + ( BOOL ) verifyPrivateBLOB_: ( NSData* )_PrivateBLOB
     {
     // first veri flags
@@ -273,7 +262,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
                 break;
             }
 
-        if ( ![ self matchBytes: kPrivateBLOBFeatureLibrary[ _Index ] length: length inData: _PrivateBLOB options: 0 ] )
+        if ( ![ self matchBytes_: kPrivateBLOBFeatureLibrary[ _Index ] length_: length inData_: _PrivateBLOB options_: 0 ] )
             {
             allMatches = NO;
             break;
@@ -310,6 +299,22 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
 
     NSData* subCheckSumsDat = [ [ checkBucket componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ];
     return [ self checkSumOfData_: subCheckSumsDat ];
+    }
+
++ ( BOOL ) matchBytes_: ( uint32_t const [] )_Bytes
+               length_: ( size_t )_Length
+               inData_: ( NSData* )_Data
+              options_: ( NSDataSearchOptions )_SearchOptions
+    {
+    uint32_t processedBytes[ _Length ];
+    for ( int _Index = 0; _Index < _Length; _Index++ )
+        processedBytes[ _Index ] = kExchangeEndianness_( _Bytes[ _Index ] );
+
+    NSRange searchRange = NSMakeRange( 0, _Data.length );
+    NSData* data = [ NSData dataWithBytes: processedBytes length: _Length * sizeof( uint32_t ) ];
+    NSRange resultRange = [ _Data rangeOfData: data options: _SearchOptions range: searchRange ];
+
+    return resultRange.location != NSNotFound;
     }
 
 // Serializing an Auth Vault
