@@ -22,19 +22,26 @@
 // Private Interfaces
 @interface ATCAuthVaultSerialization ()
 
+// Utilities
+
 + ( NSString* ) checkSumOfData_: ( NSData* )_Data;
 + ( BOOL ) hasValidWatermarkFlags_: ( NSData* )_Data;
++ ( BOOL ) verifyPrivateBLOB_: ( NSData* )_PrivateBLOB;
 + ( NSString* ) calculateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict;
 
+// Serializing an Auth Vault
+
 + ( NSString* ) generateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict;
-+ ( NSData* ) generateInternalPropertyListWithPrivateRawBLOB_: ( NSData* )_PrivateBLOB error_: ( NSError** )_Error;
++ ( NSData* ) generateBase64edInternalPropertyListWithPrivateRawBLOB_: ( NSData* )_PrivateBLOB error_: ( NSError** )_Error;
+
+// Deserializing a Property List
 
 + ( NSDictionary* ) extractInternalPropertyList_: ( NSData* )_ContentsOfUnverifiedFile error_: ( NSError** )_Error;
 + ( BOOL ) verifyInternalPropertyList_: ( NSDictionary* )_PlistDict;
 
 @end // Private Interfaces
 
-unsigned int kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
+uint32_t kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
                                      , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
                                      , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
                                      , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
@@ -48,6 +55,22 @@ NSString* const kCreatedDateKey = @"created-date";
 NSString* const kModifiedDateKey = @"modified-date";
 NSString* const kPrivateBLOBKey = @"private-blob";
 NSString* const kCheckSumKey = @"check-sum";
+
+inline static uint32_t kExchangeEndianness_( uint32_t _Value )
+    {
+    #if !TARGET_RT_BIG_ENDIAN // On Intel Mac, the following code fragment will be executed
+    uint32_t result = 0;
+
+    result |= ( _Value & 0x000000FF ) << 24;
+    result |= ( _Value & 0x0000FF00 ) << 8;
+    result |= ( _Value & 0x00FF0000 ) >> 8;
+    result |= ( _Value & 0xFF000000 ) >> 24;
+
+    return result;
+    #else
+    return _Value;
+    #endif
+    }
 
 // ATCAuthVaultSerialization class
 @implementation ATCAuthVaultSerialization
@@ -80,7 +103,7 @@ NSString* const kCheckSumKey = @"check-sum";
         if ( tmpKeychain )
             {
             NSData* rawDataOfTmpKeychain = [ NSData dataWithContentsOfURL: tmpKeychainURL ];
-            NSData* internalPlistData = [ self generateInternalPropertyListWithPrivateRawBLOB_: rawDataOfTmpKeychain error_: &error ];
+            NSData* internalPlistData = [ self generateBase64edInternalPropertyListWithPrivateRawBLOB_: rawDataOfTmpKeychain error_: &error ];
             if ( internalPlistData )
                 {
                 NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof kWatermarkFlags ];
@@ -150,6 +173,8 @@ NSString* const kCheckSumKey = @"check-sum";
 
 #pragma mark - Private Interfaces
 
+// Utilities
+
 + ( NSString* ) checkSumOfData_: ( NSData* )_Data
     {
     unsigned char buffer[ CC_SHA512_DIGEST_LENGTH ];
@@ -173,7 +198,7 @@ NSString* const kCheckSumKey = @"check-sum";
     NSData* flagsSubData = [ _Data subdataWithRange: NSMakeRange( 0, sizeof kWatermarkFlags ) ];
     for ( int _Index = 0; _Index < sizeof kWatermarkFlags; _Index += sizeof( int ) )
         {
-        unsigned int flag = 0U;
+        uint32_t flag = 0U;
         [ flagsSubData getBytes: &flag range: NSMakeRange( _Index, sizeof( int ) ) ];
 
         if ( flag != kWatermarkFlags[ ( _Index / sizeof( int ) ) ] )
@@ -184,6 +209,44 @@ NSString* const kCheckSumKey = @"check-sum";
         }
 
     return hasValidFlags;
+    }
+
++ ( BOOL ) matchBytes: ( uint32_t const [] )_Bytes
+               length: ( NSUInteger )_Length
+               inData: ( NSData* )_Data
+              options: ( NSDataSearchOptions )_SearchOptions
+    {
+    uint32_t processedBytes[ _Length ];
+    for ( int _Index = 0; _Index < _Length; _Index++ )
+        processedBytes[ _Index ] = kExchangeEndianness_( _Bytes[ _Index ] );
+
+    NSRange searchRange = NSMakeRange( 0, _Data.length );
+    NSRange resultRange = [ _Data rangeOfData: [ NSData dataWithBytes: processedBytes length: _Length ] options: 0 range: searchRange ];
+
+    return resultRange.location != NSNotFound;
+    }
+
++ ( BOOL ) verifyPrivateBLOB_: ( NSData* )_PrivateBLOB
+    {
+    BOOL isValid = YES;
+
+    // first veri flags
+    uint32_t headFlagsBuffer;
+    [ _PrivateBLOB getBytes: &headFlagsBuffer range: NSMakeRange( 0, 4 ) ];
+
+//    isValid = ( headFlagsBuffer == 0x6B796368 ) ?: NO;
+
+    // second veri flags
+    uint32_t secondVeriFlags[] = { 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F494E, 0x464F0000 };
+
+    // third veri flags
+    uint32_t thirdVeriFlags[] = { 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F4154, 0x54524942, 0x55544553 };
+
+    isValid = ( headFlagsBuffer == kExchangeEndianness_( 0x6B796368 ) )
+                    && [ self matchBytes: secondVeriFlags length: sizeof( secondVeriFlags ) inData: _PrivateBLOB options: 0 ]
+                    && [ self matchBytes: thirdVeriFlags length: sizeof( thirdVeriFlags ) inData: _PrivateBLOB options: 0 ];
+
+    return isValid;
     }
 
 + ( NSString* ) calculateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict
@@ -213,13 +276,15 @@ NSString* const kCheckSumKey = @"check-sum";
     return [ self checkSumOfData_: subCheckSumsDat ];
     }
 
+// Serializing an Auth Vault
+
 + ( NSString* ) generateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict
     {
     return [ self calculateCheckSumOfInternalPropertyListDict_: _PlistDict ];
     }
 
-+ ( NSData* ) generateInternalPropertyListWithPrivateRawBLOB_: ( NSData* )_PrivateBLOB
-                                                       error_: ( NSError** )_Error
++ ( NSData* ) generateBase64edInternalPropertyListWithPrivateRawBLOB_: ( NSData* )_PrivateBLOB
+                                                               error_: ( NSError** )_Error
     {
     NSError* error = nil;
     NSData* internalPlistData = nil;
@@ -266,6 +331,8 @@ NSString* const kCheckSumKey = @"check-sum";
                 isEqualToString: _PlistDict[ kCheckSumKey ] ];
     }
 
+// Deserializing a Property List
+
 + ( NSDictionary* ) extractInternalPropertyList_: ( NSData* )_ContentsOfUnverifiedFile
                                           error_: ( NSError** )_Error
     {
@@ -287,8 +354,11 @@ NSString* const kCheckSumKey = @"check-sum";
         if ( tmpPlistDict )
             {
             if ( propertyListFormat == NSPropertyListBinaryFormat_v1_0 )
-                if ( [ self verifyInternalPropertyList_: tmpPlistDict ] )
+                {
+                NSData* base64DecodedPrivateBLOB = [ [ NSData alloc ] initWithBase64EncodedData: tmpPlistDict[ kPrivateBLOBKey ] options: NSDataBase64DecodingIgnoreUnknownCharacters ];
+                if ( [ self verifyInternalPropertyList_: tmpPlistDict ] && [ self verifyPrivateBLOB_: base64DecodedPrivateBLOB ] )
                     plistDict = tmpPlistDict;
+                }
             }
         else
             ; // TODO: To construct an error object that contains the information about the format is invalid
