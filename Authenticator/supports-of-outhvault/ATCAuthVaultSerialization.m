@@ -42,10 +42,10 @@
 @end // Private Interfaces
 
 uint32_t kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
-                                     , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
-                                     , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
-                                     , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
-                                     };
+                                 , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
+                                 , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
+                                 , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
+                                 };
 
 NSString* const kUnitedTypeIdentifier = @"home.bedroom.TongKuo.Authenticator.AuthVault";
 
@@ -71,6 +71,29 @@ inline static uint32_t kExchangeEndianness_( uint32_t _Value )
     return _Value;
     #endif
     }
+
+uint32_t* kPrivateBLOBFeatureLibrary[] =
+    // 4353534D 5F444C5F 44425F53 4348454D 415F494E 464F
+    { ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F494E, 0x464F0000, ( uint32_t )NULL }
+
+    // 4353534D 5F444C5F 44425F53 4348454D 415F4154 54524942 55544553
+    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F4154, 0x54524942, 0x55544553, ( uint32_t )NULL }
+
+    // 4353534D 5F444C5F 44425F53 4348454D 415F494E 44455845 53
+    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F494E, 0x44455845, 0x53000000, ( uint32_t )NULL }
+
+    // 4353534D 5F444C5F 44425F53 4348454D 415F5041 5253494E 475F4D4F 44554C45
+    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F5041, 0x5253494E, 0x475F4D4F, 0x44554C45, ( uint32_t )NULL }
+
+    // 4442426C 6F62
+    , ( uint32_t[] ){ 0x4442426C, 0x6F620000, ( uint32_t )NULL }
+
+    // 4353534D 5F444C5F 44425F52 45434F52 445F5055 424C4943 5F4B4559
+    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F52, 0x45434F52, 0x445F5055, 0x424C4943, 0x5F4B4559, ( uint32_t )NULL }
+
+    // 4353534D 5F444C5F 44425F52 45434F52 445F5052 49564154 455F4B45 59
+    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F52, 0x45434F52, 0x445F5052, 0x49564154, 0x455F4B45, 0x59000000, ( uint32_t )NULL }
+    };
 
 // ATCAuthVaultSerialization class
 @implementation ATCAuthVaultSerialization
@@ -212,7 +235,7 @@ inline static uint32_t kExchangeEndianness_( uint32_t _Value )
     }
 
 + ( BOOL ) matchBytes: ( uint32_t const [] )_Bytes
-               length: ( NSUInteger )_Length
+               length: ( size_t )_Length
                inData: ( NSData* )_Data
               options: ( NSDataSearchOptions )_SearchOptions
     {
@@ -221,30 +244,40 @@ inline static uint32_t kExchangeEndianness_( uint32_t _Value )
         processedBytes[ _Index ] = kExchangeEndianness_( _Bytes[ _Index ] );
 
     NSRange searchRange = NSMakeRange( 0, _Data.length );
-    NSRange resultRange = [ _Data rangeOfData: [ NSData dataWithBytes: processedBytes length: _Length ] options: 0 range: searchRange ];
+    NSData* data = [ NSData dataWithBytes: processedBytes length: _Length * sizeof( uint32_t ) ];
+    NSRange resultRange = [ _Data rangeOfData: data options: 0 range: searchRange ];
 
     return resultRange.location != NSNotFound;
     }
 
 + ( BOOL ) verifyPrivateBLOB_: ( NSData* )_PrivateBLOB
     {
-    BOOL isValid = YES;
-
     // first veri flags
     uint32_t headFlagsBuffer;
     [ _PrivateBLOB getBytes: &headFlagsBuffer range: NSMakeRange( 0, 4 ) ];
 
-//    isValid = ( headFlagsBuffer == 0x6B796368 ) ?: NO;
+    BOOL allMatches = YES;
+    for ( int _Index = 0; _Index < ( sizeof( kPrivateBLOBFeatureLibrary ) / sizeof( uint32_t* ) ); _Index++ )
+        {
+        uint32_t* features = kPrivateBLOBFeatureLibrary[ _Index ];
+        size_t length = 0;
 
-    // second veri flags
-    uint32_t secondVeriFlags[] = { 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F494E, 0x464F0000 };
+        for ( int _Index = 0; ; _Index++ )
+            {
+            if ( features[ _Index ] != ( uint32_t )NULL )
+                length++;
+            else
+                break;
+            }
 
-    // third veri flags
-    uint32_t thirdVeriFlags[] = { 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F4154, 0x54524942, 0x55544553 };
+        if ( ![ self matchBytes: kPrivateBLOBFeatureLibrary[ _Index ] length: length inData: _PrivateBLOB options: 0 ] )
+            {
+            allMatches = NO;
+            break;
+            }
+        }
 
-    isValid = ( headFlagsBuffer == kExchangeEndianness_( 0x6B796368 ) )
-                    && [ self matchBytes: secondVeriFlags length: sizeof( secondVeriFlags ) inData: _PrivateBLOB options: 0 ]
-                    && [ self matchBytes: thirdVeriFlags length: sizeof( thirdVeriFlags ) inData: _PrivateBLOB options: 0 ];
+    BOOL isValid = ( headFlagsBuffer == kExchangeEndianness_( 0x6B796368 ) ) && allMatches;
 
     return isValid;
     }
