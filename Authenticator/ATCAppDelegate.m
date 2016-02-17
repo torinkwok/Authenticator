@@ -40,6 +40,42 @@
         NSLog( @"%@", error );
     #endif
 
+//    NSString* keychainPath = [ NSHomeDirectory() stringByAppendingPathComponent: @"test.keychain" ];
+//    NSURL* keychainUrl = [ NSURL URLWithString: [ NSString stringWithFormat: @"file://%@", keychainPath ] ];
+//    WSCKeychain* newKeychain = [ [ WSCKeychainManager defaultManager ] createKeychainWithURL: keychainUrl passphrase: @"isgtforever" becomesDefault: NO error: nil ];
+//
+//    NSData* keychainData = nil;
+//    unsigned char buffer[ CC_SHA512_DIGEST_LENGTH ];
+//    NSData* bufferData = nil;
+//
+//    [ [ WSCKeychainManager defaultManager ] lockKeychain: newKeychain error: nil ];
+//
+//    //
+//    keychainData = [ NSData dataWithContentsOfURL: keychainUrl ];
+//    CCHmac( kCCHmacAlgMD5, @"fuckyou", @"fuckyou".length, keychainData.bytes, keychainData.length, &buffer );
+//    bufferData = [ NSData dataWithBytes: buffer length: CC_SHA512_DIGEST_LENGTH ];
+//    NSLog( @"%@", [ bufferData base64EncodedStringWithOptions: NSDataBase64Encoding64CharacterLineLength ] );
+//    //
+//
+//    [ [ WSCKeychainManager defaultManager ] unlockKeychain: newKeychain withPassphrase: @"isgtforever" error: nil ];
+//    [ newKeychain addApplicationPassphraseWithServiceName: @"test" accountName: @"tongkuo" passphrase: @"tongkuo" error: nil ];
+//
+//    //
+//    keychainData = [ NSData dataWithContentsOfURL: keychainUrl ];
+//    CCHmac( kCCHmacAlgMD5, @"fuckyou", @"fuckyou".length, keychainData.bytes, keychainData.length, &buffer );
+//    bufferData = [ NSData dataWithBytes: buffer length: CC_SHA512_DIGEST_LENGTH ];
+//    NSLog( @"%@", [ bufferData base64EncodedStringWithOptions: NSDataBase64Encoding64CharacterLineLength ] );
+//    //
+//
+//    [ newKeychain addApplicationPassphraseWithServiceName: @"test" accountName: @"tongkuo1" passphrase: @"tongkuo" error: nil ];
+//
+//    //
+//    keychainData = [ NSData dataWithContentsOfURL: keychainUrl ];
+//    CCHmac( kCCHmacAlgMD5, @"fuckyou", @"fuckyou".length, keychainData.bytes, keychainData.length, &buffer );
+//    bufferData = [ NSData dataWithBytes: buffer length: CC_SHA512_DIGEST_LENGTH ];
+//    NSLog( @"%@", [ bufferData base64EncodedStringWithOptions: NSDataBase64Encoding64CharacterLineLength ] );
+//    //
+
     // Encoding
 //    NSData* keychainData = [ NSData dataWithContentsOfFile: [ NSHomeDirectory() stringByAppendingPathComponent: @"lab.keychain" ] ];
 //
