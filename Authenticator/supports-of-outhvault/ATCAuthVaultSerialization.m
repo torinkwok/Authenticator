@@ -25,6 +25,9 @@
 + ( NSString* ) checkSumOfData_: ( NSData* )_Data;
 + ( BOOL ) hasValidFlags_: ( NSData* )_Data;
 
++ ( NSDictionary* ) extractInternalPropertyList_: ( NSData* )_ContentsOfUnverifiedFile error_: ( NSError** )_Error;
++ ( BOOL ) verifyInternalPropertyList_: ( NSDictionary* )_PlistDict;
+
 @end // Private Interfaces
 
 unsigned int kVeriFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
@@ -163,64 +166,18 @@ NSString* const kCheckSumKey = @"check-sum";
         {
         if ( [ self hasValidFlags_: contentsOfURL ] )
             {
-            NSData* base64DecodedData = [ [ NSData alloc ]
-                initWithBase64EncodedData: [ contentsOfURL subdataWithRange: NSMakeRange( sizeof kVeriFlags, contentsOfURL.length - sizeof kVeriFlags ) ]
-                                  options: NSDataBase64DecodingIgnoreUnknownCharacters ];
-            if ( base64DecodedData )
-                {
-                NSPropertyListFormat propertyListFormat = 0;
+            NSDictionary* internalPlist = [ self extractInternalPropertyList_: _Data error_: &error ];
 
-                NSDictionary* plistDict = [ NSPropertyListSerialization
-                    propertyListWithData: base64DecodedData
-                                 options: 0
-                                  format: &propertyListFormat
-                                   error: &error ];
-                if ( plistDict )
-                    {
-                    if ( propertyListFormat == NSPropertyListBinaryFormat_v1_0 )
-                        {
-                        ATCAuthVaultVersion version = ( ATCAuthVaultVersion )[ plistDict[ kVersionKey ] intValue ];
-                        NSData* versionDat = [ NSData dataWithBytes: &version length: sizeof version ];
-
-                        NSString* uuid = plistDict[ kUUIDKey ];
-                        NSData* uuidDat = [ uuid dataUsingEncoding: NSUTF8StringEncoding ];
-
-                        NSTimeInterval createdDate = [ plistDict[ kCreatedDateKey ] doubleValue ];
-                        NSData* createdDateDat = [ NSData dataWithBytes: &createdDate length: sizeof( createdDate ) ];
-
-                        NSTimeInterval modifiedDate = [ plistDict[ kModifiedDateKey ] doubleValue ];
-                        NSData* modifiedDateDat = [ NSData dataWithBytes: &modifiedDate length: sizeof( modifiedDate ) ];
-
-                        NSData* BLOB = plistDict[ kPrivateBLOBKey ];
-
-                        NSMutableArray* subCheckSums = [ NSMutableArray arrayWithCapacity: 5 ];
-                        [ subCheckSums addObject: [ self checkSumOfData_: versionDat ] ];
-                        [ subCheckSums addObject: [ self checkSumOfData_: uuidDat ] ];
-                        [ subCheckSums addObject: [ self checkSumOfData_: createdDateDat ] ];
-                        [ subCheckSums addObject: [ self checkSumOfData_: modifiedDateDat ] ];
-                        [ subCheckSums addObject: [ self checkSumOfData_: BLOB ] ];
-
-                        NSData* subCheckSumsDat = [ [ subCheckSums componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ];
-                        NSString* lhsCheckSum = [ self checkSumOfData_: subCheckSumsDat ];
-                        NSString* rhsCheckSum = plistDict[ kCheckSumKey ];
-
-                        if ( [ lhsCheckSum isEqualToString: rhsCheckSum ] )
-                            {
-                            NSLog( @"YES! 🍉" );
-
-                            authVault = [ [ ATCAuthVault alloc ] initWithPropertyList_: plistDict ];
-                            }
-                        }
-                    else
-                        ; // TODO: To construct an error object that contains the information about the format is invalid
-                    }
-                }
-            else
-                ; // TODO: To construct an error object that contains the information about this failure
+            if ( internalPlist )
+                authVault = [ [ ATCAuthVault alloc ] initWithPropertyList_: internalPlist ];
             }
         else
             ; // TODO: To construct an error object that contains the information about this failure
         }
+
+    if ( error )
+        if ( _Error )
+            *_Error = error;
 
     return authVault;
     }
@@ -261,6 +218,72 @@ NSString* const kCheckSumKey = @"check-sum";
         }
 
     return hasValidFlags;
+    }
+
++ ( BOOL ) verifyInternalPropertyList_: ( NSDictionary* )_PlistDict
+    {
+    ATCAuthVaultVersion version = ( ATCAuthVaultVersion )[ _PlistDict[ kVersionKey ] intValue ];
+    NSString* uuid = _PlistDict[ kUUIDKey ];
+    NSTimeInterval createdDate = [ _PlistDict[ kCreatedDateKey ] doubleValue ];
+    NSTimeInterval modifiedDate = [ _PlistDict[ kModifiedDateKey ] doubleValue ];
+    NSData* privateBLOB = _PlistDict[ kPrivateBLOBKey ];
+
+    NSMutableArray* checkBucket = [ NSMutableArray arrayWithObjects:
+          [ NSData dataWithBytes: &version length: sizeof version ]
+        , [ uuid dataUsingEncoding: NSUTF8StringEncoding ]
+        , [ NSData dataWithBytes: &createdDate length: sizeof( createdDate ) ]
+        , [ NSData dataWithBytes: &modifiedDate length: sizeof( modifiedDate ) ]
+        , privateBLOB
+        , nil
+        ];
+
+    for ( int _Index = 0; _Index < checkBucket.count; _Index++ )
+        {
+        NSString* checkSum = [ self checkSumOfData_: checkBucket[ _Index ] ];
+        [ checkBucket replaceObjectAtIndex: _Index withObject: checkSum ];
+        }
+
+    NSData* subCheckSumsDat = [ [ checkBucket componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ];
+
+    NSString* lhsCheckSum = [ self checkSumOfData_: subCheckSumsDat ];
+    return [ lhsCheckSum isEqualToString: _PlistDict[ kCheckSumKey ] ];
+    }
+
++ ( NSDictionary* ) extractInternalPropertyList_: ( NSData* )_ContentsOfUnverifiedFile
+                                          error_: ( NSError** )_Error
+    {
+    NSError* error = nil;
+    NSDictionary* plistDict = nil;
+
+    NSData* base64DecodedData = [ [ NSData alloc ]
+        initWithBase64EncodedData: [ _ContentsOfUnverifiedFile subdataWithRange: NSMakeRange( sizeof kVeriFlags, _ContentsOfUnverifiedFile.length - sizeof kVeriFlags ) ]
+                          options: NSDataBase64DecodingIgnoreUnknownCharacters ];
+    if ( base64DecodedData )
+        {
+        NSPropertyListFormat propertyListFormat = 0;
+
+        NSDictionary* tmpPlistDict =
+            [ NSPropertyListSerialization propertyListWithData: base64DecodedData
+                                                       options: 0
+                                                        format: &propertyListFormat
+                                                         error: &error ];
+        if ( tmpPlistDict )
+            {
+            if ( propertyListFormat == NSPropertyListBinaryFormat_v1_0 )
+                if ( [ self verifyInternalPropertyList_: tmpPlistDict ] )
+                    plistDict = tmpPlistDict;
+            }
+        else
+            ; // TODO: To construct an error object that contains the information about the format is invalid
+        }
+    else
+        ; // TODO: To construct an error object that contains the information about this failure
+
+    if ( error )
+        if ( _Error )
+            *_Error = error;
+
+    return plistDict;
     }
 
 @end // ATCAuthVaultSerialization class

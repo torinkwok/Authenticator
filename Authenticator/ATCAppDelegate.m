@@ -34,7 +34,9 @@
 
     #if __debug_AuthVault_Parser__
     ATCAuthVault* authVault = [ ATCAuthVaultSerialization authVaultWithContentsOfURL: url error: &error ];
-    if ( !authVault )
+    if ( authVault )
+        NSLog( @"🍉%@", authVault );
+    else
         NSLog( @"%@", error );
     #endif
 
