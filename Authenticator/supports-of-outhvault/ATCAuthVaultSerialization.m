@@ -24,6 +24,10 @@
 
 + ( NSString* ) checkSumOfData_: ( NSData* )_Data;
 + ( BOOL ) hasValidWatermarkFlags_: ( NSData* )_Data;
++ ( NSString* ) calculateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict;
+
++ ( NSString* ) generateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict;
++ ( NSData* ) generateInternalPropertyListWithPrivateRawBLOB_: ( NSData* )_PrivateBLOB error_: ( NSError** )_Error;
 
 + ( NSDictionary* ) extractInternalPropertyList_: ( NSData* )_ContentsOfUnverifiedFile error_: ( NSError** )_Error;
 + ( BOOL ) verifyInternalPropertyList_: ( NSDictionary* )_PlistDict;
@@ -51,7 +55,7 @@ NSString* const kCheckSumKey = @"check-sum";
 #pragma mark - Serializing an Auth Vault
 
 + ( NSData* ) dataWithEmptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase
-                                                 error: ( NSError** )_Error
+                                                   error: ( NSError** )_Error
     {
     NSParameterAssert( ( _MasterPassphrase.length ) >= 6 );
 
@@ -75,55 +79,17 @@ NSString* const kCheckSumKey = @"check-sum";
                                                                     error: &error ];
         if ( tmpKeychain )
             {
-            NSMutableDictionary* plistDict = [ NSMutableDictionary dictionary ];
+            NSData* rawDataOfTmpKeychain = [ NSData dataWithContentsOfURL: tmpKeychainURL ];
+            NSData* internalPlistData = [ self generateInternalPropertyListWithPrivateRawBLOB_: rawDataOfTmpKeychain error_: &error ];
+            if ( internalPlistData )
+                {
+                NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof kWatermarkFlags ];
 
-            // auth-vault-version key
-            ATCAuthVaultVersion version = ATCAuthVault_v1_0;
-            NSData* versionDat = [ NSData dataWithBytes: &version length: sizeof version ];
-            [ plistDict addEntriesFromDictionary: @{ kVersionKey : @( version ).stringValue } ];
+                [ tmpVaultData appendData: [ internalPlistData base64EncodedDataWithOptions:
+                    NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ] ];
 
-            // uuid key
-            NSString* uuid = TKNonce();
-            NSData* uuidDat = [ uuid dataUsingEncoding: NSUTF8StringEncoding ];
-            [ plistDict addEntriesFromDictionary: @{ kUUIDKey : uuid } ];
-
-            // created-date key
-            NSTimeInterval createdDate = [ [ NSDate date ] timeIntervalSince1970 ];
-            NSData* createdDateDat = [ NSData dataWithBytes: &createdDate length: sizeof( createdDate ) ];
-            [ plistDict addEntriesFromDictionary: @{ kCreatedDateKey : @( createdDate ) } ];
-
-            // modified-date key
-            NSTimeInterval modifiedDate = createdDate;
-            NSData* modifiedDateDat = [ NSData dataWithBytes: &modifiedDate length: sizeof( modifiedDate ) ];
-            [ plistDict addEntriesFromDictionary: @{ kModifiedDateKey : @( modifiedDate ) } ];
-
-            // BLOB key
-            NSData* tmpKeychainDat = [ [ NSData dataWithContentsOfURL: tmpKeychainURL ]
-                base64EncodedDataWithOptions: NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
-            [ plistDict addEntriesFromDictionary: @{ kPrivateBLOBKey : tmpKeychainDat } ];
-
-            // digest key
-            NSMutableArray* subCheckSums = [ NSMutableArray arrayWithCapacity: 5 ];
-            [ subCheckSums addObject: [ self checkSumOfData_: versionDat ] ];
-            [ subCheckSums addObject: [ self checkSumOfData_: uuidDat ] ];
-            [ subCheckSums addObject: [ self checkSumOfData_: createdDateDat ] ];
-            [ subCheckSums addObject: [ self checkSumOfData_: modifiedDateDat ] ];
-            [ subCheckSums addObject: [ self checkSumOfData_: tmpKeychainDat ] ];
-
-            NSData* subCheckSumsDat = [ [ subCheckSums componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ];
-            [ plistDict addEntriesFromDictionary: @{ kCheckSumKey : [ self checkSumOfData_: subCheckSumsDat ] } ];
-
-            NSData* plistData = [ NSPropertyListSerialization dataWithPropertyList: plistDict
-                                                                            format: NSPropertyListBinaryFormat_v1_0
-                                                                           options: 0
-                                                                             error: &error ];
-
-            NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof kWatermarkFlags ];
-
-            [ tmpVaultData appendData: [ plistData base64EncodedDataWithOptions:
-                NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ] ];
-
-            vaultData = [ tmpVaultData copy ];
+                vaultData = [ tmpVaultData copy ];
+                }
             }
         }
 
@@ -220,7 +186,7 @@ NSString* const kCheckSumKey = @"check-sum";
     return hasValidFlags;
     }
 
-+ ( BOOL ) verifyInternalPropertyList_: ( NSDictionary* )_PlistDict
++ ( NSString* ) calculateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict
     {
     ATCAuthVaultVersion version = ( ATCAuthVaultVersion )[ _PlistDict[ kVersionKey ] intValue ];
     NSString* uuid = _PlistDict[ kUUIDKey ];
@@ -244,9 +210,60 @@ NSString* const kCheckSumKey = @"check-sum";
         }
 
     NSData* subCheckSumsDat = [ [ checkBucket componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ];
+    return [ self checkSumOfData_: subCheckSumsDat ];
+    }
 
-    NSString* lhsCheckSum = [ self checkSumOfData_: subCheckSumsDat ];
-    return [ lhsCheckSum isEqualToString: _PlistDict[ kCheckSumKey ] ];
++ ( NSString* ) generateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict
+    {
+    return [ self calculateCheckSumOfInternalPropertyListDict_: _PlistDict ];
+    }
+
++ ( NSData* ) generateInternalPropertyListWithPrivateRawBLOB_: ( NSData* )_PrivateBLOB
+                                                       error_: ( NSError** )_Error
+    {
+    NSError* error = nil;
+    NSData* internalPlistData = nil;
+
+    // auth-vault-version key
+    ATCAuthVaultVersion version = ATCAuthVault_v1_0;
+    // uuid key
+    NSString* uuid = TKNonce();
+    // created-date key
+    NSTimeInterval createdDate = [ [ NSDate date ] timeIntervalSince1970 ];
+    // modified-date key
+    NSTimeInterval modifiedDate = createdDate;
+    // BLOB key
+    NSData* tmpKeychainDat = [ _PrivateBLOB base64EncodedDataWithOptions:
+        NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
+
+    NSMutableDictionary* plistDict = [ NSMutableDictionary dictionaryWithObjectsAndKeys:
+          @( version ).stringValue, kVersionKey
+        , uuid, kUUIDKey
+        , @( createdDate ), kCreatedDateKey
+        , @( modifiedDate ), kModifiedDateKey
+        , tmpKeychainDat, kPrivateBLOBKey
+        , nil
+        ];
+
+    // digest key
+    [ plistDict addEntriesFromDictionary:
+        @{ kCheckSumKey : [ self generateCheckSumOfInternalPropertyListDict_: plistDict ] } ];
+
+    internalPlistData = [ NSPropertyListSerialization dataWithPropertyList: plistDict
+                                                                    format: NSPropertyListBinaryFormat_v1_0
+                                                                   options: 0
+                                                                     error: &error ];
+    if ( error )
+        if ( _Error )
+            *_Error = error;
+
+    return internalPlistData;
+    }
+
++ ( BOOL ) verifyInternalPropertyList_: ( NSDictionary* )_PlistDict
+    {
+    return [ [ self calculateCheckSumOfInternalPropertyListDict_: _PlistDict ]
+                isEqualToString: _PlistDict[ kCheckSumKey ] ];
     }
 
 + ( NSDictionary* ) extractInternalPropertyList_: ( NSData* )_ContentsOfUnverifiedFile
