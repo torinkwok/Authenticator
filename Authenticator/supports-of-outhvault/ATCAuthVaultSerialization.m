@@ -23,18 +23,18 @@
 @interface ATCAuthVaultSerialization ()
 
 + ( NSString* ) checkSumOfData_: ( NSData* )_Data;
-+ ( BOOL ) hasValidFlags_: ( NSData* )_Data;
++ ( BOOL ) hasValidWatermarkFlags_: ( NSData* )_Data;
 
 + ( NSDictionary* ) extractInternalPropertyList_: ( NSData* )_ContentsOfUnverifiedFile error_: ( NSError** )_Error;
 + ( BOOL ) verifyInternalPropertyList_: ( NSDictionary* )_PlistDict;
 
 @end // Private Interfaces
 
-unsigned int kVeriFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
-                                , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
-                                , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
-                                , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
-                                };
+unsigned int kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
+                                     , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
+                                     , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
+                                     , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
+                                     };
 
 NSString* const kUnitedTypeIdentifier = @"home.bedroom.TongKuo.Authenticator.AuthVault";
 
@@ -118,7 +118,7 @@ NSString* const kCheckSumKey = @"check-sum";
                                                                            options: 0
                                                                              error: &error ];
 
-            NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kVeriFlags length: sizeof kVeriFlags ];
+            NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof kWatermarkFlags ];
 
             [ tmpVaultData appendData: [ plistData base64EncodedDataWithOptions:
                 NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ] ];
@@ -164,7 +164,7 @@ NSString* const kCheckSumKey = @"check-sum";
     NSData* contentsOfURL = _Data;
     if ( contentsOfURL )
         {
-        if ( [ self hasValidFlags_: contentsOfURL ] )
+        if ( [ self hasValidWatermarkFlags_: contentsOfURL ] )
             {
             NSDictionary* internalPlist = [ self extractInternalPropertyList_: _Data error_: &error ];
 
@@ -197,20 +197,20 @@ NSString* const kCheckSumKey = @"check-sum";
     return digest;
     }
 
-+ ( BOOL ) hasValidFlags_: ( NSData* )_Data
++ ( BOOL ) hasValidWatermarkFlags_: ( NSData* )_Data
     {
-    if ( _Data.length < sizeof kVeriFlags )
+    if ( _Data.length < sizeof kWatermarkFlags )
         return NO;
 
     BOOL hasValidFlags = YES;
 
-    NSData* flagsSubData = [ _Data subdataWithRange: NSMakeRange( 0, sizeof kVeriFlags ) ];
-    for ( int _Index = 0; _Index < sizeof kVeriFlags; _Index += sizeof( int ) )
+    NSData* flagsSubData = [ _Data subdataWithRange: NSMakeRange( 0, sizeof kWatermarkFlags ) ];
+    for ( int _Index = 0; _Index < sizeof kWatermarkFlags; _Index += sizeof( int ) )
         {
         unsigned int flag = 0U;
         [ flagsSubData getBytes: &flag range: NSMakeRange( _Index, sizeof( int ) ) ];
 
-        if ( flag != kVeriFlags[ ( _Index / sizeof( int ) ) ] )
+        if ( flag != kWatermarkFlags[ ( _Index / sizeof( int ) ) ] )
             {
             hasValidFlags = NO;
             break;
@@ -256,7 +256,7 @@ NSString* const kCheckSumKey = @"check-sum";
     NSDictionary* plistDict = nil;
 
     NSData* base64DecodedData = [ [ NSData alloc ]
-        initWithBase64EncodedData: [ _ContentsOfUnverifiedFile subdataWithRange: NSMakeRange( sizeof kVeriFlags, _ContentsOfUnverifiedFile.length - sizeof kVeriFlags ) ]
+        initWithBase64EncodedData: [ _ContentsOfUnverifiedFile subdataWithRange: NSMakeRange( sizeof kWatermarkFlags, _ContentsOfUnverifiedFile.length - sizeof kWatermarkFlags ) ]
                           options: NSDataBase64DecodingIgnoreUnknownCharacters ];
     if ( base64DecodedData )
         {
