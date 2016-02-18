@@ -7,8 +7,9 @@
 //
 
 #import "ATCAuthVaultSerialization.h"
-
 #import "ATCAuthVault.h"
+
+#import "ATCAuthVault+ATCFriends_.h"
 
 // ATCAuthVault + ATCFriends
 @interface ATCAuthVault ( ATCFriends )
@@ -36,7 +37,7 @@
 // Serializing an Auth Vault
 
 + ( NSString* ) generateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict;
-+ ( NSData* ) generateBase64edInternalPropertyListWithPrivateRawBLOB_: ( NSData* )_PrivateBLOB blobUUID_: ( NSString* )_BlobUUID error_: ( NSError** )_Error;
++ ( NSData* ) generateBase64edInternalPropertyListWithAuthVault: ( ATCAuthVault* )_AuthVault error_: ( NSError** )_Error;
 
 // Deserializing a Property List
 
@@ -126,7 +127,23 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
 + ( NSData* ) dataWithAuthVault: ( ATCAuthVault* )_AuthVault
                           error: ( NSError** )_Error
     {
-    
+    NSError* error = nil;
+    NSData* vaultData = nil;
+
+    NSData* internalPlistData = [ self generateBase64edInternalPropertyListWithAuthVault: _AuthVault error_: &error ];
+    if ( internalPlistData )
+        {
+        NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
+        [ tmpVaultData appendData: [ internalPlistData base64EncodedDataForAuthVault ] ];
+
+        vaultData = [ tmpVaultData copy ];
+        }
+
+    if ( error )
+        if ( _Error )
+            *_Error = error;
+
+    return vaultData;
     }
 
 //+ ( ATCAuthVault* ) emptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase
@@ -330,9 +347,8 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     return [ self calculateCheckSumOfInternalPropertyListDict_: _PlistDict ];
     }
 
-+ ( NSData* ) generateBase64edInternalPropertyListWithPrivateRawBLOB_: ( NSData* )_PrivateBLOB
-                                                            blobUUID_: ( NSString* )_BlobUUID
-                                                               error_: ( NSError** )_Error
++ ( NSData* ) generateBase64edInternalPropertyListWithAuthVault: ( ATCAuthVault* )_AuthVault
+                                                         error_: ( NSError** )_Error
     {
     NSError* error = nil;
     NSData* internalPlistData = nil;
@@ -342,13 +358,13 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     // uuid key
     NSString* uuid = TKNonce();
     // created-date key
-    NSTimeInterval createdDate = [ [ NSDate date ] timeIntervalSince1970 ];
+    NSTimeInterval createdDate = [ [ _AuthVault createdDate ] timeIntervalSince1970 ];
     // modified-date key
-    NSTimeInterval modifiedDate = createdDate;
+    NSTimeInterval modifiedDate = [ [ _AuthVault modifiedDate ] timeIntervalSince1970 ];
     // private-blob key
-    NSData* base64edPrivateBlob = [ _PrivateBLOB base64EncodedDataForAuthVault ];
+    NSData* base64edPrivateBlob = [ [ _AuthVault backingStoreData_ ] base64EncodedDataForAuthVault ];
     // private-blob-uuid key
-    NSString* privateBlobUUID = _BlobUUID;
+    NSString* privateBlobUUID = _AuthVault.UUID;
     // private-blob-check-sum key
     NSString* privateBlobCheckSum = base64edPrivateBlob.checkSumForAuthVault;
 
@@ -469,14 +485,11 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
 
         backingStore_ = [ [ WSCKeychainManager defaultManager ] openExistingKeychainAtURL: blobCacheURL error: &error ];
 
-        // self->location_
-//        location_ = [ 
-
         // self->createdDate_
-        createdDate_ = [ NSDate dateWithTimeIntervalSince1970: [ _PlistDict[ kCreatedDateKey ] doubleValue ] ];
+        self.createdDate = [ NSDate dateWithTimeIntervalSince1970: [ _PlistDict[ kCreatedDateKey ] doubleValue ] ];
 
         // self->modifiedDate_
-        modifiedDate_ = [ NSDate dateWithTimeIntervalSince1970: [ _PlistDict[ kModifiedDateKey ] doubleValue ] ];
+        self.modifiedDate = [ NSDate dateWithTimeIntervalSince1970: [ _PlistDict[ kModifiedDateKey ] doubleValue ] ];
 
         if ( error )
             if ( _Error )
