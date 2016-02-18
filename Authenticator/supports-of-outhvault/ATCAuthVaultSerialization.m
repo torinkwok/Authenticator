@@ -11,14 +11,14 @@
 
 #import "ATCAuthVault+ATCFriends_.h"
 
-// ATCAuthVault + ATCFriends
-@interface ATCAuthVault ( ATCFriends )
+// ATCAuthVault + ATCDecodeAuthVault
+@interface ATCAuthVault ( ATCDecodeAuthVault )
 
 #pragma mark - Initializations
 
 - ( instancetype ) initWithAwakenPropertyList_: ( NSDictionary* )_PlistDict error_: ( NSError** )_Error;
 
-@end // ATCAuthVault + ATCFriends
+@end // ATCAuthVault + ATCDecodeAuthVault
 
 // Private Interfaces
 @interface ATCAuthVaultSerialization ()
@@ -408,8 +408,8 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
 
 @end // ATCAuthVaultSerialization class
 
-// ATCAuthVault + ATCFriends
-@implementation ATCAuthVault ( ATCFriends )
+// ATCAuthVault + ATCDecodeAuthVault
+@implementation ATCAuthVault ( ATCDecodeAuthVault )
 
 #pragma mark - Initializations
 
@@ -466,7 +466,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     return self;
     }
 
-@end // ATCAuthVault + ATCFriends
+@end // ATCAuthVault + ATCDecodeAuthVault
 
 // NSData + AuthVaultExtensions
 @implementation NSData ( AuthVaultExtensions )
