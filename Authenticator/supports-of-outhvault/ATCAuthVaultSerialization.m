@@ -77,30 +77,36 @@ inline static uint32_t kExchangeEndianness_( uint32_t _Value )
     #endif
     }
 
+#define ATC_GUARDIAN ( uint32_t )NULL
+
+// The trouble with this solution is that the sub-arrays immediately decay to pointers,
+// so where guardian values ATC_GUARDIAN come in handy to mark the end of sub array.
+// However this solution can be problematic for arrays of numbers, as there may be no
+// allowable "special value".
 uint32_t* kPrivateBLOBFeatureLibrary[] =
     // 4353534D 5F444C5F 44425F53 4348454D 415F494E 464F
-    { ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F494E, 0x464F0000, ( uint32_t )NULL }
+    { ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F494E, 0x464F0000, ATC_GUARDIAN }
 
     // 4353534D 5F444C5F 44425F53 4348454D 415F4154 54524942 55544553
-    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F4154, 0x54524942, 0x55544553, ( uint32_t )NULL }
+    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F4154, 0x54524942, 0x55544553, ATC_GUARDIAN }
 
     // 4353534D 5F444C5F 44425F53 4348454D 415F494E 44455845 53
-    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F494E, 0x44455845, 0x53000000, ( uint32_t )NULL }
+    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F494E, 0x44455845, 0x53000000, ATC_GUARDIAN }
 
     // 4353534D 5F444C5F 44425F53 4348454D 415F5041 5253494E 475F4D4F 44554C45
-    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F5041, 0x5253494E, 0x475F4D4F, 0x44554C45, ( uint32_t )NULL }
+    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F53, 0x4348454D, 0x415F5041, 0x5253494E, 0x475F4D4F, 0x44554C45, ATC_GUARDIAN }
 
     // 4442426C 6F62
-    , ( uint32_t[] ){ 0x4442426C, 0x6F620000, ( uint32_t )NULL }
+    , ( uint32_t[] ){ 0x4442426C, 0x6F620000, ATC_GUARDIAN }
 
     // 4353534D 5F444C5F 44425F52 45434F52 445F5055 424C4943 5F4B4559
-    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F52, 0x45434F52, 0x445F5055, 0x424C4943, 0x5F4B4559, ( uint32_t )NULL }
+    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F52, 0x45434F52, 0x445F5055, 0x424C4943, 0x5F4B4559, ATC_GUARDIAN }
 
     // 4353534D 5F444C5F 44425F52 45434F52 445F5052 49564154 455F4B45 59
-    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F52, 0x45434F52, 0x445F5052, 0x49564154, 0x455F4B45, 0x59000000, ( uint32_t )NULL }
+    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F52, 0x45434F52, 0x445F5052, 0x49564154, 0x455F4B45, 0x59000000, ATC_GUARDIAN }
 
     // 4353534D 5F444C5F 44425F52 45434F52 445F5359 4D4D4554 5249435F 4B4559
-    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F52, 0x45434F52, 0x445F5359, 0x4D4D4554, 0x5249435F, 0x4B455900, ( uint32_t )NULL }
+    , ( uint32_t[] ){ 0x4353534D, 0x5F444C5F, 0x44425F52, 0x45434F52, 0x445F5359, 0x4D4D4554, 0x5249435F, 0x4B455900, ATC_GUARDIAN }
     };
 
 // ATCAuthVaultSerialization class
@@ -254,9 +260,11 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
         uint32_t* features = kPrivateBLOBFeatureLibrary[ _Index ];
         size_t length = 0;
 
+        // Since the sub-arrays have been decayed to pointers,
+        // we have to iterate them with a guardian value: ATC_GUARDIAN
         for ( int _Index = 0; ; _Index++ )
             {
-            if ( features[ _Index ] != ( uint32_t )NULL )
+            if ( features[ _Index ] != ATC_GUARDIAN )
                 length++;
             else
                 break;
@@ -270,7 +278,6 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
         }
 
     BOOL isValid = ( headFlagsBuffer == kExchangeEndianness_( 0x6B796368 ) ) && allMatches;
-
     return isValid;
     }
 
