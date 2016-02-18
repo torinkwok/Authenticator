@@ -11,4 +11,12 @@
 // ATCAuthVault class
 @implementation ATCAuthVault
 
+#pragma mark - Initializations
+
+- ( instancetype ) init
+    {
+    [ self doesNotRecognizeSelector: _cmd ];
+    return nil;
+    }
+
 @end // ATCAuthVault class

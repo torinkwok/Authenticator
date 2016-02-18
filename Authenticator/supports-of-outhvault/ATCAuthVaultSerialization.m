@@ -122,34 +122,25 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     NSError* error = nil;
     NSData* vaultData = nil;
 
-    NSURL* cachesDirURL = nil;
-    if ( ( cachesDirURL = [ [ NSFileManager defaultManager ]
-                                URLForDirectory: NSCachesDirectory
-                                       inDomain: NSUserDomainMask
-                              appropriateForURL: nil
-                                         create: YES
-                                          error: &error ] ) )
+    NSURL* tmpKeychainURL = [ ATCTemporaryDirURL() URLByAppendingPathComponent: [ NSString stringWithFormat: @"%@.dat", TKNonce() ] ];
+
+    WSCKeychain* tmpKeychain =
+        [ [ WSCKeychainManager defaultManager ] createKeychainWithURL: tmpKeychainURL
+                                                           passphrase: _MasterPassphrase
+                                                       becomesDefault: NO
+                                                                error: &error ];
+    if ( tmpKeychain )
         {
-        NSURL* tmpKeychainURL = [ cachesDirURL URLByAppendingPathComponent: [ NSString stringWithFormat: @"%@.dat", TKNonce() ] ];
-
-        WSCKeychain* tmpKeychain =
-            [ [ WSCKeychainManager defaultManager ] createKeychainWithURL: tmpKeychainURL
-                                                               passphrase: _MasterPassphrase
-                                                           becomesDefault: NO
-                                                                    error: &error ];
-        if ( tmpKeychain )
+        NSData* rawDataOfTmpKeychain = [ NSData dataWithContentsOfURL: tmpKeychainURL ];
+        NSData* internalPlistData = [ self generateBase64edInternalPropertyListWithPrivateRawBLOB_: rawDataOfTmpKeychain error_: &error ];
+        if ( internalPlistData )
             {
-            NSData* rawDataOfTmpKeychain = [ NSData dataWithContentsOfURL: tmpKeychainURL ];
-            NSData* internalPlistData = [ self generateBase64edInternalPropertyListWithPrivateRawBLOB_: rawDataOfTmpKeychain error_: &error ];
-            if ( internalPlistData )
-                {
-                NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
+            NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
 
-                [ tmpVaultData appendData: [ internalPlistData base64EncodedDataWithOptions:
-                    NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ] ];
+            [ tmpVaultData appendData: [ internalPlistData base64EncodedDataWithOptions:
+                NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ] ];
 
-                vaultData = [ tmpVaultData copy ];
-                }
+            vaultData = [ tmpVaultData copy ];
             }
         }
 
@@ -431,7 +422,11 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
 - ( instancetype ) initWithPropertyList_: ( NSDictionary* )_PlistDict
     {
     if ( self = [ super init ] )
-        ;
+        {
+//        NSData* privateBLOB = [ [ NSData alloc ] initWithBase64EncodedData: _PlistDict[ kPrivateBLOBKey ]  options: NSDataBase64DecodingIgnoreUnknownCharacters ];
+//        [ privateBLOB writeToURL: ATC atomically:<#(BOOL)#>
+//        backingStore_ =
+        }
 
     return self;
     }
