@@ -78,18 +78,13 @@ inline static uint32_t kExchangeEndianness_( uint32_t _Value )
     #endif
     }
 
-inline static NSString* kCheckSumOfData( NSData* _Data )
-    {
-    unsigned char buffer[ CC_SHA512_DIGEST_LENGTH ];
-    CCHmac( kCCHmacAlgSHA512, kUnitedTypeIdentifier.UTF8String, kUnitedTypeIdentifier.length, _Data.bytes, _Data.length, buffer );
+// NSData + AuthVaultExtensions
+@interface NSData ( AuthVaultExtensions )
 
-    NSData* macData = [ NSData dataWithBytes: buffer length: CC_SHA512_DIGEST_LENGTH ];
-    NSString* checkSum =
-        [ [ macData base64EncodedStringWithOptions: 0 ]
-            stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet alphanumericCharacterSet ] ];
+@property ( strong, readonly ) NSData* base64EncodedDataForAuthVault;
+@property ( strong, readonly ) NSString* checkSumForAuthVault;
 
-    return checkSum;
-    }
+@end // NSData + AuthVaultExtensions
 
 #define ATC_GUARDIAN ( uint32_t )NULL
 
@@ -152,8 +147,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
             {
             NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
 
-            [ tmpVaultData appendData: [ internalPlistData base64EncodedDataWithOptions:
-                NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ] ];
+            [ tmpVaultData appendData: [ internalPlistData base64EncodedDataForAuthVault ] ];
 
             vaultData = [ tmpVaultData copy ];
             }
@@ -297,12 +291,12 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
 
     for ( int _Index = 0; _Index < checkBucket.count; _Index++ )
         {
-        NSString* checkSum = kCheckSumOfData( checkBucket[ _Index ] );
+        NSString* checkSum = [ checkBucket[ _Index ] checkSumForAuthVault ];
         [ checkBucket replaceObjectAtIndex: _Index withObject: checkSum ];
         }
 
     NSData* subCheckSumsDat = [ [ checkBucket componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ];
-    return kCheckSumOfData( subCheckSumsDat );
+    return subCheckSumsDat.checkSumForAuthVault;
     }
 
 + ( BOOL ) matchBytes_: ( uint32_t const [] )_Bytes
@@ -344,12 +338,11 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     // modified-date key
     NSTimeInterval modifiedDate = createdDate;
     // private-blob key
-    NSData* base64edPrivateBlob = [ _PrivateBLOB base64EncodedDataWithOptions:
-        NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
+    NSData* base64edPrivateBlob = [ _PrivateBLOB base64EncodedDataForAuthVault ];
     // private-blob-uuid key
     NSString* privateBlobUUID = _BlobUUID;
     // private-blob-check-sum key
-    NSString* privateBlobCheckSum = kCheckSumOfData( base64edPrivateBlob );
+    NSString* privateBlobCheckSum = base64edPrivateBlob.checkSumForAuthVault;
 
     NSMutableDictionary* plistDict = [ NSMutableDictionary dictionaryWithObjectsAndKeys:
           @( version ).stringValue, kVersionKey
@@ -451,7 +444,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
         if ( [ [ NSFileManager defaultManager ] fileExistsAtPath: blobCacheURL.path isDirectory: &isDir ] && !isDir )
             {
             NSData* cachedPrivateBlob = [ NSData dataWithContentsOfURL: blobCacheURL ];
-            NSString* checkSumOfCache = kCheckSumOfData( [ cachedPrivateBlob base64EncodedDataWithOptions: NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ] );
+            NSString* checkSumOfCache = cachedPrivateBlob.base64EncodedDataForAuthVault.checkSumForAuthVault;
 
             if ( [ checkSumOfCache isEqualToString: awakenPrivateBlobCheckSum ] )
                 needsReExtract = NO;
@@ -476,3 +469,30 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     }
 
 @end // ATCAuthVault + ATCFriends
+
+// NSData + AuthVaultExtensions
+@implementation NSData ( AuthVaultExtensions )
+
+@dynamic base64EncodedDataForAuthVault;
+@dynamic checkSumForAuthVault;
+
+- ( NSData* ) base64EncodedDataForAuthVault
+    {
+    return [ self base64EncodedDataWithOptions:
+                NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
+    }
+
+- ( NSString* ) checkSumForAuthVault
+    {
+    unsigned char buffer[ CC_SHA512_DIGEST_LENGTH ];
+    CCHmac( kCCHmacAlgSHA512, kUnitedTypeIdentifier.UTF8String, kUnitedTypeIdentifier.length, self.bytes, self.length, buffer );
+
+    NSData* macData = [ NSData dataWithBytes: buffer length: CC_SHA512_DIGEST_LENGTH ];
+    NSString* checkSum =
+        [ [ macData base64EncodedStringWithOptions: 0 ]
+            stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet alphanumericCharacterSet ] ];
+
+    return checkSum;
+    }
+
+@end // NSData + AuthVaultExtensions
