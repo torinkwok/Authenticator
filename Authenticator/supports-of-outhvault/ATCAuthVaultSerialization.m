@@ -24,7 +24,6 @@
 
 // Utilities
 
-+ ( NSString* ) checkSumOfData_: ( NSData* )_Data;
 + ( BOOL ) hasValidWatermarkFlags_: ( NSData* )_Data;
 + ( BOOL ) verifyPrivateBLOB_: ( NSData* )_PrivateBLOB;
 + ( NSString* ) calculateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict;
@@ -37,7 +36,7 @@
 // Serializing an Auth Vault
 
 + ( NSString* ) generateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict;
-+ ( NSData* ) generateBase64edInternalPropertyListWithPrivateRawBLOB_: ( NSData* )_PrivateBLOB error_: ( NSError** )_Error;
++ ( NSData* ) generateBase64edInternalPropertyListWithPrivateRawBLOB_: ( NSData* )_PrivateBLOB blobUUID_: ( NSString* )_BlobUUID error_: ( NSError** )_Error;
 
 // Deserializing a Property List
 
@@ -55,10 +54,12 @@ uint32_t kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D
 NSString* const kUnitedTypeIdentifier = @"home.bedroom.TongKuo.Authenticator.AuthVault";
 
 NSString* const kVersionKey = @"auth-vault-version";
-NSString* const kUUIDKey = @"uuid";
+NSString* const kVaultUUIDKey = @"vault-uuid";
 NSString* const kCreatedDateKey = @"created-date";
 NSString* const kModifiedDateKey = @"modified-date";
-NSString* const kPrivateBLOBKey = @"private-blob";
+NSString* const kPrivateBlobKey = @"private-blob";
+NSString* const kPrivateBlobUUIDKey = @"private-blob-uuid";
+NSString* const kPrivateBlobCheckSum = @"private-blob-check-sum";
 NSString* const kCheckSumKey = @"check-sum";
 
 inline static uint32_t kExchangeEndianness_( uint32_t _Value )
@@ -75,6 +76,19 @@ inline static uint32_t kExchangeEndianness_( uint32_t _Value )
     #else
     return _Value;
     #endif
+    }
+
+inline static NSString* kCheckSumOfData( NSData* _Data )
+    {
+    unsigned char buffer[ CC_SHA512_DIGEST_LENGTH ];
+    CCHmac( kCCHmacAlgSHA512, kUnitedTypeIdentifier.UTF8String, kUnitedTypeIdentifier.length, _Data.bytes, _Data.length, buffer );
+
+    NSData* macData = [ NSData dataWithBytes: buffer length: CC_SHA512_DIGEST_LENGTH ];
+    NSString* checkSum =
+        [ [ macData base64EncodedStringWithOptions: 0 ]
+            stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet alphanumericCharacterSet ] ];
+
+    return checkSum;
     }
 
 #define ATC_GUARDIAN ( uint32_t )NULL
@@ -122,7 +136,8 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     NSError* error = nil;
     NSData* vaultData = nil;
 
-    NSURL* tmpKeychainURL = [ ATCTemporaryDirURL() URLByAppendingPathComponent: [ NSString stringWithFormat: @"%@.dat", TKNonce() ] ];
+    NSString* UUID = TKNonce();
+    NSURL* tmpKeychainURL = [ ATCTemporaryDirURL() URLByAppendingPathComponent: [ NSString stringWithFormat: @"%@.dat", UUID ] ];
 
     WSCKeychain* tmpKeychain =
         [ [ WSCKeychainManager defaultManager ] createKeychainWithURL: tmpKeychainURL
@@ -132,7 +147,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     if ( tmpKeychain )
         {
         NSData* rawDataOfTmpKeychain = [ NSData dataWithContentsOfURL: tmpKeychainURL ];
-        NSData* internalPlistData = [ self generateBase64edInternalPropertyListWithPrivateRawBLOB_: rawDataOfTmpKeychain error_: &error ];
+        NSData* internalPlistData = [ self generateBase64edInternalPropertyListWithPrivateRawBLOB_: rawDataOfTmpKeychain blobUUID_: UUID error_: &error ];
         if ( internalPlistData )
             {
             NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
@@ -203,19 +218,6 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
 
 // Utilities
 
-+ ( NSString* ) checkSumOfData_: ( NSData* )_Data
-    {
-    unsigned char buffer[ CC_SHA512_DIGEST_LENGTH ];
-    CCHmac( kCCHmacAlgSHA512, kUnitedTypeIdentifier.UTF8String, kUnitedTypeIdentifier.length, _Data.bytes, _Data.length, buffer );
-
-    NSData* macData = [ NSData dataWithBytes: buffer length: CC_SHA512_DIGEST_LENGTH ];
-    NSString* digest =
-        [ [ macData base64EncodedStringWithOptions: 0 ]
-            stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet alphanumericCharacterSet ] ];
-
-    return digest;
-    }
-
 + ( BOOL ) hasValidWatermarkFlags_: ( NSData* )_Data
     {
     if ( _Data.length < sizeof( kWatermarkFlags ) )
@@ -275,28 +277,32 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
 + ( NSString* ) calculateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict
     {
     ATCAuthVaultVersion version = ( ATCAuthVaultVersion )[ _PlistDict[ kVersionKey ] intValue ];
-    NSString* uuid = _PlistDict[ kUUIDKey ];
+    NSString* uuid = _PlistDict[ kVaultUUIDKey ];
     NSTimeInterval createdDate = [ _PlistDict[ kCreatedDateKey ] doubleValue ];
     NSTimeInterval modifiedDate = [ _PlistDict[ kModifiedDateKey ] doubleValue ];
-    NSData* privateBLOB = _PlistDict[ kPrivateBLOBKey ];
+    NSData* privateBlob = _PlistDict[ kPrivateBlobKey ];
+    NSString* privateBlobUUID = _PlistDict[ kPrivateBlobUUIDKey ];
+    NSString* privateBlobCheckSum = _PlistDict[ kPrivateBlobCheckSum ];
 
     NSMutableArray* checkBucket = [ NSMutableArray arrayWithObjects:
           [ NSData dataWithBytes: &version length: sizeof( version ) ]
         , [ uuid dataUsingEncoding: NSUTF8StringEncoding ]
         , [ NSData dataWithBytes: &createdDate length: sizeof( createdDate ) ]
         , [ NSData dataWithBytes: &modifiedDate length: sizeof( modifiedDate ) ]
-        , privateBLOB
+        , privateBlob
+        , [ privateBlobUUID dataUsingEncoding: NSUTF8StringEncoding ]
+        , [ privateBlobCheckSum dataUsingEncoding: NSUTF8StringEncoding ]
         , nil
         ];
 
     for ( int _Index = 0; _Index < checkBucket.count; _Index++ )
         {
-        NSString* checkSum = [ self checkSumOfData_: checkBucket[ _Index ] ];
+        NSString* checkSum = kCheckSumOfData( checkBucket[ _Index ] );
         [ checkBucket replaceObjectAtIndex: _Index withObject: checkSum ];
         }
 
     NSData* subCheckSumsDat = [ [ checkBucket componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ];
-    return [ self checkSumOfData_: subCheckSumsDat ];
+    return kCheckSumOfData( subCheckSumsDat );
     }
 
 + ( BOOL ) matchBytes_: ( uint32_t const [] )_Bytes
@@ -323,6 +329,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     }
 
 + ( NSData* ) generateBase64edInternalPropertyListWithPrivateRawBLOB_: ( NSData* )_PrivateBLOB
+                                                            blobUUID_: ( NSString* )_BlobUUID
                                                                error_: ( NSError** )_Error
     {
     NSError* error = nil;
@@ -336,16 +343,22 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     NSTimeInterval createdDate = [ [ NSDate date ] timeIntervalSince1970 ];
     // modified-date key
     NSTimeInterval modifiedDate = createdDate;
-    // BLOB key
-    NSData* tmpKeychainDat = [ _PrivateBLOB base64EncodedDataWithOptions:
+    // private-blob key
+    NSData* base64edPrivateBlob = [ _PrivateBLOB base64EncodedDataWithOptions:
         NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
+    // private-blob-uuid key
+    NSString* privateBlobUUID = _BlobUUID;
+    // private-blob-check-sum key
+    NSString* privateBlobCheckSum = kCheckSumOfData( base64edPrivateBlob );
 
     NSMutableDictionary* plistDict = [ NSMutableDictionary dictionaryWithObjectsAndKeys:
           @( version ).stringValue, kVersionKey
-        , uuid, kUUIDKey
+        , uuid, kVaultUUIDKey
         , @( createdDate ), kCreatedDateKey
         , @( modifiedDate ), kModifiedDateKey
-        , tmpKeychainDat, kPrivateBLOBKey
+        , base64edPrivateBlob, kPrivateBlobKey
+        , privateBlobUUID, kPrivateBlobUUIDKey
+        , privateBlobCheckSum, kPrivateBlobCheckSum
         , nil
         ];
 
@@ -394,7 +407,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
             {
             if ( propertyListFormat == NSPropertyListBinaryFormat_v1_0 )
                 {
-                NSData* base64DecodedPrivateBLOB = [ [ NSData alloc ] initWithBase64EncodedData: tmpPlistDict[ kPrivateBLOBKey ] options: NSDataBase64DecodingIgnoreUnknownCharacters ];
+                NSData* base64DecodedPrivateBLOB = [ [ NSData alloc ] initWithBase64EncodedData: tmpPlistDict[ kPrivateBlobKey ] options: NSDataBase64DecodingIgnoreUnknownCharacters ];
                 if ( [ self verifyInternalPropertyList_: tmpPlistDict ] && [ self verifyPrivateBLOB_: base64DecodedPrivateBLOB ] )
                     plistDict = tmpPlistDict;
                 }
@@ -423,9 +436,16 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     {
     if ( self = [ super init ] )
         {
-//        NSData* privateBLOB = [ [ NSData alloc ] initWithBase64EncodedData: _PlistDict[ kPrivateBLOBKey ]  options: NSDataBase64DecodingIgnoreUnknownCharacters ];
-//        [ privateBLOB writeToURL: ATC atomically:<#(BOOL)#>
-//        backingStore_ =
+        NSData* awakenBase64edPrivateBLOB = _PlistDict[ kPrivateBlobKey ];
+        NSString* awakenPrivateBlobUUID = _PlistDict[ kPrivateBlobUUIDKey ];
+
+        NSURL* cachedPrivateBlobURL = [ ATCTemporaryDirURL() URLByAppendingPathComponent: [ NSString stringWithFormat: @"%@.dat", awakenPrivateBlobUUID ] ];
+
+        if ( [ cachedPrivateBlobURL checkResourceIsReachableAndReturnError: nil ] )
+            {
+            NSString* checkSumOfCache = kCheckSumOfData( [ NSData dataWithContentsOfURL: cachedPrivateBlobURL ] );
+            NSString* checkSumOfAwaken = kCheckSumOfData( awakenBase64edPrivateBLOB );
+            }
         }
 
     return self;
