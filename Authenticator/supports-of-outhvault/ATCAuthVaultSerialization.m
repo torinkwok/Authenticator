@@ -15,7 +15,7 @@
 
 #pragma mark - Initializations
 
-- ( instancetype ) initWithPropertyList_: ( NSDictionary* )_PlistDict;
+- ( instancetype ) initWithPropertyList_: ( NSDictionary* )_PlistDict error_: ( NSError** )_Error;
 
 @end // ATCAuthVault + ATCFriends
 
@@ -201,7 +201,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
             NSDictionary* internalPlist = [ self extractInternalPropertyList_: _Data error_: &error ];
 
             if ( internalPlist )
-                authVault = [ [ ATCAuthVault alloc ] initWithPropertyList_: internalPlist ];
+                authVault = [ [ ATCAuthVault alloc ] initWithPropertyList_: internalPlist error_: &error ];
             }
         else
             ; // TODO: To construct an error object that contains the information about this failure
@@ -433,19 +433,43 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
 #pragma mark - Initializations
 
 - ( instancetype ) initWithPropertyList_: ( NSDictionary* )_PlistDict
+                                  error_: ( NSError** )_Error
     {
     if ( self = [ super init ] )
         {
+        NSError* error = nil;
+
         NSData* awakenBase64edPrivateBLOB = _PlistDict[ kPrivateBlobKey ];
+        NSString* awakenPrivateBlobCheckSum = _PlistDict[ kPrivateBlobCheckSum ];
         NSString* awakenPrivateBlobUUID = _PlistDict[ kPrivateBlobUUIDKey ];
 
-        NSURL* cachedPrivateBlobURL = [ ATCTemporaryDirURL() URLByAppendingPathComponent: [ NSString stringWithFormat: @"%@.dat", awakenPrivateBlobUUID ] ];
+        NSURL* blobCacheURL = [ ATCTemporaryDirURL() URLByAppendingPathComponent: [ NSString stringWithFormat: @"%@.dat", awakenPrivateBlobUUID ] ];
 
-        if ( [ cachedPrivateBlobURL checkResourceIsReachableAndReturnError: nil ] )
+        BOOL needsReExtract = YES;
+
+        BOOL isDir = NO;
+        if ( [ [ NSFileManager defaultManager ] fileExistsAtPath: blobCacheURL.path isDirectory: &isDir ] && !isDir )
             {
-            NSString* checkSumOfCache = kCheckSumOfData( [ NSData dataWithContentsOfURL: cachedPrivateBlobURL ] );
-            NSString* checkSumOfAwaken = kCheckSumOfData( awakenBase64edPrivateBLOB );
+            NSData* cachedPrivateBlob = [ NSData dataWithContentsOfURL: blobCacheURL ];
+            NSString* checkSumOfCache = kCheckSumOfData( [ cachedPrivateBlob base64EncodedDataWithOptions: NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ] );
+
+            if ( [ checkSumOfCache isEqualToString: awakenPrivateBlobCheckSum ] )
+                needsReExtract = NO;
             }
+        else if ( isDir )
+            [ [ NSFileManager defaultManager ] removeItemAtURL: blobCacheURL error: nil ];
+
+        if ( needsReExtract )
+            {
+            NSData* awakenPrivateBlob = [ [ NSData alloc ] initWithBase64EncodedData: awakenBase64edPrivateBLOB options: NSDataBase64DecodingIgnoreUnknownCharacters ];
+            [ awakenPrivateBlob writeToURL: blobCacheURL atomically: YES ];
+            }
+
+        backingStore_ = [ [ WSCKeychainManager defaultManager ] openExistingKeychainAtURL: blobCacheURL error: &error ];
+
+        if ( error )
+            if ( _Error )
+                *_Error = error;
         }
 
     return self;
