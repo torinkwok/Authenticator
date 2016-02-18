@@ -331,10 +331,9 @@
 		830AD2011C7308CD006D909C /* supports-of-outhvault */ = {
 			isa = PBXGroup;
 			children = (
+				8383DD741C75B54B007B7665 /* internal */,
 				830AD20F1C7335FE006D909C /* ATCAuthVaultSerialization.h */,
 				830AD2101C7335FE006D909C /* ATCAuthVaultSerialization.m */,
-				8383DD701C75B3CA007B7665 /* ATCAuthVault+ATCFriends_.h */,
-				8383DD711C75B3CA007B7665 /* ATCAuthVault+ATCFriends_.m */,
 				830AD2121C733674006D909C /* ATCAuthVault.h */,
 				830AD2131C733674006D909C /* ATCAuthVault.m */,
 			);
@@ -543,6 +542,15 @@
 				8373D88D1C67548C00A11E31 /* AGTotp.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		8383DD741C75B54B007B7665 /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				8383DD701C75B3CA007B7665 /* ATCAuthVault+ATCFriends_.h */,
+				8383DD711C75B3CA007B7665 /* ATCAuthVault+ATCFriends_.m */,
+			);
+			name = internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

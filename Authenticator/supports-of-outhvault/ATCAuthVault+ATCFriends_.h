@@ -16,4 +16,8 @@
 @property ( strong, readwrite ) NSDate* createdDate;
 @property ( strong, readwrite ) NSDate* modifiedDate;
 
+#pragma mark - Real Private Interfaces
+
+@property ( strong, readonly ) NSData* backingStoreData_;
+
 @end // ATCAuthVault + ATCFriends_

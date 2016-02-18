@@ -19,9 +19,11 @@ typedef NS_ENUM ( uint32_t, ATCAuthVaultVersion )
 
 #pragma mark - Serializing an Auth Vault
 
++ ( NSData* ) dataWithAuthVault: ( ATCAuthVault* )_AuthVault error: ( NSError** )_Error;
+
 #pragma mark - Deserializing a Auth Vault
 
-+ ( ATCAuthVault* ) emptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase error: ( NSError** )_Error;
+//+ ( ATCAuthVault* ) emptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase error: ( NSError** )_Error;
 + ( ATCAuthVault* ) authVaultWithContentsOfURL: ( NSURL* )_URL error: ( NSError** )_Error;
 + ( ATCAuthVault* ) authVaultWithData: ( NSData* )_Data error: ( NSError** )_Error;
 

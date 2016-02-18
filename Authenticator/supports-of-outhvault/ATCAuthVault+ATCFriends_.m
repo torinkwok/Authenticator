@@ -11,4 +11,14 @@
 // ATCAuthVault + ATCFriends_
 @implementation ATCAuthVault ( ATCFriends_ )
 
+#pragma mark - Real Private Interfaces
+
+@dynamic backingStoreData_;
+
+- ( NSData* ) backingStoreData_
+    {
+    NSData* data = [ NSData dataWithContentsOfURL: backingStore_.URL ];
+    return data;
+    }
+
 @end // ATCAuthVault + ATCFriends_
