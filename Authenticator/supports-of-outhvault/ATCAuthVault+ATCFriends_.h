@@ -11,6 +11,8 @@
 // ATCAuthVault + ATCFriends_
 @interface ATCAuthVault ( ATCFriends_ )
 
+#pragma mark - Meta Data
+
 @property ( strong, readwrite ) NSString* UUID;
 
 @property ( strong, readwrite ) NSDate* createdDate;

@@ -11,6 +11,27 @@
 // ATCAuthVault + ATCFriends_
 @implementation ATCAuthVault ( ATCFriends_ )
 
+#pragma mark - Meta Data
+
+@dynamic UUID;
+@dynamic createdDate;
+@dynamic modifiedDate;
+
+- ( void ) setUUID: ( NSString* )_NewUUID
+    {
+    UUID_ = _NewUUID;
+    }
+
+- ( void ) setCreatedDate: ( NSDate* )_Date
+    {
+    createdDate_ = _Date;
+    }
+
+- ( void ) setModifiedDate: ( NSDate* )_Date
+    {
+    modifiedDate_ = _Date;
+    }
+
 #pragma mark - Real Private Interfaces
 
 @dynamic backingStoreData_;

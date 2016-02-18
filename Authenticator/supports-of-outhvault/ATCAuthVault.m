@@ -50,4 +50,25 @@
     return self;
     }
 
+#pragma mark - Meta Data
+
+@dynamic UUID;
+@dynamic createdDate;
+@dynamic modifiedDate;
+
+- ( NSString* ) UUID
+    {
+    return UUID_;
+    }
+
+- ( NSDate* ) createdDate
+    {
+    return createdDate_;
+    }
+
+- ( NSDate* ) modifiedDate
+    {
+    return modifiedDate_;
+    }
+
 @end // ATCAuthVault class

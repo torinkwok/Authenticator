@@ -13,6 +13,10 @@
     {
 @protected
     WSCKeychain __strong* backingStore_;
+
+    NSString __strong* UUID_;
+    NSDate __strong* createdDate_;
+    NSDate __strong* modifiedDate_;
     }
 
 #pragma mark - Initializations
