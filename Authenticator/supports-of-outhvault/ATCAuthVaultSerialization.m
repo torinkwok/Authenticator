@@ -432,6 +432,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
         {
         NSError* error = nil;
 
+        // self->backingStore_
         NSData* awakenBase64edPrivateBLOB = _PlistDict[ kPrivateBlobKey ];
         NSString* awakenPrivateBlobCheckSum = _PlistDict[ kPrivateBlobCheckSum ];
         NSString* awakenPrivateBlobUUID = _PlistDict[ kPrivateBlobUUIDKey ];
@@ -459,6 +460,12 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
             }
 
         backingStore_ = [ [ WSCKeychainManager defaultManager ] openExistingKeychainAtURL: blobCacheURL error: &error ];
+
+        // self->createdDate_
+        createdDate_ = [ NSDate dateWithTimeIntervalSince1970: [ _PlistDict[ kCreatedDateKey ] doubleValue ] ];
+
+        // self->modifiedDate_
+        modifiedDate_ = [ NSDate dateWithTimeIntervalSince1970: [ _PlistDict[ kModifiedDateKey ] doubleValue ] ];
 
         if ( error )
             if ( _Error )

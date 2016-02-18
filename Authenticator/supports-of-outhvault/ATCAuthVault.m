@@ -19,4 +19,19 @@
     return nil;
     }
 
+#pragma mark - Meta Data
+
+@dynamic createdDate;
+@dynamic modifiedDate;
+
+- ( NSDate* ) createdDate
+    {
+    return createdDate_;
+    }
+
+- ( NSDate* ) modifiedDate
+    {
+    return modifiedDate_;
+    }
+
 @end // ATCAuthVault class

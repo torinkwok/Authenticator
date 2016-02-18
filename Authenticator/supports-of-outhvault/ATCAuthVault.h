@@ -13,6 +13,14 @@
     {
 @protected
     WSCKeychain __strong* backingStore_;
+
+    NSDate __strong* createdDate_;
+    NSDate __strong* modifiedDate_;
     }
+
+#pragma mark - Meta Data
+
+@property ( strong, readonly ) NSDate* createdDate;
+@property ( strong, readonly ) NSDate* modifiedDate;
 
 @end // ATCAuthVault class
