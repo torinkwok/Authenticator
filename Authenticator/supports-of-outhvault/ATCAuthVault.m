@@ -101,7 +101,6 @@
                                , @"account-name" : _AccountName
                                , @"secret-key" : _Secret
                                };
-
     NSData* base64edPlist =
         [ NSPropertyListSerialization dataWithPropertyList: plistDict
                                                     format: NSPropertyListBinaryFormat_v1_0
@@ -111,7 +110,7 @@
     NSString* comment = [ self checkSumOfDataBlocks_: @[ serviceName, accountName, base64edPlist ] ];
 
     WSCPassphraseItem* passphraseItem = [ backingStore_
-        addApplicationPassphraseWithServiceName: @"home.bedroom.TongKuo.Authenticator.AuthVault" accountName: accountName passphrase: @"isgtforever" error: &error ];
+        addApplicationPassphraseWithServiceName: serviceName accountName: accountName passphrase: @"isgtforever" error: &error ];
 
     [ passphraseItem setComment: comment ];
 
