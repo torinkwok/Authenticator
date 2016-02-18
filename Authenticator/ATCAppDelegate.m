@@ -28,7 +28,7 @@
     NSURL* url = [ NSURL URLWithString: [ NSString stringWithFormat: @"file://%@", path ] ];
 
     #if __debug_AuthVault_Generator__
-    NSData* newAuthVault = [ ATCAuthVaultSerialization dataWithEmptyAuthVaultWithMasterPassphrase: @"authenticator" error: nil ];
+    ATCAuthVault* newAuthVault = [ ATCAuthVaultSerialization emptyAuthVaultWithMasterPassphrase: @"authenticator" error: nil ];
     [ newAuthVault writeToFile: path atomically: YES ];
     #endif
 

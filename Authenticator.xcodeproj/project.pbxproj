@@ -62,6 +62,7 @@
 		8373D8C11C69801900A11E31 /* ATCSecretKeyManuallyInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C01C69801900A11E31 /* ATCSecretKeyManuallyInputViewController.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C31C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C61C6A322900A11E31 /* ATCConstants.m */; settings = {ASSET_TAGS = (); }; };
+		8383DD721C75B3CA007B7665 /* ATCAuthVault+ATCFriends_.m in Sources */ = {isa = PBXBuildFile; fileRef = 8383DD711C75B3CA007B7665 /* ATCAuthVault+ATCFriends_.m */; settings = {ASSET_TAGS = (); }; };
 		83A650E91C70516B009D2FA7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A650E81C70516B009D2FA7 /* Security.framework */; };
 		83A650EC1C705279009D2FA7 /* ATCOTPEntriesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A650EB1C705279009D2FA7 /* ATCOTPEntriesManager.m */; settings = {ASSET_TAGS = (); }; };
 		83CEE8AE1C6CD0E90027AE38 /* ATCHintField.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8AD1C6CD0E90027AE38 /* ATCHintField.m */; settings = {ASSET_TAGS = (); }; };
@@ -216,6 +217,8 @@
 		8373D8C31C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCSecretKeyManuallyInputWindowController.m; sourceTree = "<group>"; };
 		8373D8C51C6A322900A11E31 /* ATCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCConstants.h; sourceTree = "<group>"; };
 		8373D8C61C6A322900A11E31 /* ATCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCConstants.m; sourceTree = "<group>"; };
+		8383DD701C75B3CA007B7665 /* ATCAuthVault+ATCFriends_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ATCAuthVault+ATCFriends_.h"; sourceTree = "<group>"; };
+		8383DD711C75B3CA007B7665 /* ATCAuthVault+ATCFriends_.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ATCAuthVault+ATCFriends_.m"; sourceTree = "<group>"; };
 		83A650E81C70516B009D2FA7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		83A650EA1C705279009D2FA7 /* ATCOTPEntriesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntriesManager.h; sourceTree = "<group>"; };
 		83A650EB1C705279009D2FA7 /* ATCOTPEntriesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntriesManager.m; sourceTree = "<group>"; };
@@ -330,6 +333,8 @@
 			children = (
 				830AD20F1C7335FE006D909C /* ATCAuthVaultSerialization.h */,
 				830AD2101C7335FE006D909C /* ATCAuthVaultSerialization.m */,
+				8383DD701C75B3CA007B7665 /* ATCAuthVault+ATCFriends_.h */,
+				8383DD711C75B3CA007B7665 /* ATCAuthVault+ATCFriends_.m */,
 				830AD2121C733674006D909C /* ATCAuthVault.h */,
 				830AD2131C733674006D909C /* ATCAuthVault.m */,
 			);
@@ -725,6 +730,7 @@
 				8373D8921C67548C00A11E31 /* AGTotp.m in Sources */,
 				830AD1A01C706844006D909C /* NSDate+WSCCocoaDate.m in Sources */,
 				83CEE8B41C6E03800027AE38 /* ATCOTPDigitLayer.m in Sources */,
+				8383DD721C75B3CA007B7665 /* ATCAuthVault+ATCFriends_.m in Sources */,
 				830AD1E51C71CE93006D909C /* ATCOTPVaultItem.m in Sources */,
 				8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */,
 				8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */,
@@ -873,8 +879,8 @@
 					"__debug_Global_Timer__=0",
 					"__debug_Vault__=1",
 					"__debug_Animation__=0",
-					"__debug_AuthVault_Generator__=0",
-					"__debug_AuthVault_Parser__=1",
+					"__debug_AuthVault_Generator__=1",
+					"__debug_AuthVault_Parser__=0",
 				);
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

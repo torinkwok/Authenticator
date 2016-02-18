@@ -123,13 +123,13 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
 
 #pragma mark - Serializing an Auth Vault
 
-+ ( NSData* ) dataWithEmptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase
-                                                   error: ( NSError** )_Error
++ ( ATCAuthVault* ) emptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase
+                                                 error: ( NSError** )_Error
     {
     NSParameterAssert( ( _MasterPassphrase.length ) >= 6 );
 
     NSError* error = nil;
-    NSData* vaultData = nil;
+    ATCAuthVault* emptyAuthVault = nil;
 
     NSString* UUID = TKNonce();
     NSURL* tmpKeychainURL = [ ATCTemporaryDirURL() URLByAppendingPathComponent: [ NSString stringWithFormat: @"%@.dat", UUID ] ];
@@ -141,23 +141,26 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
                                                                 error: &error ];
     if ( tmpKeychain )
         {
+        NSData* vaultData = nil;
+
         NSData* rawDataOfTmpKeychain = [ NSData dataWithContentsOfURL: tmpKeychainURL ];
         NSData* internalPlistData = [ self generateBase64edInternalPropertyListWithPrivateRawBLOB_: rawDataOfTmpKeychain blobUUID_: UUID error_: &error ];
         if ( internalPlistData )
             {
             NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
-
             [ tmpVaultData appendData: [ internalPlistData base64EncodedDataForAuthVault ] ];
 
             vaultData = [ tmpVaultData copy ];
             }
+
+        emptyAuthVault = [ [ ATCAuthVault alloc ] initWithPropertyList_: internalPlist error_: &error ];
         }
 
     if ( error )
         if ( _Error )
             *_Error = error;
 
-    return vaultData;
+    return emptyAuthVault;
     }
 
 #pragma mark - Deserializing a Property List
@@ -187,10 +190,9 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     NSError* error = nil;
     ATCAuthVault* authVault = nil;
 
-    NSData* contentsOfURL = _Data;
-    if ( contentsOfURL )
+    if ( _Data )
         {
-        if ( [ self hasValidWatermarkFlags_: contentsOfURL ] )
+        if ( [ self hasValidWatermarkFlags_: _Data ] )
             {
             NSDictionary* internalPlist = [ self extractInternalPropertyList_: _Data error_: &error ];
 
@@ -460,6 +462,9 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
             }
 
         backingStore_ = [ [ WSCKeychainManager defaultManager ] openExistingKeychainAtURL: blobCacheURL error: &error ];
+
+        // self->location_
+//        location_ = [ 
 
         // self->createdDate_
         createdDate_ = [ NSDate dateWithTimeIntervalSince1970: [ _PlistDict[ kCreatedDateKey ] doubleValue ] ];

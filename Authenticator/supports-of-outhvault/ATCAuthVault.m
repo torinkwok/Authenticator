@@ -8,30 +8,46 @@
 
 #import "ATCAuthVault.h"
 
+#import "ATCAuthVault+ATCFriends_.h"
+
+// Private Interfaces
+@interface ATCAuthVault ()
+
+@end // Private Interfaces
+
 // ATCAuthVault class
 @implementation ATCAuthVault
 
 #pragma mark - Initializations
 
-- ( instancetype ) init
++ ( ATCAuthVault* ) emptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase
+                                                 error: ( NSError** )_Error
     {
-    [ self doesNotRecognizeSelector: _cmd ];
-    return nil;
+    return [ [ self alloc ] initWithMasterPassphrase: _MasterPassphrase error: _Error ];
     }
 
-#pragma mark - Meta Data
-
-@dynamic createdDate;
-@dynamic modifiedDate;
-
-- ( NSDate* ) createdDate
+- ( ATCAuthVault* ) initWithMasterPassphrase: ( NSString* )_MasterPassphrase
+                                       error: ( NSError** )_Error
     {
-    return createdDate_;
-    }
+    NSParameterAssert( ( _MasterPassphrase.length ) >= 6 );
 
-- ( NSDate* ) modifiedDate
-    {
-    return modifiedDate_;
+    if ( self = [ super init ] )
+        {
+        NSError* error = nil;
+
+        self.UUID = TKNonce();
+
+        NSURL* tmpKeychainURL = [ ATCTemporaryDirURL() URLByAppendingPathComponent: [ NSString stringWithFormat: @"%@.dat", self.UUID ] ];
+
+        backingStore_ = [ [ WSCKeychainManager defaultManager ] createKeychainWithURL: tmpKeychainURL passphrase: _MasterPassphrase becomesDefault: NO error: &error ];
+        if ( backingStore_ )
+            [ [ WSCKeychainManager defaultManager ] unlockKeychain: backingStore_ withPassphrase: _MasterPassphrase error: &error ];
+
+        self.createdDate = [ NSDate date ];
+        self.modifiedDate = [ self.createdDate copy ];
+        }
+
+    return self;
     }
 
 @end // ATCAuthVault class

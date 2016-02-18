@@ -13,12 +13,15 @@
     {
 @protected
     WSCKeychain __strong* backingStore_;
-
-    NSDate __strong* createdDate_;
-    NSDate __strong* modifiedDate_;
     }
 
+#pragma mark - Initializations
+
++ ( ATCAuthVault* ) emptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase error: ( NSError** )_Error;
+
 #pragma mark - Meta Data
+
+@property ( strong, readonly ) NSString* UUID;
 
 @property ( strong, readonly ) NSDate* createdDate;
 @property ( strong, readonly ) NSDate* modifiedDate;
