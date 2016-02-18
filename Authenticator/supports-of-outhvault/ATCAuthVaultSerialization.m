@@ -16,7 +16,7 @@
 
 #pragma mark - Initializations
 
-- ( instancetype ) initWithPropertyList_: ( NSDictionary* )_PlistDict error_: ( NSError** )_Error;
+- ( instancetype ) initWithAwakenPropertyList_: ( NSDictionary* )_PlistDict error_: ( NSError** )_Error;
 
 @end // ATCAuthVault + ATCFriends
 
@@ -146,46 +146,6 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     return vaultData;
     }
 
-//+ ( ATCAuthVault* ) emptyAuthVaultWithMasterPassphrase: ( NSString* )_MasterPassphrase
-//                                                 error: ( NSError** )_Error
-//    {
-//    NSParameterAssert( ( _MasterPassphrase.length ) >= 6 );
-//
-//    NSError* error = nil;
-//    ATCAuthVault* emptyAuthVault = nil;
-//
-//    NSString* UUID = TKNonce();
-//    NSURL* tmpKeychainURL = [ ATCTemporaryDirURL() URLByAppendingPathComponent: [ NSString stringWithFormat: @"%@.dat", UUID ] ];
-//
-//    WSCKeychain* tmpKeychain =
-//        [ [ WSCKeychainManager defaultManager ] createKeychainWithURL: tmpKeychainURL
-//                                                           passphrase: _MasterPassphrase
-//                                                       becomesDefault: NO
-//                                                                error: &error ];
-//    if ( tmpKeychain )
-//        {
-//        NSData* vaultData = nil;
-//
-//        NSData* rawDataOfTmpKeychain = [ NSData dataWithContentsOfURL: tmpKeychainURL ];
-//        NSData* internalPlistData = [ self generateBase64edInternalPropertyListWithPrivateRawBLOB_: rawDataOfTmpKeychain blobUUID_: UUID error_: &error ];
-//        if ( internalPlistData )
-//            {
-//            NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
-//            [ tmpVaultData appendData: [ internalPlistData base64EncodedDataForAuthVault ] ];
-//
-//            vaultData = [ tmpVaultData copy ];
-//            }
-//
-//        emptyAuthVault = [ [ ATCAuthVault alloc ] initWithPropertyList_: internalPlist error_: &error ];
-//        }
-//
-//    if ( error )
-//        if ( _Error )
-//            *_Error = error;
-//
-//    return emptyAuthVault;
-//    }
-
 #pragma mark - Deserializing a Property List
 
 + ( ATCAuthVault* ) authVaultWithContentsOfURL: ( NSURL* )_URL
@@ -220,7 +180,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
             NSDictionary* internalPlist = [ self extractInternalPropertyList_: _Data error_: &error ];
 
             if ( internalPlist )
-                authVault = [ [ ATCAuthVault alloc ] initWithPropertyList_: internalPlist error_: &error ];
+                authVault = [ [ ATCAuthVault alloc ] initWithAwakenPropertyList_: internalPlist error_: &error ];
             }
         else
             ; // TODO: To construct an error object that contains the information about this failure
@@ -409,7 +369,8 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     NSDictionary* plistDict = nil;
 
     NSData* base64DecodedData = [ [ NSData alloc ]
-        initWithBase64EncodedData: [ _ContentsOfUnverifiedFile subdataWithRange: NSMakeRange( sizeof( kWatermarkFlags ), _ContentsOfUnverifiedFile.length - sizeof( kWatermarkFlags ) ) ]
+        initWithBase64EncodedData: [ _ContentsOfUnverifiedFile subdataWithRange:
+                                        NSMakeRange( sizeof( kWatermarkFlags ), _ContentsOfUnverifiedFile.length - sizeof( kWatermarkFlags ) ) ]
                           options: NSDataBase64DecodingIgnoreUnknownCharacters ];
     if ( base64DecodedData )
         {
@@ -424,7 +385,10 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
             {
             if ( propertyListFormat == NSPropertyListBinaryFormat_v1_0 )
                 {
-                NSData* base64DecodedPrivateBLOB = [ [ NSData alloc ] initWithBase64EncodedData: tmpPlistDict[ kPrivateBlobKey ] options: NSDataBase64DecodingIgnoreUnknownCharacters ];
+                NSData* base64DecodedPrivateBLOB =
+                    [ [ NSData alloc ] initWithBase64EncodedData: tmpPlistDict[ kPrivateBlobKey ]
+                                                         options: NSDataBase64DecodingIgnoreUnknownCharacters ];
+
                 if ( [ self verifyInternalPropertyList_: tmpPlistDict ] && [ self verifyPrivateBLOB_: base64DecodedPrivateBLOB ] )
                     plistDict = tmpPlistDict;
                 }
@@ -449,8 +413,8 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
 
 #pragma mark - Initializations
 
-- ( instancetype ) initWithPropertyList_: ( NSDictionary* )_PlistDict
-                                  error_: ( NSError** )_Error
+- ( instancetype ) initWithAwakenPropertyList_: ( NSDictionary* )_PlistDict
+                                        error_: ( NSError** )_Error
     {
     if ( self = [ super init ] )
         {
@@ -484,6 +448,9 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
             }
 
         backingStore_ = [ [ WSCKeychainManager defaultManager ] openExistingKeychainAtURL: blobCacheURL error: &error ];
+
+        // self->UUID_
+        self.UUID = _PlistDict[ kPrivateBlobUUIDKey ];
 
         // self->createdDate_
         self.createdDate = [ NSDate dateWithTimeIntervalSince1970: [ _PlistDict[ kCreatedDateKey ] doubleValue ] ];
