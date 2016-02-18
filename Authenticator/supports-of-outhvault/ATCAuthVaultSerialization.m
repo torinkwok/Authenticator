@@ -37,7 +37,7 @@
 // Serializing an Auth Vault
 
 + ( NSString* ) generateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict;
-+ ( NSData* ) generateBase64edInternalPropertyListWithAuthVault: ( ATCAuthVault* )_AuthVault error_: ( NSError** )_Error;
++ ( NSData* ) generateBase64edInternalPropertyListWithAuthVault_: ( ATCAuthVault* )_AuthVault error_: ( NSError** )_Error;
 
 // Deserializing a Property List
 
@@ -130,7 +130,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     NSError* error = nil;
     NSData* vaultData = nil;
 
-    NSData* internalPlistData = [ self generateBase64edInternalPropertyListWithAuthVault: _AuthVault error_: &error ];
+    NSData* internalPlistData = [ self generateBase64edInternalPropertyListWithAuthVault_: _AuthVault error_: &error ];
     if ( internalPlistData )
         {
         NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
@@ -307,8 +307,8 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     return [ self calculateCheckSumOfInternalPropertyListDict_: _PlistDict ];
     }
 
-+ ( NSData* ) generateBase64edInternalPropertyListWithAuthVault: ( ATCAuthVault* )_AuthVault
-                                                         error_: ( NSError** )_Error
++ ( NSData* ) generateBase64edInternalPropertyListWithAuthVault_: ( ATCAuthVault* )_AuthVault
+                                                          error_: ( NSError** )_Error
     {
     NSError* error = nil;
     NSData* internalPlistData = nil;
