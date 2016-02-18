@@ -143,7 +143,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
             NSData* internalPlistData = [ self generateBase64edInternalPropertyListWithPrivateRawBLOB_: rawDataOfTmpKeychain error_: &error ];
             if ( internalPlistData )
                 {
-                NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof kWatermarkFlags ];
+                NSMutableData* tmpVaultData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
 
                 [ tmpVaultData appendData: [ internalPlistData base64EncodedDataWithOptions:
                     NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ] ];
@@ -227,13 +227,13 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
 
 + ( BOOL ) hasValidWatermarkFlags_: ( NSData* )_Data
     {
-    if ( _Data.length < sizeof kWatermarkFlags )
+    if ( _Data.length < sizeof( kWatermarkFlags ) )
         return NO;
 
     BOOL hasValidFlags = YES;
 
-    NSData* flagsSubData = [ _Data subdataWithRange: NSMakeRange( 0, sizeof kWatermarkFlags ) ];
-    for ( int _Index = 0; _Index < sizeof kWatermarkFlags; _Index += sizeof( int ) )
+    NSData* flagsSubData = [ _Data subdataWithRange: NSMakeRange( 0, sizeof( kWatermarkFlags ) ) ];
+    for ( int _Index = 0; _Index < sizeof( kWatermarkFlags ); _Index += sizeof( int ) )
         {
         uint32_t flag = 0U;
         [ flagsSubData getBytes: &flag range: NSMakeRange( _Index, sizeof( int ) ) ];
@@ -290,7 +290,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     NSData* privateBLOB = _PlistDict[ kPrivateBLOBKey ];
 
     NSMutableArray* checkBucket = [ NSMutableArray arrayWithObjects:
-          [ NSData dataWithBytes: &version length: sizeof version ]
+          [ NSData dataWithBytes: &version length: sizeof( version ) ]
         , [ uuid dataUsingEncoding: NSUTF8StringEncoding ]
         , [ NSData dataWithBytes: &createdDate length: sizeof( createdDate ) ]
         , [ NSData dataWithBytes: &modifiedDate length: sizeof( modifiedDate ) ]
@@ -388,7 +388,7 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     NSDictionary* plistDict = nil;
 
     NSData* base64DecodedData = [ [ NSData alloc ]
-        initWithBase64EncodedData: [ _ContentsOfUnverifiedFile subdataWithRange: NSMakeRange( sizeof kWatermarkFlags, _ContentsOfUnverifiedFile.length - sizeof kWatermarkFlags ) ]
+        initWithBase64EncodedData: [ _ContentsOfUnverifiedFile subdataWithRange: NSMakeRange( sizeof( kWatermarkFlags ), _ContentsOfUnverifiedFile.length - sizeof( kWatermarkFlags ) ) ]
                           options: NSDataBase64DecodingIgnoreUnknownCharacters ];
     if ( base64DecodedData )
         {
