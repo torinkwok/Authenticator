@@ -10,6 +10,7 @@
 #import "ATCAuthVault.h"
 
 #import "ATCAuthVault+ATCFriends_.h"
+#import "NSData+AuthVaultExtensions_.h"
 
 // ATCAuthVault + ATCDecodeAuthVault
 @interface ATCAuthVault ( ATCDecodeAuthVault )
@@ -52,8 +53,6 @@ uint32_t kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D
                                  , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
                                  };
 
-NSString* const kUnitedTypeIdentifier = @"home.bedroom.TongKuo.Authenticator.AuthVault";
-
 NSString* const kVersionKey = @"auth-vault-version";
 NSString* const kVaultUUIDKey = @"vault-uuid";
 NSString* const kCreatedDateKey = @"created-date";
@@ -78,14 +77,6 @@ inline static uint32_t kExchangeEndianness_( uint32_t _Value )
     return _Value;
     #endif
     }
-
-// NSData + AuthVaultExtensions
-@interface NSData ( AuthVaultExtensions )
-
-@property ( strong, readonly ) NSData* base64EncodedDataForAuthVault;
-@property ( strong, readonly ) NSString* checkSumForAuthVault;
-
-@end // NSData + AuthVaultExtensions
 
 #define ATC_GUARDIAN ( uint32_t )NULL
 
@@ -467,30 +458,3 @@ uint32_t* kPrivateBLOBFeatureLibrary[] =
     }
 
 @end // ATCAuthVault + ATCDecodeAuthVault
-
-// NSData + AuthVaultExtensions
-@implementation NSData ( AuthVaultExtensions )
-
-@dynamic base64EncodedDataForAuthVault;
-@dynamic checkSumForAuthVault;
-
-- ( NSData* ) base64EncodedDataForAuthVault
-    {
-    return [ self base64EncodedDataWithOptions:
-                NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
-    }
-
-- ( NSString* ) checkSumForAuthVault
-    {
-    unsigned char buffer[ CC_SHA512_DIGEST_LENGTH ];
-    CCHmac( kCCHmacAlgSHA512, kUnitedTypeIdentifier.UTF8String, kUnitedTypeIdentifier.length, self.bytes, self.length, buffer );
-
-    NSData* macData = [ NSData dataWithBytes: buffer length: CC_SHA512_DIGEST_LENGTH ];
-    NSString* checkSum =
-        [ [ macData base64EncodedStringWithOptions: 0 ]
-            stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet alphanumericCharacterSet ] ];
-
-    return checkSum;
-    }
-
-@end // NSData + AuthVaultExtensions

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-@import Foundation;
+@class ATCAuthVaultItem;
 
 // ATCAuthVault class
 @interface ATCAuthVault : NSObject
@@ -29,5 +29,11 @@
 
 @property ( strong, readonly ) NSDate* createdDate;
 @property ( strong, readonly ) NSDate* modifiedDate;
+
+#pragma mark - Creating and Managing Vault Items
+
+- ( ATCAuthVaultItem* ) addVaultItemWithIssuerName: ( NSString* )_IssuerName accountName: ( NSString* )_AccountName secret: ( NSString* )_Secret error: ( NSError** )_Error;
+- ( ATCAuthVaultItem* ) findVaultItemWithName: ( NSString* )_ItemName error: ( NSError** )_Error;
+- ( void ) deleteVaultItem: ( ATCAuthVaultItem* )_VaultItem error: ( NSError** )_Error;
 
 @end // ATCAuthVault class

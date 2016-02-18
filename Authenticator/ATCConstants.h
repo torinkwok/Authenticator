@@ -34,3 +34,5 @@ NSURL* ATCImportedVaultsDirURL();
 NSURL* ATCTemporaryDirURL();
 
 NSString extern* const ATCTotpAuthURLTemplate;
+
+NSString extern* const ATCUnitedTypeIdentifier;

@@ -112,3 +112,5 @@ NSURL* ATCTemporaryDirURL()
     }
 
 NSString* const ATCTotpAuthURLTemplate = @"otpauth://totp/%@%@?secret=%@&issuer=%@";
+
+NSString* const ATCUnitedTypeIdentifier = @"home.bedroom.TongKuo.Authenticator.AuthVault";
