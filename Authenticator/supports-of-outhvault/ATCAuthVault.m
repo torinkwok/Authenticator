@@ -7,28 +7,127 @@
 //
 
 #import "ATCAuthVault.h"
+#import "ATCAuthVaultConstants.h"
 
-NSString* const kUUIDKey = @"uuid";
-NSString* const kCreatedDateKey = @"created-date";
-NSString* const kModifiedDateKey = @"modified-date";
-NSString* const kOtpEntriesKey = @"otp-entries";
+#import "NSData+AuthVaultExtensions_.h"
+
+uint32_t kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
+                                 , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
+                                 , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
+                                 , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
+                                 };
+
+inline static uint32_t kExchangeEndianness_( uint32_t _Value )
+    {
+    #if !TARGET_RT_BIG_ENDIAN // On Intel Mac, the following code fragment will be executed
+    uint32_t result = 0;
+
+    result |= ( _Value & 0x000000FF ) << 24;
+    result |= ( _Value & 0x0000FF00 ) << 8;
+    result |= ( _Value & 0x00FF0000 ) >> 8;
+    result |= ( _Value & 0xFF000000 ) >> 24;
+
+    return result;
+    #else
+    return _Value;
+    #endif
+    }
+
+inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _InternalPlist )
+    {
+    NSString* template = @"%@=%@";
+    NSMutableArray* checkFields = [ NSMutableArray array ];
+    [ checkFields addObject: [ NSString stringWithFormat: template, kUUIDKey, _InternalPlist[ kUUIDKey ] ] ];
+    [ checkFields addObject: [ NSString stringWithFormat: template, kCreatedDateKey, [ _InternalPlist[ kCreatedDateKey ] doubleValue ] ] ];
+    [ checkFields addObject: [ NSString stringWithFormat: template, kModifiedDateKey, [ _InternalPlist[ kModifiedDateKey ] doubleValue ] ] ];
+
+    NSArray <NSDictionary*>* entries = _InternalPlist[ kOtpEntriesKey ];
+    NSMutableArray* entryCheckFields = [ NSMutableArray array ];
+    for ( NSDictionary* _OtpEntry in entries )
+        [ entryCheckFields addObject: _OtpEntry[ kCheckSumKey ] ?: @"" ];
+
+    [ checkFields addObject: [ NSString stringWithFormat: template, kCheckSumKey, [ entryCheckFields componentsJoinedByString: @"&" ] ] ];
+
+    NSData* base64edCheckFields = [ [ checkFields componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ].base64EncodedDataForAuthVault;
+    return base64edCheckFields.checkSumForAuthVault;
+    }
 
 // ATCAuthVault class
 @implementation ATCAuthVault
 
 #pragma mark - Creating Auth Vault
 
-- ( instancetype ) initWithData: ( NSData* )_Data
-                          error: ( NSError** )_Error
+- ( instancetype ) initWithMasterPassword: ( NSString* )_Password
+                                    error: ( NSError** )_Error
     {
     if ( self = [ super init ] )
         {
         NSError* error = nil;
 
-        
+        NSTimeInterval createdDate = [ NSDate date ].timeIntervalSince1970;
+        NSTimeInterval modifiedDate = createdDate;
+
+        NSMutableDictionary* internalPlist =[ NSMutableDictionary dictionaryWithObjectsAndKeys:
+               TKNonce(), kUUIDKey
+             , @( createdDate ), kCreatedDateKey
+             , @( modifiedDate ), kModifiedDateKey
+             , @[], kOtpEntriesKey
+             , nil ];
+
+        [ internalPlist addEntriesFromDictionary: @{ kCheckSumKey : kCheckSumOfAuthVaultInternalPlist_( internalPlist ) } ];
+
+        NSData* binInternalPlist = [ NSPropertyListSerialization dataWithPropertyList: internalPlist format: NSPropertyListBinaryFormat_v1_0 options: 0 error: &error ];
+        if ( binInternalPlist )
+            {
+            NSMutableData* data = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
+            [ data appendData: [ binInternalPlist.checkSumForAuthVault dataUsingEncoding: NSUTF8StringEncoding ] ];
+            [ data appendData: binInternalPlist ];
+
+            backingStore_ = [ RNEncryptor encryptData: data withSettings: kRNCryptorAES256Settings password: _Password error: &error ];
+            }
+
+        if ( error )
+            if ( _Error )
+                *_Error = error;
         }
 
     return self;
     }
+
+- ( BOOL ) hasValidWatermarkFlags_: ( NSData* )_Data
+    {
+    if ( _Data.length < sizeof( kWatermarkFlags ) )
+        return NO;
+
+    BOOL hasValidFlags = YES;
+
+    NSData* flagsSubData = [ _Data subdataWithRange: NSMakeRange( 0, sizeof( kWatermarkFlags ) ) ];
+    for ( int _Index = 0; _Index < sizeof( kWatermarkFlags ); _Index += sizeof( int ) )
+        {
+        uint32_t flag = 0U;
+        [ flagsSubData getBytes: &flag range: NSMakeRange( _Index, sizeof( int ) ) ];
+
+        if ( flag != kWatermarkFlags[ ( _Index / sizeof( int ) ) ] )
+            {
+            hasValidFlags = NO;
+            break;
+            }
+        }
+
+    return hasValidFlags;
+    }
+
+//- ( instancetype ) initWithData: ( NSData* )_Data
+//                          error: ( NSError** )_Error
+//    {
+//    if ( self = [ super init ] )
+//        {
+//        NSError* error = nil;
+//
+//
+//        }
+//
+//    return self;
+//    }
 
 @end // ATCAuthVault class

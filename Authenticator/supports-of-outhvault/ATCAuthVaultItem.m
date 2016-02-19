@@ -7,19 +7,10 @@
 //
 
 #import "ATCAuthVaultItem.h"
+#import "ATCAuthVaultConstants.h"
 
 #import "ATCAuthVaultItem+ATCFriends_.h"
 #import "NSData+AuthVaultExtensions_.h"
-
-NSString* const kUUIDKey = @"uuid";
-NSString* const kAccountNameKey = @"account-name";
-NSString* const kCreatedDateKey = @"created-date";
-NSString* const kDigitsKey = @"digits";
-NSString* const kTimeStepKey = @"time-step";
-NSString* const kAlgorithmKey = @"algorithm";
-NSString* const kIssuerKey = @"issuer";
-NSString* const kSecretKeyKey = @"secret-key";
-NSString* const kCheckSumKey = @"check-sum";
 
 #define __ATC_CHECK_FIELD__( _Key ) \
     [ NSString stringWithFormat: template, _Key, _BackingStore[ _Key ] ?: [ NSNull null ] ]
