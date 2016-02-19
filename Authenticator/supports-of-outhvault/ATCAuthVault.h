@@ -8,5 +8,13 @@
 
 // ATCAuthVault class
 @interface ATCAuthVault : NSObject
+    {
+@private
+    NSData __strong* backingStore_;
+    }
+
+#pragma mark - Creating Auth Vault
+
+- ( instancetype ) initWithData: ( NSData* )_Data error: ( NSError** )_Error;
 
 @end // ATCAuthVault class

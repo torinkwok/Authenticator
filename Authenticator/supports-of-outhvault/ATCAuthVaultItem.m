@@ -21,18 +21,21 @@ NSString* const kIssuerKey = @"issuer";
 NSString* const kSecretKeyKey = @"secret-key";
 NSString* const kCheckSumKey = @"check-sum";
 
+#define __ATC_CHECK_FIELD__( _Key ) \
+    [ NSString stringWithFormat: template, _Key, _BackingStore[ _Key ] ?: [ NSNull null ] ]
+
 inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _BackingStore )
     {
     NSString* template = @"%@=%@";
     NSMutableArray* checkFields = [ NSMutableArray arrayWithObjects:
-          [ NSString stringWithFormat: template, kUUIDKey, _BackingStore[ kUUIDKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kAccountNameKey, _BackingStore[ kAccountNameKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kCreatedDateKey, _BackingStore[ kCreatedDateKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kDigitsKey, _BackingStore[ kDigitsKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kTimeStepKey, _BackingStore[ kTimeStepKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kAlgorithmKey, _BackingStore[ kAlgorithmKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kIssuerKey, _BackingStore[ kIssuerKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kSecretKeyKey, _BackingStore[ kSecretKeyKey ] ?: [ NSNull null ] ]
+          __ATC_CHECK_FIELD__( kUUIDKey )
+        , __ATC_CHECK_FIELD__( kAccountNameKey )
+        , __ATC_CHECK_FIELD__( kCreatedDateKey )
+        , __ATC_CHECK_FIELD__( kDigitsKey )
+        , __ATC_CHECK_FIELD__( kTimeStepKey )
+        , __ATC_CHECK_FIELD__( kAlgorithmKey )
+        , __ATC_CHECK_FIELD__( kIssuerKey )
+        , __ATC_CHECK_FIELD__( kSecretKeyKey )
         , nil
         ];
 
