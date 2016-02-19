@@ -181,7 +181,6 @@
 		8352B48F1C76BA3D00AD4273 /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
 		8352B4901C76BA3D00AD4273 /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
 		8352B4911C76BA3D00AD4273 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
-		8352B4921C76BA3D00AD4273 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
 		8368DD321C6AED6600005A7D /* ATCNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCNotificationCenter.h; sourceTree = "<group>"; };
 		8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCNotificationCenter.m; sourceTree = "<group>"; };
 		8368DD351C6B637200005A7D /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
@@ -488,14 +487,6 @@
 			name = wysiwyg;
 			sourceTree = "<group>";
 		};
-		8352B4931C76BA3D00AD4273 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				8352B4921C76BA3D00AD4273 /* RNCryptor-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		8352B4941C76BA3D00AD4273 /* RNCryptor */ = {
 			isa = PBXGroup;
 			children = (
@@ -508,7 +499,6 @@
 				8352B48F1C76BA3D00AD4273 /* RNCryptorEngine.h */,
 				8352B4901C76BA3D00AD4273 /* RNCryptorEngine.m */,
 				8352B4911C76BA3D00AD4273 /* RNCryptor+Private.h */,
-				8352B4931C76BA3D00AD4273 /* Supporting Files */,
 			);
 			name = RNCryptor;
 			path = "/Users/EsquireTongG/XcodeProjects/CommonCryptoLab/../../Downloads/RNCryptor-RNCryptor-3.0.1/RNCryptor";
