@@ -7,8 +7,6 @@
 //
 
 #import "ATCAppDelegate.h"
-#import "ATCAuthVaultSerialization.h"
-#import "ATCAuthVault.h"
 
 // Private Interfaces
 @interface ATCAppDelegate ()
@@ -28,20 +26,9 @@
     NSURL* url = [ NSURL URLWithString: [ NSString stringWithFormat: @"file://%@", path ] ];
 
     #if __debug_AuthVault_Generator__
-    ATCAuthVault* newAuthVault = [ ATCAuthVault emptyAuthVaultWithMasterPassphrase: @"authenticator" error: nil ];
-    NSData* data = [ ATCAuthVaultSerialization dataWithAuthVault: newAuthVault error: &error ];
-    if ( data )
-        [ data writeToFile: path atomically: YES ];
-    else
-        NSLog( @"%@", error );
     #endif
 
     #if __debug_AuthVault_Parser__
-    ATCAuthVault* authVault = [ ATCAuthVaultSerialization authVaultWithContentsOfURL: url error: &error ];
-    if ( authVault )
-        NSLog( @"🍉%@", authVault );
-    else
-        NSLog( @"%@", error );
     #endif
 
 //    NSString* keychainPath = [ NSHomeDirectory() stringByAppendingPathComponent: @"test.keychain" ];

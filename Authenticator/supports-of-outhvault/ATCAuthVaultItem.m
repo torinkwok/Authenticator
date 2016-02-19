@@ -21,6 +21,25 @@ NSString* const kIssuerKey = @"issuer";
 NSString* const kSecretKeyKey = @"secret-key";
 NSString* const kCheckSumKey = @"check-sum";
 
+inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _BackingStore )
+    {
+    NSString* template = @"%@=%@";
+    NSMutableArray* checkFields = [ NSMutableArray arrayWithObjects:
+          [ NSString stringWithFormat: template, kUUIDKey, _BackingStore[ kUUIDKey ] ?: [ NSNull null ] ]
+        , [ NSString stringWithFormat: template, kAccountNameKey, _BackingStore[ kAccountNameKey ] ?: [ NSNull null ] ]
+        , [ NSString stringWithFormat: template, kCreatedDateKey, _BackingStore[ kCreatedDateKey ] ?: [ NSNull null ] ]
+        , [ NSString stringWithFormat: template, kDigitsKey, _BackingStore[ kDigitsKey ] ?: [ NSNull null ] ]
+        , [ NSString stringWithFormat: template, kTimeStepKey, _BackingStore[ kTimeStepKey ] ?: [ NSNull null ] ]
+        , [ NSString stringWithFormat: template, kAlgorithmKey, _BackingStore[ kAlgorithmKey ] ?: [ NSNull null ] ]
+        , [ NSString stringWithFormat: template, kIssuerKey, _BackingStore[ kIssuerKey ] ?: [ NSNull null ] ]
+        , [ NSString stringWithFormat: template, kSecretKeyKey, _BackingStore[ kSecretKeyKey ] ?: [ NSNull null ] ]
+        , nil
+        ];
+
+    NSData* base64edCheckFields = [ [ checkFields componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ].base64EncodedDataForAuthVault;
+    return base64edCheckFields.checkSumForAuthVault;
+    }
+
 // ATCAuthVaultItem class
 @implementation ATCAuthVaultItem
 
@@ -98,25 +117,6 @@ NSString* const kCheckSumKey = @"check-sum";
     return backingStore_[ kCheckSumKey ];
     }
 
-NSString* checkSumOfAuthVaultItemBackingStore_( NSDictionary* _BackingStore )
-    {
-    NSString* template = @"%@=%@";
-    NSMutableArray* checkFields = [ NSMutableArray arrayWithObjects:
-          [ NSString stringWithFormat: template, kUUIDKey, _BackingStore[ kUUIDKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kAccountNameKey, _BackingStore[ kAccountNameKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kCreatedDateKey, _BackingStore[ kCreatedDateKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kDigitsKey, _BackingStore[ kDigitsKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kTimeStepKey, _BackingStore[ kTimeStepKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kAlgorithmKey, _BackingStore[ kAlgorithmKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kIssuerKey, _BackingStore[ kIssuerKey ] ?: [ NSNull null ] ]
-        , [ NSString stringWithFormat: template, kSecretKeyKey, _BackingStore[ kSecretKeyKey ] ?: [ NSNull null ] ]
-        , nil
-        ];
-
-    NSData* base64edCheckFields = [ [ checkFields componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ].base64EncodedDataForAuthVault;
-    return base64edCheckFields.checkSumForAuthVault;
-    }
-
 @end // ATCAuthVaultItem class
 
 // ATCAuthVaultItem + ATCFriends_
@@ -136,7 +136,7 @@ NSString* checkSumOfAuthVaultItemBackingStore_( NSDictionary* _BackingStore )
 
         if ( tmpPlist )
             {
-            NSString* lhsCheckSum = checkSumOfAuthVaultItemBackingStore_( tmpPlist );
+            NSString* lhsCheckSum = kCheckSumOfAuthVaultItemBackingStore_( tmpPlist );
             NSString* rhsCheckSum = tmpPlist[ kCheckSumKey ];
 
             if ( [ lhsCheckSum isEqualToString: rhsCheckSum ] )
