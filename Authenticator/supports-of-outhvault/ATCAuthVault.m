@@ -17,6 +17,14 @@
 
 @end // Private Interfaces
 
+NSString* const kVersionKey = @"auth-vault-version";
+NSString* const kVaultUUIDKey = @"vault-uuid";
+NSString* const kCreatedDateKey = @"created-date";
+NSString* const kModifiedDateKey = @"modified-date";
+NSString* const kSecretsKey = @"secrets";
+NSString* const kSecretsCheckSumKey = @"secrets-check-sum";
+NSString* const kCheckSumKey = @"check-sum";
+
 // ATCAuthVault class
 @implementation ATCAuthVault
 
@@ -28,6 +36,82 @@
     return [ [ self alloc ] initWithMasterPassphrase: _MasterPassphrase error: _Error ];
     }
 
++ ( NSString* ) generateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict
+    {
+    return [ self calculateCheckSumOfInternalPropertyListDict_: _PlistDict ];
+    }
+
++ ( NSData* ) generateBase64edInternalPropertyListWithDictionary_: ( NSDictionary* )_PlistDict
+                                                           error_: ( NSError** )_Error
+    {
+    NSError* error = nil;
+    NSData* internalPlistData = nil;
+
+    // auth-vault-version key
+    ATCAuthVaultVersion version = [ _PlistDict[ kVersionKey ] int32Value ];
+    // uuid key
+    NSString* uuid = _PlistDict[ kVaultUUIDKey ];
+    // created-date key
+    NSTimeInterval createdDate = [ _PlistDict[ kCreatedDateKey ] timeIntervalSince1970 ];
+    // modified-date key
+    NSTimeInterval modifiedDate = [ _PlistDict[ kModifiedDateKey ] timeIntervalSince1970 ];
+    // secrets key
+    NSDictionary* secretsDict = @{};
+
+    NSMutableDictionary* plistDict = [ NSMutableDictionary dictionaryWithObjectsAndKeys:
+          @( version ).stringValue, kVersionKey
+        , uuid, kVaultUUIDKey
+        , @( createdDate ), kCreatedDateKey
+        , @( modifiedDate ), kModifiedDateKey
+        , nil
+        ];
+
+    // digest key
+    [ plistDict addEntriesFromDictionary:
+        @{ kCheckSumKey : [ self generateCheckSumOfInternalPropertyListDict_: plistDict ] } ];
+
+    internalPlistData = [ NSPropertyListSerialization dataWithPropertyList: plistDict
+                                                                    format: NSPropertyListBinaryFormat_v1_0
+                                                                   options: 0
+                                                                     error: &error ];
+    if ( error )
+        if ( _Error )
+            *_Error = error;
+
+    return internalPlistData;
+    }
+
++ ( NSString* ) calculateCheckSumOfInternalPropertyListDict_: ( NSDictionary* )_PlistDict
+    {
+    ATCAuthVaultVersion version = ( ATCAuthVaultVersion )[ _PlistDict[ kVersionKey ] intValue ];
+    NSString* uuid = _PlistDict[ kVaultUUIDKey ];
+    NSTimeInterval createdDate = [ _PlistDict[ kCreatedDateKey ] doubleValue ];
+    NSTimeInterval modifiedDate = [ _PlistDict[ kModifiedDateKey ] doubleValue ];
+    NSData* privateBlob = _PlistDict[ kPrivateBlobKey ];
+    NSString* privateBlobUUID = _PlistDict[ kPrivateBlobUUIDKey ];
+    NSString* privateBlobCheckSum = _PlistDict[ kPrivateBlobCheckSum ];
+
+    NSMutableArray* checkBucket = [ NSMutableArray arrayWithObjects:
+          [ NSData dataWithBytes: &version length: sizeof( version ) ]
+        , [ uuid dataUsingEncoding: NSUTF8StringEncoding ]
+        , [ NSData dataWithBytes: &createdDate length: sizeof( createdDate ) ]
+        , [ NSData dataWithBytes: &modifiedDate length: sizeof( modifiedDate ) ]
+        , privateBlob
+        , [ privateBlobUUID dataUsingEncoding: NSUTF8StringEncoding ]
+        , [ privateBlobCheckSum dataUsingEncoding: NSUTF8StringEncoding ]
+        , nil
+        ];
+
+    for ( int _Index = 0; _Index < checkBucket.count; _Index++ )
+        {
+        NSString* checkSum = [ checkBucket[ _Index ] checkSumForAuthVault ];
+        [ checkBucket replaceObjectAtIndex: _Index withObject: checkSum ];
+        }
+
+    NSData* subCheckSumsDat = [ [ checkBucket componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ];
+    return subCheckSumsDat.checkSumForAuthVault;
+    }
+
 - ( ATCAuthVault* ) initWithMasterPassphrase: ( NSString* )_MasterPassphrase
                                        error: ( NSError** )_Error
     {
@@ -35,15 +119,8 @@
 
     if ( self = [ super init ] )
         {
-        NSError* error = nil;
 
         self.UUID = TKNonce();
-
-        NSURL* tmpKeychainURL = [ ATCTemporaryDirURL() URLByAppendingPathComponent: [ NSString stringWithFormat: @"%@.dat", self.UUID ] ];
-
-        backingStore_ = [ [ WSCKeychainManager defaultManager ] createKeychainWithURL: tmpKeychainURL passphrase: _MasterPassphrase becomesDefault: NO error: &error ];
-        if ( backingStore_ )
-            [ [ WSCKeychainManager defaultManager ] unlockKeychain: backingStore_ withPassphrase: _MasterPassphrase error: &error ];
 
         self.createdDate = [ NSDate date ];
         self.modifiedDate = [ self.createdDate copy ];
@@ -57,6 +134,7 @@
 @dynamic UUID;
 @dynamic createdDate;
 @dynamic modifiedDate;
+@dynamic checkSum;
 
 - ( NSString* ) UUID
     {
@@ -91,30 +169,7 @@
                                             secret: ( NSString* )_Secret
                                              error: ( NSError** )_Error
     {
-    NSError* error = nil;
-
-    NSString* serviceName = ATCUnitedTypeIdentifier;
-    NSString* accountName = TKNonce();
-
-    NSDictionary* plistDict = @{ @"created-date" : @( [ [ NSDate date ] timeIntervalSince1970 ] )
-                               , @"issuer" : _IssuerName
-                               , @"account-name" : _AccountName
-                               , @"secret-key" : _Secret
-                               };
-    NSData* base64edPlist =
-        [ NSPropertyListSerialization dataWithPropertyList: plistDict
-                                                    format: NSPropertyListBinaryFormat_v1_0
-                                                   options: 0
-                                                     error: &error ].base64EncodedDataForAuthVault;
-
-    NSString* comment = [ self checkSumOfDataBlocks_: @[ serviceName, accountName, base64edPlist ] ];
-
-    WSCPassphraseItem* passphraseItem = [ backingStore_
-        addApplicationPassphraseWithServiceName: serviceName accountName: accountName passphrase: @"isgtforever" error: &error ];
-
-    [ passphraseItem setComment: comment ];
-
-    return [ [ ATCAuthVaultItem alloc ] initWithPassphraseItem_: passphraseItem ];
+    return nil;
     }
 
 //- ( ATCAuthVaultItem* ) findVaultItemWithName: ( NSString* )_ItemName error: ( NSError** )_Error;

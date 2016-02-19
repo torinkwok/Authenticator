@@ -8,11 +8,15 @@
 
 @class ATCAuthVaultItem;
 
+typedef NS_ENUM ( uint32_t, ATCAuthVaultVersion )
+    { ATCAuthVault_v1_0 = 1
+    };
+
 // ATCAuthVault class
 @interface ATCAuthVault : NSObject
     {
 @protected
-    WSCKeychain __strong* backingStore_;
+    NSData __strong* backingStore_;
 
     NSString __strong* UUID_;
     NSDate __strong* createdDate_;
@@ -29,6 +33,8 @@
 
 @property ( strong, readonly ) NSDate* createdDate;
 @property ( strong, readonly ) NSDate* modifiedDate;
+
+@property ( strong, readonly ) NSString* checkSum;
 
 #pragma mark - Creating and Managing Vault Items
 

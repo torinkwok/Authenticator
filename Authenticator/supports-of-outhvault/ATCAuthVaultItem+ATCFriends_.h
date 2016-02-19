@@ -13,6 +13,6 @@
 
 #pragma mark - Initializations
 
-- ( instancetype ) initWithPassphraseItem_: ( WSCKeychainItem* )_KeychainItem;
+- ( instancetype ) initWithPlistData: ( NSData* )_PlistData error: ( NSError** )_Error;
 
 @end // ATCAuthVaultItem + ATCFriends_
