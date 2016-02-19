@@ -15,6 +15,7 @@
 
 #pragma mark - Creating Auth Vault
 
-- ( instancetype ) initWithData: ( NSData* )_Data error: ( NSError** )_Error;
+- ( instancetype ) initWithMasterPassword: ( NSString* )_Password error: ( NSError** )_Error;
+- ( instancetype ) initWithData: ( NSData* )_Data masterPassword: ( NSString* )_Password error: ( NSError** )_Error;
 
 @end // ATCAuthVault class

@@ -7,6 +7,7 @@
 //
 
 #import "ATCAppDelegate.h"
+#import "ATCAuthVault.h"
 
 // Private Interfaces
 @interface ATCAppDelegate ()
@@ -26,6 +27,7 @@
     NSURL* url = [ NSURL URLWithString: [ NSString stringWithFormat: @"file://%@", path ] ];
 
     #if __debug_AuthVault_Generator__
+    ATCAuthVault* authVault = [ [ ATCAuthVault alloc ] initWithMasterPassword: @"isgtforever" error: nil ];
     #endif
 
     #if __debug_AuthVault_Parser__

@@ -11,6 +11,13 @@
 
 #import "NSData+AuthVaultExtensions_.h"
 
+// Private Interfaces
+@interface ATCAuthVault ()
+
+- ( BOOL ) hasValidWatermarkFlags_: ( NSData* )_Data;
+
+@end // Private Interfaces
+
 uint32_t kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
                                  , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
                                  , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
@@ -38,15 +45,16 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
     NSString* template = @"%@=%@";
     NSMutableArray* checkFields = [ NSMutableArray array ];
     [ checkFields addObject: [ NSString stringWithFormat: template, kUUIDKey, _InternalPlist[ kUUIDKey ] ] ];
-    [ checkFields addObject: [ NSString stringWithFormat: template, kCreatedDateKey, [ _InternalPlist[ kCreatedDateKey ] doubleValue ] ] ];
-    [ checkFields addObject: [ NSString stringWithFormat: template, kModifiedDateKey, [ _InternalPlist[ kModifiedDateKey ] doubleValue ] ] ];
+    [ checkFields addObject: [ NSString stringWithFormat: template, kCreatedDateKey, _InternalPlist[ kCreatedDateKey ] ] ];
+    [ checkFields addObject: [ NSString stringWithFormat: template, kModifiedDateKey, _InternalPlist[ kModifiedDateKey ] ] ];
 
     NSArray <NSDictionary*>* entries = _InternalPlist[ kOtpEntriesKey ];
     NSMutableArray* entryCheckFields = [ NSMutableArray array ];
     for ( NSDictionary* _OtpEntry in entries )
         [ entryCheckFields addObject: _OtpEntry[ kCheckSumKey ] ?: @"" ];
 
-    [ checkFields addObject: [ NSString stringWithFormat: template, kCheckSumKey, [ entryCheckFields componentsJoinedByString: @"&" ] ] ];
+    if ( entryCheckFields.count )
+        [ checkFields addObject: [ NSString stringWithFormat: template, kCheckSumKey, [ entryCheckFields componentsJoinedByString: @"&" ] ] ];
 
     NSData* base64edCheckFields = [ [ checkFields componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ].base64EncodedDataForAuthVault;
     return base64edCheckFields.checkSumForAuthVault;
@@ -79,11 +87,43 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
         NSData* binInternalPlist = [ NSPropertyListSerialization dataWithPropertyList: internalPlist format: NSPropertyListBinaryFormat_v1_0 options: 0 error: &error ];
         if ( binInternalPlist )
             {
-            NSMutableData* data = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
+            /* 
+            .------------------.-----------------------------.
+            | BinInternalPlist | CheckSumOf_BinInternalPlist |
+            .------------------.-----------------------------. 
+            */
+            NSMutableData* data = [ NSMutableData dataWithData: binInternalPlist ];
             [ data appendData: [ binInternalPlist.checkSumForAuthVault dataUsingEncoding: NSUTF8StringEncoding ] ];
-            [ data appendData: binInternalPlist ];
 
-            backingStore_ = [ RNEncryptor encryptData: data withSettings: kRNCryptorAES256Settings password: _Password error: &error ];
+           /*       
+            .------------------.-----------------------------.
+            | BinInternalPlist | CheckSumOf_BinInternalPlist |        
+            .------------------.-----------------------------.        
+                      ▽                              ▽
+                      │                               │               
+                      │                               │               
+                      └─────────────────┬─────────────┘               
+                                        │                             
+                                      AES256                          
+                                        │                             
+                                        ▼                             
+            .------------.-----------------------------.-------------.
+            | Watermark  |  EncryptedBinInternalPlist  |  Checksum   |
+            .------------.-----------------------------.-------------.
+                   ▽                   ▽                     ▲
+                   │                    │                     │       
+                   │                    ├──────checksum───────┘       
+                   └────────────────────┘
+            */
+            NSData* encryptedData = [ RNEncryptor encryptData: data withSettings: kRNCryptorAES256Settings password: _Password error: &error ];
+            if ( encryptedData )
+                {
+                NSMutableData* finalData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
+                [ finalData appendData: encryptedData ];
+                [ finalData appendData: [ finalData.checkSumForAuthVault dataUsingEncoding: NSUTF8StringEncoding ] ];
+
+                backingStore_ = [ finalData copy ];
+                }
             }
 
         if ( error )
@@ -93,6 +133,22 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 
     return self;
     }
+
+- ( instancetype ) initWithData: ( NSData* )_Data
+                 masterPassword: ( NSString* )_Password
+                          error: ( NSError** )_Error
+    {
+    if ( self = [ super init ] )
+        {
+        NSError* error = nil;
+
+
+        }
+
+    return self;
+    }
+
+#pragma mark - Private Interfaces
 
 - ( BOOL ) hasValidWatermarkFlags_: ( NSData* )_Data
     {
@@ -116,18 +172,5 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 
     return hasValidFlags;
     }
-
-//- ( instancetype ) initWithData: ( NSData* )_Data
-//                          error: ( NSError** )_Error
-//    {
-//    if ( self = [ super init ] )
-//        {
-//        NSError* error = nil;
-//
-//
-//        }
-//
-//    return self;
-//    }
 
 @end // ATCAuthVault class
