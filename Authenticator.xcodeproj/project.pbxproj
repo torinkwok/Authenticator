@@ -43,6 +43,7 @@
 		8352B4A51C76BDFE00AD4273 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352B4A01C76BDFE00AD4273 /* RNDecryptor.m */; settings = {ASSET_TAGS = (); }; };
 		8352B4A61C76BDFE00AD4273 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352B4A21C76BDFE00AD4273 /* RNEncryptor.m */; settings = {ASSET_TAGS = (); }; };
 		8352B4AA1C76F94C00AD4273 /* NSData+AuthVaultExtensions_.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352B4A91C76F94C00AD4273 /* NSData+AuthVaultExtensions_.m */; settings = {ASSET_TAGS = (); }; };
+		8352B4AD1C76FB5600AD4273 /* ATCAuthVault.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352B4AC1C76FB5600AD4273 /* ATCAuthVault.m */; settings = {ASSET_TAGS = (); }; };
 		8368DD341C6AED6600005A7D /* ATCNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */; settings = {ASSET_TAGS = (); }; };
 		8368DD361C6B637200005A7D /* libcommonCrypto.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8368DD351C6B637200005A7D /* libcommonCrypto.tbd */; };
 		8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
@@ -178,6 +179,8 @@
 		8352B4A21C76BDFE00AD4273 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
 		8352B4A71C76C34300AD4273 /* RNCryptorModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorModule.h; sourceTree = "<group>"; };
 		8352B4A91C76F94C00AD4273 /* NSData+AuthVaultExtensions_.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AuthVaultExtensions_.m"; sourceTree = "<group>"; };
+		8352B4AB1C76FB5600AD4273 /* ATCAuthVault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVault.h; sourceTree = "<group>"; };
+		8352B4AC1C76FB5600AD4273 /* ATCAuthVault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVault.m; sourceTree = "<group>"; };
 		8368DD321C6AED6600005A7D /* ATCNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCNotificationCenter.h; sourceTree = "<group>"; };
 		8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCNotificationCenter.m; sourceTree = "<group>"; };
 		8368DD351C6B637200005A7D /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
@@ -345,6 +348,8 @@
 			children = (
 				8352B4991C76BDFE00AD4273 /* RNCryptor */,
 				8383DD741C75B54B007B7665 /* internal */,
+				8352B4AB1C76FB5600AD4273 /* ATCAuthVault.h */,
+				8352B4AC1C76FB5600AD4273 /* ATCAuthVault.m */,
 				8383DD751C75C9F1007B7665 /* ATCAuthVaultItem.h */,
 				8383DD761C75C9F1007B7665 /* ATCAuthVaultItem.m */,
 			);
@@ -749,6 +754,7 @@
 				8383DD771C75C9F1007B7665 /* ATCAuthVaultItem.m in Sources */,
 				8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */,
 				830AD1A61C706844006D909C /* WSCKeychainItem.m in Sources */,
+				8352B4AD1C76FB5600AD4273 /* ATCAuthVault.m in Sources */,
 				83CEE8C01C6E13090027AE38 /* ATCOTPBadgeLayer.m in Sources */,
 				830AD1A21C706844006D909C /* WSCCertificateItem.m in Sources */,
 				8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */,
