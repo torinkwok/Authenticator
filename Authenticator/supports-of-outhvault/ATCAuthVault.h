@@ -26,4 +26,12 @@
 - ( BOOL ) writeToURL: ( NSURL* )_URL atomically: ( BOOL )_Atomically;
 - ( BOOL ) writeToURL: ( NSURL* )_URL options: ( NSDataWritingOptions )_Mask error: ( NSError** )_Error;
 
+#pragma mark - Meta Data
+
+@property ( strong, readonly ) NSString* UUID;
+@property ( strong, readonly ) NSDate* createdDate;
+@property ( strong, readonly ) NSDate* modifiedDate;
+
+@property ( assign, readonly ) NSUInteger numberOfOtpEntries;
+
 @end // ATCAuthVault class

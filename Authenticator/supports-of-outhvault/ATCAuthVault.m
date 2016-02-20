@@ -13,6 +13,15 @@
 
 // Private Interfaces
 @interface ATCAuthVault ()
+
+#pragma mark - Meta Data
+
+@property ( strong, readwrite ) NSString* UUID;
+@property ( strong, readwrite ) NSDate* createdDate;
+@property ( strong, readwrite ) NSDate* modifiedDate;
+
+@property ( assign, readwrite ) NSUInteger numberOfOtpEntries;
+
 @end // Private Interfaces
 
 uint32_t kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
@@ -138,10 +147,22 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 
             if ( [ binInternalPlist.HMAC_SHA512DigestDataForAuthVault isEqualToData: sha512Digest ] )
                 {
-                if ( self = [ super init ] )
-                    backingStore_ = _Data;
+                NSPropertyListFormat format = 0;
+                NSDictionary* plist = [ NSPropertyListSerialization propertyListWithData: binInternalPlist options: 0 format: &format error: &error ];
+                if ( plist && format == NSPropertyListBinaryFormat_v1_0 )
+                    {
+                    if ( self = [ super init ] )
+                        {
+                        backingStore_ = cipher;
 
-                return self;
+                        self.UUID = plist[ kUUIDKey ];
+                        self.createdDate = [ NSDate dateWithTimeIntervalSince1970: [ plist[ kCreatedDateKey ] doubleValue ] ];
+                        self.modifiedDate = [ NSDate dateWithTimeIntervalSince1970: [ plist[ kModifiedDateKey ] doubleValue ] ];
+                        self.numberOfOtpEntries = [ plist[ kOtpEntriesKey ] count ];
+                        }
+
+                    return self;
+                    }
                 }
             }
         }
