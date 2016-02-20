@@ -60,7 +60,7 @@
     #endif
     }
 
-#pragma mark - Conforms to <ATCAuthVaultDelegate>
+#pragma mark - Conforms to <ATCAuthVaultPasswordSource>
 
 - ( NSString* ) authVaultNeedsPasswordToUnlock: ( ATCAuthVault* )_AuthVault
     {

@@ -13,6 +13,6 @@
 
 #pragma mark - Initializations
 
-- ( instancetype ) initWithPlistData: ( NSData* )_PlistData error: ( NSError** )_Error;
+- ( instancetype ) initWithPlistDict_: ( NSDictionary* )_PlistDict error_: ( NSError** )_Error;
 
 @end // ATCAuthVaultItem + ATCFriends_

@@ -215,30 +215,13 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
 
 #pragma mark - Initializations
 
-- ( instancetype ) initWithPlistData: ( NSData* )_PlistData
-                               error: ( NSError** )_Error
+- ( instancetype ) initWithPlistDict_: ( NSDictionary* )_PlistDict
+                               error_: ( NSError** )_Error
     {
     if ( self = [ super init ] )
         {
-        NSError* error = nil;
-
-        NSDictionary* tmpPlist = [ NSPropertyListSerialization
-            propertyListWithData: _PlistData options: 0 format: nil error: &error ];
-
-        if ( tmpPlist )
-            {
-            NSString* lhsCheckSum = kCheckSumOfAuthVaultItemBackingStore_( tmpPlist );
-            NSString* rhsCheckSum = tmpPlist[ kCheckSumKey ];
-
-            if ( [ lhsCheckSum isEqualToString: rhsCheckSum ] )
-                backingStore_ = [ tmpPlist mutableCopy ];
-            else
-                ; // TODO: To construct an error object that contains the information about this failure
-            }
-
-        if ( error )
-            if ( _Error )
-                *_Error = error;
+        backingStore_ = [ _PlistDict mutableCopy ];
+        [ self resetCheckSum_ ];
         }
 
     return self;

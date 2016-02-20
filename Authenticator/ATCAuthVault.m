@@ -11,6 +11,7 @@
 #import "ATCAuthVaultConstants.h"
 
 #import "ATCExtensions_.h"
+#import "ATCAuthVaultItem+ATCFriends_.h"
 
 // Private Interfaces
 @interface ATCAuthVault ()
@@ -276,18 +277,56 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
     return isSuccess;
     }
 
-//- ( NSArray <ATCAuthVaultItem*>* ) authVaultItems;
-//    {
-//    NSMutableArray* authVaultItems = [ NSMutableArray array ];
-//
-//    NSDictionary* internalPlist = [ backingStore_
-//    for ( NS
-//    }
-//
-//- ( BOOL ) setAuthVaultItems: ( NSArray <ATCAuthVaultItem*>* )_Items error: ( NSError** )_Error
-//    {
-//
-//    }
+- ( NSArray <ATCAuthVaultItem*>* ) authVaultItemsWithError: ( NSError** )_Error
+    {
+    NSError* error = nil;
+    NSMutableArray* authVaultItems = [ NSMutableArray array ];
+
+    NSString* password = [ self.passwordSource authVaultNeedsPasswordToUnlock: self ];
+    NSDictionary* internalPlist = [ self internalPlistFromCipher_: backingStore_ withPassword_: password error_: &error ];
+
+    if ( internalPlist )
+        {
+        NSArray <NSDictionary*>* otpEntries = internalPlist[ kOtpEntriesKey ];
+
+        for ( NSDictionary* _OtpEntry in otpEntries )
+            {
+            [ authVaultItems addObject: [ [ ATCAuthVaultItem alloc ] initWithPlistDict_: _OtpEntry error_: &error ] ];
+            if ( error )
+                NSLog( @"Error occured: %@", error );
+            }
+        }
+
+    if ( error )
+        if ( _Error )
+            *_Error = error;
+
+    return authVaultItems;
+    }
+
+- ( void ) setAuthVaultItems: ( NSArray <ATCAuthVaultItem*>* )_Items error: ( NSError** )_Error
+    {
+    NSError* error = nil;
+
+    NSString* password = [ self.passwordSource authVaultNeedsPasswordToUnlock: self ];
+    NSMutableDictionary* modifiedInternalPlist = [ [ self internalPlistFromCipher_: backingStore_ withPassword_: password error_: &error ] mutableCopy ];
+
+    if ( modifiedInternalPlist )
+        {
+        NSMutableArray* newOtpEntries = [ NSMutableArray arrayWithCapacity: _Items.count ];
+        for ( ATCAuthVaultItem* _AuthItem in _Items )
+            [ newOtpEntries addObject: [ _AuthItem plistRep ] ];
+
+        modifiedInternalPlist[ kOtpEntriesKey ] = newOtpEntries;
+        modifiedInternalPlist[ kModifiedDateKey ] = @( [ NSDate date ].timeIntervalSince1970 );
+
+        backingStore_ = [ self cipherFromInternalPlist_: modifiedInternalPlist withPassword_: password error_: &error ];
+        }
+
+    if ( error )
+        if ( _Error )
+            *_Error = error;
+    }
 
 #pragma mark - Private Interfaces
 

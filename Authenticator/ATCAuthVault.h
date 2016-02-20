@@ -8,7 +8,7 @@
 
 @class ATCAuthVaultItem;
 
-@protocol ATCAuthVaultDelegate;
+@protocol ATCAuthVaultPasswordSource;
 
 // ATCAuthVault class
 @interface ATCAuthVault : NSObject
@@ -17,7 +17,7 @@
     NSData __strong* backingStore_;
     }
 
-@property ( weak, readwrite ) id <ATCAuthVaultDelegate> delegate;
+@property ( weak, readwrite ) id <ATCAuthVaultPasswordSource> passwordSource;
 
 #pragma mark - Creating Auth Vault
 
@@ -45,15 +45,15 @@
 - ( BOOL ) addAuthVaultItem: ( ATCAuthVaultItem* )_NewItem withMasterPassword: ( NSString* )_Password error: ( NSError** )_Error;
 - ( BOOL ) deleteAuthVaultItem: ( ATCAuthVaultItem* )_NewItem withMasterPassword: ( NSString* )_Password error: ( NSError** )_Error;
 
-- ( NSArray <ATCAuthVaultItem*>* ) authVaultItems;
-- ( BOOL ) setAuthVaultItems: ( NSArray <ATCAuthVaultItem*>* )_Items error: ( NSError** )_Error;
+- ( NSArray <ATCAuthVaultItem*>* ) authVaultItemsWithError: ( NSError** )_Error;
+- ( void ) setAuthVaultItems: ( NSArray <ATCAuthVaultItem*>* )_Items error: ( NSError** )_Error;
 
 @end // ATCAuthVault class
 
-// ATCAuthVaultDelegate protocol
-@protocol ATCAuthVaultDelegate <NSObject>
+// ATCAuthVaultPasswordSource protocol
+@protocol ATCAuthVaultPasswordSource <NSObject>
 
 @required
 - ( NSString* ) authVaultNeedsPasswordToUnlock: ( ATCAuthVault* )_AuthVault;
 
-@end // ATCAuthVaultDelegate protocol
+@end // ATCAuthVaultPasswordSource protocol
