@@ -27,8 +27,11 @@
     NSURL* url = [ NSURL URLWithString: [ NSString stringWithFormat: @"file://%@", path ] ];
 
     #if __debug_AuthVault_Generator__
-    ATCAuthVault* authVault = [ [ ATCAuthVault alloc ] initWithMasterPassword: @"isgtforever" error: nil ];
+    ATCAuthVault* authVault = [ [ ATCAuthVault alloc ] initWithMasterPassword: @"isgtforever" error: &error ];
     [ authVault writeToURL: url atomically: YES ];
+
+    if ( !authVault )
+        NSLog( @"%@", error );
     #endif
 
     #if __debug_AuthVault_Parser__

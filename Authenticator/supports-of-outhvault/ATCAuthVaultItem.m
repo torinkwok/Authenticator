@@ -31,7 +31,7 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
         ];
 
     NSData* base64edCheckFields = [ [ checkFields componentsJoinedByString: @"&" ] dataUsingEncoding: NSUTF8StringEncoding ].base64EncodedDataForAuthVault;
-    return base64edCheckFields.checkSumForAuthVault;
+    return base64edCheckFields.HMAC_SHA512DigestStringForAuthVault;
     }
 
 // ATCAuthVaultItem class

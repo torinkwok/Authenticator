@@ -12,8 +12,8 @@
 @implementation NSData ( AuthVaultExtensions_ )
 
 @dynamic base64EncodedDataForAuthVault;
-@dynamic sha512DigestForAuthVault;
-@dynamic checkSumForAuthVault;
+@dynamic HMAC_SHA512DigestDataForAuthVault;
+@dynamic HMAC_SHA512DigestStringForAuthVault;
 
 - ( NSData* ) base64EncodedDataForAuthVault
     {
@@ -21,7 +21,7 @@
                 NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
     }
 
-- ( NSData* ) sha512DigestForAuthVault
+- ( NSData* ) HMAC_SHA512DigestDataForAuthVault
     {
     unsigned char buffer[ CC_SHA512_DIGEST_LENGTH ];
     CCHmac( kCCHmacAlgSHA512, ATCUnitedTypeIdentifier.UTF8String, ATCUnitedTypeIdentifier.length, self.bytes, self.length, buffer );
@@ -30,9 +30,9 @@
     return macOutData;
     }
 
-- ( NSString* ) checkSumForAuthVault
+- ( NSString* ) HMAC_SHA512DigestStringForAuthVault
     {
-    NSData* macOutData = [ self sha512DigestForAuthVault ];
+    NSData* macOutData = [ self HMAC_SHA512DigestDataForAuthVault ];
     NSString* checkSum =
         [ [ macOutData base64EncodedStringWithOptions: 0 ]
             stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet alphanumericCharacterSet ] ];
