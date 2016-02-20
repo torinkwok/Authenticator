@@ -6,6 +6,8 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
+@class ATCAuthVaultItem;
+
 // ATCAuthVault class
 @interface ATCAuthVault : NSObject
     {
@@ -33,5 +35,9 @@
 @property ( strong, readonly ) NSDate* modifiedDate;
 
 @property ( assign, readonly ) NSUInteger numberOfOtpEntries;
+
+#pragma mark - Managing Otp Entries
+
+- ( BOOL ) addAuthVaultItem: ( ATCAuthVaultItem* )_NewItem error: ( NSError** )_Error;
 
 @end // ATCAuthVault class

@@ -30,6 +30,8 @@
                                withPassword_: ( NSString* )_Password
                                       error_: ( NSError** )_Error;
 
+- ( void ) resetMetaDataWithInternalPlist: ( NSDictionary* )_InternalPlist;
+
 @property ( assign, readonly ) NSData* assembledAuthVaultDoc_;
 
 @end // Private Interfaces
@@ -117,11 +119,7 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
         if ( self  = [ super init ] )
             {
             backingStore_ = cipher;
-
-            self.UUID = internalPlist[ kUUIDKey ];
-            self.createdDate = [ NSDate dateWithTimeIntervalSince1970: [ internalPlist[ kCreatedDateKey ] doubleValue ] ];
-            self.modifiedDate = [ NSDate dateWithTimeIntervalSince1970: [ internalPlist[ kModifiedDateKey ] doubleValue ] ];
-            self.numberOfOtpEntries = [ internalPlist[ kOtpEntriesKey ] count ];
+            [ self resetMetaDataWithInternalPlist: internalPlist ];
             }
 
         return self;
@@ -153,11 +151,7 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
             if ( self = [ super init ] )
                 {
                 backingStore_ = cipher;
-
-                self.UUID = internalPlist[ kUUIDKey ];
-                self.createdDate = [ NSDate dateWithTimeIntervalSince1970: [ internalPlist[ kCreatedDateKey ] doubleValue ] ];
-                self.modifiedDate = [ NSDate dateWithTimeIntervalSince1970: [ internalPlist[ kModifiedDateKey ] doubleValue ] ];
-                self.numberOfOtpEntries = [ internalPlist[ kOtpEntriesKey ] count ];
+                [ self resetMetaDataWithInternalPlist: internalPlist ];
                 }
 
             return self;
@@ -191,6 +185,17 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 - ( BOOL ) writeToURL: ( NSURL* )_URL options: ( NSDataWritingOptions )_Mask error: ( NSError** )_Error
     {
     return [ self.assembledAuthVaultDoc_ writeToURL: _URL options: _Mask error: _Error ];
+    }
+
+#pragma mark - Managing Otp Entries
+
+- ( BOOL ) addAuthVaultItem: ( ATCAuthVaultItem* )_NewItem error: ( NSError** )_Error
+    {
+    BOOL isSuccess = NO;
+
+    // TODO:
+
+    return isSuccess;
     }
 
 #pragma mark - Private Interfaces
@@ -271,6 +276,14 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
         }
 
     return internalPlist;
+    }
+
+- ( void ) resetMetaDataWithInternalPlist: ( NSDictionary* )_InternalPlist
+    {
+    self.UUID = _InternalPlist[ kUUIDKey ];
+    self.createdDate = [ NSDate dateWithTimeIntervalSince1970: [ _InternalPlist[ kCreatedDateKey ] doubleValue ] ];
+    self.modifiedDate = [ NSDate dateWithTimeIntervalSince1970: [ _InternalPlist[ kModifiedDateKey ] doubleValue ] ];
+    self.numberOfOtpEntries = [ _InternalPlist[ kOtpEntriesKey ] count ];
     }
 
 @dynamic assembledAuthVaultDoc_;

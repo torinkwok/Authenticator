@@ -39,20 +39,15 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
 
 #pragma mark - Properties
 
-@dynamic UUID;
 @dynamic accountName;
-@dynamic createdDate;
 @dynamic digits;
 @dynamic timeStep;
 @dynamic algorithm;
 @dynamic issuer;
-@dynamic secretKey;
 
-@dynamic checkSum;
-
-- ( NSString* ) UUID
+- ( void ) setAccountName: ( NSString* )_New
     {
-    return backingStore_[ kUUIDKey ];
+    backingStore_[ kAccountNameKey ] = _New;
     }
 
 - ( NSString* ) accountName
@@ -60,9 +55,9 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
     return backingStore_[ kAccountNameKey ];
     }
 
-- ( NSDate* ) createdDate
+- ( void ) setDigits: ( NSUInteger )_New
     {
-    return [ NSDate dateWithTimeIntervalSince1970: [ backingStore_[ kCreatedDateKey ] doubleValue ] ];
+    backingStore_[ kDigitsKey ] = [ NSNumber numberWithLong: _New ];
     }
 
 - ( NSUInteger ) digits
@@ -70,9 +65,34 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
     return [ backingStore_[ kDigitsKey ] unsignedLongValue ];
     }
 
+- ( void ) setTimeStep: ( NSUInteger )_New
+    {
+    backingStore_[ kTimeStepKey ] = [ NSNumber numberWithLong: _New ];
+    }
+
 - ( NSUInteger ) timeStep
     {
     return [ backingStore_[ kTimeStepKey ] unsignedLongValue ];
+    }
+
+- ( void ) setAlgorithm: ( CCHmacAlgorithm )_New
+    {
+    NSString* alg = nil;
+
+    switch ( _New )
+        {
+        case kCCHmacAlgSHA1:    alg = @"sha1";      break;
+        case kCCHmacAlgMD5:     alg = @"md5";       break;
+        case kCCHmacAlgSHA256:  alg = @"sha256";    break;
+        case kCCHmacAlgSHA384:  alg = @"sha384";    break;
+        case kCCHmacAlgSHA512:  alg = @"sha512";    break;
+        case kCCHmacAlgSHA224:  alg = @"sha224";    break;
+
+        default:
+            alg = @"unknown";
+        }
+
+    backingStore_[ kAlgorithmKey ] = alg;
     }
 
 - ( CCHmacAlgorithm ) algorithm
@@ -96,9 +116,32 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
     return alg;
     }
 
+- ( void ) setIssuer: ( NSString* )_New
+    {
+    backingStore_[ kIssuerKey ] = _New;
+    }
+
 - ( NSString* ) issuer
     {
     return backingStore_[ kIssuerKey ];
+    }
+
+#pragma mark - Meta Data
+
+@dynamic UUID;
+@dynamic createdDate;
+@dynamic secretKey;
+
+@dynamic checkSum;
+
+- ( NSString* ) UUID
+    {
+    return backingStore_[ kUUIDKey ];
+    }
+
+- ( NSDate* ) createdDate
+    {
+    return [ NSDate dateWithTimeIntervalSince1970: [ backingStore_[ kCreatedDateKey ] doubleValue ] ];
     }
 
 - ( NSString* ) secretKey
@@ -109,6 +152,32 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
 - ( NSString* ) checkSum
     {
     return backingStore_[ kCheckSumKey ];
+    }
+
+#pragma mark - Initializations
+
+- ( instancetype ) initWithIssuer: ( NSString* )_IssuerName
+                      accountName: ( NSString* )_AccountName
+                        secretKey: ( NSString* )_SecretKey
+    {
+    if ( self = [ super init ] )
+        {
+        backingStore_ = [ [ NSMutableDictionary alloc ] initWithObjectsAndKeys:
+              _AccountName, kAccountNameKey
+            , _IssuerName, kIssuerKey
+            , _SecretKey, kSecretKeyKey
+            , @( 6 ), kDigitsKey
+            , @( 30 ), kTimeStepKey
+            , @"sha1", kAlgorithmKey
+            , TKNonce(), kUUIDKey
+            , @( [ NSDate date ].timeIntervalSince1970 ), kCreatedDateKey
+            , nil ];
+
+        NSString* checksum = kCheckSumOfAuthVaultItemBackingStore_( backingStore_ );
+        backingStore_[ kCheckSumKey ] = checksum;
+        }
+
+    return self;
     }
 
 @end // ATCAuthVaultItem class
@@ -134,7 +203,7 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
             NSString* rhsCheckSum = tmpPlist[ kCheckSumKey ];
 
             if ( [ lhsCheckSum isEqualToString: rhsCheckSum ] )
-                backingStore_ = tmpPlist;
+                backingStore_ = [ tmpPlist mutableCopy ];
             else
                 ; // TODO: To construct an error object that contains the information about this failure
             }
