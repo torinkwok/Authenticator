@@ -202,10 +202,69 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
     NSMutableDictionary* internalPlist = [ [ self internalPlistFromCipher_: backingStore_ withPassword_: _Password error_: &error ] mutableCopy ];
     if ( internalPlist )
         {
-        internalPlist[ kOtpEntriesKey ] = [ internalPlist[ kOtpEntriesKey ] arrayByAddingObject: plistRep ];
+        BOOL noDumplicate = YES;
+        NSMutableArray* modifiedOptEntries = [ internalPlist[ kOtpEntriesKey ] mutableCopy ];
 
-        backingStore_ = [ self cipherFromInternalPlist_: internalPlist withPassword_: _Password error_: &error ];
-        isSuccess = ( backingStore_ != nil );
+        for ( NSDictionary* _OptPlist in modifiedOptEntries )
+            {
+            if ( [ _OptPlist[ kUUIDKey ] isEqualToString: plistRep[ kUUIDKey ]] )
+                {
+                noDumplicate = NO;
+                break;
+                }
+            }
+
+        if ( noDumplicate )
+            {
+            [ modifiedOptEntries insertObject: plistRep atIndex: 0 ];
+            internalPlist[ kOtpEntriesKey ] = modifiedOptEntries;
+
+            backingStore_ = [ self cipherFromInternalPlist_: internalPlist withPassword_: _Password error_: &error ];
+            isSuccess = YES;
+            }
+        else
+            ; // TODO: To construct an error object that contains the information about this failure
+        }
+
+    if ( error )
+        if ( _Error )
+            *_Error = error;
+
+    return isSuccess;
+    }
+
+- ( BOOL ) deleteAuthVaultItem: ( ATCAuthVaultItem* )_NewItem
+            withMasterPassword: ( NSString* )_Password
+                         error: ( NSError** )_Error
+    {
+    NSError* error = nil;
+
+    BOOL isSuccess = NO;
+
+    NSDictionary* plistRep = [ _NewItem plistRep ];
+    NSMutableDictionary* internalPlist = [ [ self internalPlistFromCipher_: backingStore_ withPassword_: _Password error_: &error ] mutableCopy ];
+    if ( internalPlist )
+        {
+        NSMutableArray* modifiedOptEntries = [ internalPlist[ kOtpEntriesKey ] mutableCopy ];
+        NSDictionary* optPlistToBeRemvoed = nil;
+
+        for ( NSDictionary* _OptPlist in modifiedOptEntries )
+            {
+            if ( [ _OptPlist[ kUUIDKey ] isEqualToString: plistRep[ kUUIDKey ]] )
+                {
+                optPlistToBeRemvoed = _OptPlist;
+                break;
+                }
+            }
+
+        if ( optPlistToBeRemvoed )
+            {
+            [ modifiedOptEntries removeObject: optPlistToBeRemvoed ];
+            internalPlist[ kOtpEntriesKey ] = modifiedOptEntries;
+
+            backingStore_ = [ self cipherFromInternalPlist_: internalPlist withPassword_: _Password error_: &error ];
+            isSuccess = YES;
+            }
         }
 
     if ( error )
