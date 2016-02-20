@@ -218,6 +218,7 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
             {
             [ modifiedOptEntries insertObject: plistRep atIndex: 0 ];
             internalPlist[ kOtpEntriesKey ] = modifiedOptEntries;
+            internalPlist[ kModifiedDateKey ] = @( [ NSDate date ].timeIntervalSince1970 );
 
             backingStore_ = [ self cipherFromInternalPlist_: internalPlist withPassword_: _Password error_: &error ];
             isSuccess = YES;
@@ -261,6 +262,7 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
             {
             [ modifiedOptEntries removeObject: optPlistToBeRemvoed ];
             internalPlist[ kOtpEntriesKey ] = modifiedOptEntries;
+            internalPlist[ kModifiedDateKey ] = @( [ NSDate date ].timeIntervalSince1970 );
 
             backingStore_ = [ self cipherFromInternalPlist_: internalPlist withPassword_: _Password error_: &error ];
             isSuccess = YES;
@@ -273,6 +275,19 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 
     return isSuccess;
     }
+
+//- ( NSArray <ATCAuthVaultItem*>* ) authVaultItems;
+//    {
+//    NSMutableArray* authVaultItems = [ NSMutableArray array ];
+//
+//    NSDictionary* internalPlist = [ backingStore_
+//    for ( NS
+//    }
+//
+//- ( BOOL ) setAuthVaultItems: ( NSArray <ATCAuthVaultItem*>* )_Items error: ( NSError** )_Error
+//    {
+//
+//    }
 
 #pragma mark - Private Interfaces
 

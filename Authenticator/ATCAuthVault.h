@@ -41,4 +41,7 @@
 - ( BOOL ) addAuthVaultItem: ( ATCAuthVaultItem* )_NewItem withMasterPassword: ( NSString* )_Password error: ( NSError** )_Error;
 - ( BOOL ) deleteAuthVaultItem: ( ATCAuthVaultItem* )_NewItem withMasterPassword: ( NSString* )_Password error: ( NSError** )_Error;
 
+- ( NSArray <ATCAuthVaultItem*>* ) authVaultItems;
+- ( BOOL ) setAuthVaultItems: ( NSArray <ATCAuthVaultItem*>* )_Items error: ( NSError** )_Error;
+
 @end // ATCAuthVault class
