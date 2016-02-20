@@ -37,24 +37,24 @@
 
 @implementation ATCAuthVaultWatermark_
 
-uint32_t watermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
-                                , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
-                                , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
-                                , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
-                                };
+uint32_t kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
+                                 , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
+                                 , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
+                                 , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
+                                 };
 + ( NSData* ) watermark
     {
-    return [ NSData dataWithBytes: watermarkFlags length: [ self sizeInBytes ] ];
+    return [ NSData dataWithBytes: kWatermarkFlags length: [ self sizeInBytes ] ];
     }
 
 + ( uint32_t const * ) bytes
     {
-    return watermarkFlags;
+    return kWatermarkFlags;
     }
 
 + ( NSUInteger ) sizeInBytes
     {
-    return sizeof( watermarkFlags );
+    return sizeof( kWatermarkFlags );
     }
 
 @end // ATCAuthVaultWatermark_ class
