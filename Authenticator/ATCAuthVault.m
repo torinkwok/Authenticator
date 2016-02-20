@@ -30,7 +30,7 @@
 @interface ATCAuthVaultWatermark_ : NSObject
 
 + ( NSData* ) watermark;
-+ ( uint32_t const * ) bytes;
++ ( uint32_t const* ) bytes;
 + ( NSUInteger ) sizeInBytes;
 
 @end
@@ -47,7 +47,7 @@ uint32_t kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D
     return [ NSData dataWithBytes: kWatermarkFlags length: [ self sizeInBytes ] ];
     }
 
-+ ( uint32_t const * ) bytes
++ ( uint32_t const* ) bytes
     {
     return kWatermarkFlags;
     }
