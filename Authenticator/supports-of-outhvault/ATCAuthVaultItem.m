@@ -10,7 +10,7 @@
 #import "ATCAuthVaultConstants.h"
 
 #import "ATCAuthVaultItem+ATCFriends_.h"
-#import "NSData+AuthVaultExtensions_.h"
+#import "ATCExtensions_.h"
 
 #define __ATC_CHECK_FIELD__( _Key ) \
     [ NSString stringWithFormat: template, _Key, _BackingStore[ _Key ] ?: [ NSNull null ] ]

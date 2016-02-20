@@ -42,7 +42,6 @@
 		8352B4A41C76BDFE00AD4273 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352B49E1C76BDFE00AD4273 /* RNCryptorEngine.m */; settings = {ASSET_TAGS = (); }; };
 		8352B4A51C76BDFE00AD4273 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352B4A01C76BDFE00AD4273 /* RNDecryptor.m */; settings = {ASSET_TAGS = (); }; };
 		8352B4A61C76BDFE00AD4273 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352B4A21C76BDFE00AD4273 /* RNEncryptor.m */; settings = {ASSET_TAGS = (); }; };
-		8352B4AA1C76F94C00AD4273 /* NSData+AuthVaultExtensions_.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352B4A91C76F94C00AD4273 /* NSData+AuthVaultExtensions_.m */; settings = {ASSET_TAGS = (); }; };
 		8352B4AD1C76FB5600AD4273 /* ATCAuthVault.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352B4AC1C76FB5600AD4273 /* ATCAuthVault.m */; settings = {ASSET_TAGS = (); }; };
 		8352B4B01C771A3200AD4273 /* ATCAuthVaultConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352B4AF1C771A3200AD4273 /* ATCAuthVaultConstants.m */; settings = {ASSET_TAGS = (); }; };
 		8368DD341C6AED6600005A7D /* ATCNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */; settings = {ASSET_TAGS = (); }; };
@@ -179,7 +178,6 @@
 		8352B4A11C76BDFE00AD4273 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
 		8352B4A21C76BDFE00AD4273 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
 		8352B4A71C76C34300AD4273 /* RNCryptorModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorModule.h; sourceTree = "<group>"; };
-		8352B4A91C76F94C00AD4273 /* NSData+AuthVaultExtensions_.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AuthVaultExtensions_.m"; sourceTree = "<group>"; };
 		8352B4AB1C76FB5600AD4273 /* ATCAuthVault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVault.h; sourceTree = "<group>"; };
 		8352B4AC1C76FB5600AD4273 /* ATCAuthVault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVault.m; sourceTree = "<group>"; };
 		8352B4AE1C76FC7800AD4273 /* ATCAuthVaultConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCAuthVaultConstants.h; sourceTree = "<group>"; };
@@ -236,7 +234,7 @@
 		8383DD751C75C9F1007B7665 /* ATCAuthVaultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCAuthVaultItem.h; sourceTree = "<group>"; };
 		8383DD761C75C9F1007B7665 /* ATCAuthVaultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCAuthVaultItem.m; sourceTree = "<group>"; };
 		8383DD781C75CC7F007B7665 /* ATCAuthVaultItem+ATCFriends_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ATCAuthVaultItem+ATCFriends_.h"; sourceTree = "<group>"; };
-		8383DD7B1C75D78F007B7665 /* NSData+AuthVaultExtensions_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AuthVaultExtensions_.h"; sourceTree = "<group>"; };
+		8383DD7B1C75D78F007B7665 /* ATCExtensions_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCExtensions_.h; sourceTree = "<group>"; };
 		83A650E81C70516B009D2FA7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		83A650EA1C705279009D2FA7 /* ATCOTPEntriesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntriesManager.h; sourceTree = "<group>"; };
 		83A650EB1C705279009D2FA7 /* ATCOTPEntriesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntriesManager.m; sourceTree = "<group>"; };
@@ -586,8 +584,7 @@
 			isa = PBXGroup;
 			children = (
 				8383DD781C75CC7F007B7665 /* ATCAuthVaultItem+ATCFriends_.h */,
-				8383DD7B1C75D78F007B7665 /* NSData+AuthVaultExtensions_.h */,
-				8352B4A91C76F94C00AD4273 /* NSData+AuthVaultExtensions_.m */,
+				8383DD7B1C75D78F007B7665 /* ATCExtensions_.h */,
 			);
 			name = internal;
 			sourceTree = "<group>";
@@ -768,7 +765,6 @@
 				830AD1E81C71CED3006D909C /* ATCOTPVaultsManager.m in Sources */,
 				8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */,
 				830AD19C1C706844006D909C /* _WSCCommon.m in Sources */,
-				8352B4AA1C76F94C00AD4273 /* NSData+AuthVaultExtensions_.m in Sources */,
 				8373D8901C67548C00A11E31 /* AGOtp.m in Sources */,
 				8373D8B51C697D4D00A11E31 /* ATCBeautifulWindow.m in Sources */,
 				8373D8671C671D7300A11E31 /* NSArray+PureLayout.m in Sources */,

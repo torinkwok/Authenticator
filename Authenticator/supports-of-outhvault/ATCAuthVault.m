@@ -9,13 +9,10 @@
 #import "ATCAuthVault.h"
 #import "ATCAuthVaultConstants.h"
 
-#import "NSData+AuthVaultExtensions_.h"
+#import "ATCExtensions_.h"
 
 // Private Interfaces
 @interface ATCAuthVault ()
-
-- ( BOOL ) hasValidWatermarkFlags_: ( NSData* )_Data;
-
 @end // Private Interfaces
 
 uint32_t kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
@@ -23,22 +20,6 @@ uint32_t kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D
                                  , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
                                  , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
                                  };
-
-inline static uint32_t kExchangeEndianness_( uint32_t _Value )
-    {
-    #if !TARGET_RT_BIG_ENDIAN // On Intel Mac, the following code fragment will be executed
-    uint32_t result = 0;
-
-    result |= ( _Value & 0x000000FF ) << 24;
-    result |= ( _Value & 0x0000FF00 ) << 8;
-    result |= ( _Value & 0x00FF0000 ) >> 8;
-    result |= ( _Value & 0xFF000000 ) >> 24;
-
-    return result;
-    #else
-    return _Value;
-    #endif
-    }
 
 inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _InternalPlist )
     {
@@ -113,7 +94,7 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
                │                    ├──────checksum───────┘       
                └────────────────────┘
         */
-        NSData* encryptedData = [ RNEncryptor encryptData: data withSettings: kRNCryptorAES256Settings password: _Password error: &error ];
+        NSData* encryptedData = [ RNEncryptor encryptData: data withSettings: kRNCryptorAES256Settings password: _Password.HMAC_SHA512DigestStringForAuthVault error: &error ];
         if ( encryptedData )
             {
             if ( self = [ super init ] )
@@ -136,37 +117,20 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
     return nil;
     }
 
-- ( BOOL ) isValidAuthVaultData_: ( NSData* )_AuthVaultData
-    {
-    BOOL isValid = NO;
-
-    if ( [ self hasValidWatermarkFlags_: _AuthVaultData ] )
-        {
-        NSData* subData = [ _AuthVaultData subdataWithRange: NSMakeRange( 0, _AuthVaultData.length - CC_SHA512_DIGEST_LENGTH ) ];
-        NSData* sha512Digest = subData.HMAC_SHA512DigestDataForAuthVault;
-
-        if ( [ [ _AuthVaultData subdataWithRange: NSMakeRange( _AuthVaultData.length - CC_SHA512_DIGEST_LENGTH, CC_SHA512_DIGEST_LENGTH ) ]
-                isEqualToData: sha512Digest ] )
-            isValid = YES;
-        }
-
-    return isValid;
-    }
-
 - ( instancetype ) initWithData: ( NSData* )_Data
                  masterPassword: ( NSString* )_Password
                           error: ( NSError** )_Error
     {
     NSError* error = nil;
 
-    if ( [ self isValidAuthVaultData_: _Data ] )
+    if ( _Data.isValidAuthVaultData )
         {
         NSUInteger watermarkLength = sizeof( kWatermarkFlags );
         NSUInteger length = _Data.length;
         
         NSRange cipherRange = NSMakeRange( watermarkLength, length - ( watermarkLength + CC_SHA512_DIGEST_LENGTH ) );
         NSData* cipher = [ _Data subdataWithRange: cipherRange ];
-        NSData* plainData = [ RNDecryptor decryptData: cipher withPassword: _Password error: &error ];
+        NSData* plainData = [ RNDecryptor decryptData: cipher withPassword: _Password.HMAC_SHA512DigestStringForAuthVault error: &error ];
         if ( plainData )
             {
             NSData* binInternalPlist = [ plainData subdataWithRange: NSMakeRange( 0, plainData.length - CC_SHA512_DIGEST_LENGTH ) ];
@@ -211,16 +175,51 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
     return [ backingStore_ writeToURL: _URL options: _Mask error: _Error ];
     }
 
-#pragma mark - Private Interfaces
+@end // ATCAuthVault class
 
-- ( BOOL ) hasValidWatermarkFlags_: ( NSData* )_Data
+// NSData + AuthVaultExtensions_
+@implementation NSData ( AuthVaultExtensions_ )
+
+@dynamic base64EncodedDataForAuthVault;
+@dynamic HMAC_SHA512DigestDataForAuthVault;
+@dynamic HMAC_SHA512DigestStringForAuthVault;
+
+@dynamic hasValidWatermarkFlags;
+@dynamic isValidAuthVaultData;
+
+- ( NSData* ) base64EncodedDataForAuthVault
     {
-    if ( _Data.length < sizeof( kWatermarkFlags ) )
+    return [ self base64EncodedDataWithOptions:
+                NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
+    }
+
+- ( NSData* ) HMAC_SHA512DigestDataForAuthVault
+    {
+    unsigned char buffer[ CC_SHA512_DIGEST_LENGTH ];
+    CCHmac( kCCHmacAlgSHA512, ATCUnitedTypeIdentifier.UTF8String, ATCUnitedTypeIdentifier.length, self.bytes, self.length, buffer );
+
+    NSData* macOutData = [ NSData dataWithBytes: buffer length: CC_SHA512_DIGEST_LENGTH ];
+    return macOutData;
+    }
+
+- ( NSString* ) HMAC_SHA512DigestStringForAuthVault
+    {
+    NSData* macOutData = [ self HMAC_SHA512DigestDataForAuthVault ];
+    NSString* checkSum =
+        [ [ macOutData base64EncodedStringWithOptions: 0 ]
+            stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet alphanumericCharacterSet ] ];
+
+    return checkSum;
+    }
+
+- ( BOOL ) hasValidWatermarkFlags
+    {
+    if ( self.length < sizeof( kWatermarkFlags ) )
         return NO;
 
     BOOL hasValidFlags = YES;
 
-    NSData* flagsSubData = [ _Data subdataWithRange: NSMakeRange( 0, sizeof( kWatermarkFlags ) ) ];
+    NSData* flagsSubData = [ self subdataWithRange: NSMakeRange( 0, sizeof( kWatermarkFlags ) ) ];
     for ( int _Index = 0; _Index < sizeof( kWatermarkFlags ); _Index += sizeof( int ) )
         {
         uint32_t flag = 0U;
@@ -236,4 +235,39 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
     return hasValidFlags;
     }
 
-@end // ATCAuthVault class
+- ( BOOL ) isValidAuthVaultData
+    {
+    BOOL isValid = NO;
+
+    if ( self.hasValidWatermarkFlags )
+        {
+        NSData* subData = [ self subdataWithRange: NSMakeRange( 0, self.length - CC_SHA512_DIGEST_LENGTH ) ];
+        NSData* sha512Digest = subData.HMAC_SHA512DigestDataForAuthVault;
+
+        if ( [ [ self subdataWithRange: NSMakeRange( self.length - CC_SHA512_DIGEST_LENGTH, CC_SHA512_DIGEST_LENGTH ) ]
+                isEqualToData: sha512Digest ] )
+            isValid = YES;
+        }
+
+    return isValid;
+    }
+
+@end // NSData + AuthVaultExtensions_
+
+// NSString + AuthVaultExtensions_
+@implementation NSString ( AuthVaultExtensions_ )
+
+@dynamic HMAC_SHA512DigestDataForAuthVault;
+@dynamic HMAC_SHA512DigestStringForAuthVault;
+
+- ( NSData* ) HMAC_SHA512DigestDataForAuthVault
+    {
+    return [ [ self dataUsingEncoding: NSUTF8StringEncoding ] HMAC_SHA512DigestDataForAuthVault ];
+    }
+
+- ( NSString* ) HMAC_SHA512DigestStringForAuthVault
+    {
+    return [ [ self dataUsingEncoding: NSUTF8StringEncoding ] HMAC_SHA512DigestStringForAuthVault ];
+    }
+
+@end // NSString + AuthVaultExtensions_
