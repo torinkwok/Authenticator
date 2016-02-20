@@ -8,12 +8,16 @@
 
 @class ATCAuthVaultItem;
 
+@protocol ATCAuthVaultDelegate;
+
 // ATCAuthVault class
 @interface ATCAuthVault : NSObject
     {
 @private
     NSData __strong* backingStore_;
     }
+
+@property ( weak, readwrite ) id <ATCAuthVaultDelegate> delegate;
 
 #pragma mark - Creating Auth Vault
 
@@ -45,3 +49,11 @@
 - ( BOOL ) setAuthVaultItems: ( NSArray <ATCAuthVaultItem*>* )_Items error: ( NSError** )_Error;
 
 @end // ATCAuthVault class
+
+// ATCAuthVaultDelegate protocol
+@protocol ATCAuthVaultDelegate <NSObject>
+
+@required
+- ( NSString* ) authVaultNeedsPasswordToUnlock: ( ATCAuthVault* )_AuthVault;
+
+@end // ATCAuthVaultDelegate protocol

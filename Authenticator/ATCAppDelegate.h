@@ -6,9 +6,9 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-@import Cocoa;
+#import "ATCAuthVault.h"
 
 // ATCAppDelegate class
-@interface ATCAppDelegate : NSObject <NSApplicationDelegate>
+@interface ATCAppDelegate : NSObject <NSApplicationDelegate, ATCAuthVaultDelegate>
 
 @end // ATCAppDelegate class

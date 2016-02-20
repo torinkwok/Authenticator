@@ -7,7 +7,6 @@
 //
 
 #import "ATCAppDelegate.h"
-#import "ATCAuthVault.h"
 #import "ATCAuthVaultItem.h"
 
 // Private Interfaces
@@ -59,6 +58,13 @@
     if ( !authVault )
         NSLog( @"%@", error );
     #endif
+    }
+
+#pragma mark - Conforms to <ATCAuthVaultDelegate>
+
+- ( NSString* ) authVaultNeedsPasswordToUnlock: ( ATCAuthVault* )_AuthVault
+    {
+    return @"isgtforever";
     }
 
 @end // ATCAppDelegate class
