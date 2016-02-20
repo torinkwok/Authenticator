@@ -93,7 +93,7 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
             .------------------.-----------------------------. 
             */
             NSMutableData* data = [ NSMutableData dataWithData: binInternalPlist ];
-            [ data appendData: [ binInternalPlist.checkSumForAuthVault dataUsingEncoding: NSUTF8StringEncoding ] ];
+            [ data appendData: binInternalPlist.sha512DigestForAuthVault ];
 
            /*       
             .------------------.-----------------------------.
@@ -120,7 +120,7 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
                 {
                 NSMutableData* finalData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
                 [ finalData appendData: encryptedData ];
-                [ finalData appendData: [ finalData.checkSumForAuthVault dataUsingEncoding: NSUTF8StringEncoding ] ];
+                [ finalData appendData: finalData.sha512DigestForAuthVault ];
 
                 backingStore_ = [ finalData copy ];
                 }
@@ -134,6 +134,23 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
     return self;
     }
 
+- ( BOOL ) isValidAuthVaultData_: ( NSData* )_AuthVaultData
+    {
+    BOOL isValid = NO;
+
+    if ( [ self hasValidWatermarkFlags_: _AuthVaultData ] )
+        {
+        NSData* subData = [ _AuthVaultData subdataWithRange: NSMakeRange( 0, _AuthVaultData.length - CC_SHA512_DIGEST_LENGTH ) ];
+        NSData* sha512Digest = subData.sha512DigestForAuthVault;
+
+        if ( [ [ _AuthVaultData subdataWithRange: NSMakeRange( _AuthVaultData.length - CC_SHA512_DIGEST_LENGTH, CC_SHA512_DIGEST_LENGTH ) ]
+                isEqualToData: sha512Digest ] )
+            isValid = YES;
+        }
+
+    return isValid;
+    }
+
 - ( instancetype ) initWithData: ( NSData* )_Data
                  masterPassword: ( NSString* )_Password
                           error: ( NSError** )_Error
@@ -142,7 +159,22 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
         {
         NSError* error = nil;
 
+        if ( [ self isValidAuthVaultData_: _Data ] )
+            {
+            NSData* plainData = [ RNDecryptor decryptData: _Data withPassword: _Password error: &error ];
+            if ( plainData )
+                {
+                NSData* binInternalPlist = [ plainData subdataWithRange: NSMakeRange( 0, binInternalPlist.length - CC_SHA512_DIGEST_LENGTH ) ];
+                NSData* sha512Digest = [ plainData subdataWithRange: NSMakeRange( binInternalPlist.length - CC_SHA512_DIGEST_LENGTH, CC_SHA512_DIGEST_LENGTH ) ];
 
+                if ( [ binInternalPlist.sha512DigestForAuthVault isEqualToData: sha512Digest ] )
+                    backingStore_ = _Data;
+                }
+            }
+
+        if ( error )
+            if ( _Error )
+                *_Error = error;
         }
 
     return self;

@@ -10,6 +10,7 @@
 @interface NSData ( AuthVaultExtensions_ )
 
 @property ( strong, readonly ) NSData* base64EncodedDataForAuthVault;
+@property ( strong, readonly ) NSData* sha512DigestForAuthVault;
 @property ( strong, readonly ) NSString* checkSumForAuthVault;
 
 @end // NSData + AuthVaultExtensions_
