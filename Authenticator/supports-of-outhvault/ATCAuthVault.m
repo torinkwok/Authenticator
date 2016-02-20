@@ -22,13 +22,42 @@
 
 @property ( assign, readwrite ) NSUInteger numberOfOtpEntries;
 
+@property ( assign, readonly ) NSData* assembledAuthVaultDoc_;
+
 @end // Private Interfaces
 
-uint32_t kWatermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
-                                 , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
-                                 , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
-                                 , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
-                                 };
+// ATCAuthVaultWatermark_ class
+@interface ATCAuthVaultWatermark_ : NSObject
+
++ ( NSData* ) watermark;
++ ( uint32_t const * ) bytes;
++ ( NSUInteger ) sizeInBytes;
+
+@end
+
+@implementation ATCAuthVaultWatermark_
+
+uint32_t watermarkFlags[ 16 ] = { 0x28019719, 0xABF4A5AF, 0x975A4C4F, 0x516C46D6
+                                , 0x00000344, 0x435BD34D, 0x61636374, 0x7E7369F7
+                                , 0xAAAAFC3D, 0x696F6E54, 0x4B657953, 0xABF78FB0
+                                , 0x64BACA19, 0x41646454, 0x9AAF297A, 0xC5BFBC29
+                                };
++ ( NSData* ) watermark
+    {
+    return [ NSData dataWithBytes: watermarkFlags length: [ self sizeInBytes ] ];
+    }
+
++ ( uint32_t const * ) bytes
+    {
+    return watermarkFlags;
+    }
+
++ ( NSUInteger ) sizeInBytes
+    {
+    return sizeof( watermarkFlags );
+    }
+
+@end // ATCAuthVaultWatermark_ class
 
 inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _InternalPlist )
     {
@@ -63,6 +92,7 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
     NSTimeInterval createdDate = [ NSDate date ].timeIntervalSince1970;
     NSTimeInterval modifiedDate = createdDate;
 
+    // Constructing the internal plist
     NSMutableDictionary* internalPlist =[ NSMutableDictionary dictionaryWithObjectsAndKeys:
            TKNonce(), kUUIDKey
          , @( createdDate ), kCreatedDateKey
@@ -73,46 +103,42 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
     [ internalPlist addEntriesFromDictionary: @{ kCheckSumKey : kCheckSumOfAuthVaultInternalPlist_( internalPlist ) } ];
 
     NSData* binInternalPlist = [ NSPropertyListSerialization dataWithPropertyList: internalPlist format: NSPropertyListBinaryFormat_v1_0 options: 0 error: &error ];
+
     if ( binInternalPlist )
         {
-        /* 
+        NSData* checkSumOfBinInternalPlist = binInternalPlist.HMAC_SHA512DigestDataForAuthVault;
+
+        NSMutableData* plainDatBlock = [ NSMutableData data ];
+        [ plainDatBlock appendData: binInternalPlist ];
+        [ plainDatBlock appendData: checkSumOfBinInternalPlist ];
+
+        /* Encrypt internal plist
         .------------------.-----------------------------.
         | BinInternalPlist | CheckSumOf_BinInternalPlist |
-        .------------------.-----------------------------. 
-        */
-        NSMutableData* data = [ NSMutableData dataWithData: binInternalPlist ];
-        [ data appendData: binInternalPlist.HMAC_SHA512DigestDataForAuthVault ];
-
-       /* Then:
         .------------------.-----------------------------.
-        | BinInternalPlist | CheckSumOf_BinInternalPlist |        
-        .------------------.-----------------------------.        
-                  ▽                              ▽
-                  │                               │               
-                  │                               │               
-                  └─────────────────┬─────────────┘               
-                                    │                             
-                                  AES256                          
-                                    │                             
-                                    ▼                             
-        .------------.-----------------------------.-------------.
-        | Watermark  |  EncryptedBinInternalPlist  |  Checksum   |
-        .------------.-----------------------------.-------------.
-               ▽                   ▽                     ▲
-               │                    │                     │       
-               │                    ├──────checksum───────┘       
-               └────────────────────┘
+              ▽                              ▽
+              │                               │               
+              │                               │               
+              └─────────────────┬─────────────┘
+                                │
+                              AES256                          
+                                │                             
+                                ▼                             
+                 .-----------------------------.
+                 |           Cipher            |
+                 .-----------------------------.
         */
-        NSData* encryptedData = [ RNEncryptor encryptData: data withSettings: kRNCryptorAES256Settings password: _Password.HMAC_SHA512DigestStringForAuthVault error: &error ];
-        if ( encryptedData )
+        NSData* cipher = [ RNEncryptor encryptData: plainDatBlock withSettings: kRNCryptorAES256Settings password: _Password.HMAC_SHA512DigestStringForAuthVault error: &error ];
+        if ( cipher )
             {
-            if ( self = [ super init ] )
+            if ( self  = [ super init ] )
                 {
-                NSMutableData* finalData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
-                [ finalData appendData: encryptedData ];
-                [ finalData appendData: finalData.HMAC_SHA512DigestDataForAuthVault ];
+                backingStore_ = cipher;
 
-                backingStore_ = [ finalData copy ];
+                self.UUID = internalPlist[ kUUIDKey ];
+                self.createdDate = [ NSDate dateWithTimeIntervalSince1970: [ internalPlist[ kCreatedDateKey ] doubleValue ] ];
+                self.modifiedDate = [ NSDate dateWithTimeIntervalSince1970: [ internalPlist[ kModifiedDateKey ] doubleValue ] ];
+                self.numberOfOtpEntries = [ internalPlist[ kOtpEntriesKey ] count ];
                 }
 
             return self;
@@ -134,7 +160,7 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 
     if ( _Data.isValidAuthVaultData )
         {
-        NSUInteger watermarkLength = sizeof( kWatermarkFlags );
+        NSUInteger watermarkLength = [ ATCAuthVaultWatermark_ sizeInBytes ];
         NSUInteger length = _Data.length;
         
         NSRange cipherRange = NSMakeRange( watermarkLength, length - ( watermarkLength + CC_SHA512_DIGEST_LENGTH ) );
@@ -143,9 +169,9 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
         if ( plainData )
             {
             NSData* binInternalPlist = [ plainData subdataWithRange: NSMakeRange( 0, plainData.length - CC_SHA512_DIGEST_LENGTH ) ];
-            NSData* sha512Digest = [ plainData subdataWithRange: NSMakeRange( plainData.length - CC_SHA512_DIGEST_LENGTH, CC_SHA512_DIGEST_LENGTH ) ];
+            NSData* checkSumOfBinInternalPlist = [ plainData subdataWithRange: NSMakeRange( plainData.length - CC_SHA512_DIGEST_LENGTH, CC_SHA512_DIGEST_LENGTH ) ];
 
-            if ( [ binInternalPlist.HMAC_SHA512DigestDataForAuthVault isEqualToData: sha512Digest ] )
+            if ( [ binInternalPlist.HMAC_SHA512DigestDataForAuthVault isEqualToData: checkSumOfBinInternalPlist ] )
                 {
                 NSPropertyListFormat format = 0;
                 NSDictionary* plist = [ NSPropertyListSerialization propertyListWithData: binInternalPlist options: 0 format: &format error: &error ];
@@ -178,22 +204,44 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 
 - ( BOOL ) writeToFile: ( NSString* )_Path atomically: ( BOOL )_Atomically
     {
-    return [ backingStore_ writeToFile: _Path atomically: _Atomically ];
+    return [ self.assembledAuthVaultDoc_ writeToFile: _Path atomically: _Atomically ];
     }
 
 - ( BOOL ) writeToFile: ( NSString* )_Path options: ( NSDataWritingOptions )_Mask error: ( NSError** )_Error
     {
-    return [ backingStore_ writeToFile: _Path options: _Mask error: _Error ];
+    return [ self.assembledAuthVaultDoc_ writeToFile: _Path options: _Mask error: _Error ];
     }
 
 - ( BOOL ) writeToURL: ( NSURL* )_URL atomically: ( BOOL )_Atomically
     {
-    return [ backingStore_ writeToURL: _URL atomically: _Atomically ];
+    return [ self.assembledAuthVaultDoc_ writeToURL: _URL atomically: _Atomically ];
     }
 
 - ( BOOL ) writeToURL: ( NSURL* )_URL options: ( NSDataWritingOptions )_Mask error: ( NSError** )_Error
     {
-    return [ backingStore_ writeToURL: _URL options: _Mask error: _Error ];
+    return [ self.assembledAuthVaultDoc_ writeToURL: _URL options: _Mask error: _Error ];
+    }
+
+#pragma mark - Private Interfaces
+
+@dynamic assembledAuthVaultDoc_;
+
+- ( NSData* ) assembledAuthVaultDoc_
+    {
+   /*
+    .------------.-----------------------------.-------------.
+    | Watermark  |           Cipher            |  Checksum   |
+    .------------.-----------------------------.-------------.
+           ▽                   ▽                     ▲
+           │                    │                     │       
+           │                    ├──────checksum───────┘       
+           └────────────────────┘
+    */
+    NSMutableData* assembledData = [ NSMutableData dataWithData: [ ATCAuthVaultWatermark_ watermark ] ];
+    [ assembledData appendData: backingStore_ ];
+    [ assembledData appendData: assembledData.HMAC_SHA512DigestDataForAuthVault ];
+
+    return assembledData;
     }
 
 @end // ATCAuthVault class
@@ -235,18 +283,18 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 
 - ( BOOL ) hasValidWatermarkFlags
     {
-    if ( self.length < sizeof( kWatermarkFlags ) )
+    if ( self.length < [ ATCAuthVaultWatermark_ sizeInBytes ] )
         return NO;
 
     BOOL hasValidFlags = YES;
 
-    NSData* flagsSubData = [ self subdataWithRange: NSMakeRange( 0, sizeof( kWatermarkFlags ) ) ];
-    for ( int _Index = 0; _Index < sizeof( kWatermarkFlags ); _Index += sizeof( int ) )
+    NSData* flagsSubData = [ self subdataWithRange: NSMakeRange( 0, [ ATCAuthVaultWatermark_ sizeInBytes ] ) ];
+    for ( int _Index = 0; _Index < [ ATCAuthVaultWatermark_ sizeInBytes ]; _Index += sizeof( int ) )
         {
         uint32_t flag = 0U;
         [ flagsSubData getBytes: &flag range: NSMakeRange( _Index, sizeof( int ) ) ];
 
-        if ( flag != kWatermarkFlags[ ( _Index / sizeof( int ) ) ] )
+        if ( flag != [ ATCAuthVaultWatermark_ bytes ][ ( _Index / sizeof( int ) ) ] )
             {
             hasValidFlags = NO;
             break;
