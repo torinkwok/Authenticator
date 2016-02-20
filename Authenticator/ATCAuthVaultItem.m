@@ -34,6 +34,16 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
     return base64edCheckFields.HMAC_SHA512DigestStringForAuthVault;
     }
 
+#define ATC_ALG_SHA1    @"sha1"
+#define ATC_ALG_MD5     @"md5"
+#define ATC_ALG_SHA256  @"sha256"
+#define ATC_ALG_SHA384  @"sha384"
+#define ATC_ALG_SHA512  @"sha512"
+#define ATC_ALG_SHA224  @"sha224"
+
+#define ATC_DEFAULT_DIGTIS      6
+#define ATC_DEFAULT_TIME_STEP   30
+
 // ATCAuthVaultItem class
 @implementation ATCAuthVaultItem
 
@@ -44,6 +54,8 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
 @dynamic timeStep;
 @dynamic algorithm;
 @dynamic issuer;
+
+@dynamic dictRep;
 
 - ( void ) setAccountName: ( NSString* )_New
     {
@@ -81,12 +93,12 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
 
     switch ( _New )
         {
-        case kCCHmacAlgSHA1:    alg = @"sha1";      break;
-        case kCCHmacAlgMD5:     alg = @"md5";       break;
-        case kCCHmacAlgSHA256:  alg = @"sha256";    break;
-        case kCCHmacAlgSHA384:  alg = @"sha384";    break;
-        case kCCHmacAlgSHA512:  alg = @"sha512";    break;
-        case kCCHmacAlgSHA224:  alg = @"sha224";    break;
+        case kCCHmacAlgSHA1:    alg = ATC_ALG_SHA1;     break;
+        case kCCHmacAlgMD5:     alg = ATC_ALG_MD5;      break;
+        case kCCHmacAlgSHA256:  alg = ATC_ALG_SHA256;   break;
+        case kCCHmacAlgSHA384:  alg = ATC_ALG_SHA384;   break;
+        case kCCHmacAlgSHA512:  alg = ATC_ALG_SHA512;   break;
+        case kCCHmacAlgSHA224:  alg = ATC_ALG_SHA224;   break;
 
         default:
             alg = @"unknown";
@@ -100,18 +112,12 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
     NSString* algString = backingStore_[ kAlgorithmKey ];
     CCHmacAlgorithm alg = -1;
 
-    if ( [ algString isEqualToString: @"sha1" ] )
-        alg = kCCHmacAlgSHA1;
-    else if ( [ algString isEqualToString: @"md5" ] )
-        alg = kCCHmacAlgMD5;
-    else if ( [ algString isEqualToString: @"sha256" ] )
-        alg = kCCHmacAlgSHA256;
-    else if ( [ algString isEqualToString: @"sha384" ] )
-        alg = kCCHmacAlgSHA384;
-    else if ( [ algString isEqualToString: @"sha512" ] )
-        alg = kCCHmacAlgSHA512;
-    else if ( [ algString isEqualToString: @"sha224" ] )
-        alg = kCCHmacAlgSHA224;
+    if ( [ algString isEqualToString: ATC_ALG_SHA1 ] )          alg = kCCHmacAlgSHA1;
+    else if ( [ algString isEqualToString: ATC_ALG_MD5 ] )      alg = kCCHmacAlgMD5;
+    else if ( [ algString isEqualToString: ATC_ALG_SHA256 ] )   alg = kCCHmacAlgSHA256;
+    else if ( [ algString isEqualToString: ATC_ALG_SHA384 ] )   alg = kCCHmacAlgSHA384;
+    else if ( [ algString isEqualToString: ATC_ALG_SHA512 ] )   alg = kCCHmacAlgSHA512;
+    else if ( [ algString isEqualToString: ATC_ALG_SHA224 ] )   alg = kCCHmacAlgSHA224;
 
     return alg;
     }
@@ -124,6 +130,11 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
 - ( NSString* ) issuer
     {
     return backingStore_[ kIssuerKey ];
+    }
+
+- ( NSDictionary* ) dictRep
+    {
+    return [ backingStore_ copy ];
     }
 
 #pragma mark - Meta Data
@@ -166,9 +177,9 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
               _AccountName, kAccountNameKey
             , _IssuerName, kIssuerKey
             , _SecretKey, kSecretKeyKey
-            , @( 6 ), kDigitsKey
-            , @( 30 ), kTimeStepKey
-            , @"sha1", kAlgorithmKey
+            , @( ATC_DEFAULT_DIGTIS ), kDigitsKey
+            , @( ATC_DEFAULT_TIME_STEP ), kTimeStepKey
+            , ATC_ALG_SHA1, kAlgorithmKey
             , TKNonce(), kUUIDKey
             , @( [ NSDate date ].timeIntervalSince1970 ), kCreatedDateKey
             , nil ];

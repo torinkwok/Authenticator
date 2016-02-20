@@ -21,6 +21,8 @@
 @property ( assign, readwrite ) CCHmacAlgorithm algorithm;
 @property ( strong, readwrite ) NSString* issuer;
 
+@property ( strong, readonly ) NSDictionary* dictRep;
+
 #pragma mark - Meta Data
 
 @property ( strong, readonly ) NSString* UUID;
