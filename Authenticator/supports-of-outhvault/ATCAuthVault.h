@@ -18,4 +18,12 @@
 - ( instancetype ) initWithMasterPassword: ( NSString* )_Password error: ( NSError** )_Error;
 - ( instancetype ) initWithData: ( NSData* )_Data masterPassword: ( NSString* )_Password error: ( NSError** )_Error;
 
+#pragma mark - Persistent
+
+- ( BOOL ) writeToFile: ( NSString* )_Path atomically: ( BOOL )_Atomically;
+- ( BOOL ) writeToFile: ( NSString* )_Path options: ( NSDataWritingOptions )_Mask error: ( NSError** )_Error;
+
+- ( BOOL ) writeToURL: ( NSURL* )_URL atomically: ( BOOL )_Atomically;
+- ( BOOL ) writeToURL: ( NSURL* )_URL options: ( NSDataWritingOptions )_Mask error: ( NSError** )_Error;
+
 @end // ATCAuthVault class

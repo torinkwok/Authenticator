@@ -28,9 +28,15 @@
 
     #if __debug_AuthVault_Generator__
     ATCAuthVault* authVault = [ [ ATCAuthVault alloc ] initWithMasterPassword: @"isgtforever" error: nil ];
+    [ authVault writeToURL: url atomically: YES ];
     #endif
 
     #if __debug_AuthVault_Parser__
+    NSData* authVaultDat = [ NSData dataWithContentsOfURL: url ];
+    ATCAuthVault* authVault = [ [ ATCAuthVault alloc ] initWithData: authVaultDat masterPassword: @"isgtforever" error: &error ];
+
+    if ( !authVault )
+        NSLog( @"%@", error );
     #endif
 
 //    NSString* keychainPath = [ NSHomeDirectory() stringByAppendingPathComponent: @"test.keychain" ];

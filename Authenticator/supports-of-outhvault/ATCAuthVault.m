@@ -68,55 +68,55 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 - ( instancetype ) initWithMasterPassword: ( NSString* )_Password
                                     error: ( NSError** )_Error
     {
-    if ( self = [ super init ] )
+    NSError* error = nil;
+
+    NSTimeInterval createdDate = [ NSDate date ].timeIntervalSince1970;
+    NSTimeInterval modifiedDate = createdDate;
+
+    NSMutableDictionary* internalPlist =[ NSMutableDictionary dictionaryWithObjectsAndKeys:
+           TKNonce(), kUUIDKey
+         , @( createdDate ), kCreatedDateKey
+         , @( modifiedDate ), kModifiedDateKey
+         , @[], kOtpEntriesKey
+         , nil ];
+
+    [ internalPlist addEntriesFromDictionary: @{ kCheckSumKey : kCheckSumOfAuthVaultInternalPlist_( internalPlist ) } ];
+
+    NSData* binInternalPlist = [ NSPropertyListSerialization dataWithPropertyList: internalPlist format: NSPropertyListBinaryFormat_v1_0 options: 0 error: &error ];
+    if ( binInternalPlist )
         {
-        NSError* error = nil;
+        /* 
+        .------------------.-----------------------------.
+        | BinInternalPlist | CheckSumOf_BinInternalPlist |
+        .------------------.-----------------------------. 
+        */
+        NSMutableData* data = [ NSMutableData dataWithData: binInternalPlist ];
+        [ data appendData: binInternalPlist.sha512DigestForAuthVault ];
 
-        NSTimeInterval createdDate = [ NSDate date ].timeIntervalSince1970;
-        NSTimeInterval modifiedDate = createdDate;
-
-        NSMutableDictionary* internalPlist =[ NSMutableDictionary dictionaryWithObjectsAndKeys:
-               TKNonce(), kUUIDKey
-             , @( createdDate ), kCreatedDateKey
-             , @( modifiedDate ), kModifiedDateKey
-             , @[], kOtpEntriesKey
-             , nil ];
-
-        [ internalPlist addEntriesFromDictionary: @{ kCheckSumKey : kCheckSumOfAuthVaultInternalPlist_( internalPlist ) } ];
-
-        NSData* binInternalPlist = [ NSPropertyListSerialization dataWithPropertyList: internalPlist format: NSPropertyListBinaryFormat_v1_0 options: 0 error: &error ];
-        if ( binInternalPlist )
+       /*       
+        .------------------.-----------------------------.
+        | BinInternalPlist | CheckSumOf_BinInternalPlist |        
+        .------------------.-----------------------------.        
+                  ▽                              ▽
+                  │                               │               
+                  │                               │               
+                  └─────────────────┬─────────────┘               
+                                    │                             
+                                  AES256                          
+                                    │                             
+                                    ▼                             
+        .------------.-----------------------------.-------------.
+        | Watermark  |  EncryptedBinInternalPlist  |  Checksum   |
+        .------------.-----------------------------.-------------.
+               ▽                   ▽                     ▲
+               │                    │                     │       
+               │                    ├──────checksum───────┘       
+               └────────────────────┘
+        */
+        NSData* encryptedData = [ RNEncryptor encryptData: data withSettings: kRNCryptorAES256Settings password: _Password error: &error ];
+        if ( encryptedData )
             {
-            /* 
-            .------------------.-----------------------------.
-            | BinInternalPlist | CheckSumOf_BinInternalPlist |
-            .------------------.-----------------------------. 
-            */
-            NSMutableData* data = [ NSMutableData dataWithData: binInternalPlist ];
-            [ data appendData: binInternalPlist.sha512DigestForAuthVault ];
-
-           /*       
-            .------------------.-----------------------------.
-            | BinInternalPlist | CheckSumOf_BinInternalPlist |        
-            .------------------.-----------------------------.        
-                      ▽                              ▽
-                      │                               │               
-                      │                               │               
-                      └─────────────────┬─────────────┘               
-                                        │                             
-                                      AES256                          
-                                        │                             
-                                        ▼                             
-            .------------.-----------------------------.-------------.
-            | Watermark  |  EncryptedBinInternalPlist  |  Checksum   |
-            .------------.-----------------------------.-------------.
-                   ▽                   ▽                     ▲
-                   │                    │                     │       
-                   │                    ├──────checksum───────┘       
-                   └────────────────────┘
-            */
-            NSData* encryptedData = [ RNEncryptor encryptData: data withSettings: kRNCryptorAES256Settings password: _Password error: &error ];
-            if ( encryptedData )
+            if ( self = [ super init ] )
                 {
                 NSMutableData* finalData = [ NSMutableData dataWithBytes: kWatermarkFlags length: sizeof( kWatermarkFlags ) ];
                 [ finalData appendData: encryptedData ];
@@ -124,14 +124,16 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 
                 backingStore_ = [ finalData copy ];
                 }
-            }
 
-        if ( error )
-            if ( _Error )
-                *_Error = error;
+            return self;
+            }
         }
 
-    return self;
+    if ( error )
+        if ( _Error )
+            *_Error = error;
+
+    return nil;
     }
 
 - ( BOOL ) isValidAuthVaultData_: ( NSData* )_AuthVaultData
@@ -155,29 +157,55 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
                  masterPassword: ( NSString* )_Password
                           error: ( NSError** )_Error
     {
-    if ( self = [ super init ] )
+    NSError* error = nil;
+
+    if ( [ self isValidAuthVaultData_: _Data ] )
         {
-        NSError* error = nil;
-
-        if ( [ self isValidAuthVaultData_: _Data ] )
+        NSRange cipherRange = NSMakeRange( sizeof( kWatermarkFlags ), _Data.length - CC_SHA512_DIGEST_LENGTH - CC_SHA512_DIGEST_LENGTH );
+        NSData* cipher = [ _Data subdataWithRange: cipherRange ];
+        NSData* plainData = [ RNDecryptor decryptData: cipher withPassword: _Password error: &error ];
+        if ( plainData )
             {
-            NSData* plainData = [ RNDecryptor decryptData: _Data withPassword: _Password error: &error ];
-            if ( plainData )
-                {
-                NSData* binInternalPlist = [ plainData subdataWithRange: NSMakeRange( 0, binInternalPlist.length - CC_SHA512_DIGEST_LENGTH ) ];
-                NSData* sha512Digest = [ plainData subdataWithRange: NSMakeRange( binInternalPlist.length - CC_SHA512_DIGEST_LENGTH, CC_SHA512_DIGEST_LENGTH ) ];
+            NSData* binInternalPlist = [ plainData subdataWithRange: NSMakeRange( 0, plainData.length - CC_SHA512_DIGEST_LENGTH ) ];
+            NSData* sha512Digest = [ plainData subdataWithRange: NSMakeRange( plainData.length - CC_SHA512_DIGEST_LENGTH, CC_SHA512_DIGEST_LENGTH ) ];
 
-                if ( [ binInternalPlist.sha512DigestForAuthVault isEqualToData: sha512Digest ] )
+            if ( [ binInternalPlist.sha512DigestForAuthVault isEqualToData: sha512Digest ] )
+                {
+                if ( self = [ super init ] )
                     backingStore_ = _Data;
+
+                return self;
                 }
             }
-
-        if ( error )
-            if ( _Error )
-                *_Error = error;
         }
 
-    return self;
+    if ( error )
+        if ( _Error )
+            *_Error = error;
+
+    return nil;
+    }
+
+#pragma mark - Persistent
+
+- ( BOOL ) writeToFile: ( NSString* )_Path atomically: ( BOOL )_Atomically
+    {
+    return [ backingStore_ writeToFile: _Path atomically: _Atomically ];
+    }
+
+- ( BOOL ) writeToFile: ( NSString* )_Path options: ( NSDataWritingOptions )_Mask error: ( NSError** )_Error
+    {
+    return [ backingStore_ writeToFile: _Path options: _Mask error: _Error ];
+    }
+
+- ( BOOL ) writeToURL: ( NSURL* )_URL atomically: ( BOOL )_Atomically
+    {
+    return [ backingStore_ writeToURL: _URL atomically: _Atomically ];
+    }
+
+- ( BOOL ) writeToURL: ( NSURL* )_URL options: ( NSDataWritingOptions )_Mask error: ( NSError** )_Error
+    {
+    return [ backingStore_ writeToURL: _URL options: _Mask error: _Error ];
     }
 
 #pragma mark - Private Interfaces
