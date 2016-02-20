@@ -22,6 +22,14 @@
 
 @property ( assign, readwrite ) NSUInteger numberOfOtpEntries;
 
+- ( NSData* ) cipherFromInternalPlist_: ( NSDictionary* )_InternalPlist
+                         withPassword_: ( NSString* )_Password
+                                error_: ( NSError** )_Error;
+
+- ( NSDictionary* ) internalPlistFromCipher_: ( NSData* )_Cipher
+                               withPassword_: ( NSString* )_Password
+                                      error_: ( NSError** )_Error;
+
 @property ( assign, readonly ) NSData* assembledAuthVaultDoc_;
 
 @end // Private Interfaces
@@ -93,7 +101,7 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
     NSTimeInterval modifiedDate = createdDate;
 
     // Constructing the internal plist
-    NSMutableDictionary* internalPlist =[ NSMutableDictionary dictionaryWithObjectsAndKeys:
+    NSMutableDictionary* internalPlist = [ NSMutableDictionary dictionaryWithObjectsAndKeys:
            TKNonce(), kUUIDKey
          , @( createdDate ), kCreatedDateKey
          , @( modifiedDate ), kModifiedDateKey
@@ -102,47 +110,21 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 
     [ internalPlist addEntriesFromDictionary: @{ kCheckSumKey : kCheckSumOfAuthVaultInternalPlist_( internalPlist ) } ];
 
-    NSData* binInternalPlist = [ NSPropertyListSerialization dataWithPropertyList: internalPlist format: NSPropertyListBinaryFormat_v1_0 options: 0 error: &error ];
-
-    if ( binInternalPlist )
+    // Cipher
+    NSData* cipher = nil;
+    if ( ( cipher = [ self cipherFromInternalPlist_: internalPlist withPassword_: _Password error_: &error ] ) )
         {
-        NSData* checkSumOfBinInternalPlist = binInternalPlist.HMAC_SHA512DigestDataForAuthVault;
-
-        NSMutableData* plainDatBlock = [ NSMutableData data ];
-        [ plainDatBlock appendData: binInternalPlist ];
-        [ plainDatBlock appendData: checkSumOfBinInternalPlist ];
-
-        /* Encrypt internal plist
-        .------------------.-----------------------------.
-        | BinInternalPlist | CheckSumOf_BinInternalPlist |
-        .------------------.-----------------------------.
-              ▽                              ▽
-              │                               │               
-              │                               │               
-              └─────────────────┬─────────────┘
-                                │
-                              AES256                          
-                                │                             
-                                ▼                             
-                 .-----------------------------.
-                 |           Cipher            |
-                 .-----------------------------.
-        */
-        NSData* cipher = [ RNEncryptor encryptData: plainDatBlock withSettings: kRNCryptorAES256Settings password: _Password.HMAC_SHA512DigestStringForAuthVault error: &error ];
-        if ( cipher )
+        if ( self  = [ super init ] )
             {
-            if ( self  = [ super init ] )
-                {
-                backingStore_ = cipher;
+            backingStore_ = cipher;
 
-                self.UUID = internalPlist[ kUUIDKey ];
-                self.createdDate = [ NSDate dateWithTimeIntervalSince1970: [ internalPlist[ kCreatedDateKey ] doubleValue ] ];
-                self.modifiedDate = [ NSDate dateWithTimeIntervalSince1970: [ internalPlist[ kModifiedDateKey ] doubleValue ] ];
-                self.numberOfOtpEntries = [ internalPlist[ kOtpEntriesKey ] count ];
-                }
-
-            return self;
+            self.UUID = internalPlist[ kUUIDKey ];
+            self.createdDate = [ NSDate dateWithTimeIntervalSince1970: [ internalPlist[ kCreatedDateKey ] doubleValue ] ];
+            self.modifiedDate = [ NSDate dateWithTimeIntervalSince1970: [ internalPlist[ kModifiedDateKey ] doubleValue ] ];
+            self.numberOfOtpEntries = [ internalPlist[ kOtpEntriesKey ] count ];
             }
+
+        return self;
         }
 
     if ( error )
@@ -165,31 +147,20 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
         
         NSRange cipherRange = NSMakeRange( watermarkLength, length - ( watermarkLength + CC_SHA512_DIGEST_LENGTH ) );
         NSData* cipher = [ _Data subdataWithRange: cipherRange ];
-        NSData* plainData = [ RNDecryptor decryptData: cipher withPassword: _Password.HMAC_SHA512DigestStringForAuthVault error: &error ];
-        if ( plainData )
+        NSDictionary* internalPlist = [ self internalPlistFromCipher_: cipher withPassword_: _Password error_: &error ];
+        if ( internalPlist )
             {
-            NSData* binInternalPlist = [ plainData subdataWithRange: NSMakeRange( 0, plainData.length - CC_SHA512_DIGEST_LENGTH ) ];
-            NSData* checkSumOfBinInternalPlist = [ plainData subdataWithRange: NSMakeRange( plainData.length - CC_SHA512_DIGEST_LENGTH, CC_SHA512_DIGEST_LENGTH ) ];
-
-            if ( [ binInternalPlist.HMAC_SHA512DigestDataForAuthVault isEqualToData: checkSumOfBinInternalPlist ] )
+            if ( self = [ super init ] )
                 {
-                NSPropertyListFormat format = 0;
-                NSDictionary* plist = [ NSPropertyListSerialization propertyListWithData: binInternalPlist options: 0 format: &format error: &error ];
-                if ( plist && format == NSPropertyListBinaryFormat_v1_0 )
-                    {
-                    if ( self = [ super init ] )
-                        {
-                        backingStore_ = cipher;
+                backingStore_ = cipher;
 
-                        self.UUID = plist[ kUUIDKey ];
-                        self.createdDate = [ NSDate dateWithTimeIntervalSince1970: [ plist[ kCreatedDateKey ] doubleValue ] ];
-                        self.modifiedDate = [ NSDate dateWithTimeIntervalSince1970: [ plist[ kModifiedDateKey ] doubleValue ] ];
-                        self.numberOfOtpEntries = [ plist[ kOtpEntriesKey ] count ];
-                        }
-
-                    return self;
-                    }
+                self.UUID = internalPlist[ kUUIDKey ];
+                self.createdDate = [ NSDate dateWithTimeIntervalSince1970: [ internalPlist[ kCreatedDateKey ] doubleValue ] ];
+                self.modifiedDate = [ NSDate dateWithTimeIntervalSince1970: [ internalPlist[ kModifiedDateKey ] doubleValue ] ];
+                self.numberOfOtpEntries = [ internalPlist[ kOtpEntriesKey ] count ];
                 }
+
+            return self;
             }
         }
 
@@ -224,11 +195,89 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 
 #pragma mark - Private Interfaces
 
+- ( NSData* ) cipherFromInternalPlist_: ( NSDictionary* )_InternalPlist
+                         withPassword_: ( NSString* )_Password
+                                error_: ( NSError** )_Error
+    {
+    NSError* error = nil;
+
+    NSData* cipher = nil;
+
+    NSData* binInternalPlist = [ NSPropertyListSerialization
+        dataWithPropertyList: _InternalPlist format: NSPropertyListBinaryFormat_v1_0 options: 0 error: &error ];
+    if ( binInternalPlist )
+        {
+        /* Encrypt internal plist
+        .------------------.-----------------------------.
+        | BinInternalPlist | CheckSumOf_BinInternalPlist |
+        .------------------.-----------------------------.
+              ▽                              ▽
+              │                               │               
+              │                               │               
+              └─────────────────┬─────────────┘
+                                │
+                              AES256                          
+                                │                             
+                                ▼                             
+                 .-----------------------------.
+                 |           Cipher            |
+                 .-----------------------------.
+        */
+        NSData* checkSumOfBinInternalPlist = binInternalPlist.HMAC_SHA512DigestDataForAuthVault;
+
+        NSMutableData* plainDatBlock = [ NSMutableData data ];
+        [ plainDatBlock appendData: binInternalPlist ];
+        [ plainDatBlock appendData: checkSumOfBinInternalPlist ];
+
+        cipher = [ RNEncryptor encryptData: plainDatBlock
+                              withSettings: kRNCryptorAES256Settings
+                                  password: _Password.HMAC_SHA512DigestStringForAuthVault
+                                     error: &error ];
+        }
+
+    if ( error )
+        if ( _Error )
+            *_Error = error;
+
+    return cipher;
+    }
+
+- ( NSDictionary* ) internalPlistFromCipher_: ( NSData* )_Cipher
+                               withPassword_: ( NSString* )_Password
+                                      error_: ( NSError** )_Error
+    {
+    NSError* error = nil;
+
+    NSDictionary* internalPlist = nil;
+
+    NSData* plainData = [ RNDecryptor decryptData: _Cipher
+                                     withPassword: _Password.HMAC_SHA512DigestStringForAuthVault
+                                            error: &error ];
+    if ( plainData )
+        {
+        NSData* binInternalPlist = [ plainData subdataWithRange: NSMakeRange( 0, plainData.length - CC_SHA512_DIGEST_LENGTH ) ];
+        NSData* checkSumOfBinInternalPlist = [ plainData subdataWithRange: NSMakeRange( plainData.length - CC_SHA512_DIGEST_LENGTH, CC_SHA512_DIGEST_LENGTH ) ];
+
+        if ( [ binInternalPlist.HMAC_SHA512DigestDataForAuthVault isEqualToData: checkSumOfBinInternalPlist ] )
+            {
+            NSPropertyListFormat format = 0;
+            NSDictionary* plist = [ NSPropertyListSerialization propertyListWithData: binInternalPlist options: 0 format: &format error: &error ];
+
+            if ( plist && format == NSPropertyListBinaryFormat_v1_0 )
+                internalPlist = plist;
+            else
+                ; // TODO: To construct an error object that contains the information about this failure
+            }
+        }
+
+    return internalPlist;
+    }
+
 @dynamic assembledAuthVaultDoc_;
 
 - ( NSData* ) assembledAuthVaultDoc_
     {
-   /*
+    /* Auth Vault Doc:
     .------------.-----------------------------.-------------.
     | Watermark  |           Cipher            |  Checksum   |
     .------------.-----------------------------.-------------.
