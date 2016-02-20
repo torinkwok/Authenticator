@@ -12,6 +12,11 @@
 #import "ATCAuthVaultItem+ATCFriends_.h"
 #import "ATCExtensions_.h"
 
+// Private Interfaces
+@interface ATCAuthVaultItem ()
+- ( void ) resetCheckSum_;
+@end // Private Interfaces
+
 #define __ATC_CHECK_FIELD__( _Key ) \
     [ NSString stringWithFormat: template, _Key, _BackingStore[ _Key ] ?: [ NSNull null ] ]
 
@@ -55,11 +60,12 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
 @dynamic algorithm;
 @dynamic issuer;
 
-@dynamic dictRep;
+@dynamic plistRep;
 
 - ( void ) setAccountName: ( NSString* )_New
     {
     backingStore_[ kAccountNameKey ] = _New;
+    [ self resetCheckSum_ ];
     }
 
 - ( NSString* ) accountName
@@ -70,6 +76,7 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
 - ( void ) setDigits: ( NSUInteger )_New
     {
     backingStore_[ kDigitsKey ] = [ NSNumber numberWithLong: _New ];
+    [ self resetCheckSum_ ];
     }
 
 - ( NSUInteger ) digits
@@ -80,6 +87,7 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
 - ( void ) setTimeStep: ( NSUInteger )_New
     {
     backingStore_[ kTimeStepKey ] = [ NSNumber numberWithLong: _New ];
+    [ self resetCheckSum_ ];
     }
 
 - ( NSUInteger ) timeStep
@@ -105,6 +113,7 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
         }
 
     backingStore_[ kAlgorithmKey ] = alg;
+    [ self resetCheckSum_ ];
     }
 
 - ( CCHmacAlgorithm ) algorithm
@@ -125,6 +134,7 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
 - ( void ) setIssuer: ( NSString* )_New
     {
     backingStore_[ kIssuerKey ] = _New;
+    [ self resetCheckSum_ ];
     }
 
 - ( NSString* ) issuer
@@ -132,7 +142,7 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
     return backingStore_[ kIssuerKey ];
     }
 
-- ( NSDictionary* ) dictRep
+- ( NSDictionary* ) plistRep
     {
     return [ backingStore_ copy ];
     }
@@ -184,11 +194,18 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
             , @( [ NSDate date ].timeIntervalSince1970 ), kCreatedDateKey
             , nil ];
 
-        NSString* checksum = kCheckSumOfAuthVaultItemBackingStore_( backingStore_ );
-        backingStore_[ kCheckSumKey ] = checksum;
+        [ self resetCheckSum_ ];
         }
 
     return self;
+    }
+
+#pragma mark - Private Interfaces
+
+- ( void ) resetCheckSum_
+    {
+    NSString* checksum = kCheckSumOfAuthVaultItemBackingStore_( backingStore_ );
+    backingStore_[ kCheckSumKey ] = checksum;
     }
 
 @end // ATCAuthVaultItem class

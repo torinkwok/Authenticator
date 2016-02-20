@@ -349,12 +349,12 @@
 			children = (
 				836F0C9E1C784BED005EE91E /* RNCryptor */,
 				8383DD741C75B54B007B7665 /* internal */,
-				836F0CAF1C784BF9005EE91E /* ATCAuthVaultItem.h */,
-				836F0CAE1C784BF9005EE91E /* ATCAuthVaultItem.m */,
 				836F0CB11C784BF9005EE91E /* ATCAuthVaultConstants.h */,
 				836F0CB01C784BF9005EE91E /* ATCAuthVaultConstants.m */,
 				836F0CB31C784BF9005EE91E /* ATCAuthVault.h */,
 				836F0CB21C784BF9005EE91E /* ATCAuthVault.m */,
+				836F0CAF1C784BF9005EE91E /* ATCAuthVaultItem.h */,
+				836F0CAE1C784BF9005EE91E /* ATCAuthVaultItem.m */,
 			);
 			path = "supports-of-outhvault";
 			sourceTree = "<group>";

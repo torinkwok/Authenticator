@@ -38,6 +38,6 @@
 
 #pragma mark - Managing Otp Entries
 
-- ( BOOL ) addAuthVaultItem: ( ATCAuthVaultItem* )_NewItem error: ( NSError** )_Error;
+- ( BOOL ) addAuthVaultItem: ( ATCAuthVaultItem* )_NewItem withMasterPassword: ( NSString* )_Password error: ( NSError** )_Error;
 
 @end // ATCAuthVault class

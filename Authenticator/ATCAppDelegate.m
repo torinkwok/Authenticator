@@ -8,6 +8,7 @@
 
 #import "ATCAppDelegate.h"
 #import "ATCAuthVault.h"
+#import "ATCAuthVaultItem.h"
 
 // Private Interfaces
 @interface ATCAppDelegate ()
@@ -25,12 +26,21 @@
 
     NSString* path = [ NSHomeDirectory() stringByAppendingPathComponent: @"test.authvault" ];
     NSURL* url = [ NSURL URLWithString: [ NSString stringWithFormat: @"file://%@", path ] ];
+    NSString* password = @"isgtforever";
 
     #if __debug_AuthVault_Generator__
-    ATCAuthVault* authVault = [ [ ATCAuthVault alloc ] initWithMasterPassword: @"isgtforever" error: &error ];
-    [ authVault writeToURL: url atomically: YES ];
+    ATCAuthVault* authVault = [ [ ATCAuthVault alloc ] initWithMasterPassword: password error: &error ];
+    if ( authVault )
+        {
+        [ authVault writeToURL: url atomically: YES ];
 
-    if ( !authVault )
+        ATCAuthVaultItem* item0 = [ [ ATCAuthVaultItem alloc ] initWithIssuer: @"Google Inc." accountName: @"contact@tong-kuo.me" secretKey: @"uqgrz4nub4tz5zwn" ];
+        BOOL isSuccess = [ authVault addAuthVaultItem: item0 withMasterPassword: password error: &error ];
+        if ( isSuccess )
+            [ authVault writeToURL: url atomically: YES ];
+        }
+
+    if ( error )
         NSLog( @"%@", error );
     #endif
 

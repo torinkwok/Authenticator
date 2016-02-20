@@ -21,7 +21,7 @@
 @property ( assign, readwrite ) CCHmacAlgorithm algorithm;
 @property ( strong, readwrite ) NSString* issuer;
 
-@property ( strong, readonly ) NSDictionary* dictRep;
+@property ( strong, readonly ) NSDictionary* plistRep;
 
 #pragma mark - Meta Data
 

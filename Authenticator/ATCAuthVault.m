@@ -7,6 +7,7 @@
 //
 
 #import "ATCAuthVault.h"
+#import "ATCAuthVaultItem.h"
 #import "ATCAuthVaultConstants.h"
 
 #import "ATCExtensions_.h"
@@ -189,11 +190,27 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 
 #pragma mark - Managing Otp Entries
 
-- ( BOOL ) addAuthVaultItem: ( ATCAuthVaultItem* )_NewItem error: ( NSError** )_Error
+- ( BOOL ) addAuthVaultItem: ( ATCAuthVaultItem* )_NewItem
+         withMasterPassword: ( NSString* )_Password
+                      error: ( NSError** )_Error
     {
+    NSError* error = nil;
+
     BOOL isSuccess = NO;
 
-    // TODO:
+    NSDictionary* plistRep = [ _NewItem plistRep ];
+    NSMutableDictionary* internalPlist = [ [ self internalPlistFromCipher_: backingStore_ withPassword_: _Password error_: &error ] mutableCopy ];
+    if ( internalPlist )
+        {
+        internalPlist[ kOtpEntriesKey ] = [ internalPlist[ kOtpEntriesKey ] arrayByAddingObject: plistRep ];
+
+        backingStore_ = [ self cipherFromInternalPlist_: internalPlist withPassword_: _Password error_: &error ];
+        isSuccess = ( backingStore_ != nil );
+        }
+
+    if ( error )
+        if ( _Error )
+            *_Error = error;
 
     return isSuccess;
     }
