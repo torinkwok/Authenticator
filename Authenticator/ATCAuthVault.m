@@ -220,9 +220,16 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
             [ modifiedOptEntries insertObject: plistRep atIndex: 0 ];
             internalPlist[ kOtpEntriesKey ] = modifiedOptEntries;
             internalPlist[ kModifiedDateKey ] = @( [ NSDate date ].timeIntervalSince1970 );
+            internalPlist[ kCheckSumKey ] = kCheckSumOfAuthVaultInternalPlist_( internalPlist );
 
-            backingStore_ = [ self cipherFromInternalPlist_: internalPlist withPassword_: _Password error_: &error ];
-            isSuccess = YES;
+            NSData* cipher = [ self cipherFromInternalPlist_: internalPlist withPassword_: _Password error_: &error ];
+            if ( cipher )
+                {
+                [ self resetMetaDataWithInternalPlist: internalPlist ];
+
+                backingStore_ = cipher;
+                isSuccess = YES;
+                }
             }
         else
             ; // TODO: To construct an error object that contains the information about this failure
@@ -264,9 +271,16 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
             [ modifiedOptEntries removeObject: optPlistToBeRemvoed ];
             internalPlist[ kOtpEntriesKey ] = modifiedOptEntries;
             internalPlist[ kModifiedDateKey ] = @( [ NSDate date ].timeIntervalSince1970 );
+            internalPlist[ kCheckSumKey ] = kCheckSumOfAuthVaultInternalPlist_( internalPlist );
 
-            backingStore_ = [ self cipherFromInternalPlist_: internalPlist withPassword_: _Password error_: &error ];
-            isSuccess = YES;
+            NSData* cipher = [ self cipherFromInternalPlist_: internalPlist withPassword_: _Password error_: &error ];
+            if ( cipher )
+                {
+                [ self resetMetaDataWithInternalPlist: internalPlist ];
+
+                backingStore_ = cipher;
+                isSuccess = YES;
+                }
             }
         }
 
@@ -319,8 +333,14 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
 
         modifiedInternalPlist[ kOtpEntriesKey ] = newOtpEntries;
         modifiedInternalPlist[ kModifiedDateKey ] = @( [ NSDate date ].timeIntervalSince1970 );
+        modifiedInternalPlist[ kCheckSumKey ] = kCheckSumOfAuthVaultInternalPlist_( modifiedInternalPlist );
 
-        backingStore_ = [ self cipherFromInternalPlist_: modifiedInternalPlist withPassword_: password error_: &error ];
+        NSData* cipher = [ self cipherFromInternalPlist_: modifiedInternalPlist withPassword_: password error_: &error ];
+        if ( cipher )
+            {
+            [ self resetMetaDataWithInternalPlist: modifiedInternalPlist ];
+            backingStore_ = cipher;
+            }
         }
 
     if ( error )

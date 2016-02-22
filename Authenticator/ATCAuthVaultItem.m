@@ -218,13 +218,24 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
 - ( instancetype ) initWithPlistDict_: ( NSDictionary* )_PlistDict
                                error_: ( NSError** )_Error
     {
-    if ( self = [ super init ] )
-        {
-        backingStore_ = [ _PlistDict mutableCopy ];
-        [ self resetCheckSum_ ];
-        }
+    NSError* error = nil;
 
-    return self;
+    NSString* checksum = kCheckSumOfAuthVaultItemBackingStore_( _PlistDict );
+    if ( [ checksum isEqualToString: _PlistDict[ kCheckSumKey ] ] )
+        {
+        if ( self = [ super init ] )
+            backingStore_ = [ _PlistDict mutableCopy ];
+
+        return self;
+        }
+    else
+        ; // TODO: To construct an error object that contains the information about this failure
+
+    if ( error )
+        if ( _Error )
+            *_Error = error;
+
+    return nil;
     }
 
 @end // ATCAuthVaultItem + ATCFriends_

@@ -38,9 +38,13 @@
         ATCAuthVaultItem* item1 = [ [ ATCAuthVaultItem alloc ] initWithIssuer: @"Google" accountName: @"contact@tong-kuo.me" secretKey: @"3v7ptpbjedv3ivof" ];
         ATCAuthVaultItem* item2 = [ [ ATCAuthVaultItem alloc ] initWithIssuer: @"Evernote" accountName: @"contact@tong-kuo.me" secretKey: @"dznyivy5pcf5si64" ];
 
+        sleep( 10 );
         isSuccess = [ authVault addAuthVaultItem: item0 withMasterPassword: password error: &error ];
+        sleep( 5 );
         isSuccess = [ authVault addAuthVaultItem: item1 withMasterPassword: password error: &error ];
+        sleep( 7 );
         isSuccess = [ authVault addAuthVaultItem: item2 withMasterPassword: password error: &error ];
+        sleep( 9 );
         isSuccess = [ authVault addAuthVaultItem: item0 withMasterPassword: password error: &error ];
 
         [ authVault writeToURL: url atomically: YES ];
@@ -53,9 +57,21 @@
     #if __debug_AuthVault_Parser__
     NSData* authVaultDat = [ NSData dataWithContentsOfURL: url ];
     ATCAuthVault* authVault = [ [ ATCAuthVault alloc ] initWithData: authVaultDat masterPassword: @"isgtforever" error: &error ];
-    [ authVault
+    authVault.passwordSource = self;
 
-    if ( !authVault )
+    if ( authVault )
+        {
+        NSArray <ATCAuthVaultItem*>* allItems = [ authVault authVaultItemsWithError: &error ];
+        NSLog( @"%@", allItems );
+
+        [ authVault setAuthVaultItems: @[] error: &error ];
+        allItems = [ authVault authVaultItemsWithError: &error ];
+        NSLog( @"%@", allItems );
+
+        [ authVault writeToURL: url atomically: YES ];
+        }
+
+    if ( error )
         NSLog( @"%@", error );
     #endif
     }
