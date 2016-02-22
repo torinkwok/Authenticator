@@ -100,4 +100,17 @@ NSURL* ATCImportedVaultsDirURL()
     return importedVaultsDir;
     }
 
+NSURL* ATCTemporaryDirURL()
+    {
+    NSError* error = nil;
+    NSURL* tmpURL = [ [ NSFileManager defaultManager ] URLForDirectory: NSCachesDirectory inDomain: NSUserDomainMask appropriateForURL: nil create: YES error: &error ];
+
+    if ( error )
+        NSLog( @"Failed to created tmp dir in %s: %@", __PRETTY_FUNCTION__, error );
+
+    return tmpURL;
+    }
+
 NSString* const ATCTotpAuthURLTemplate = @"otpauth://totp/%@%@?secret=%@&issuer=%@";
+
+NSString* const ATCUnitedTypeIdentifier = @"home.bedroom.TongKuo.Authenticator.AuthVault";

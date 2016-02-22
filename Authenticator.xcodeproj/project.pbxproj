@@ -25,6 +25,7 @@
 		830AD1E21C71CE49006D909C /* ATCOTPVault.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1E11C71CE49006D909C /* ATCOTPVault.m */; settings = {ASSET_TAGS = (); }; };
 		830AD1E51C71CE93006D909C /* ATCOTPVaultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1E41C71CE93006D909C /* ATCOTPVaultItem.m */; settings = {ASSET_TAGS = (); }; };
 		830AD1E81C71CED3006D909C /* ATCOTPVaultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD1E71C71CED3006D909C /* ATCOTPVaultsManager.m */; settings = {ASSET_TAGS = (); }; };
+		830AD20B1C730BE5006D909C /* OAuthSigningConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD20A1C730BE5006D909C /* OAuthSigningConstants.m */; settings = {ASSET_TAGS = (); }; };
 		831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */; settings = {ASSET_TAGS = (); }; };
 		831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831EC89F1C688830005DCD88 /* QuartzCore.framework */; };
 		8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B19F1C67073900153EC7 /* ATCAppDelegate.m */; };
@@ -40,6 +41,13 @@
 		8368DD341C6AED6600005A7D /* ATCNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */; settings = {ASSET_TAGS = (); }; };
 		8368DD361C6B637200005A7D /* libcommonCrypto.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8368DD351C6B637200005A7D /* libcommonCrypto.tbd */; };
 		8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
+		836F0CA91C784BED005EE91E /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CA11C784BED005EE91E /* RNCryptor.m */; settings = {ASSET_TAGS = (); }; };
+		836F0CAA1C784BED005EE91E /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CA31C784BED005EE91E /* RNCryptorEngine.m */; settings = {ASSET_TAGS = (); }; };
+		836F0CAB1C784BED005EE91E /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CA61C784BED005EE91E /* RNDecryptor.m */; settings = {ASSET_TAGS = (); }; };
+		836F0CAC1C784BED005EE91E /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CA81C784BED005EE91E /* RNEncryptor.m */; settings = {ASSET_TAGS = (); }; };
+		836F0CB41C784BF9005EE91E /* ATCAuthVaultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CAE1C784BF9005EE91E /* ATCAuthVaultItem.m */; settings = {ASSET_TAGS = (); }; };
+		836F0CB51C784BF9005EE91E /* ATCAuthVaultConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CB01C784BF9005EE91E /* ATCAuthVaultConstants.m */; settings = {ASSET_TAGS = (); }; };
+		836F0CB61C784BF9005EE91E /* ATCAuthVault.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CB21C784BF9005EE91E /* ATCAuthVault.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D85E1C671D7300A11E31 /* ALView+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8671C671D7300A11E31 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8601C671D7300A11E31 /* NSArray+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8681C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8621C671D7300A11E31 /* NSLayoutConstraint+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
@@ -133,6 +141,8 @@
 		830AD1E41C71CE93006D909C /* ATCOTPVaultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPVaultItem.m; sourceTree = "<group>"; };
 		830AD1E61C71CED3006D909C /* ATCOTPVaultsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPVaultsManager.h; sourceTree = "<group>"; };
 		830AD1E71C71CED3006D909C /* ATCOTPVaultsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPVaultsManager.m; sourceTree = "<group>"; };
+		830AD2091C730BE5006D909C /* OAuthSigningConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthSigningConstants.h; sourceTree = "<group>"; };
+		830AD20A1C730BE5006D909C /* OAuthSigningConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthSigningConstants.m; sourceTree = "<group>"; };
 		831EC89C1C688824005DCD88 /* ATCOTPDigitTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPDigitTextLayer.h; sourceTree = "<group>"; };
 		831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPDigitTextLayer.m; sourceTree = "<group>"; };
 		831EC89F1C688830005DCD88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -163,6 +173,24 @@
 		8368DD351C6B637200005A7D /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		8368DD371C6CC12500005A7D /* AGClock+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AGClock+ATCExtensions.h"; sourceTree = "<group>"; };
 		8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AGClock+ATCExtensions.m"; sourceTree = "<group>"; };
+		836F0C9F1C784BED005EE91E /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
+		836F0CA01C784BED005EE91E /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
+		836F0CA11C784BED005EE91E /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
+		836F0CA21C784BED005EE91E /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
+		836F0CA31C784BED005EE91E /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
+		836F0CA41C784BED005EE91E /* RNCryptorModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorModule.h; sourceTree = "<group>"; };
+		836F0CA51C784BED005EE91E /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
+		836F0CA61C784BED005EE91E /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
+		836F0CA71C784BED005EE91E /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
+		836F0CA81C784BED005EE91E /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
+		836F0CAD1C784BF9005EE91E /* ATCAuthVaultItem+ATCFriends_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ATCAuthVaultItem+ATCFriends_.h"; path = "Authenticator/ATCAuthVaultItem+ATCFriends_.h"; sourceTree = SOURCE_ROOT; };
+		836F0CAE1C784BF9005EE91E /* ATCAuthVaultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATCAuthVaultItem.m; path = Authenticator/ATCAuthVaultItem.m; sourceTree = SOURCE_ROOT; };
+		836F0CAF1C784BF9005EE91E /* ATCAuthVaultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATCAuthVaultItem.h; path = Authenticator/ATCAuthVaultItem.h; sourceTree = SOURCE_ROOT; };
+		836F0CB01C784BF9005EE91E /* ATCAuthVaultConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATCAuthVaultConstants.m; path = Authenticator/ATCAuthVaultConstants.m; sourceTree = SOURCE_ROOT; };
+		836F0CB11C784BF9005EE91E /* ATCAuthVaultConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATCAuthVaultConstants.h; path = Authenticator/ATCAuthVaultConstants.h; sourceTree = SOURCE_ROOT; };
+		836F0CB21C784BF9005EE91E /* ATCAuthVault.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATCAuthVault.m; path = Authenticator/ATCAuthVault.m; sourceTree = SOURCE_ROOT; };
+		836F0CB31C784BF9005EE91E /* ATCAuthVault.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATCAuthVault.h; path = Authenticator/ATCAuthVault.h; sourceTree = SOURCE_ROOT; };
+		836F0CB71C784C02005EE91E /* ATCExtensions_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATCExtensions_.h; path = Authenticator/ATCExtensions_.h; sourceTree = SOURCE_ROOT; };
 		8373D85D1C671D7300A11E31 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
 		8373D85E1C671D7300A11E31 /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
 		8373D85F1C671D7300A11E31 /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
@@ -229,8 +257,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83A650E91C70516B009D2FA7 /* Security.framework in Frameworks */,
 				8368DD361C6B637200005A7D /* libcommonCrypto.tbd in Frameworks */,
+				83A650E91C70516B009D2FA7 /* Security.framework in Frameworks */,
 				831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,6 +344,31 @@
 			path = Public;
 			sourceTree = "<group>";
 		};
+		830AD2011C7308CD006D909C /* supports-of-outhvault */ = {
+			isa = PBXGroup;
+			children = (
+				836F0C9E1C784BED005EE91E /* RNCryptor */,
+				8383DD741C75B54B007B7665 /* internal */,
+				836F0CB11C784BF9005EE91E /* ATCAuthVaultConstants.h */,
+				836F0CB01C784BF9005EE91E /* ATCAuthVaultConstants.m */,
+				836F0CB31C784BF9005EE91E /* ATCAuthVault.h */,
+				836F0CB21C784BF9005EE91E /* ATCAuthVault.m */,
+				836F0CAF1C784BF9005EE91E /* ATCAuthVaultItem.h */,
+				836F0CAE1C784BF9005EE91E /* ATCAuthVaultItem.m */,
+			);
+			path = "supports-of-outhvault";
+			sourceTree = "<group>";
+		};
+		830AD2081C730BE5006D909C /* OAuthSigningConstants */ = {
+			isa = PBXGroup;
+			children = (
+				830AD2091C730BE5006D909C /* OAuthSigningConstants.h */,
+				830AD20A1C730BE5006D909C /* OAuthSigningConstants.m */,
+			);
+			name = OAuthSigningConstants;
+			path = Authenticator/vendors/OAuthSigningConstants;
+			sourceTree = "<group>";
+		};
 		8324B1921C67073900153EC7 = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +393,7 @@
 		8324B19D1C67073900153EC7 /* Authenticator */ = {
 			isa = PBXGroup;
 			children = (
+				830AD2011C7308CD006D909C /* supports-of-outhvault */,
 				8339601E1C670E69007241D9 /* wysiwyg */,
 				8373D8731C67491D00A11E31 /* extensions */,
 				8373D8C51C6A322900A11E31 /* ATCConstants.h */,
@@ -433,6 +487,24 @@
 			name = wysiwyg;
 			sourceTree = "<group>";
 		};
+		836F0C9E1C784BED005EE91E /* RNCryptor */ = {
+			isa = PBXGroup;
+			children = (
+				836F0C9F1C784BED005EE91E /* RNCryptor+Private.h */,
+				836F0CA01C784BED005EE91E /* RNCryptor.h */,
+				836F0CA11C784BED005EE91E /* RNCryptor.m */,
+				836F0CA21C784BED005EE91E /* RNCryptorEngine.h */,
+				836F0CA31C784BED005EE91E /* RNCryptorEngine.m */,
+				836F0CA41C784BED005EE91E /* RNCryptorModule.h */,
+				836F0CA51C784BED005EE91E /* RNDecryptor.h */,
+				836F0CA61C784BED005EE91E /* RNDecryptor.m */,
+				836F0CA71C784BED005EE91E /* RNEncryptor.h */,
+				836F0CA81C784BED005EE91E /* RNEncryptor.m */,
+			);
+			name = RNCryptor;
+			path = Authenticator/RNCryptor;
+			sourceTree = SOURCE_ROOT;
+		};
 		8373D85B1C671D6300A11E31 /* vendors */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,6 +513,7 @@
 				8368DD351C6B637200005A7D /* libcommonCrypto.tbd */,
 				8373D8801C67548C00A11E31 /* aerogear-otp.ios */,
 				8373D85C1C671D7300A11E31 /* PureLayout */,
+				830AD2081C730BE5006D909C /* OAuthSigningConstants */,
 				830AD16B1C706844006D909C /* WaxSealCore */,
 			);
 			name = vendors;
@@ -506,6 +579,15 @@
 				8373D88D1C67548C00A11E31 /* AGTotp.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		8383DD741C75B54B007B7665 /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				836F0CB71C784C02005EE91E /* ATCExtensions_.h */,
+				836F0CAD1C784BF9005EE91E /* ATCAuthVaultItem+ATCFriends_.h */,
+			);
+			name = internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -645,8 +727,10 @@
 			files = (
 				83CEE8AE1C6CD0E90027AE38 /* ATCHintField.m in Sources */,
 				830AD1A51C706844006D909C /* WSCKeychainError.m in Sources */,
+				836F0CB41C784BF9005EE91E /* ATCAuthVaultItem.m in Sources */,
 				8373D8911C67548C00A11E31 /* AGStringEncoding.m in Sources */,
 				8373D8BB1C697E0500A11E31 /* ATCBeautifulView.m in Sources */,
+				836F0CAB1C784BED005EE91E /* RNDecryptor.m in Sources */,
 				831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */,
 				830AD1AA1C706844006D909C /* WSCProtectedKeychainItem.m in Sources */,
 				830AD1A11C706844006D909C /* NSURL+WSCKeychainURL.m in Sources */,
@@ -661,14 +745,19 @@
 				830AD1A31C706844006D909C /* WSCKey.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
 				8373D87A1C67494300A11E31 /* NSColor+ATCExtensions.m in Sources */,
+				836F0CAA1C784BED005EE91E /* RNCryptorEngine.m in Sources */,
 				8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */,
 				830AD1A41C706844006D909C /* WSCKeychain.m in Sources */,
 				830AD1A71C706844006D909C /* WSCKeychainManager.m in Sources */,
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
+				830AD20B1C730BE5006D909C /* OAuthSigningConstants.m in Sources */,
 				8373D87C1C67494300A11E31 /* NSAffineTransform+ATCExtensions.m in Sources */,
 				8373D87F1C67537500A11E31 /* ATCOTPBadgeView.m in Sources */,
 				830AD1A91C706844006D909C /* WSCPermittedOperation.m in Sources */,
+				836F0CAC1C784BED005EE91E /* RNEncryptor.m in Sources */,
+				836F0CB61C784BF9005EE91E /* ATCAuthVault.m in Sources */,
 				8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */,
+				836F0CB51C784BF9005EE91E /* ATCAuthVaultConstants.m in Sources */,
 				830AD1A61C706844006D909C /* WSCKeychainItem.m in Sources */,
 				83CEE8C01C6E13090027AE38 /* ATCOTPBadgeLayer.m in Sources */,
 				830AD1A21C706844006D909C /* WSCCertificateItem.m in Sources */,
@@ -690,6 +779,7 @@
 				8373D8921C67548C00A11E31 /* AGTotp.m in Sources */,
 				830AD1A01C706844006D909C /* NSDate+WSCCocoaDate.m in Sources */,
 				83CEE8B41C6E03800027AE38 /* ATCOTPDigitLayer.m in Sources */,
+				836F0CA91C784BED005EE91E /* RNCryptor.m in Sources */,
 				830AD1E51C71CE93006D909C /* ATCOTPVaultItem.m in Sources */,
 				8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */,
 				8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */,
@@ -838,6 +928,8 @@
 					"__debug_Global_Timer__=0",
 					"__debug_Vault__=1",
 					"__debug_Animation__=0",
+					"__debug_AuthVault_Generator__=0",
+					"__debug_AuthVault_Parser__=1",
 				);
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

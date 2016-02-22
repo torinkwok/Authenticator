@@ -7,6 +7,7 @@
 //
 
 #import "ATCAppDelegate.h"
+#import "ATCAuthVaultItem.h"
 
 // Private Interfaces
 @interface ATCAppDelegate ()
@@ -20,28 +21,66 @@
 
 - ( void ) applicationDidFinishLaunching: ( NSNotification* )_Notif
     {
-    // Encoding
-//    NSLog( @"%@", [ NSHomeDirectory() stringByAppendingPathComponent: @"login.keychain" ] );
-//    NSData* keychainData = [ NSData dataWithContentsOfFile: [ NSHomeDirectory() stringByAppendingPathComponent: @"lab.keychain" ] ];
-//    NSData* base64edData = [ keychainData base64EncodedDataWithOptions:
-//        NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn ];
-//
-//    NSString* base64edString = [ [ NSString alloc ] initWithData: base64edData encoding: NSUTF8StringEncoding ];
-//
-//    // Decoding
-//    NSData* decodedKeychainData = [ [ NSData alloc ] initWithBase64EncodedString: base64edString options: 0 ];
-////    [ decodedKeychainData writeToFile: [ NSHomeDirectory() stringByAppendingPathComponent: @"copy.keychain" ] atomically: YES ];
-//    NSLog( @"%@", decodedKeychainData );
+    NSError* error = nil;
+
+    NSString* path = [ NSHomeDirectory() stringByAppendingPathComponent: @"test.authvault" ];
+    NSURL* url = [ NSURL URLWithString: [ NSString stringWithFormat: @"file://%@", path ] ];
+    NSString* password = @"isgtforever";
+
+    #if __debug_AuthVault_Generator__
+    ATCAuthVault* authVault = [ [ ATCAuthVault alloc ] initWithMasterPassword: password error: &error ];
+    if ( authVault )
+        {
+        BOOL isSuccess = NO;
+        [ authVault writeToURL: url atomically: YES ];
+
+        ATCAuthVaultItem* item0 = [ [ ATCAuthVaultItem alloc ] initWithIssuer: @"Google" accountName: @"contact@tong-kuo.me" secretKey: @"uqgrz4nub4tz5zwn" ];
+        ATCAuthVaultItem* item1 = [ [ ATCAuthVaultItem alloc ] initWithIssuer: @"Google" accountName: @"contact@tong-kuo.me" secretKey: @"3v7ptpbjedv3ivof" ];
+        ATCAuthVaultItem* item2 = [ [ ATCAuthVaultItem alloc ] initWithIssuer: @"Evernote" accountName: @"contact@tong-kuo.me" secretKey: @"dznyivy5pcf5si64" ];
+
+        sleep( 10 );
+        isSuccess = [ authVault addAuthVaultItem: item0 withMasterPassword: password error: &error ];
+        sleep( 5 );
+        isSuccess = [ authVault addAuthVaultItem: item1 withMasterPassword: password error: &error ];
+        sleep( 7 );
+        isSuccess = [ authVault addAuthVaultItem: item2 withMasterPassword: password error: &error ];
+        sleep( 9 );
+        isSuccess = [ authVault addAuthVaultItem: item0 withMasterPassword: password error: &error ];
+
+        [ authVault writeToURL: url atomically: YES ];
+        }
+
+    if ( error )
+        NSLog( @"%@", error );
+    #endif
+
+    #if __debug_AuthVault_Parser__
+    NSData* authVaultDat = [ NSData dataWithContentsOfURL: url ];
+    ATCAuthVault* authVault = [ [ ATCAuthVault alloc ] initWithData: authVaultDat masterPassword: @"isgtforever" error: &error ];
+    authVault.passwordSource = self;
+
+    if ( authVault )
+        {
+        NSArray <ATCAuthVaultItem*>* allItems = [ authVault authVaultItemsWithError: &error ];
+        NSLog( @"%@", allItems );
+
+        [ authVault setAuthVaultItems: @[] error: &error ];
+        allItems = [ authVault authVaultItemsWithError: &error ];
+        NSLog( @"%@", allItems );
+
+        [ authVault writeToURL: url atomically: YES ];
+        }
+
+    if ( error )
+        NSLog( @"%@", error );
+    #endif
     }
 
-//- ( void ) applicationWillResignActive: ( NSNotification* )_Notif
-//    {
-//    [ [ ATCNotificationCenter sharedTimer ] stopTiming ];
-//    }
+#pragma mark - Conforms to <ATCAuthVaultPasswordSource>
 
-//- ( void ) applicationWillBecomeActive: ( NSNotification* )_Notif
-//    {
-//    [ [ ATCNotificationCenter sharedTimer ] startTiming ];
-//    }
+- ( NSString* ) authVaultNeedsPasswordToUnlock: ( ATCAuthVault* )_AuthVault
+    {
+    return @"isgtforever";
+    }
 
 @end // ATCAppDelegate class

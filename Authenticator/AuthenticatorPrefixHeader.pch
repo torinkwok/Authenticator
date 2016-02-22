@@ -20,6 +20,8 @@
 #import "PureLayout.h"
 #import "AeroGearOTP.h"
 #import "WaxSealCore.h"
+#import "OAuthSigningConstants.h"
+#import "RNCryptorModule.h"
 
 // Frequently Used Headers
 #import "ATCConstants.h"

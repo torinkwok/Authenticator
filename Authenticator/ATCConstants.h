@@ -31,5 +31,8 @@ NSColor* ATCControlColor();
 NSURL* ATCVaultsDirURL();
 NSURL* ATCDefaultVaultsDirURL();
 NSURL* ATCImportedVaultsDirURL();
+NSURL* ATCTemporaryDirURL();
 
 NSString extern* const ATCTotpAuthURLTemplate;
+
+NSString extern* const ATCUnitedTypeIdentifier;
