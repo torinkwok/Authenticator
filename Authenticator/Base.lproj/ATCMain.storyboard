@@ -650,7 +650,7 @@
         <!--Window Controller-->
         <scene sceneID="Qe2-mt-Mae">
             <objects>
-                <windowController id="wzw-KO-jau" sceneMemberID="viewController">
+                <windowController id="wzw-KO-jau" customClass="ATCUnlockWindowController" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="fpg-qp-ibc" customClass="ATCUnlockWindow">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" bottomStrut="YES"/>
