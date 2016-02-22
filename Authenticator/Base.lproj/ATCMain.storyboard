@@ -732,7 +732,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="81" rowSizeStyle="automatic" viewBased="YES" id="d6W-DR-s03">
-                                            <rect key="frame" x="0.0" y="0.0" width="424" height="0.0"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="424" height="416"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -855,7 +855,7 @@ DQ
                                 </constraints>
                                 <animations/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="7LE-2D-mRy">
-                                    <rect key="frame" x="1" y="305" width="422" height="16"/>
+                                    <rect key="frame" x="0.0" y="400" width="424" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </scroller>
@@ -865,31 +865,6 @@ DQ
                                     <animations/>
                                 </scroller>
                             </scrollView>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nYK-8S-80v">
-                                <rect key="frame" x="389" y="480" width="25" height="27"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="26" id="1Kr-8G-fUM"/>
-                                    <constraint firstAttribute="width" constant="25" id="lc2-2u-Dy7"/>
-                                </constraints>
-                                <animations/>
-                                <popUpButtonCell key="cell" type="recessed" bezelStyle="recessed" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" id="kvT-ip-f4x">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                    <font key="font" metaFont="systemBold" size="12"/>
-                                    <menu key="menu" id="jDp-SO-zdv">
-                                        <items>
-                                            <menuItem state="on" image="NSAddTemplate" hidden="YES" id="RZf-zo-0C9">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Scan QR Code on Screen" id="rxx-jU-xan"/>
-                                            <menuItem title="Entry Key Manually" id="DYO-vz-B7I">
-                                                <connections>
-                                                    <segue destination="yHS-eX-c7F" kind="show" id="FhL-Pd-xcg"/>
-                                                </connections>
-                                            </menuItem>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                            </popUpButton>
                             <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="QXz-hh-4zp">
                                 <rect key="frame" x="0.0" y="414" width="424" height="5"/>
                                 <constraints>
@@ -912,26 +887,51 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bTv-l9-zLb">
+                                <rect key="frame" x="370" y="479" width="34" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="QT6-HL-5Ni"/>
+                                    <constraint firstAttribute="width" constant="34" id="nbc-S5-aKE"/>
+                                </constraints>
+                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="opt-add-button" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ydP-vR-auI">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="yHS-eX-c7F" kind="show" id="1IE-Yd-OBx"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3dk-ak-j1d">
+                                <rect key="frame" x="330" y="479" width="34" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="34" id="ffe-Xh-t1s"/>
+                                    <constraint firstAttribute="height" constant="22" id="k0M-RW-lS4"/>
+                                </constraints>
+                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="opt-scan-button" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JiM-Ky-anH">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="BEz-oe-qrV" secondAttribute="bottom" id="16E-JS-gsc"/>
-                            <constraint firstItem="nYK-8S-80v" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="373" id="2hS-3S-5pY"/>
+                            <constraint firstItem="bTv-l9-zLb" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="9" id="2Ou-ez-M96"/>
                             <constraint firstAttribute="trailing" secondItem="QXz-hh-4zp" secondAttribute="trailing" id="41Y-XY-zTg"/>
+                            <constraint firstItem="3dk-ak-j1d" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="9" id="A27-bE-ckt"/>
+                            <constraint firstItem="bTv-l9-zLb" firstAttribute="leading" secondItem="3dk-ak-j1d" secondAttribute="trailing" constant="6" id="A4l-6z-MT6"/>
+                            <constraint firstItem="yD9-ie-RIJ" firstAttribute="top" secondItem="bTv-l9-zLb" secondAttribute="bottom" constant="8" id="Bln-Re-9He"/>
                             <constraint firstItem="QXz-hh-4zp" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="I9k-Ia-hSV"/>
                             <constraint firstItem="BEz-oe-qrV" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="J3b-U6-LWe"/>
                             <constraint firstItem="BEz-oe-qrV" firstAttribute="top" secondItem="QXz-hh-4zp" secondAttribute="bottom" id="Nzb-GC-6S7"/>
-                            <constraint firstAttribute="trailing" secondItem="nYK-8S-80v" secondAttribute="trailing" constant="10" id="SUr-Dc-6wz"/>
+                            <constraint firstAttribute="trailing" secondItem="bTv-l9-zLb" secondAttribute="trailing" constant="20" id="SwU-AW-UND"/>
+                            <constraint firstItem="3dk-ak-j1d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="325" id="XhQ-fK-i7C"/>
                             <constraint firstAttribute="trailing" secondItem="yD9-ie-RIJ" secondAttribute="trailing" constant="20" id="d4H-6m-2gs"/>
                             <constraint firstItem="yD9-ie-RIJ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="eDj-HS-dD5"/>
+                            <constraint firstItem="yD9-ie-RIJ" firstAttribute="top" secondItem="3dk-ak-j1d" secondAttribute="bottom" constant="8" id="ipo-a2-7LX"/>
                             <constraint firstItem="BEz-oe-qrV" firstAttribute="top" secondItem="yD9-ie-RIJ" secondAttribute="bottom" constant="27" id="lNj-YA-6zZ"/>
                             <constraint firstAttribute="trailing" secondItem="BEz-oe-qrV" secondAttribute="trailing" id="qvd-78-naX"/>
-                            <constraint firstItem="nYK-8S-80v" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="5" id="r1F-S0-eK1"/>
-                            <constraint firstItem="yD9-ie-RIJ" firstAttribute="top" secondItem="nYK-8S-80v" secondAttribute="bottom" constant="8" id="rQK-YN-48M"/>
                         </constraints>
                         <animations/>
-                        <connections>
-                            <outlet property="addNewKeyPopUpButton" destination="nYK-8S-80v" id="JXS-d8-tfx"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="optEntriesTableView" destination="d6W-DR-s03" id="Lig-PL-4fC"/>
@@ -1069,6 +1069,7 @@ Gw
         </scene>
     </scenes>
     <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="opt-add-button" width="8" height="14"/>
+        <image name="opt-scan-button" width="12" height="13"/>
     </resources>
 </document>

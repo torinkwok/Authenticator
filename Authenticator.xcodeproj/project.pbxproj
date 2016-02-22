@@ -38,10 +38,6 @@
 		8368DD341C6AED6600005A7D /* ATCNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */; settings = {ASSET_TAGS = (); }; };
 		8368DD361C6B637200005A7D /* libcommonCrypto.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8368DD351C6B637200005A7D /* libcommonCrypto.tbd */; };
 		8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
-		836F0CA91C784BED005EE91E /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CA11C784BED005EE91E /* RNCryptor.m */; settings = {ASSET_TAGS = (); }; };
-		836F0CAA1C784BED005EE91E /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CA31C784BED005EE91E /* RNCryptorEngine.m */; settings = {ASSET_TAGS = (); }; };
-		836F0CAB1C784BED005EE91E /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CA61C784BED005EE91E /* RNDecryptor.m */; settings = {ASSET_TAGS = (); }; };
-		836F0CAC1C784BED005EE91E /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CA81C784BED005EE91E /* RNEncryptor.m */; settings = {ASSET_TAGS = (); }; };
 		836F0CB41C784BF9005EE91E /* ATCAuthVaultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CAE1C784BF9005EE91E /* ATCAuthVaultItem.m */; settings = {ASSET_TAGS = (); }; };
 		836F0CB51C784BF9005EE91E /* ATCAuthVaultConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CB01C784BF9005EE91E /* ATCAuthVaultConstants.m */; settings = {ASSET_TAGS = (); }; };
 		836F0CB61C784BF9005EE91E /* ATCAuthVault.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CB21C784BF9005EE91E /* ATCAuthVault.m */; settings = {ASSET_TAGS = (); }; };
@@ -71,6 +67,14 @@
 		83CEE8C01C6E13090027AE38 /* ATCOTPBadgeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8BF1C6E13090027AE38 /* ATCOTPBadgeLayer.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BFC1C67148A007253E3 /* ATCTotpEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BFB1C67148A007253E3 /* ATCTotpEntry.m */; settings = {ASSET_TAGS = (); }; };
+		83F56E841C7B57E0008463F2 /* opt-add-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F56E821C7B57E0008463F2 /* opt-add-button.png */; settings = {ASSET_TAGS = (); }; };
+		83F56E851C7B57E0008463F2 /* opt-add-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F56E831C7B57E0008463F2 /* opt-add-button@2x.png */; settings = {ASSET_TAGS = (); }; };
+		83F56E881C7B588A008463F2 /* opt-scan-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F56E861C7B588A008463F2 /* opt-scan-button@2x.png */; settings = {ASSET_TAGS = (); }; };
+		83F56E891C7B588A008463F2 /* opt-scan-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F56E871C7B588A008463F2 /* opt-scan-button.png */; settings = {ASSET_TAGS = (); }; };
+		83F56E951C7B5B21008463F2 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F56E8D1C7B5B21008463F2 /* RNCryptor.m */; settings = {ASSET_TAGS = (); }; };
+		83F56E961C7B5B21008463F2 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F56E8F1C7B5B21008463F2 /* RNCryptorEngine.m */; settings = {ASSET_TAGS = (); }; };
+		83F56E971C7B5B21008463F2 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F56E921C7B5B21008463F2 /* RNDecryptor.m */; settings = {ASSET_TAGS = (); }; };
+		83F56E981C7B5B21008463F2 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F56E941C7B5B21008463F2 /* RNEncryptor.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,16 +167,6 @@
 		8368DD351C6B637200005A7D /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		8368DD371C6CC12500005A7D /* AGClock+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AGClock+ATCExtensions.h"; sourceTree = "<group>"; };
 		8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AGClock+ATCExtensions.m"; sourceTree = "<group>"; };
-		836F0C9F1C784BED005EE91E /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
-		836F0CA01C784BED005EE91E /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
-		836F0CA11C784BED005EE91E /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
-		836F0CA21C784BED005EE91E /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
-		836F0CA31C784BED005EE91E /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
-		836F0CA41C784BED005EE91E /* RNCryptorModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorModule.h; sourceTree = "<group>"; };
-		836F0CA51C784BED005EE91E /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
-		836F0CA61C784BED005EE91E /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
-		836F0CA71C784BED005EE91E /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
-		836F0CA81C784BED005EE91E /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
 		836F0CAD1C784BF9005EE91E /* ATCAuthVaultItem+ATCFriends_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ATCAuthVaultItem+ATCFriends_.h"; path = "Authenticator/ATCAuthVaultItem+ATCFriends_.h"; sourceTree = SOURCE_ROOT; };
 		836F0CAE1C784BF9005EE91E /* ATCAuthVaultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATCAuthVaultItem.m; path = Authenticator/ATCAuthVaultItem.m; sourceTree = SOURCE_ROOT; };
 		836F0CAF1C784BF9005EE91E /* ATCAuthVaultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATCAuthVaultItem.h; path = Authenticator/ATCAuthVaultItem.h; sourceTree = SOURCE_ROOT; };
@@ -238,6 +232,20 @@
 		83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntryTableCellView.m; sourceTree = "<group>"; };
 		83D34BFA1C67148A007253E3 /* ATCTotpEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCTotpEntry.h; sourceTree = "<group>"; };
 		83D34BFB1C67148A007253E3 /* ATCTotpEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCTotpEntry.m; sourceTree = "<group>"; };
+		83F56E821C7B57E0008463F2 /* opt-add-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opt-add-button.png"; sourceTree = "<group>"; };
+		83F56E831C7B57E0008463F2 /* opt-add-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opt-add-button@2x.png"; sourceTree = "<group>"; };
+		83F56E861C7B588A008463F2 /* opt-scan-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opt-scan-button@2x.png"; sourceTree = "<group>"; };
+		83F56E871C7B588A008463F2 /* opt-scan-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opt-scan-button.png"; sourceTree = "<group>"; };
+		83F56E8B1C7B5B21008463F2 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
+		83F56E8C1C7B5B21008463F2 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
+		83F56E8D1C7B5B21008463F2 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
+		83F56E8E1C7B5B21008463F2 /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
+		83F56E8F1C7B5B21008463F2 /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
+		83F56E901C7B5B21008463F2 /* RNCryptorModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorModule.h; sourceTree = "<group>"; };
+		83F56E911C7B5B21008463F2 /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
+		83F56E921C7B5B21008463F2 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
+		83F56E931C7B5B21008463F2 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
+		83F56E941C7B5B21008463F2 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,7 +343,6 @@
 		830AD2011C7308CD006D909C /* supports-of-outhvault */ = {
 			isa = PBXGroup;
 			children = (
-				836F0C9E1C784BED005EE91E /* RNCryptor */,
 				8383DD741C75B54B007B7665 /* internal */,
 				836F0CB11C784BF9005EE91E /* ATCAuthVaultConstants.h */,
 				836F0CB01C784BF9005EE91E /* ATCAuthVaultConstants.m */,
@@ -362,6 +369,7 @@
 			children = (
 				8324B19D1C67073900153EC7 /* Authenticator */,
 				8373D85B1C671D6300A11E31 /* vendors */,
+				83F56E811C7B57E0008463F2 /* artworks */,
 				8324B1B41C67073A00153EC7 /* AuthenticatorTests */,
 				8324B1BF1C67073A00153EC7 /* AuthenticatorUITests */,
 				8324B19C1C67073900153EC7 /* Products */,
@@ -467,30 +475,13 @@
 			name = wysiwyg;
 			sourceTree = "<group>";
 		};
-		836F0C9E1C784BED005EE91E /* RNCryptor */ = {
-			isa = PBXGroup;
-			children = (
-				836F0C9F1C784BED005EE91E /* RNCryptor+Private.h */,
-				836F0CA01C784BED005EE91E /* RNCryptor.h */,
-				836F0CA11C784BED005EE91E /* RNCryptor.m */,
-				836F0CA21C784BED005EE91E /* RNCryptorEngine.h */,
-				836F0CA31C784BED005EE91E /* RNCryptorEngine.m */,
-				836F0CA41C784BED005EE91E /* RNCryptorModule.h */,
-				836F0CA51C784BED005EE91E /* RNDecryptor.h */,
-				836F0CA61C784BED005EE91E /* RNDecryptor.m */,
-				836F0CA71C784BED005EE91E /* RNEncryptor.h */,
-				836F0CA81C784BED005EE91E /* RNEncryptor.m */,
-			);
-			name = RNCryptor;
-			path = Authenticator/RNCryptor;
-			sourceTree = SOURCE_ROOT;
-		};
 		8373D85B1C671D6300A11E31 /* vendors */ = {
 			isa = PBXGroup;
 			children = (
 				83A650E81C70516B009D2FA7 /* Security.framework */,
 				831EC89F1C688830005DCD88 /* QuartzCore.framework */,
 				8368DD351C6B637200005A7D /* libcommonCrypto.tbd */,
+				83F56E8A1C7B5B21008463F2 /* RNCryptor */,
 				8373D8801C67548C00A11E31 /* aerogear-otp.ios */,
 				8373D85C1C671D7300A11E31 /* PureLayout */,
 				830AD2081C730BE5006D909C /* OAuthSigningConstants */,
@@ -568,6 +559,36 @@
 				836F0CAD1C784BF9005EE91E /* ATCAuthVaultItem+ATCFriends_.h */,
 			);
 			name = internal;
+			sourceTree = "<group>";
+		};
+		83F56E811C7B57E0008463F2 /* artworks */ = {
+			isa = PBXGroup;
+			children = (
+				83F56E861C7B588A008463F2 /* opt-scan-button@2x.png */,
+				83F56E871C7B588A008463F2 /* opt-scan-button.png */,
+				83F56E821C7B57E0008463F2 /* opt-add-button.png */,
+				83F56E831C7B57E0008463F2 /* opt-add-button@2x.png */,
+			);
+			name = artworks;
+			path = Authenticator/artworks;
+			sourceTree = "<group>";
+		};
+		83F56E8A1C7B5B21008463F2 /* RNCryptor */ = {
+			isa = PBXGroup;
+			children = (
+				83F56E8B1C7B5B21008463F2 /* RNCryptor+Private.h */,
+				83F56E8C1C7B5B21008463F2 /* RNCryptor.h */,
+				83F56E8D1C7B5B21008463F2 /* RNCryptor.m */,
+				83F56E8E1C7B5B21008463F2 /* RNCryptorEngine.h */,
+				83F56E8F1C7B5B21008463F2 /* RNCryptorEngine.m */,
+				83F56E901C7B5B21008463F2 /* RNCryptorModule.h */,
+				83F56E911C7B5B21008463F2 /* RNDecryptor.h */,
+				83F56E921C7B5B21008463F2 /* RNDecryptor.m */,
+				83F56E931C7B5B21008463F2 /* RNEncryptor.h */,
+				83F56E941C7B5B21008463F2 /* RNEncryptor.m */,
+			);
+			name = RNCryptor;
+			path = Authenticator/vendors/RNCryptor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -679,6 +700,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F56E891C7B588A008463F2 /* opt-scan-button.png in Resources */,
+				83F56E851C7B57E0008463F2 /* opt-add-button@2x.png in Resources */,
+				83F56E881C7B588A008463F2 /* opt-scan-button@2x.png in Resources */,
+				83F56E841C7B57E0008463F2 /* opt-add-button.png in Resources */,
 				8324B1A81C67073900153EC7 /* Assets.xcassets in Resources */,
 				8324B1AB1C67073900153EC7 /* ATCMain.storyboard in Resources */,
 			);
@@ -705,12 +730,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F56E981C7B5B21008463F2 /* RNEncryptor.m in Sources */,
 				83CEE8AE1C6CD0E90027AE38 /* ATCHintField.m in Sources */,
 				830AD1A51C706844006D909C /* WSCKeychainError.m in Sources */,
 				836F0CB41C784BF9005EE91E /* ATCAuthVaultItem.m in Sources */,
 				8373D8911C67548C00A11E31 /* AGStringEncoding.m in Sources */,
 				8373D8BB1C697E0500A11E31 /* ATCBeautifulView.m in Sources */,
-				836F0CAB1C784BED005EE91E /* RNDecryptor.m in Sources */,
+				83F56E951C7B5B21008463F2 /* RNCryptor.m in Sources */,
 				831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */,
 				830AD1AA1C706844006D909C /* WSCProtectedKeychainItem.m in Sources */,
 				830AD1A11C706844006D909C /* NSURL+WSCKeychainURL.m in Sources */,
@@ -724,7 +750,6 @@
 				830AD1A31C706844006D909C /* WSCKey.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
 				8373D87A1C67494300A11E31 /* NSColor+ATCExtensions.m in Sources */,
-				836F0CAA1C784BED005EE91E /* RNCryptorEngine.m in Sources */,
 				8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */,
 				830AD1A41C706844006D909C /* WSCKeychain.m in Sources */,
 				830AD1A71C706844006D909C /* WSCKeychainManager.m in Sources */,
@@ -733,15 +758,16 @@
 				8373D87C1C67494300A11E31 /* NSAffineTransform+ATCExtensions.m in Sources */,
 				8373D87F1C67537500A11E31 /* ATCOTPBadgeView.m in Sources */,
 				830AD1A91C706844006D909C /* WSCPermittedOperation.m in Sources */,
-				836F0CAC1C784BED005EE91E /* RNEncryptor.m in Sources */,
 				836F0CB61C784BF9005EE91E /* ATCAuthVault.m in Sources */,
 				8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */,
 				836F0CB51C784BF9005EE91E /* ATCAuthVaultConstants.m in Sources */,
 				830AD1A61C706844006D909C /* WSCKeychainItem.m in Sources */,
 				83CEE8C01C6E13090027AE38 /* ATCOTPBadgeLayer.m in Sources */,
 				830AD1A21C706844006D909C /* WSCCertificateItem.m in Sources */,
+				83F56E961C7B5B21008463F2 /* RNCryptorEngine.m in Sources */,
 				8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */,
 				8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */,
+				83F56E971C7B5B21008463F2 /* RNDecryptor.m in Sources */,
 				830AD19C1C706844006D909C /* _WSCCommon.m in Sources */,
 				8373D8901C67548C00A11E31 /* AGOtp.m in Sources */,
 				8373D8B51C697D4D00A11E31 /* ATCBeautifulWindow.m in Sources */,
@@ -756,7 +782,6 @@
 				8373D8921C67548C00A11E31 /* AGTotp.m in Sources */,
 				830AD1A01C706844006D909C /* NSDate+WSCCocoaDate.m in Sources */,
 				83CEE8B41C6E03800027AE38 /* ATCOTPDigitLayer.m in Sources */,
-				836F0CA91C784BED005EE91E /* RNCryptor.m in Sources */,
 				8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */,
 				8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */,
 				83CEE8B11C6DB4B50027AE38 /* NSObject+ATCExtensions.m in Sources */,
