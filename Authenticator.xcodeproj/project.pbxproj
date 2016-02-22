@@ -65,12 +65,6 @@
 		8373D8C41C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C31C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.m */; settings = {ASSET_TAGS = (); }; };
 		8373D8C71C6A322900A11E31 /* ATCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8C61C6A322900A11E31 /* ATCConstants.m */; settings = {ASSET_TAGS = (); }; };
 		83A650E91C70516B009D2FA7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A650E81C70516B009D2FA7 /* Security.framework */; };
-		83C189BA1C7AB78C0013C877 /* ATCUnlockWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C189B91C7AB78C0013C877 /* ATCUnlockWindow.m */; settings = {ASSET_TAGS = (); }; };
-		83C189BD1C7AB8120013C877 /* ATCUnlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C189BC1C7AB8120013C877 /* ATCUnlockView.m */; settings = {ASSET_TAGS = (); }; };
-		83C189C01C7AB8960013C877 /* ATCUnlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C189BF1C7AB8960013C877 /* ATCUnlockViewController.m */; settings = {ASSET_TAGS = (); }; };
-		83C189C31C7AB8DB0013C877 /* ATCUnlockWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C189C21C7AB8DB0013C877 /* ATCUnlockWindowController.m */; settings = {ASSET_TAGS = (); }; };
-		83C189C61C7AB9CD0013C877 /* ATCMasterPasswordCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C189C51C7AB9CD0013C877 /* ATCMasterPasswordCollectionView.m */; settings = {ASSET_TAGS = (); }; };
-		83C189C91C7AB9E60013C877 /* ATCMasterPasswordCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C189C81C7AB9E60013C877 /* ATCMasterPasswordCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
 		83CEE8AE1C6CD0E90027AE38 /* ATCHintField.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8AD1C6CD0E90027AE38 /* ATCHintField.m */; settings = {ASSET_TAGS = (); }; };
 		83CEE8B11C6DB4B50027AE38 /* NSObject+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8B01C6DB4B50027AE38 /* NSObject+ATCExtensions.m */; settings = {ASSET_TAGS = (); }; };
 		83CEE8B41C6E03800027AE38 /* ATCOTPDigitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8B31C6E03800027AE38 /* ATCOTPDigitLayer.m */; settings = {ASSET_TAGS = (); }; };
@@ -232,18 +226,6 @@
 		8373D8C51C6A322900A11E31 /* ATCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCConstants.h; sourceTree = "<group>"; };
 		8373D8C61C6A322900A11E31 /* ATCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCConstants.m; sourceTree = "<group>"; };
 		83A650E81C70516B009D2FA7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		83C189B81C7AB78C0013C877 /* ATCUnlockWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCUnlockWindow.h; sourceTree = "<group>"; };
-		83C189B91C7AB78C0013C877 /* ATCUnlockWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCUnlockWindow.m; sourceTree = "<group>"; };
-		83C189BB1C7AB8120013C877 /* ATCUnlockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCUnlockView.h; sourceTree = "<group>"; };
-		83C189BC1C7AB8120013C877 /* ATCUnlockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCUnlockView.m; sourceTree = "<group>"; };
-		83C189BE1C7AB8960013C877 /* ATCUnlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCUnlockViewController.h; sourceTree = "<group>"; };
-		83C189BF1C7AB8960013C877 /* ATCUnlockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCUnlockViewController.m; sourceTree = "<group>"; };
-		83C189C11C7AB8DB0013C877 /* ATCUnlockWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCUnlockWindowController.h; sourceTree = "<group>"; };
-		83C189C21C7AB8DB0013C877 /* ATCUnlockWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCUnlockWindowController.m; sourceTree = "<group>"; };
-		83C189C41C7AB9CD0013C877 /* ATCMasterPasswordCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMasterPasswordCollectionView.h; sourceTree = "<group>"; };
-		83C189C51C7AB9CD0013C877 /* ATCMasterPasswordCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMasterPasswordCollectionView.m; sourceTree = "<group>"; };
-		83C189C71C7AB9E60013C877 /* ATCMasterPasswordCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMasterPasswordCollectionViewController.h; sourceTree = "<group>"; };
-		83C189C81C7AB9E60013C877 /* ATCMasterPasswordCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMasterPasswordCollectionViewController.m; sourceTree = "<group>"; };
 		83CEE8AC1C6CD0E90027AE38 /* ATCHintField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCHintField.h; sourceTree = "<group>"; };
 		83CEE8AD1C6CD0E90027AE38 /* ATCHintField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCHintField.m; sourceTree = "<group>"; };
 		83CEE8AF1C6DB4B50027AE38 /* NSObject+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ATCExtensions.h"; sourceTree = "<group>"; };
@@ -414,18 +396,6 @@
 				8373D8BA1C697E0500A11E31 /* ATCBeautifulView.m */,
 				8373D8B31C697D4D00A11E31 /* ATCBeautifulWindow.h */,
 				8373D8B41C697D4D00A11E31 /* ATCBeautifulWindow.m */,
-				83C189C11C7AB8DB0013C877 /* ATCUnlockWindowController.h */,
-				83C189C21C7AB8DB0013C877 /* ATCUnlockWindowController.m */,
-				83C189B81C7AB78C0013C877 /* ATCUnlockWindow.h */,
-				83C189B91C7AB78C0013C877 /* ATCUnlockWindow.m */,
-				83C189C71C7AB9E60013C877 /* ATCMasterPasswordCollectionViewController.h */,
-				83C189C81C7AB9E60013C877 /* ATCMasterPasswordCollectionViewController.m */,
-				83C189C41C7AB9CD0013C877 /* ATCMasterPasswordCollectionView.h */,
-				83C189C51C7AB9CD0013C877 /* ATCMasterPasswordCollectionView.m */,
-				83C189BE1C7AB8960013C877 /* ATCUnlockViewController.h */,
-				83C189BF1C7AB8960013C877 /* ATCUnlockViewController.m */,
-				83C189BB1C7AB8120013C877 /* ATCUnlockView.h */,
-				83C189BC1C7AB8120013C877 /* ATCUnlockView.m */,
 				833960151C670C73007241D9 /* ATCMainWindow.h */,
 				833960161C670C73007241D9 /* ATCMainWindow.m */,
 				8373D8C21C69805200A11E31 /* ATCSecretKeyManuallyInputWindowController.h */,
@@ -738,7 +708,6 @@
 				83CEE8AE1C6CD0E90027AE38 /* ATCHintField.m in Sources */,
 				830AD1A51C706844006D909C /* WSCKeychainError.m in Sources */,
 				836F0CB41C784BF9005EE91E /* ATCAuthVaultItem.m in Sources */,
-				83C189C01C7AB8960013C877 /* ATCUnlockViewController.m in Sources */,
 				8373D8911C67548C00A11E31 /* AGStringEncoding.m in Sources */,
 				8373D8BB1C697E0500A11E31 /* ATCBeautifulView.m in Sources */,
 				836F0CAB1C784BED005EE91E /* RNDecryptor.m in Sources */,
@@ -746,9 +715,6 @@
 				830AD1AA1C706844006D909C /* WSCProtectedKeychainItem.m in Sources */,
 				830AD1A11C706844006D909C /* NSURL+WSCKeychainURL.m in Sources */,
 				830AD19E1C706844006D909C /* _WSCKeychainErrorPrivate.m in Sources */,
-				83C189BA1C7AB78C0013C877 /* ATCUnlockWindow.m in Sources */,
-				83C189C61C7AB9CD0013C877 /* ATCMasterPasswordCollectionView.m in Sources */,
-				83C189C91C7AB9E60013C877 /* ATCMasterPasswordCollectionViewController.m in Sources */,
 				8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */,
 				830AD19F1C706844006D909C /* NSString+_OMCString.m in Sources */,
 				8373D8BE1C697E2600A11E31 /* ATCSecretKeyManuallyInputView.m in Sources */,
@@ -757,11 +723,9 @@
 				830AD1A81C706844006D909C /* WSCPassphraseItem.m in Sources */,
 				830AD1A31C706844006D909C /* WSCKey.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
-				83C189C31C7AB8DB0013C877 /* ATCUnlockWindowController.m in Sources */,
 				8373D87A1C67494300A11E31 /* NSColor+ATCExtensions.m in Sources */,
 				836F0CAA1C784BED005EE91E /* RNCryptorEngine.m in Sources */,
 				8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */,
-				83C189BD1C7AB8120013C877 /* ATCUnlockView.m in Sources */,
 				830AD1A41C706844006D909C /* WSCKeychain.m in Sources */,
 				830AD1A71C706844006D909C /* WSCKeychainManager.m in Sources */,
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
