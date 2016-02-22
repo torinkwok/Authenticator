@@ -9,6 +9,6 @@
 #import "ATCAuthVault.h"
 
 // ATCAppDelegate class
-@interface ATCAppDelegate : NSObject <NSApplicationDelegate, ATCAuthVaultPasswordSource>
+@interface ATCAppDelegate : NSObject <NSApplicationDelegate>
 
 @end // ATCAppDelegate class
