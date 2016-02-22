@@ -665,10 +665,10 @@
             </objects>
             <point key="canvasLocation" x="-319" y="313"/>
         </scene>
-        <!--View Controller-->
+        <!--Unlock View Controller-->
         <scene sceneID="E9u-iJ-3iT">
             <objects>
-                <viewController id="DZs-Sp-mtM" sceneMemberID="viewController">
+                <viewController id="DZs-Sp-mtM" customClass="ATCUnlockViewController" sceneMemberID="viewController">
                     <view key="view" id="Knw-J9-h6C" customClass="ATCUnlockView">
                         <rect key="frame" x="0.0" y="0.0" width="335" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
