@@ -699,7 +699,20 @@ DQ
                 </viewController>
                 <customObject id="dq8-4R-cKu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="213.5" y="313"/>
+            <point key="canvasLocation" x="214.5" y="224"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="aFg-sf-YTz">
+            <objects>
+                <viewController id="cUt-B5-jWl" sceneMemberID="viewController">
+                    <view key="view" id="xaM-NQ-7t5">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="Atn-Vt-8WL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="272" y="623"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -720,7 +733,7 @@ DQ
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-219.5" y="789"/>
+            <point key="canvasLocation" x="-411.5" y="805"/>
         </scene>
         <!--Main Content View Controller-->
         <scene sceneID="hIz-AP-VOD">
