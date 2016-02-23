@@ -297,10 +297,11 @@ typedef struct
                 [ [ NSNotificationCenter defaultCenter ]
                     postNotificationName: ATCFinishScanningQRCodeOnScreenNotif object: self userInfo: @{ kQRCodeContents : url } ];
                 }
-            }
-        else
-            {
-            NSLog( @"\"%@\" is illegal", contents );
+            else
+                {
+                NSLog( @"Sorry, although this QR Code is indeed valid, \"%@\" contains no legal contents", contents );
+                // TODO: To construct an error object that contains the information about this failure
+                }
             }
         }
     else
