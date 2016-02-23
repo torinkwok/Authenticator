@@ -11,19 +11,19 @@
 
 typedef struct
     {
-    CGPoint currentCursorLocation;
-
     CGPoint upperLeftCorner;
     CGPoint upperRightCorner;
     CGPoint bottomLeftCorner;
     CGPoint bottomRightCorner;
 
-    NSRect scannerRect;
+    NSRect scanRegion;
+    double scanRegionFactor;
     } ATCPaintStateStruct_;
 
 // Private Interfaces
 @interface ATCQRCodeScannerView ()
     {
+@private
     ATCPaintStateStruct_ paintStates_;
     }
 
@@ -42,6 +42,9 @@ typedef struct
 
 @end // Private Interfaces
 
+#define ATC_SCANNER_DEFAULT_WIDTH   250.f
+#define ATC_SCANNER_DEFAULT_HEIGHT  250.f
+
 // ATCQRCodeScannerView class
 @implementation ATCQRCodeScannerView
 
@@ -49,10 +52,19 @@ typedef struct
 
 - ( void ) awakeFromNib
     {
-    [ self interrogateHardware_ ];
+    ATCPaintStateStruct_ tmpStates =
+        { .upperLeftCorner = NSZeroPoint
+        , .upperRightCorner = NSZeroPoint
+        , .bottomLeftCorner = NSZeroPoint
+        , .bottomRightCorner = NSZeroPoint
 
-    scannerInitialHeight_ = 250.f;
-    scannerInitialWidth_ = 250.f;
+        , .scanRegion = NSZeroRect
+        , .scanRegionFactor = 1.f
+        };
+
+    paintStates_ = tmpStates;
+
+    [ self interrogateHardware_ ];
 
     [ self setWantsLayer: YES ];
 
@@ -65,25 +77,31 @@ typedef struct
 
 #pragma mark - Events Handling
 
-- ( ATCPaintStateStruct_ ) locStructBasedOnCurrentCursorLocation_: ( NSPoint )_CursorPoint
+- ( void ) rederiveStatesStruct_
     {
-    ATCPaintStateStruct_ loc;
-    loc.currentCursorLocation = _CursorPoint;
+    paintStates_.upperRightCorner = currentCursorPoint_;
 
-    loc.upperRightCorner = _CursorPoint;
-    loc.upperLeftCorner = NSMakePoint( _CursorPoint.x - scannerInitialWidth_, _CursorPoint.y );
-    loc.bottomRightCorner = NSMakePoint( _CursorPoint.x, _CursorPoint.y + scannerInitialHeight_ );
-    loc.bottomLeftCorner = NSMakePoint( _CursorPoint.x - scannerInitialWidth_, _CursorPoint.y + scannerInitialHeight_ );
+    paintStates_.upperLeftCorner =
+        NSMakePoint( currentCursorPoint_.x - ATC_SCANNER_DEFAULT_WIDTH, currentCursorPoint_.y );
 
-    loc.scannerRect = NSMakeRect( loc.upperLeftCorner.x, loc.upperLeftCorner.y, scannerInitialWidth_, scannerInitialHeight_ );
+    paintStates_.bottomRightCorner =
+        NSMakePoint( currentCursorPoint_.x, currentCursorPoint_.y + ATC_SCANNER_DEFAULT_HEIGHT );
 
-    return loc;
+    paintStates_.bottomLeftCorner =
+        NSMakePoint( currentCursorPoint_.x - ATC_SCANNER_DEFAULT_WIDTH, currentCursorPoint_.y + ATC_SCANNER_DEFAULT_HEIGHT );
+
+    paintStates_.scanRegion =
+        NSMakeRect( paintStates_.upperLeftCorner.x
+                  , paintStates_.upperLeftCorner.y
+                  , ATC_SCANNER_DEFAULT_WIDTH * paintStates_.scanRegionFactor
+                  , ATC_SCANNER_DEFAULT_HEIGHT * paintStates_.scanRegionFactor
+                  );
     }
 
 - ( void ) mouseEntered: ( NSEvent* )_Event
     {
-    paintStates_ = [ self locStructBasedOnCurrentCursorLocation_:
-        [ self convertPoint: _Event.locationInWindow fromView: nil ] ];
+    currentCursorPoint_ = [ self convertPoint: _Event.locationInWindow fromView: nil ];
+    [ self rederiveStatesStruct_ ];
 
     self.needsDisplay = YES;
 
@@ -101,8 +119,8 @@ typedef struct
     timer = [ NSTimer timerWithTimeInterval: .5F target: self selector: @selector( timerFired_: ) userInfo: nil repeats: NO ];
     [ [ NSRunLoop currentRunLoop ] addTimer: timer forMode: NSRunLoopCommonModes ];
 
-    paintStates_ = [ self locStructBasedOnCurrentCursorLocation_:
-        [ self convertPoint: _Event.locationInWindow fromView: nil ] ];
+    currentCursorPoint_ = [ self convertPoint: _Event.locationInWindow fromView: nil ];
+    [ self rederiveStatesStruct_ ];
 
     self.needsDisplay = YES;
     }
@@ -124,7 +142,7 @@ typedef struct
     {
     [ super drawRect: _DirtyRect ];
 
-    NSBezierPath* scannerPath = [ NSBezierPath bezierPathWithRect: paintStates_.scannerRect ];
+    NSBezierPath* scannerPath = [ NSBezierPath bezierPathWithRect: paintStates_.scanRegion ];
 
     scannerPath.lineWidth = 1.f;
 
@@ -155,22 +173,22 @@ typedef struct
     CGFloat unitedY = 0.f;
 
     // (4) - d
-    unitedY = paintStates_.upperLeftCorner.y + scannerInitialHeight_ / 2;
+    unitedY = paintStates_.upperLeftCorner.y + ATC_SCANNER_DEFAULT_HEIGHT / 2;
     [ auxiliary moveToPoint: NSMakePoint( paintStates_.upperLeftCorner.x - 1.f, unitedY ) ];
     [ auxiliary lineToPoint: NSMakePoint( NSMinX( self.bounds ), unitedY ) ];
 
     // (2) - b
-    unitedY = paintStates_.upperRightCorner.y + scannerInitialHeight_ / 2;
+    unitedY = paintStates_.upperRightCorner.y + ATC_SCANNER_DEFAULT_HEIGHT / 2;
     [ auxiliary moveToPoint: NSMakePoint( paintStates_.upperRightCorner.x + 1.f, unitedY ) ];
     [ auxiliary lineToPoint: NSMakePoint( NSMaxX( self.bounds ), unitedY ) ];
 
     // (3) - c
-    unitedX = paintStates_.bottomRightCorner.x - scannerInitialWidth_ / 2;
+    unitedX = paintStates_.bottomRightCorner.x - ATC_SCANNER_DEFAULT_WIDTH / 2;
     [ auxiliary moveToPoint: NSMakePoint( unitedX, paintStates_.bottomRightCorner.y + 1 ) ];
     [ auxiliary lineToPoint: NSMakePoint( unitedX, NSMaxY( self.bounds ) ) ];
 
     // (1) - a
-    unitedX = paintStates_.upperLeftCorner.x + scannerInitialWidth_ / 2;
+    unitedX = paintStates_.upperLeftCorner.x + ATC_SCANNER_DEFAULT_WIDTH / 2;
     [ auxiliary moveToPoint: NSMakePoint( unitedX, paintStates_.upperLeftCorner.y - 1 ) ];
     [ auxiliary lineToPoint: NSMakePoint( unitedX, NSMinY( self.bounds ) ) ];
 
@@ -228,7 +246,7 @@ typedef struct
 
 - ( void ) timerFired_: ( NSTimer* )_Timer
     {
-    CGImageRef screenshot = [ self screenshotInRect_: paintStates_.scannerRect ];
+    CGImageRef screenshot = [ self screenshotInRect_: paintStates_.scanRegion ];
 
     ZXLuminanceSource* source = [ [ ZXCGImageLuminanceSource alloc ] initWithCGImage: screenshot ];
     CFRelease( screenshot );

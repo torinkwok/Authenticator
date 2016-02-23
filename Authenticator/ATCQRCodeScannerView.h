@@ -10,8 +10,7 @@
 @interface ATCQRCodeScannerView : NSView
     {
 @protected
-    CGFloat scannerInitialHeight_;
-    CGFloat scannerInitialWidth_;
+    NSPoint currentCursorPoint_;
 
     NSTimer __strong* timer;
 
