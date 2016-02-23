@@ -12,26 +12,17 @@
 typedef struct
     {
     // Fields of Scan Region
-    CGPoint scanRegionUpperLeftCorner;
-    CGPoint scanRegionUpperRightCorner;
-    CGPoint scanRegionBottomLeftCorner;
-    CGPoint scanRegionBottomRightCorner;
+    CGPoint scanRegionUpperLeftCorner;      CGPoint scanRegionUpperRightCorner;
+    CGPoint scanRegionBottomLeftCorner;     CGPoint scanRegionBottomRightCorner;
 
     NSRect scanRegion;
     double scanRegionFactor;
 
     // Fields of Auxiliary Line
-    CGPoint leftAuxiliaryLineBeginPoint;
-    CGPoint leftAuxiliaryLineEndPoint;
-
-    CGPoint rightAuxiliaryLineBeginPoint;
-    CGPoint rightAuxiliaryLineEndPoint;
-
-    CGPoint topAuxiliaryLineBeginPoint;
-    CGPoint topAuxiliaryLineEndPoint;
-
-    CGPoint bottomAuxiliaryLineBeginPoint;
-    CGPoint bottomAuxiliaryLineEndPoint;
+    CGPoint leftAuxiliaryLineBeginPoint;    CGPoint leftAuxiliaryLineEndPoint;
+    CGPoint rightAuxiliaryLineBeginPoint;   CGPoint rightAuxiliaryLineEndPoint;
+    CGPoint topAuxiliaryLineBeginPoint;     CGPoint topAuxiliaryLineEndPoint;
+    CGPoint bottomAuxiliaryLineBeginPoint;  CGPoint bottomAuxiliaryLineEndPoint;
 
     } ATCPaintStatesStruct_;
 
@@ -41,6 +32,8 @@ typedef struct
 @private
     ATCPaintStatesStruct_ paintStates_;
     }
+
+- ( void ) rederiveStatesStruct_;
 
 /* This method takes a snapshot image of the scan region on screen and return it.
  */
@@ -80,71 +73,6 @@ typedef struct
     }
 
 #pragma mark - Events Handling
-
-- ( void ) rederiveStatesStruct_
-    {
-    paintStates_.scanRegionUpperRightCorner = currentCursorPoint_;
-
-    paintStates_.scanRegionUpperLeftCorner =
-        NSMakePoint( currentCursorPoint_.x - ATC_SCANNER_DEFAULT_WIDTH * paintStates_.scanRegionFactor
-                   , currentCursorPoint_.y
-                   );
-
-    paintStates_.scanRegionBottomRightCorner =
-        NSMakePoint( currentCursorPoint_.x
-                   , currentCursorPoint_.y + ATC_SCANNER_DEFAULT_HEIGHT * paintStates_.scanRegionFactor
-                   );
-
-    paintStates_.scanRegionBottomLeftCorner =
-        NSMakePoint( currentCursorPoint_.x - ATC_SCANNER_DEFAULT_WIDTH * paintStates_.scanRegionFactor
-                   , currentCursorPoint_.y + ATC_SCANNER_DEFAULT_HEIGHT * paintStates_.scanRegionFactor
-                   );
-
-    paintStates_.scanRegion =
-        NSMakeRect( paintStates_.scanRegionUpperLeftCorner.x
-                  , paintStates_.scanRegionUpperLeftCorner.y
-                  , ATC_SCANNER_DEFAULT_WIDTH * paintStates_.scanRegionFactor
-                  , ATC_SCANNER_DEFAULT_HEIGHT * paintStates_.scanRegionFactor
-                  );
-
-    /*
-                │
-                a            
-                │            
-           .---(1)---.       
-           |         |       
-    ───d──(4)       (2)──b───
-           |         |       
-           |         |       
-           .---(3)---.       
-                │            
-                c            
-                │                
-    */
-
-    CGFloat unitedX = 0.f;
-    CGFloat unitedY = 0.f;
-
-    // (4) - d
-    unitedY = paintStates_.scanRegionUpperLeftCorner.y + ( ATC_SCANNER_DEFAULT_HEIGHT * paintStates_.scanRegionFactor ) / 2;
-    paintStates_.leftAuxiliaryLineBeginPoint = NSMakePoint( paintStates_.scanRegionUpperLeftCorner.x - 1.f, unitedY );
-    paintStates_.leftAuxiliaryLineEndPoint = NSMakePoint( NSMinX( self.bounds ), unitedY );
-
-    // (2) - b
-    unitedY = paintStates_.scanRegionUpperRightCorner.y + ( ATC_SCANNER_DEFAULT_HEIGHT * paintStates_.scanRegionFactor ) / 2;
-    paintStates_.rightAuxiliaryLineBeginPoint = NSMakePoint( paintStates_.scanRegionUpperRightCorner.x + 1.f, unitedY );
-    paintStates_.rightAuxiliaryLineEndPoint = NSMakePoint( NSMaxX( self.bounds ), unitedY );
-
-    // (3) - c
-    unitedX = paintStates_.scanRegionBottomRightCorner.x - ( ATC_SCANNER_DEFAULT_WIDTH * paintStates_.scanRegionFactor ) / 2;
-    paintStates_.bottomAuxiliaryLineBeginPoint = NSMakePoint( unitedX, paintStates_.scanRegionBottomRightCorner.y + 1 );
-    paintStates_.bottomAuxiliaryLineEndPoint = NSMakePoint( unitedX, NSMaxY( self.bounds ) );
-
-    // (1) - a
-    unitedX = paintStates_.scanRegionUpperLeftCorner.x + ( ATC_SCANNER_DEFAULT_WIDTH * paintStates_.scanRegionFactor ) / 2;
-    paintStates_.topAuxiliaryLineBeginPoint = NSMakePoint( unitedX, paintStates_.scanRegionUpperLeftCorner.y - 1 );
-    paintStates_.topAuxiliaryLineEndPoint = NSMakePoint( unitedX, NSMinY( self.bounds ) );
-    }
 
 - ( void ) mouseEntered: ( NSEvent* )_Event
     {
@@ -218,6 +146,70 @@ typedef struct
     }
 
 #pragma mark - Private Interfaces
+
+#define ATC_ZOOMED_SCAN_REGION_WIDTH    ( ( ATC_SCANNER_DEFAULT_WIDTH ) * ( paintStates_.scanRegionFactor ) )
+#define ATC_ZOOMED_SCAN_REGION_HEIGHT   ( ( ATC_SCANNER_DEFAULT_HEIGHT ) * ( paintStates_.scanRegionFactor ) )
+
+- ( void ) rederiveStatesStruct_
+    {
+    /* Populating fields of Scan Region */
+    paintStates_.scanRegionUpperRightCorner = currentCursorPoint_;
+
+    paintStates_.scanRegionUpperLeftCorner =
+        NSMakePoint( currentCursorPoint_.x - ATC_ZOOMED_SCAN_REGION_WIDTH, currentCursorPoint_.y );
+
+    paintStates_.scanRegionBottomRightCorner =
+        NSMakePoint( currentCursorPoint_.x, currentCursorPoint_.y + ATC_ZOOMED_SCAN_REGION_HEIGHT );
+
+    paintStates_.scanRegionBottomLeftCorner =
+        NSMakePoint( currentCursorPoint_.x - ATC_ZOOMED_SCAN_REGION_WIDTH, currentCursorPoint_.y + ATC_ZOOMED_SCAN_REGION_HEIGHT );
+
+    paintStates_.scanRegion =
+        NSMakeRect( paintStates_.scanRegionUpperLeftCorner.x
+                  , paintStates_.scanRegionUpperLeftCorner.y
+                  , ATC_ZOOMED_SCAN_REGION_WIDTH
+                  , ATC_ZOOMED_SCAN_REGION_HEIGHT
+                  );
+
+    /* Populating fields of auxiliary lines
+
+                │
+                a            
+                │            
+           .---(1)---.       
+           |         |       
+    ───d──(4)       (2)──b───
+           |         |       
+           |         |       
+           .---(3)---.       
+                │            
+                c            
+                │                
+    */
+
+    CGFloat unitedX = 0.f;
+    CGFloat unitedY = 0.f;
+
+    // (4) - d
+    unitedY = paintStates_.scanRegionUpperLeftCorner.y + ATC_ZOOMED_SCAN_REGION_HEIGHT / 2;
+    paintStates_.leftAuxiliaryLineBeginPoint = NSMakePoint( paintStates_.scanRegionUpperLeftCorner.x - 1.f, unitedY );
+    paintStates_.leftAuxiliaryLineEndPoint = NSMakePoint( NSMinX( self.bounds ), unitedY );
+
+    // (2) - b
+    unitedY = paintStates_.scanRegionUpperRightCorner.y + ATC_ZOOMED_SCAN_REGION_HEIGHT / 2;
+    paintStates_.rightAuxiliaryLineBeginPoint = NSMakePoint( paintStates_.scanRegionUpperRightCorner.x + 1.f, unitedY );
+    paintStates_.rightAuxiliaryLineEndPoint = NSMakePoint( NSMaxX( self.bounds ), unitedY );
+
+    // (3) - c
+    unitedX = paintStates_.scanRegionBottomRightCorner.x - ATC_ZOOMED_SCAN_REGION_WIDTH / 2;
+    paintStates_.bottomAuxiliaryLineBeginPoint = NSMakePoint( unitedX, paintStates_.scanRegionBottomRightCorner.y + 1 );
+    paintStates_.bottomAuxiliaryLineEndPoint = NSMakePoint( unitedX, NSMaxY( self.bounds ) );
+
+    // (1) - a
+    unitedX = paintStates_.scanRegionUpperLeftCorner.x + ATC_ZOOMED_SCAN_REGION_WIDTH / 2;
+    paintStates_.topAuxiliaryLineBeginPoint = NSMakePoint( unitedX, paintStates_.scanRegionUpperLeftCorner.y - 1 );
+    paintStates_.topAuxiliaryLineEndPoint = NSMakePoint( unitedX, NSMinY( self.bounds ) );
+    }
 
 /* This method takes a snapshot image of the scan region on screen and return it.
  */
