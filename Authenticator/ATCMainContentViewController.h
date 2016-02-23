@@ -16,7 +16,7 @@
     <NSTableViewDataSource, NSTableViewDelegate>
     {
 @private
-    NSMutableOrderedSet <ATCTotpEntry*>* optEntries_;
+    NSMutableOrderedSet <ATCTotpEntry*>* otpEntries_;
 
     ATCQRCodeScannerWindowController __strong* QRCodeScannerWindow_;
     }

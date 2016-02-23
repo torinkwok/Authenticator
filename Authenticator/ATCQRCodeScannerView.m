@@ -110,32 +110,20 @@
     [ scannerPath fill ];
 
     NSBezierPath* auxiliary = [ NSBezierPath bezierPath ];
-    [ auxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ - 1.f, currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
-    [ auxiliary lineToPoint: NSMakePoint( NSMinX( self.bounds ), currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
     [ auxiliary setLineWidth: 1.f ];
 
-    [ auxiliary fill ];
-    [ auxiliary stroke ];
+    [ auxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ - 1.f, currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
+    [ auxiliary lineToPoint: NSMakePoint( NSMinX( self.bounds ), currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
 
     [ auxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x + 1.f, currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
     [ auxiliary lineToPoint: NSMakePoint( NSMaxX( self.bounds ), currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
-    [ auxiliary setLineWidth: 1.f ];
-
-    [ auxiliary fill ];
-    [ auxiliary stroke ];
 
     [ auxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ / 2, currentCursorLocation_.y + 1 + scannerInitialHeight_ ) ];
     [ auxiliary lineToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ / 2, NSMaxY( self.bounds ) ) ];
-    [ auxiliary setLineWidth: 1.f ];
-
-    [ auxiliary fill ];
-    [ auxiliary stroke ];
 
     [ auxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ / 2, currentCursorLocation_.y - 1 ) ];
     [ auxiliary lineToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ / 2, NSMinY( self.bounds ) ) ];
-    [ auxiliary setLineWidth: 1.f ];
 
-    [ auxiliary fill ];
     [ auxiliary stroke ];
     }
 
@@ -218,10 +206,14 @@
 
         // The barcode format, such as a QR code or UPC-A
         ZXBarcodeFormat format = result.barcodeFormat;
-        if ( format == kBarcodeFormatQRCode && [ url.scheme isEqualToString: @"otpauth" ] )
+        if ( format == kBarcodeFormatQRCode )
             {
-            [ [ NSNotificationCenter defaultCenter ]
-                postNotificationName: ATCFinishScanningQRCodeOnScreenNotif object: self userInfo: @{ kQRCodeContents : url } ];
+            if ( [ url.scheme isEqualToString: @"otpauth" ]
+                    && [ url.host isEqualToString: @"totp" ] )
+                {
+                [ [ NSNotificationCenter defaultCenter ]
+                    postNotificationName: ATCFinishScanningQRCodeOnScreenNotif object: self userInfo: @{ kQRCodeContents : url } ];
+                }
             }
         else
             {
