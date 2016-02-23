@@ -10,9 +10,6 @@
 @interface ATCQRCodeScannerView : NSView
     {
 @protected
-    CGPoint currentCursorLocation_;
-    NSRect scannerRect_;
-
     CGFloat scannerInitialHeight_;
     CGFloat scannerInitialWidth_;
 
