@@ -90,7 +90,7 @@ typedef struct
     [ NSCursor hide ];
     }
 
-- ( void ) mouseExited:(NSEvent *)theEvent
+- ( void ) mouseExited: ( NSEvent* )_Event
     {
     [ NSCursor unhide ];
     }
@@ -120,9 +120,9 @@ typedef struct
     return YES;
     }
 
-- ( void ) drawRect:(NSRect)dirtyRect
+- ( void ) drawRect: ( NSRect )_DirtyRect
     {
-    [ super drawRect: dirtyRect ];
+    [ super drawRect: _DirtyRect ];
 
     NSBezierPath* scannerPath = [ NSBezierPath bezierPathWithRect: paintStates_.scannerRect ];
 
