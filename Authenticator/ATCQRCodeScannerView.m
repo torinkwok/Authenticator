@@ -187,16 +187,16 @@ typedef struct
 - ( CGImageRef ) screenshotInRect_: ( NSRect )_Rect
     {
     /* Make a snapshot image of the current display. */
-    CGImageRef cgImage = CGDisplayCreateImageForRect( displays_[ 0 ], NSRectToCGRect( _Rect ) );
-    return cgImage;
+    CGImageRef cgScreenshotImage = CGDisplayCreateImageForRect( displays_[ 0 ], NSRectToCGRect( _Rect ) );
+    return cgScreenshotImage;
     }
 
 /* Populate the Capture menu with a list of displays by iterating over all of the displays. 
  */
 - ( void ) interrogateHardware_
     {
-	CGError				err = CGDisplayNoErr;
-	CGDisplayCount		dspCount = 0;
+    CGError				err = CGDisplayNoErr;
+    CGDisplayCount		dspCount = 0;
     
     /* How many active displays do we have? */
     err = CGGetActiveDisplayList( 0, NULL, &dspCount );
