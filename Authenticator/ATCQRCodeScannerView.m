@@ -109,38 +109,34 @@
     [ scannerPath stroke ];
     [ scannerPath fill ];
 
-    NSBezierPath* leftAuxiliary = [ NSBezierPath bezierPath ];
-    [ leftAuxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_
-     - 1.f, currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
-    [ leftAuxiliary lineToPoint: NSMakePoint( NSMinX( self.bounds ), currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
-    [ leftAuxiliary setLineWidth: 1.f ];
+    NSBezierPath* auxiliary = [ NSBezierPath bezierPath ];
+    [ auxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ - 1.f, currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
+    [ auxiliary lineToPoint: NSMakePoint( NSMinX( self.bounds ), currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
+    [ auxiliary setLineWidth: 1.f ];
 
-    NSBezierPath* rightAuxiliary = [ NSBezierPath bezierPath ];
-    [ rightAuxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x + 1.f, currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
-    [ rightAuxiliary lineToPoint: NSMakePoint( NSMaxX( self.bounds ), currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
-    [ rightAuxiliary setLineWidth: 1.f ];
+    [ auxiliary fill ];
+    [ auxiliary stroke ];
 
-    NSBezierPath* topAuxiliary = [ NSBezierPath bezierPath ];
-    [ topAuxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ / 2, currentCursorLocation_.y + 1 + scannerInitialHeight_ ) ];
-    [ topAuxiliary lineToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ / 2, NSMaxY( self.bounds ) ) ];
-    [ topAuxiliary setLineWidth: 1.f ];
+    [ auxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x + 1.f, currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
+    [ auxiliary lineToPoint: NSMakePoint( NSMaxX( self.bounds ), currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
+    [ auxiliary setLineWidth: 1.f ];
 
-    NSBezierPath* bottomAuxiliary = [ NSBezierPath bezierPath ];
-    [ bottomAuxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ / 2, currentCursorLocation_.y - 1 ) ];
-    [ bottomAuxiliary lineToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ / 2, NSMinY( self.bounds ) ) ];
-    [ bottomAuxiliary setLineWidth: 1.f ];
+    [ auxiliary fill ];
+    [ auxiliary stroke ];
 
-    [ leftAuxiliary fill ];
-    [ leftAuxiliary stroke ];
+    [ auxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ / 2, currentCursorLocation_.y + 1 + scannerInitialHeight_ ) ];
+    [ auxiliary lineToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ / 2, NSMaxY( self.bounds ) ) ];
+    [ auxiliary setLineWidth: 1.f ];
 
-    [ rightAuxiliary fill ];
-    [ rightAuxiliary stroke ];
+    [ auxiliary fill ];
+    [ auxiliary stroke ];
 
-    [ topAuxiliary fill ];
-    [ topAuxiliary stroke ];
+    [ auxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ / 2, currentCursorLocation_.y - 1 ) ];
+    [ auxiliary lineToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ / 2, NSMinY( self.bounds ) ) ];
+    [ auxiliary setLineWidth: 1.f ];
 
-    [ bottomAuxiliary fill ];
-    [ bottomAuxiliary stroke ];
+    [ auxiliary fill ];
+    [ auxiliary stroke ];
     }
 
 #pragma mark - Private Interfaces
@@ -225,7 +221,11 @@
         if ( format == kBarcodeFormatQRCode && [ url.scheme isEqualToString: @"otpauth" ] )
             {
             [ [ NSNotificationCenter defaultCenter ]
-                postNotificationName: ATCFinishScanningQRCodeOnScreenNotif object: self userInfo: @{ kQRCodeContents : contents } ];
+                postNotificationName: ATCFinishScanningQRCodeOnScreenNotif object: self userInfo: @{ kQRCodeContents : url } ];
+            }
+        else
+            {
+            NSLog( @"\"%@\" is illegal", contents );
             }
         }
     else
