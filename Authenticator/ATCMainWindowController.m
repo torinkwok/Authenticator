@@ -20,7 +20,13 @@
     {
     [ super windowDidLoad ];
     
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    [ [ NSNotificationCenter defaultCenter ]
+        addObserver: self selector: @selector( didScanQRCodeOnScreen_: ) name: ATCDidScanQRCodeOnScreenNotif object: nil ];
+    }
+
+- ( void ) didScanQRCodeOnScreen_: ( NSNotification* )_Notif
+    {
+    [ self.window makeKeyAndOrderFront: self ];
     }
 
 #pragma mark - Conforms to <NSWindowDelegate> 

@@ -9,6 +9,7 @@
 #import "ATCMainContentViewController.h"
 #import "ATCTotpEntry.h"
 #import "ATCOTPEntryTableCellView.h"
+#import "ATCQRCodeScannerWindowController.h"
 
 // Private Interfaces
 @interface ATCMainContentViewController ()
@@ -78,6 +79,17 @@
     [ super setRepresentedObject: _RepresentedObject ];
 
     // Update the view, if already loaded.
+    }
+
+#pragma mark - IBActions
+
+- ( IBAction ) scanQRCodeOnScreenAction_: ( id )_Sender
+    {
+    if ( !QRCodeScannerWindow_ )
+        QRCodeScannerWindow_ = [ [ ATCQRCodeScannerWindowController alloc ] initWithWindowNibName: @"ATCQRCodeScannerWindowController" ];
+
+    [ self.view.window orderOut: self ];
+    [ QRCodeScannerWindow_.window makeKeyAndOrderFront: self ];
     }
 
 #pragma mark - Conforms to <NSTableViewDataSource>

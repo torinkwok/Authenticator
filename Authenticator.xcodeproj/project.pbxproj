@@ -295,6 +295,10 @@
 		83F5715C1C7B5E20008463F2 /* ZXQRCodeWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F5707D1C7B5E20008463F2 /* ZXQRCodeWriter.m */; settings = {ASSET_TAGS = (); }; };
 		83F5715D1C7B5E20008463F2 /* ZXMultiFormatReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F570801C7B5E20008463F2 /* ZXMultiFormatReader.m */; settings = {ASSET_TAGS = (); }; };
 		83F5715E1C7B5E20008463F2 /* ZXMultiFormatWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F570821C7B5E20008463F2 /* ZXMultiFormatWriter.m */; settings = {ASSET_TAGS = (); }; };
+		83F571631C7C009F008463F2 /* ATCQRCodeScannerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F571601C7C009F008463F2 /* ATCQRCodeScannerWindow.m */; settings = {ASSET_TAGS = (); }; };
+		83F571641C7C009F008463F2 /* ATCQRCodeScannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F571621C7C009F008463F2 /* ATCQRCodeScannerView.m */; settings = {ASSET_TAGS = (); }; };
+		83F571681C7C0199008463F2 /* ATCQRCodeScannerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F571661C7C0199008463F2 /* ATCQRCodeScannerWindowController.m */; settings = {ASSET_TAGS = (); }; };
+		83F571691C7C0199008463F2 /* ATCQRCodeScannerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F571671C7C0199008463F2 /* ATCQRCodeScannerWindowController.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -923,6 +927,13 @@
 		83F570801C7B5E20008463F2 /* ZXMultiFormatReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMultiFormatReader.m; sourceTree = "<group>"; };
 		83F570811C7B5E20008463F2 /* ZXMultiFormatWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMultiFormatWriter.h; sourceTree = "<group>"; };
 		83F570821C7B5E20008463F2 /* ZXMultiFormatWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMultiFormatWriter.m; sourceTree = "<group>"; };
+		83F5715F1C7C009F008463F2 /* ATCQRCodeScannerWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCQRCodeScannerWindow.h; sourceTree = "<group>"; };
+		83F571601C7C009F008463F2 /* ATCQRCodeScannerWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCQRCodeScannerWindow.m; sourceTree = "<group>"; };
+		83F571611C7C009F008463F2 /* ATCQRCodeScannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCQRCodeScannerView.h; sourceTree = "<group>"; };
+		83F571621C7C009F008463F2 /* ATCQRCodeScannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCQRCodeScannerView.m; sourceTree = "<group>"; };
+		83F571651C7C0199008463F2 /* ATCQRCodeScannerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCQRCodeScannerWindowController.h; sourceTree = "<group>"; };
+		83F571661C7C0199008463F2 /* ATCQRCodeScannerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCQRCodeScannerWindowController.m; sourceTree = "<group>"; };
+		83F571671C7C0199008463F2 /* ATCQRCodeScannerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ATCQRCodeScannerWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1109,6 +1120,12 @@
 				83CEE8B31C6E03800027AE38 /* ATCOTPDigitLayer.m */,
 				831EC89C1C688824005DCD88 /* ATCOTPDigitTextLayer.h */,
 				831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */,
+				83F571651C7C0199008463F2 /* ATCQRCodeScannerWindowController.h */,
+				83F571661C7C0199008463F2 /* ATCQRCodeScannerWindowController.m */,
+				83F5715F1C7C009F008463F2 /* ATCQRCodeScannerWindow.h */,
+				83F571601C7C009F008463F2 /* ATCQRCodeScannerWindow.m */,
+				83F571611C7C009F008463F2 /* ATCQRCodeScannerView.h */,
+				83F571621C7C009F008463F2 /* ATCQRCodeScannerView.m */,
 				8324B1A11C67073900153EC7 /* Supporting Files */,
 			);
 			path = Authenticator;
@@ -1148,6 +1165,7 @@
 			isa = PBXGroup;
 			children = (
 				8324B1A91C67073900153EC7 /* ATCMain.storyboard */,
+				83F571671C7C0199008463F2 /* ATCQRCodeScannerWindowController.xib */,
 			);
 			name = wysiwyg;
 			sourceTree = "<group>";
@@ -2105,6 +2123,7 @@
 				83F56E841C7B57E0008463F2 /* opt-add-button.png in Resources */,
 				8324B1A81C67073900153EC7 /* Assets.xcassets in Resources */,
 				8324B1AB1C67073900153EC7 /* ATCMain.storyboard in Resources */,
+				83F571691C7C0199008463F2 /* ATCQRCodeScannerWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2209,6 +2228,7 @@
 				83F570961C7B5E20008463F2 /* ZXEmailAddressParsedResult.m in Sources */,
 				83F570D41C7B5E20008463F2 /* ZXLuminanceSource.m in Sources */,
 				8368DD341C6AED6600005A7D /* ATCNotificationCenter.m in Sources */,
+				83F571641C7C009F008463F2 /* ATCQRCodeScannerView.m in Sources */,
 				83F570E11C7B5E20008463F2 /* ZXDataMatrixC40Encoder.m in Sources */,
 				83F571561C7B5E20008463F2 /* ZXQRCodeMaskUtil.m in Sources */,
 				830AD1A81C706844006D909C /* WSCPassphraseItem.m in Sources */,
@@ -2261,6 +2281,7 @@
 				83F5712D1C7B5E20008463F2 /* ZXPDF417BarcodeMetadata.m in Sources */,
 				83F570F91C7B5E20008463F2 /* ZXAI013x0xDecoder.m in Sources */,
 				83F570A11C7B5E20008463F2 /* ZXProductResultParser.m in Sources */,
+				83F571681C7C0199008463F2 /* ATCQRCodeScannerWindowController.m in Sources */,
 				83F571451C7B5E20008463F2 /* ZXQRCodeDataMask.m in Sources */,
 				83F570FC1C7B5E20008463F2 /* ZXAI01weightDecoder.m in Sources */,
 				83F570EA1C7B5E20008463F2 /* ZXDataMatrixX12Encoder.m in Sources */,
@@ -2404,6 +2425,7 @@
 				83F5711B1C7B5E20008463F2 /* ZXEANManufacturerOrgSupport.m in Sources */,
 				83F571071C7B5E20008463F2 /* ZXRSSExpandedPair.m in Sources */,
 				83F570F11C7B5E20008463F2 /* ZXByQuadrantReader.m in Sources */,
+				83F571631C7C009F008463F2 /* ATCQRCodeScannerWindow.m in Sources */,
 				83F5711D1C7B5E20008463F2 /* ZXITFWriter.m in Sources */,
 				83F570FB1C7B5E20008463F2 /* ZXAI01decoder.m in Sources */,
 			);

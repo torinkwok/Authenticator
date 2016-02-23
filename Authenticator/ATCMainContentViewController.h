@@ -9,6 +9,7 @@
 @import Cocoa;
 
 @class ATCTotpEntry;
+@class ATCQRCodeScannerWindowController;
 
 // ATCMainContentViewController class
 @interface ATCMainContentViewController : NSViewController
@@ -16,8 +17,14 @@
     {
 @private
     NSMutableOrderedSet <ATCTotpEntry*>* optEntries_;
+
+    ATCQRCodeScannerWindowController __strong* QRCodeScannerWindow_;
     }
 
 @property ( weak ) IBOutlet NSTableView* optEntriesTableView;
+
+#pragma mark - IBActions
+
+- ( IBAction ) scanQRCodeOnScreenAction_: ( id )_Sender;
 
 @end // ATCMainContentViewController class
