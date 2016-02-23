@@ -11,6 +11,17 @@
 
 // Private Interfaces
 @interface ATCQRCodeScannerView ()
+    {
+    struct ATCLocationsStruct_
+        {
+        CGPoint currentCursorLocation;
+
+        CGPoint upperLeftCorner;
+        CGPoint upperRightCorner;
+        CGPoint bottomLeftCorner;
+        CGPoint bottomRightCorner;
+        } locations_;
+    }
 
 /* 
  A display item was selected from the Capture menu. This takes a
@@ -112,6 +123,8 @@
     NSBezierPath* auxiliary = [ NSBezierPath bezierPath ];
     [ auxiliary setLineWidth: 1.f ];
 
+//    locations_.upperRightCorner = currentCursorLocation_
+
     [ auxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ - 1.f, currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
     [ auxiliary lineToPoint: NSMakePoint( NSMinX( self.bounds ), currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
 
@@ -125,6 +138,9 @@
     [ auxiliary lineToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ / 2, NSMinY( self.bounds ) ) ];
 
     [ auxiliary stroke ];
+
+    NSBezierPath* cursorPointPath = [ NSBezierPath bezierPathWithOvalInRect: NSMakeRect( currentCursorLocation_.x, currentCursorLocation_.y, 20, 20 ) ];
+    [ cursorPointPath fill ];
     }
 
 #pragma mark - Private Interfaces
