@@ -16,6 +16,7 @@ NSString extern* const ATCFinishScanningQRCodeOnScreenNotif;
 
 // User Info Key
 NSString extern* const kTotpEntry;
+NSString extern* const kQRCodeContents;
 
 // Constants
 uint64_t extern const ATCFixedTimeStep;

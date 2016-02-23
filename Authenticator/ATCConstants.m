@@ -18,6 +18,7 @@ NSString* const ATCFinishScanningQRCodeOnScreenNotif = @"Finish.ScanningQRCodeOn
 
 // User Info Key
 NSString* const kTotpEntry = @"kTotpEntry";
+NSString* const kQRCodeContents = @"kQRCodeContents";
 
 // Constants
 uint64_t const ATCFixedTimeStep = 30;

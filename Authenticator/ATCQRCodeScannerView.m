@@ -210,13 +210,22 @@
 
     if ( result )
         {
-          // The coded result as a string. The raw data can be accessed with
-          // result.rawBytes and result.length.
-          NSString *contents = result.text;
+        // The coded result as a string. The raw data can be accessed with
+        // result.rawBytes and result.length.
+        NSString* contents = result.text;
 
-          // The barcode format, such as a QR code or UPC-A
-          ZXBarcodeFormat format = result.barcodeFormat;
-          NSLog( @"%d: %@", format, contents );
+        NSLog( @"%@", contents );
+
+//        NSURL* otpAuthURL = [ NSURL URLWithString: contents ];
+//        NSLog( @"%@", otpAuthURL );
+//
+//        // The barcode format, such as a QR code or UPC-A
+//        ZXBarcodeFormat format = result.barcodeFormat;
+//        if ( format == kBarcodeFormatQRCode && [ otpAuthURL.scheme isEqualToString: @"otpauth" ] )
+//            {
+            [ [ NSNotificationCenter defaultCenter ]
+                postNotificationName: ATCFinishScanningQRCodeOnScreenNotif object: self userInfo: @{ kQRCodeContents : contents } ];
+//            }
         }
     else
         {

@@ -28,50 +28,60 @@
     {
     [ super viewDidLoad ];
 
-    optEntries_ = [ NSMutableOrderedSet orderedSetWithObjects:
-          [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
+    optEntries_ = [ NSMutableOrderedSet orderedSet ];
 
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
+//    optEntries_ = [ NSMutableOrderedSet orderedSetWithObjects:
+//          [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
+//
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
+//
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
+//
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
+//
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
+//        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
+//
+//        , nil ];
 
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
-
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
-
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
-
-        , nil ];
+    [ [ NSNotificationCenter defaultCenter ]
+        addObserver: self selector: @selector( finishScanningQRCodeOnScreen_: ) name: ATCFinishScanningQRCodeOnScreenNotif object: nil ];
 
     [ [ NSNotificationCenter defaultCenter ]
         addObserver: self selector: @selector( newTotpEntryDidAdd: ) name: ATCNewTotpEntryDidAddNotif object: nil ];
 
-    [ self.optEntriesTableView reloadData ];
+//    [ self.optEntriesTableView reloadData ];
 
     // Do any additional setup after loading the view.
+    }
+
+- ( void ) finishScanningQRCodeOnScreen_: ( NSNotification* )_Notif
+    {
+    NSLog( @"%@", _Notif.userInfo[ kQRCodeContents ] );
     }
 
 - ( void ) setRepresentedObject: ( id )_RepresentedObject
