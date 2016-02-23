@@ -215,9 +215,13 @@ typedef struct
  */
 - ( CGImageRef ) takeSnapshot_
     {
+    NSUInteger mainDisplayIdx = [ [ NSScreen screens ] indexOfObject: [ NSScreen mainScreen ] ];
+
     /* Make a snapshot image of the current display. */
-    CGImageRef cgScreenshotImage = CGDisplayCreateImageForRect( displays_[ 0 ], NSRectToCGRect( paintStates_.scanRegion ) );
-    return cgScreenshotImage;
+    CGImageRef cgScreenshotImage =
+        CGDisplayCreateImageForRect( displays_[ mainDisplayIdx ], NSRectToCGRect( paintStates_.scanRegion ) );
+
+    return cgScreenshotImage; // Invoker is responsible for releasing it
     }
 
 /* Populate the displays_[]
