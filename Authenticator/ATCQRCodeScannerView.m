@@ -9,18 +9,20 @@
 #import "ATCQRCodeScannerView.h"
 #import "ZXingObjC.h"
 
+typedef struct
+    {
+    CGPoint currentCursorLocation;
+
+    CGPoint upperLeftCorner;
+    CGPoint upperRightCorner;
+    CGPoint bottomLeftCorner;
+    CGPoint bottomRightCorner;
+    } ATCLocationsStruct_;
+
 // Private Interfaces
 @interface ATCQRCodeScannerView ()
     {
-    struct ATCLocationsStruct_
-        {
-        CGPoint currentCursorLocation;
-
-        CGPoint upperLeftCorner;
-        CGPoint upperRightCorner;
-        CGPoint bottomLeftCorner;
-        CGPoint bottomRightCorner;
-        } locations_;
+    ATCLocationsStruct_ loc_;
     }
 
 /* 
@@ -60,6 +62,19 @@
     }
 
 #pragma mark - Events Handling
+
+- ( ATCLocationsStruct_ ) locStructBasedOnCurrentCursorLocation_: ( NSPoint )_CursorPoint
+    {
+    ATCLocationsStruct_ loc;
+    loc.currentCursorLocation = _CursorPoint;
+
+    loc.upperRightCorner = _CursorPoint;
+    loc.upperLeftCorner = NSMakePoint( _CursorPoint.x - scannerInitialWidth_, _CursorPoint.y );
+    loc.bottomRightCorner = NSMakePoint( _CursorPoint.x, _CursorPoint.y + scannerInitialHeight_ );
+    loc.bottomLeftCorner = NSMakePoint( _CursorPoint.x - scannerInitialWidth_, _CursorPoint.y + scannerInitialHeight_ );
+
+    return loc;
+    }
 
 - ( void ) mouseEntered: ( NSEvent* )_Event
     {
@@ -123,8 +138,6 @@
     NSBezierPath* auxiliary = [ NSBezierPath bezierPath ];
     [ auxiliary setLineWidth: 1.f ];
 
-//    locations_.upperRightCorner = currentCursorLocation_
-
     [ auxiliary moveToPoint: NSMakePoint( currentCursorLocation_.x - scannerInitialWidth_ - 1.f, currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
     [ auxiliary lineToPoint: NSMakePoint( NSMinX( self.bounds ), currentCursorLocation_.y + scannerInitialHeight_ / 2 ) ];
 
@@ -139,7 +152,17 @@
 
     [ auxiliary stroke ];
 
-    NSBezierPath* cursorPointPath = [ NSBezierPath bezierPathWithOvalInRect: NSMakeRect( currentCursorLocation_.x, currentCursorLocation_.y, 20, 20 ) ];
+    ATCLocationsStruct_ loc = [ self locStructBasedOnCurrentCursorLocation_: currentCursorLocation_ ];
+    NSBezierPath* cursorPointPath = [ NSBezierPath bezierPathWithRect: NSMakeRect( loc.upperLeftCorner.x, loc.upperLeftCorner.y, 20, 20 ) ];
+    [ cursorPointPath fill ];
+
+    cursorPointPath = [ NSBezierPath bezierPathWithRect: NSMakeRect( loc.upperRightCorner.x, loc.upperRightCorner.y, 20, 20 ) ];
+    [ cursorPointPath fill ];
+
+    cursorPointPath = [ NSBezierPath bezierPathWithRect: NSMakeRect( loc.bottomRightCorner.x, loc.bottomRightCorner.y, 20, 20 ) ];
+    [ cursorPointPath fill ];
+
+    cursorPointPath = [ NSBezierPath bezierPathWithRect: NSMakeRect( loc.bottomLeftCorner.x, loc.bottomLeftCorner.y, 20, 20 ) ];
     [ cursorPointPath fill ];
     }
 
