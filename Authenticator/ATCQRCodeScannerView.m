@@ -33,13 +33,13 @@ typedef struct
     CGPoint bottomAuxiliaryLineBeginPoint;
     CGPoint bottomAuxiliaryLineEndPoint;
 
-    } ATCPaintStateStruct_;
+    } ATCPaintStatesStruct_;
 
 // Private Interfaces
 @interface ATCQRCodeScannerView ()
     {
 @private
-    ATCPaintStateStruct_ paintStates_;
+    ATCPaintStatesStruct_ paintStates_;
     }
 
 /* This method takes a snapshot image of the scan region on screen and return it.
