@@ -11,13 +11,28 @@
 
 typedef struct
     {
-    CGPoint upperLeftCorner;
-    CGPoint upperRightCorner;
-    CGPoint bottomLeftCorner;
-    CGPoint bottomRightCorner;
+    // Fields of Scan Region
+    CGPoint scanRegionUpperLeftCorner;
+    CGPoint scanRegionUpperRightCorner;
+    CGPoint scanRegionBottomLeftCorner;
+    CGPoint scanRegionBottomRightCorner;
 
     NSRect scanRegion;
     double scanRegionFactor;
+
+    // Fields of Auxiliary Line
+    CGPoint leftAuxiliaryLineBeginPoint;
+    CGPoint leftAuxiliaryLineEndPoint;
+
+    CGPoint rightAuxiliaryLineBeginPoint;
+    CGPoint rightAuxiliaryLineEndPoint;
+
+    CGPoint topAuxiliaryLineBeginPoint;
+    CGPoint topAuxiliaryLineEndPoint;
+
+    CGPoint bottomAuxiliaryLineBeginPoint;
+    CGPoint bottomAuxiliaryLineEndPoint;
+
     } ATCPaintStateStruct_;
 
 // Private Interfaces
@@ -27,14 +42,11 @@ typedef struct
     ATCPaintStateStruct_ paintStates_;
     }
 
-/*
- A display item was selected from the Capture menu. This takes a
- a snapshot image of the screen and creates a new document window
- with the image.
-*/
-- ( CGImageRef ) screenshotInRect_: ( NSRect )_Rect;
+/* This method takes a snapshot image of the scan region on screen and return it.
+ */
+- ( CGImageRef ) takeSnapshot_;
 
-/* Populate the Capture menu with a list of displays by iterating over all of the displays. 
+/* Populate the displays_[]
  */
 - ( void ) interrogateHardware_;
 
@@ -52,17 +64,9 @@ typedef struct
 
 - ( void ) awakeFromNib
     {
-    ATCPaintStateStruct_ tmpStates =
-        { .upperLeftCorner = NSZeroPoint
-        , .upperRightCorner = NSZeroPoint
-        , .bottomLeftCorner = NSZeroPoint
-        , .bottomRightCorner = NSZeroPoint
-
-        , .scanRegion = NSZeroRect
-        , .scanRegionFactor = 1.f
-        };
-
-    paintStates_ = tmpStates;
+    currentCursorPoint_ = NSZeroPoint;
+    paintStates_.scanRegionFactor = 1.f;
+    [ self rederiveStatesStruct_ ];
 
     [ self interrogateHardware_ ];
 
@@ -79,23 +83,67 @@ typedef struct
 
 - ( void ) rederiveStatesStruct_
     {
-    paintStates_.upperRightCorner = currentCursorPoint_;
+    paintStates_.scanRegionUpperRightCorner = currentCursorPoint_;
 
-    paintStates_.upperLeftCorner =
-        NSMakePoint( currentCursorPoint_.x - ATC_SCANNER_DEFAULT_WIDTH, currentCursorPoint_.y );
+    paintStates_.scanRegionUpperLeftCorner =
+        NSMakePoint( currentCursorPoint_.x - ATC_SCANNER_DEFAULT_WIDTH * paintStates_.scanRegionFactor
+                   , currentCursorPoint_.y
+                   );
 
-    paintStates_.bottomRightCorner =
-        NSMakePoint( currentCursorPoint_.x, currentCursorPoint_.y + ATC_SCANNER_DEFAULT_HEIGHT );
+    paintStates_.scanRegionBottomRightCorner =
+        NSMakePoint( currentCursorPoint_.x
+                   , currentCursorPoint_.y + ATC_SCANNER_DEFAULT_HEIGHT * paintStates_.scanRegionFactor
+                   );
 
-    paintStates_.bottomLeftCorner =
-        NSMakePoint( currentCursorPoint_.x - ATC_SCANNER_DEFAULT_WIDTH, currentCursorPoint_.y + ATC_SCANNER_DEFAULT_HEIGHT );
+    paintStates_.scanRegionBottomLeftCorner =
+        NSMakePoint( currentCursorPoint_.x - ATC_SCANNER_DEFAULT_WIDTH * paintStates_.scanRegionFactor
+                   , currentCursorPoint_.y + ATC_SCANNER_DEFAULT_HEIGHT * paintStates_.scanRegionFactor
+                   );
 
     paintStates_.scanRegion =
-        NSMakeRect( paintStates_.upperLeftCorner.x
-                  , paintStates_.upperLeftCorner.y
+        NSMakeRect( paintStates_.scanRegionUpperLeftCorner.x
+                  , paintStates_.scanRegionUpperLeftCorner.y
                   , ATC_SCANNER_DEFAULT_WIDTH * paintStates_.scanRegionFactor
                   , ATC_SCANNER_DEFAULT_HEIGHT * paintStates_.scanRegionFactor
                   );
+
+    /*
+                │
+                a            
+                │            
+           .---(1)---.       
+           |         |       
+    ───d──(4)       (2)──b───
+           |         |       
+           |         |       
+           .---(3)---.       
+                │            
+                c            
+                │                
+    */
+
+    CGFloat unitedX = 0.f;
+    CGFloat unitedY = 0.f;
+
+    // (4) - d
+    unitedY = paintStates_.scanRegionUpperLeftCorner.y + ( ATC_SCANNER_DEFAULT_HEIGHT * paintStates_.scanRegionFactor ) / 2;
+    paintStates_.leftAuxiliaryLineBeginPoint = NSMakePoint( paintStates_.scanRegionUpperLeftCorner.x - 1.f, unitedY );
+    paintStates_.leftAuxiliaryLineEndPoint = NSMakePoint( NSMinX( self.bounds ), unitedY );
+
+    // (2) - b
+    unitedY = paintStates_.scanRegionUpperRightCorner.y + ( ATC_SCANNER_DEFAULT_HEIGHT * paintStates_.scanRegionFactor ) / 2;
+    paintStates_.rightAuxiliaryLineBeginPoint = NSMakePoint( paintStates_.scanRegionUpperRightCorner.x + 1.f, unitedY );
+    paintStates_.rightAuxiliaryLineEndPoint = NSMakePoint( NSMaxX( self.bounds ), unitedY );
+
+    // (3) - c
+    unitedX = paintStates_.scanRegionBottomRightCorner.x - ( ATC_SCANNER_DEFAULT_WIDTH * paintStates_.scanRegionFactor ) / 2;
+    paintStates_.bottomAuxiliaryLineBeginPoint = NSMakePoint( unitedX, paintStates_.scanRegionBottomRightCorner.y + 1 );
+    paintStates_.bottomAuxiliaryLineEndPoint = NSMakePoint( unitedX, NSMaxY( self.bounds ) );
+
+    // (1) - a
+    unitedX = paintStates_.scanRegionUpperLeftCorner.x + ( ATC_SCANNER_DEFAULT_WIDTH * paintStates_.scanRegionFactor ) / 2;
+    paintStates_.topAuxiliaryLineBeginPoint = NSMakePoint( unitedX, paintStates_.scanRegionUpperLeftCorner.y - 1 );
+    paintStates_.topAuxiliaryLineEndPoint = NSMakePoint( unitedX, NSMinY( self.bounds ) );
     }
 
 - ( void ) mouseEntered: ( NSEvent* )_Event
@@ -151,65 +199,36 @@ typedef struct
     [ scannerPath stroke ];
     [ scannerPath fill ];
 
-    NSBezierPath* auxiliary = [ NSBezierPath bezierPath ];
-    [ auxiliary setLineWidth: 1.f ];
+    NSBezierPath* auxiliaryLines = [ NSBezierPath bezierPath ];
+    [ auxiliaryLines setLineWidth: 1.f ];
 
-    /*
-                │
-                a            
-                │            
-           .---(1)---.       
-           |         |       
-    ───d──(4)       (2)──b───
-           |         |       
-           |         |       
-           .---(3)---.       
-                │            
-                c            
-                │                
-    */
+    [ auxiliaryLines moveToPoint: paintStates_.leftAuxiliaryLineBeginPoint ];
+    [ auxiliaryLines lineToPoint: paintStates_.leftAuxiliaryLineEndPoint ];
 
-    CGFloat unitedX = 0.f;
-    CGFloat unitedY = 0.f;
+    [ auxiliaryLines moveToPoint: paintStates_.rightAuxiliaryLineBeginPoint ];
+    [ auxiliaryLines lineToPoint: paintStates_.rightAuxiliaryLineEndPoint ];
 
-    // (4) - d
-    unitedY = paintStates_.upperLeftCorner.y + ATC_SCANNER_DEFAULT_HEIGHT / 2;
-    [ auxiliary moveToPoint: NSMakePoint( paintStates_.upperLeftCorner.x - 1.f, unitedY ) ];
-    [ auxiliary lineToPoint: NSMakePoint( NSMinX( self.bounds ), unitedY ) ];
+    [ auxiliaryLines moveToPoint: paintStates_.topAuxiliaryLineBeginPoint ];
+    [ auxiliaryLines lineToPoint: paintStates_.topAuxiliaryLineEndPoint ];
 
-    // (2) - b
-    unitedY = paintStates_.upperRightCorner.y + ATC_SCANNER_DEFAULT_HEIGHT / 2;
-    [ auxiliary moveToPoint: NSMakePoint( paintStates_.upperRightCorner.x + 1.f, unitedY ) ];
-    [ auxiliary lineToPoint: NSMakePoint( NSMaxX( self.bounds ), unitedY ) ];
+    [ auxiliaryLines moveToPoint: paintStates_.bottomAuxiliaryLineBeginPoint ];
+    [ auxiliaryLines lineToPoint: paintStates_.bottomAuxiliaryLineEndPoint ];
 
-    // (3) - c
-    unitedX = paintStates_.bottomRightCorner.x - ATC_SCANNER_DEFAULT_WIDTH / 2;
-    [ auxiliary moveToPoint: NSMakePoint( unitedX, paintStates_.bottomRightCorner.y + 1 ) ];
-    [ auxiliary lineToPoint: NSMakePoint( unitedX, NSMaxY( self.bounds ) ) ];
-
-    // (1) - a
-    unitedX = paintStates_.upperLeftCorner.x + ATC_SCANNER_DEFAULT_WIDTH / 2;
-    [ auxiliary moveToPoint: NSMakePoint( unitedX, paintStates_.upperLeftCorner.y - 1 ) ];
-    [ auxiliary lineToPoint: NSMakePoint( unitedX, NSMinY( self.bounds ) ) ];
-
-    [ auxiliary stroke ];
+    [ auxiliaryLines stroke ];
     }
 
 #pragma mark - Private Interfaces
 
-/* 
- A display item was selected from the Capture menu. This takes a
- a snapshot image of the screen and creates a new document window
- with the image.
-*/
-- ( CGImageRef ) screenshotInRect_: ( NSRect )_Rect
+/* This method takes a snapshot image of the scan region on screen and return it.
+ */
+- ( CGImageRef ) takeSnapshot_
     {
     /* Make a snapshot image of the current display. */
-    CGImageRef cgScreenshotImage = CGDisplayCreateImageForRect( displays_[ 0 ], NSRectToCGRect( _Rect ) );
+    CGImageRef cgScreenshotImage = CGDisplayCreateImageForRect( displays_[ 0 ], NSRectToCGRect( paintStates_.scanRegion ) );
     return cgScreenshotImage;
     }
 
-/* Populate the Capture menu with a list of displays by iterating over all of the displays. 
+/* Populate the displays_[]
  */
 - ( void ) interrogateHardware_
     {
@@ -246,7 +265,7 @@ typedef struct
 
 - ( void ) timerFired_: ( NSTimer* )_Timer
     {
-    CGImageRef screenshot = [ self screenshotInRect_: paintStates_.scanRegion ];
+    CGImageRef screenshot = [ self takeSnapshot_ ];
 
     ZXLuminanceSource* source = [ [ ZXCGImageLuminanceSource alloc ] initWithCGImage: screenshot ];
     CFRelease( screenshot );
