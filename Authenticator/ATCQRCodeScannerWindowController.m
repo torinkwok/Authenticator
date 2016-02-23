@@ -8,15 +8,43 @@
 
 #import "ATCQRCodeScannerWindowController.h"
 
+// Private Interfaces
+@interface ATCQRCodeScannerWindowController ()
+
+- ( void ) beginScanningQRCodeOnScreen_: ( NSNotification* )_Notif;
+- ( void ) finishScanningQRCodeOnScreen_: ( NSNotification* )_Notif;
+
+@end // Private Interfaces
+
 // ATCQRCodeScannerWindowController class
 @implementation ATCQRCodeScannerWindowController
 
-#pragma mark - Conforms to <NSWindowDelegate>
+#pragma mark - Initializations
 
-- ( void ) windowWillClose: ( NSNotification* )_Notification
+- ( instancetype ) initWithWindowNibName: ( NSString* )_WindowNibName
     {
-    [ [ NSNotificationCenter defaultCenter ]
-        postNotificationName: ATCDidScanQRCodeOnScreenNotif object: self ];
+    if ( self = [ super initWithWindowNibName: _WindowNibName ] )
+        {
+        [ [ NSNotificationCenter defaultCenter ]
+            addObserver: self selector: @selector( beginScanningQRCodeOnScreen_: ) name: ATCBeginScanningQRCodeOnScreenNotif object: nil ];
+
+        [ [ NSNotificationCenter defaultCenter ]
+            addObserver: self selector: @selector( finishScanningQRCodeOnScreen_: ) name: ATCFinishScanningQRCodeOnScreenNotif object: nil ];
+        }
+
+    return self;
+    }
+
+#pragma mark - Private Interfaces
+
+- ( void ) beginScanningQRCodeOnScreen_: ( NSNotification* )_Notif
+    {
+    [ self.window makeKeyAndOrderFront: self ];
+    }
+
+- ( void ) finishScanningQRCodeOnScreen_: ( NSNotification* )_Notif
+    {
+    [ self.window orderOut: self ];
     }
 
 @end // ATCQRCodeScannerWindowController class

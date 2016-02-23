@@ -11,6 +11,10 @@
 // Private Interfaces
 @interface ATCMainWindowController ()
 
+// Private Interfaces
+- ( void ) beginScanningQRCodeOnScreen_: ( NSNotification* )_Notif;
+- ( void ) finishScanningQRCodeOnScreen_: ( NSNotification* )_Notif;
+
 @end // Private Interfaces
 
 // ATCMainWindowController class
@@ -19,14 +23,12 @@
 - ( void ) windowDidLoad
     {
     [ super windowDidLoad ];
+
+    [ [ NSNotificationCenter defaultCenter ]
+        addObserver: self selector: @selector( beginScanningQRCodeOnScreen_: ) name: ATCBeginScanningQRCodeOnScreenNotif object: nil ];
     
     [ [ NSNotificationCenter defaultCenter ]
-        addObserver: self selector: @selector( didScanQRCodeOnScreen_: ) name: ATCDidScanQRCodeOnScreenNotif object: nil ];
-    }
-
-- ( void ) didScanQRCodeOnScreen_: ( NSNotification* )_Notif
-    {
-    [ self.window makeKeyAndOrderFront: self ];
+        addObserver: self selector: @selector( finishScanningQRCodeOnScreen_: ) name: ATCFinishScanningQRCodeOnScreenNotif object: nil ];
     }
 
 #pragma mark - Conforms to <NSWindowDelegate> 
@@ -34,6 +36,18 @@
 - ( void ) windowDidEndLiveResize: ( NSNotification* )_Notif
     {
     [ self postNotificationOnBehalfOfMeWithName: ATCTotpBadgeViewShouldUpdateNotif ];
+    }
+
+#pragma mark - Private Interfaces
+
+- ( void ) beginScanningQRCodeOnScreen_: ( NSNotification* )_Notif
+    {
+    [ self.window orderOut: self ];
+    }
+
+- ( void ) finishScanningQRCodeOnScreen_: ( NSNotification* )_Notif
+    {
+    [ self.window makeKeyAndOrderFront: self ];
     }
 
 @end // ATCMainWindowController class

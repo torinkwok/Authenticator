@@ -11,8 +11,8 @@ NSString extern* const ATCNewTotpEntryDidAddNotif;
 NSString extern* const ATCTotpBadgeViewShouldUpdateNotif;
 NSString extern* const ATCHintFieldShouldUpdateNotif;
 NSString extern* const ATCShouldShowWarningsNotif;
-NSString extern* const ATCWillScanQRCodeOnScreenNotif;
-NSString extern* const ATCDidScanQRCodeOnScreenNotif;
+NSString extern* const ATCBeginScanningQRCodeOnScreenNotif;
+NSString extern* const ATCFinishScanningQRCodeOnScreenNotif;
 
 // User Info Key
 NSString extern* const kTotpEntry;

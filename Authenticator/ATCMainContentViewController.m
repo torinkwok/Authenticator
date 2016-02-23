@@ -88,8 +88,8 @@
     if ( !QRCodeScannerWindow_ )
         QRCodeScannerWindow_ = [ [ ATCQRCodeScannerWindowController alloc ] initWithWindowNibName: @"ATCQRCodeScannerWindowController" ];
 
-    [ self.view.window orderOut: self ];
-    [ QRCodeScannerWindow_.window makeKeyAndOrderFront: self ];
+    [ [ NSNotificationCenter defaultCenter ]
+        postNotificationName: ATCBeginScanningQRCodeOnScreenNotif object: self ];
     }
 
 #pragma mark - Conforms to <NSTableViewDataSource>

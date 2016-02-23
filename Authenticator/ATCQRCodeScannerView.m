@@ -85,7 +85,8 @@
 
 - ( void ) mouseDown: ( NSEvent* )_Event
     {
-    [ self.window close ];
+    [ [ NSNotificationCenter defaultCenter ]
+        postNotificationName: ATCFinishScanningQRCodeOnScreenNotif object: self ];
     }
 
 #pragma mark - Drawing
@@ -191,6 +192,8 @@
     CGImageRef screenshot = [ self screenshotInRect_: scannerRect_ ];
 
     ZXLuminanceSource* source = [ [ ZXCGImageLuminanceSource alloc ] initWithCGImage: screenshot ];
+    CFRelease( screenshot );
+
     ZXBinaryBitmap* bitmap = [ ZXBinaryBitmap binaryBitmapWithBinarizer: [ ZXHybridBinarizer binarizerWithSource: source ] ];
 
     NSError* error = nil;
@@ -222,8 +225,6 @@
         NSLog( @"%@", error );
         printf( "\n" );
         }
-
-    CFRelease( screenshot );
     }
 
 @end // ATCQRCodeScannerView class

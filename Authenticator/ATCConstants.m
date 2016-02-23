@@ -13,8 +13,8 @@ NSString* const ATCNewTotpEntryDidAddNotif = @"NewTotpEntry.DidAdd.Notif";
 NSString* const ATCTotpBadgeViewShouldUpdateNotif = @"TotpBadgeView.Should.Update.Notif";
 NSString* const ATCHintFieldShouldUpdateNotif = @"HintField.Should.Update.Notif";
 NSString* const ATCShouldShowWarningsNotif = @"Should.ShowWarnings.Notif";
-NSString* const ATCWillScanQRCodeOnScreenNotif = @"Will.ScanQRCodeOnScreen.Notif";
-NSString* const ATCDidScanQRCodeOnScreenNotif = @"Did.ScanQRCodeOnScreen.Notif";
+NSString* const ATCBeginScanningQRCodeOnScreenNotif = @"Begin.ScanningQRCodeOnScreen.Notif";
+NSString* const ATCFinishScanningQRCodeOnScreenNotif = @"Finish.ScanningQRCodeOnScreen.Notif";
 
 // User Info Key
 NSString* const kTotpEntry = @"kTotpEntry";
