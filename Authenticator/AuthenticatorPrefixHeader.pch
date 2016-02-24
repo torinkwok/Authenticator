@@ -26,7 +26,7 @@
 #import "ATCConstants.h"
 #import "ATCNotificationCenter.h"
 #import "NSColor+ATCExtensions.h"
-#import "ATCPasswordManager.h"
+#import "ATCAuthVaultManager.h"
 #import "NSAffineTransform+ATCExtensions.h"
 #import "NSBezierPath+ATCExtensions.h"
 #import "AGClock+ATCExtensions.h"

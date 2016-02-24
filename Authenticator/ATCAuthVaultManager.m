@@ -1,15 +1,15 @@
 //
-//  ATCPasswordManager.m
+//  ATCAuthVaultManager.m
 //  Authenticator
 //
 //  Created by Tong G. on 2/24/16.
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-#import "ATCPasswordManager.h"
+#import "ATCAuthVaultManager.h"
 
-// ATCPasswordManager class
-@implementation ATCPasswordManager
+// ATCAuthVaultManager class
+@implementation ATCAuthVaultManager
 
 NSString static* sMasterPassword;
 + ( void ) setMasterPassword: ( NSString* )_Password
@@ -28,4 +28,4 @@ NSString static* sMasterPassword;
     return sMasterPassword;
     }
 
-@end // ATCPasswordManager class
+@end // ATCAuthVaultManager class

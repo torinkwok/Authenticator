@@ -24,7 +24,7 @@
     ATCAuthVault* defaultVault = [ [ ATCAuthVault alloc ] initWithData: defaultVaultDat masterPassword: userInput error: &error ];
 
     if ( defaultVault )
-        [ ATCPasswordManager setMasterPassword: userInput ];
+        [ ATCAuthVaultManager setMasterPassword: userInput ];
 
     if ( error )
         NSLog( @"%@", error );
