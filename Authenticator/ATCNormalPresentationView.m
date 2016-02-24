@@ -22,4 +22,13 @@
     return self;
     }
 
+- ( void ) drawRect:(NSRect)dirtyRect
+    {
+    [ super drawRect: dirtyRect ];
+    [ [ NSColor orangeColor ] set ];
+
+    NSLog( @"%@", NSStringFromRect( self.frame ) );
+    NSRectFill( self.bounds );
+    }
+
 @end // ATCNormalPresentationView class

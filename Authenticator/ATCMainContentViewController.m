@@ -21,26 +21,17 @@
 @property ( strong, readonly ) ATCPasswordCollectionViewController* passwordSettingViewController_;
 @property ( strong, readonly ) ATCPasswordPromptViewController* passwordPromptViewController_;
 
+- ( void ) installCandidate_;
+
+// Notification Selectors
+- ( void ) masterPasswordDidChange_: ( NSNotification* )_Notif;
+
 @end // Private Interfaces
 
 // ATCMainContentViewController class
 @implementation ATCMainContentViewController
 
 #pragma mark - Initializations
-
-- ( void ) installCandidate_
-    {
-    NSViewController* candidate = self.candidate_;
-
-    [ self.view removeAllConstraints ];
-    [ self.view setSubviews: @[ candidate.view ] ];
-    [ candidate.view autoPinEdgesToSuperviewEdges ];
-    }
-
-- ( void ) masterPasswordDidChange_: ( NSNotification* )_Notif
-    {
-    [ self installCandidate_ ];
-    }
 
 - ( void ) viewDidLoad
     {
@@ -107,6 +98,22 @@
         }
 
     return passwordPromptViewController_;
+    }
+
+- ( void ) installCandidate_
+    {
+    NSViewController* candidate = [ self candidate_ ];
+
+    [ self.view removeAllConstraints ];
+    [ self.view setSubviews: @[] ];
+    [ self.view addSubview: candidate.view ];
+    [ candidate.view autoPinEdgesToSuperviewEdges ];
+    }
+
+// Notification Selectors
+- ( void ) masterPasswordDidChange_: ( NSNotification* )_Notif
+    {
+    [ self installCandidate_ ];
     }
 
 @end // ATCMainContentViewController class
