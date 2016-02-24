@@ -15,6 +15,8 @@
 // Private Interfaces
 @interface ATCMainContentViewController ()
 
+@property ( strong, readonly ) NSViewController* candidate_;
+
 @property ( strong, readonly ) ATCNormalPresentationViewController* normalPresentationViewController_;
 @property ( strong, readonly ) ATCPasswordSettingViewController* passwordSettingViewController_;
 @property ( strong, readonly ) ATCPasswordPromptViewController* passwordPromptViewController_;
@@ -28,15 +30,35 @@
 
 - ( void ) viewDidLoad
     {
-    [ self.view addSubview: self.normalPresentationViewController_.view ];
-    [ self.normalPresentationViewController_.view autoPinEdgesToSuperviewEdges ];
+    [ self.view addSubview: self.candidate_.view ];
+    [ self.candidate_.view autoPinEdgesToSuperviewEdges ];
     }
 
 #pragma mark - Private Interfaces
 
+@dynamic candidate_;
+
 @dynamic normalPresentationViewController_;
 @dynamic passwordSettingViewController_;
 @dynamic passwordPromptViewController_;
+
+- ( NSViewController* ) candidate_
+    {
+    NSViewController* candidate = nil;
+
+    NSURL* defaultVaultURL = [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.vault" isDirectory: NO ];
+    if ( ![ defaultVaultURL checkResourceIsReachableAndReturnError: nil ] )
+        {
+        if ( [ ATCPasswordManager masterPassword ] )
+            candidate = self.normalPresentationViewController_;
+        else
+            candidate = self.passwordPromptViewController_;
+        }
+    else
+        candidate = self.passwordSettingViewController_;
+
+    return candidate;
+    }
 
 - ( ATCNormalPresentationViewController* ) normalPresentationViewController_
     {
