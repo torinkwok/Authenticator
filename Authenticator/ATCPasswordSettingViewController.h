@@ -9,4 +9,10 @@
 // ATCPasswordSettingViewController class
 @interface ATCPasswordSettingViewController : NSViewController
 
+@property ( weak ) IBOutlet NSSecureTextField* passwordSecureField;
+@property ( weak ) IBOutlet NSSecureTextField* repeatSecureField;
+
+@property ( weak ) IBOutlet NSButton* quitButton;
+@property ( weak ) IBOutlet NSButton* setUpButton;
+
 @end // ATCPasswordSettingViewController class
