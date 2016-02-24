@@ -14,7 +14,10 @@
 - ( instancetype ) initWithCoder: ( NSCoder* )_Coder
     {
     if ( self = [ super initWithCoder: _Coder ] )
+        {
         [ self configureForAutoLayout ];
+        [ self setWantsLayer: YES ];
+        }
 
     return self;
     }

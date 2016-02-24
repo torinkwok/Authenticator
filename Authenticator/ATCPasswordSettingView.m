@@ -17,6 +17,8 @@
         {
         [ self configureForAutoLayout ];
         [ self autoSetDimensionsToSize: self.frame.size ];
+
+        [ self setWantsLayer: YES ];
         }
 
     return self;

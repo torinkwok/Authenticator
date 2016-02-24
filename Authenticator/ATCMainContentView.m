@@ -11,9 +11,15 @@
 // ATCMainContentView class
 @implementation ATCMainContentView
 
-- ( void ) awakeFromNib
+- ( instancetype ) initWithCoder: ( NSCoder* )_Coder
     {
-    [ self configureForAutoLayout ];
+    if ( self = [ super initWithCoder: _Coder ] )
+        {
+        [ self configureForAutoLayout ];
+        [ self setWantsLayer: YES ];
+        }
+
+    return self;
     }
 
 #pragma mark - Drawing
