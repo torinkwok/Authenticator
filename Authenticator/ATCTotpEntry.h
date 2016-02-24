@@ -6,7 +6,7 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-@import Foundation;
+#import "AeroGearOTP.h"
 
 // ATCTotpEntry class
 @interface ATCTotpEntry : NSObject
