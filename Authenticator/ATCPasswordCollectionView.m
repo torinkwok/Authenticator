@@ -1,15 +1,15 @@
 //
-//  ATCPasswordSettingView.m
+//  ATCPasswordCollectionView.m
 //  Authenticator
 //
 //  Created by Tong G. on 2/24/16.
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-#import "ATCPasswordSettingView.h"
+#import "ATCPasswordCollectionView.h"
 
-// ATCPasswordSettingView class
-@implementation ATCPasswordSettingView
+// ATCPasswordCollectionView class
+@implementation ATCPasswordCollectionView
 
 - ( instancetype ) initWithCoder: ( NSCoder* )_Coder
     {
@@ -24,4 +24,4 @@
     return self;
     }
 
-@end // ATCPasswordSettingView class
+@end // ATCPasswordCollectionView class

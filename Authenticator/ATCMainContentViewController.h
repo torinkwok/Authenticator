@@ -7,7 +7,7 @@
 //
 
 @class ATCNormalPresentationViewController;
-@class ATCPasswordSettingViewController;
+@class ATCPasswordCollectionViewController;
 @class ATCPasswordPromptViewController;
 
 // ATCMainContentViewController class
@@ -15,7 +15,7 @@
     {
 @private
     ATCNormalPresentationViewController __strong*   normalPresentationViewController_;
-    ATCPasswordSettingViewController __strong*      passwordSettingViewController_;
+    ATCPasswordCollectionViewController __strong*      passwordSettingViewController_;
     ATCPasswordPromptViewController __strong*       passwordPromptViewController_;
     }
 

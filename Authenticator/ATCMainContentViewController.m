@@ -9,7 +9,7 @@
 #import "ATCMainContentViewController.h"
 
 #import "ATCNormalPresentationViewController.h"
-#import "ATCPasswordSettingViewController.h"
+#import "ATCPasswordCollectionViewController.h"
 #import "ATCPasswordPromptViewController.h"
 
 // Private Interfaces
@@ -18,7 +18,7 @@
 @property ( strong, readonly ) NSViewController* candidate_;
 
 @property ( strong, readonly ) ATCNormalPresentationViewController* normalPresentationViewController_;
-@property ( strong, readonly ) ATCPasswordSettingViewController* passwordSettingViewController_;
+@property ( strong, readonly ) ATCPasswordCollectionViewController* passwordSettingViewController_;
 @property ( strong, readonly ) ATCPasswordPromptViewController* passwordPromptViewController_;
 
 @end // Private Interfaces
@@ -85,11 +85,11 @@
     return normalPresentationViewController_;
     }
 
-- ( ATCPasswordSettingViewController* ) passwordSettingViewController_
+- ( ATCPasswordCollectionViewController* ) passwordSettingViewController_
     {
     if ( !passwordSettingViewController_ )
         {
-        passwordSettingViewController_ = [ [ NSStoryboard storyboardWithName: @"ATCPasswordSetting" bundle: nil ] instantiateInitialController ];
+        passwordSettingViewController_ = [ [ NSStoryboard storyboardWithName: @"ATCPasswordCollection" bundle: nil ] instantiateInitialController ];
         [ self addChildViewController: passwordSettingViewController_ ];
         }
 
