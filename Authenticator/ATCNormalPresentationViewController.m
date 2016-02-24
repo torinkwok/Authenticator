@@ -9,6 +9,8 @@
 #import "ATCNormalPresentationViewController.h"
 #import "ATCOTPEntryTableCellView.h"
 #import "ATCQRCodeScannerWindowController.h"
+
+#import "ATCAuthVault.h"
 #import "ATCAuthVaultItem.h"
 
 // Private Interfaces
@@ -24,51 +26,26 @@
 
 #pragma mark - Initializations
 
+- ( NSString* ) authVaultNeedsPasswordToUnlock:(ATCAuthVault *)_AuthVault
+    {
+    return [ ATCPasswordManager masterPassword ];
+    }
+
 - ( void ) viewDidLoad
     {
     [ super viewDidLoad ];
 
-    #if __debug_Entries_Table__
-    otpEntries_ = [ NSMutableOrderedSet orderedSetWithObjects:
-          [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
-
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
-
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
-
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
-
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Facebook" userName: @"TongKuo" secret: @"uqgrz4nub4tz5zwn" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"HackerNews" userName: @"TongKuo" secret: @"gshnvjezgtcbfagh" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Evernote" userName: @"TongKuo" secret: @"uzwyuhkjvsv2lnaj" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Twitter" userName: @"@NSTongK" secret: @"6kxcnplgdk52y47m" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"Google" userName: @"contact@tong-kuo.me" secret: @"dznyivy5pcf5si64" ]
-        , [ [ ATCTotpEntry alloc ] initWithServiceName: @"GitHub" userName: @"github.com/TongKuo" secret: @"3v7ptpbjedv3ivof" ]
-
-        , nil ];
-    #else
     otpEntries_ = [ NSMutableOrderedSet orderedSet ];
-    #endif
+
+    NSError* error = nil;
+
+    NSData* authVaultData = [ NSData dataWithContentsOfURL: [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" ] options: 0 error: &error ];
+    if ( authVaultData )
+        {
+        authVault_ = [ [ ATCAuthVault alloc ] initWithData: authVaultData masterPassword: [ ATCPasswordManager masterPassword ] error: &error ];
+        authVault_.passwordSource = self;
+        [ otpEntries_ addObjectsFromArray: [ authVault_ authVaultItemsWithError: &error ] ];
+        }
 
     [ [ NSNotificationCenter defaultCenter ]
         addObserver: self selector: @selector( finishScanningQRCodeOnScreen_: ) name: ATCFinishScanningQRCodeOnScreenNotif object: nil ];
@@ -111,6 +88,8 @@
 
         ATCAuthVaultItem* newEntry = [ [ ATCAuthVaultItem alloc ] initWithIssuer: issuer accountName: accountName secretKey: secret ];
         [ otpEntries_ insertObject: newEntry atIndex: 0 ];
+        [ authVault_ addAuthVaultItem: newEntry withMasterPassword: [ ATCPasswordManager masterPassword ] error: nil ];
+        [ authVault_ writeToURL: [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" ] atomically: YES ];
 
         [ self.optEntriesTableView reloadData ];
         }
@@ -189,6 +168,8 @@
     if ( newTotpEntry )
         {
         [ otpEntries_ insertObject: newTotpEntry atIndex: 0 ];
+        [ authVault_ addAuthVaultItem: newTotpEntry withMasterPassword: [ ATCPasswordManager masterPassword ] error: nil ];
+        [ authVault_ writeToURL: [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" ] atomically: YES ];
         [ self.optEntriesTableView reloadData ];
         }
     }
