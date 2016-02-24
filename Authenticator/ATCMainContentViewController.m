@@ -30,9 +30,11 @@
 
 - ( void ) installCandidate_
     {
+    NSViewController* candidate = self.candidate_;
+
     [ self.view removeAllConstraints ];
-    [ self.view setSubviews: @[ self.candidate_.view ] ];
-    [ self.candidate_.view autoPinEdgesToSuperviewEdges ];
+    [ self.view setSubviews: @[ candidate.view ] ];
+    [ candidate.view autoPinEdgesToSuperviewEdges ];
     }
 
 - ( void ) masterPasswordDidChange_: ( NSNotification* )_Notif
@@ -60,7 +62,7 @@
     {
     NSViewController* candidate = nil;
 
-    NSURL* defaultVaultURL = [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.vault" isDirectory: NO ];
+    NSURL* defaultVaultURL = [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" isDirectory: NO ];
     if ( [ defaultVaultURL checkResourceIsReachableAndReturnError: nil ] )
         {
         if ( [ ATCPasswordManager masterPassword ] )

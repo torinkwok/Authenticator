@@ -7,12 +7,18 @@
 //
 
 // ATCPasswordCollectionViewController class
-@interface ATCPasswordCollectionViewController : NSViewController
+@interface ATCPasswordCollectionViewController : NSViewController <NSTextFieldDelegate>
+
+#pragma mark - Outlets
 
 @property ( weak ) IBOutlet NSSecureTextField* passwordSecureField;
 @property ( weak ) IBOutlet NSSecureTextField* repeatSecureField;
 
 @property ( weak ) IBOutlet NSButton* quitButton;
 @property ( weak ) IBOutlet NSButton* setUpButton;
+
+#pragma mark - IBActions
+
+- ( IBAction ) setUpAction: ( id )_Sender;
 
 @end // ATCPasswordCollectionViewController class

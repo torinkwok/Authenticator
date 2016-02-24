@@ -7,6 +7,7 @@
 //
 
 #import "ATCPasswordPromptViewController.h"
+#import "ATCAuthVault.h"
 
 // ATCPasswordPromptViewController class
 @implementation ATCPasswordPromptViewController
@@ -20,8 +21,9 @@
 
     NSURL* defaultVaultURL = [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" isDirectory: NO ];
     NSData* defaultVaultDat = [ NSData dataWithContentsOfURL: defaultVaultURL ];
-    NSData* decryptedData = [ RNDecryptor decryptData: defaultVaultDat withPassword: userInput error: &error ];
-    if ( decryptedData)
+    ATCAuthVault* defaultVault = [ [ ATCAuthVault alloc ] initWithData: defaultVaultDat masterPassword: userInput error: &error ];
+
+    if ( defaultVault )
         [ ATCPasswordManager setMasterPassword: userInput ];
 
     if ( error )

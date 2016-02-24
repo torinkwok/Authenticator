@@ -15,7 +15,7 @@
     {
 @private
     ATCNormalPresentationViewController __strong*   normalPresentationViewController_;
-    ATCPasswordCollectionViewController __strong*      passwordSettingViewController_;
+    ATCPasswordCollectionViewController __strong*   passwordSettingViewController_;
     ATCPasswordPromptViewController __strong*       passwordPromptViewController_;
     }
 
