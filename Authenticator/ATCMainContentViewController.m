@@ -28,10 +28,24 @@
 
 #pragma mark - Initializations
 
+- ( void ) installCandidate_
+    {
+    [ self.view removeAllConstraints ];
+    [ self.view setSubviews: @[ self.candidate_.view ] ];
+    [ self.candidate_.view autoPinEdgesToSuperviewEdges ];
+    }
+
+- ( void ) masterPasswordDidChange_: ( NSNotification* )_Notif
+    {
+    [ self installCandidate_ ];
+    }
+
 - ( void ) viewDidLoad
     {
-    [ self.view addSubview: self.candidate_.view ];
-    [ self.candidate_.view autoPinEdgesToSuperviewEdges ];
+    [ [ NSNotificationCenter defaultCenter ]
+        addObserver: self selector: @selector( masterPasswordDidChange_: ) name: ATCMasterPasswordDidChangeNotif object: nil ];
+
+    [ self installCandidate_ ];
     }
 
 #pragma mark - Private Interfaces
@@ -47,7 +61,7 @@
     NSViewController* candidate = nil;
 
     NSURL* defaultVaultURL = [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.vault" isDirectory: NO ];
-    if ( ![ defaultVaultURL checkResourceIsReachableAndReturnError: nil ] )
+    if ( [ defaultVaultURL checkResourceIsReachableAndReturnError: nil ] )
         {
         if ( [ ATCPasswordManager masterPassword ] )
             candidate = self.normalPresentationViewController_;

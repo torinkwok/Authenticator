@@ -14,8 +14,13 @@
 NSString static* sMasterPassword;
 + ( void ) setMasterPassword: ( NSString* )_Password
     {
-    NSParameterAssert( ( _Password ) );
-    sMasterPassword = _Password;
+    if ( sMasterPassword != _Password )
+        {
+        sMasterPassword = _Password;
+
+        [ [ NSNotificationCenter defaultCenter ]
+            postNotificationName: ATCMasterPasswordDidChangeNotif object: self ];
+        }
     }
 
 + ( NSString* ) masterPassword

@@ -15,6 +15,7 @@ NSString* const ATCHintFieldShouldUpdateNotif = @"HintField.Should.Update.Notif"
 NSString* const ATCShouldShowWarningsNotif = @"Should.ShowWarnings.Notif";
 NSString* const ATCBeginScanningQRCodeOnScreenNotif = @"Begin.ScanningQRCodeOnScreen.Notif";
 NSString* const ATCFinishScanningQRCodeOnScreenNotif = @"Finish.ScanningQRCodeOnScreen.Notif";
+NSString* const ATCMasterPasswordDidChangeNotif = @"MasterPassword.DidChange.Notif";
 
 // User Info Key
 NSString* const kTotpEntry = @"kTotpEntry";

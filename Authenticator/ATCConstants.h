@@ -13,6 +13,7 @@ NSString extern* const ATCHintFieldShouldUpdateNotif;
 NSString extern* const ATCShouldShowWarningsNotif;
 NSString extern* const ATCBeginScanningQRCodeOnScreenNotif;
 NSString extern* const ATCFinishScanningQRCodeOnScreenNotif;
+NSString extern* const ATCMasterPasswordDidChangeNotif;
 
 // User Info Key
 NSString extern* const kTotpEntry;

@@ -7,6 +7,15 @@
 //
 
 // ATCPasswordPromptViewController class
-@interface ATCPasswordPromptViewController : NSViewController
+@interface ATCPasswordPromptViewController : NSViewController <NSTextFieldDelegate>
+
+#pragma mark - Outlets
+
+@property ( weak ) IBOutlet NSSecureTextField* passwordSecureField;
+@property ( weak ) IBOutlet NSButton* unlockButton;
+
+#pragma mark - IBActions
+
+- ( IBAction ) unlockAction: ( id )_Sender;
 
 @end // ATCPasswordPromptViewController class
