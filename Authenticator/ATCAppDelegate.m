@@ -21,7 +21,7 @@
 
 - ( void ) applicationDidFinishLaunching: ( NSNotification* )_Notif
     {
-
+    // TODO:
     }
 
 @end // ATCAppDelegate class

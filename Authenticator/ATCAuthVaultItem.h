@@ -6,11 +6,15 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
+@class AGTotp;
+
 // ATCAuthVaultItem class
 @interface ATCAuthVaultItem : NSObject
     {
 @protected
     NSMutableDictionary __strong* backingStore_;
+
+    AGTotp __strong* agTotp_;
     }
 
 #pragma mark - Properties
@@ -22,6 +26,8 @@
 @property ( strong, readwrite ) NSString* issuer;
 
 @property ( strong, readonly ) NSDictionary* plistRep;
+
+@property ( strong, readonly ) NSString* pinCodeRightNow;
 
 #pragma mark - Meta Data
 

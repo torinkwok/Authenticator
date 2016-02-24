@@ -8,6 +8,7 @@
 
 #import "ATCAuthVaultItem.h"
 #import "ATCAuthVaultConstants.h"
+#import "AeroGearOTP.h"
 
 #import "ATCAuthVaultItem+ATCFriends_.h"
 #import "ATCExtensions_.h"
@@ -61,6 +62,8 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
 @dynamic issuer;
 
 @dynamic plistRep;
+
+@dynamic pinCodeRightNow;
 
 - ( void ) setAccountName: ( NSString* )_New
     {
@@ -147,6 +150,12 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
     return [ backingStore_ copy ];
     }
 
+- ( NSString* ) pinCodeRightNow
+    {
+    NSString* pin = [ agTotp_ now ];
+    return pin;
+    }
+
 #pragma mark - Meta Data
 
 @dynamic UUID;
@@ -195,6 +204,8 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
             , nil ];
 
         [ self resetCheckSum_ ];
+
+        agTotp_ = [ [ AGTotp alloc ] initWithDigits: 6 andSecret: [ AGBase32 base32Decode: self.secretKey ] ];
         }
 
     return self;
@@ -224,7 +235,11 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
     if ( [ checksum isEqualToString: _PlistDict[ kCheckSumKey ] ] )
         {
         if ( self = [ super init ] )
+            {
             backingStore_ = [ _PlistDict mutableCopy ];
+
+            agTotp_ = [ [ AGTotp alloc ] initWithDigits: 6 andSecret: [ AGBase32 base32Decode: self.secretKey ] ];
+            }
 
         return self;
         }

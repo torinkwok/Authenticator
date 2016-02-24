@@ -7,7 +7,7 @@
 //
 
 #import "ATCSecretKeyManuallyInputViewController.h"
-#import "ATCTotpEntry.h"
+#import "ATCAuthVaultItem.h"
 
 // Private Interfaces
 @interface ATCSecretKeyManuallyInputViewController ()
@@ -35,10 +35,10 @@ NSString* const kCancelButton = @"cancel-button";
     NSString* identifier = [ ( NSButton* )_Sender identifier ];
     if ( [ identifier isEqualToString: kOKButton ] )
         {
-        ATCTotpEntry* newEntry =
-            [ [ ATCTotpEntry alloc ] initWithServiceName: self.serviceNameField.stringValue
-                                                userName: self.accountNameField.stringValue
-                                                  secret: self.secretKeyField.stringValue ];
+        ATCAuthVaultItem* newEntry =
+            [ [ ATCAuthVaultItem alloc ] initWithIssuer: self.serviceNameField.stringValue
+                                            accountName: self.accountNameField.stringValue
+                                              secretKey: self.secretKeyField.stringValue ];
         [ [ NSNotificationCenter defaultCenter ]
             postNotificationName: ATCNewTotpEntryDidAddNotif object: self userInfo: @{ kTotpEntry : newEntry } ];
         }

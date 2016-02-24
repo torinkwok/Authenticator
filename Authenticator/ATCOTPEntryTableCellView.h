@@ -8,17 +8,17 @@
 
 @import Cocoa;
 
-@class ATCTotpEntry;
+@class ATCAuthVaultItem;
 @class ATCOTPBadgeView;
 
 // ATCTotpEntryTableCellView class
 @interface ATCTotpEntryTableCellView : NSTableCellView
     {
 @private
-    ATCTotpEntry __strong* optEntry_;
+    ATCAuthVaultItem __strong* optEntry_;
     }
 
-@property ( strong, readwrite ) ATCTotpEntry* optEntry;
+@property ( strong, readwrite ) ATCAuthVaultItem* optEntry;
 
 #pragma mark - Outlets
 

@@ -7,9 +7,9 @@
 //
 
 #import "ATCNormalPresentationViewController.h"
-#import "ATCTotpEntry.h"
 #import "ATCOTPEntryTableCellView.h"
 #import "ATCQRCodeScannerWindowController.h"
+#import "ATCAuthVaultItem.h"
 
 // Private Interfaces
 @interface ATCNormalPresentationViewController ()
@@ -109,7 +109,7 @@
         NSLog( @"%@", accountName );
         #endif
 
-        ATCTotpEntry* newEntry = [ [ ATCTotpEntry alloc ] initWithServiceName: issuer userName: accountName secret: secret ];
+        ATCAuthVaultItem* newEntry = [ [ ATCAuthVaultItem alloc ] initWithIssuer: issuer accountName: accountName secretKey: secret ];
         [ otpEntries_ insertObject: newEntry atIndex: 0 ];
 
         [ self.optEntriesTableView reloadData ];
@@ -162,14 +162,14 @@
     {
     ATCTotpEntryTableCellView* result = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
 
-    ATCTotpEntry* optEntry = [ _TableView.dataSource tableView: _TableView objectValueForTableColumn: _TableColumn row: _Row ];
+    ATCAuthVaultItem* optEntry = [ _TableView.dataSource tableView: _TableView objectValueForTableColumn: _TableColumn row: _Row ];
     [ result setOptEntry: optEntry ];
 
     NSDateFormatter* dateFormatter = [ [ NSDateFormatter alloc ] init ];
     [ dateFormatter setDateStyle: NSDateFormatterMediumStyle ];
     result.createdDateField.stringValue = optEntry.createdDate ? [ dateFormatter stringFromDate: optEntry.createdDate ] : @"";
-    result.serviceNameField.stringValue = optEntry.serviceName.description ?: @"";
-    result.userNameField.stringValue = optEntry.userName.description ?: @"";
+    result.serviceNameField.stringValue = optEntry.issuer.description ?: @"";
+    result.userNameField.stringValue = optEntry.accountName.description ?: @"";
 
     return result;
     }
@@ -185,7 +185,7 @@
 // Notification Selector
 - ( void ) newTotpEntryDidAdd: ( NSNotification* )_Notif
     {
-    ATCTotpEntry* newTotpEntry = _Notif.userInfo[ kTotpEntry ];
+    ATCAuthVaultItem* newTotpEntry = _Notif.userInfo[ kTotpEntry ];
     if ( newTotpEntry )
         {
         [ otpEntries_ insertObject: newTotpEntry atIndex: 0 ];

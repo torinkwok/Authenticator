@@ -8,16 +8,16 @@
 
 @import Cocoa;
 
-@class ATCTotpEntry;
+@class ATCAuthVaultItem;
 
 // ATCOTPBadgeView class
 @interface ATCOTPBadgeView : NSControl
     {
 @private
-    ATCTotpEntry __strong* optEntry_;
+    ATCAuthVaultItem __strong* optEntry_;
     }
 
-@property ( strong, readwrite ) ATCTotpEntry* optEntry;
+@property ( strong, readwrite ) ATCAuthVaultItem* optEntry;
 @property ( strong, readwrite ) NSString* pinCode;
 @property ( assign, readwrite ) BOOL isInWarning;
 

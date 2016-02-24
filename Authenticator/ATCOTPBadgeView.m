@@ -7,8 +7,8 @@
 //
 
 #import "ATCOTPBadgeView.h"
-#import "ATCTotpEntry.h"
 #import "ATCOTPBadgeLayer.h"
+#import "ATCAuthVaultItem.h"
 
 // Private Interfaces
 @interface ATCOTPBadgeView ()
@@ -55,7 +55,7 @@
 @dynamic optEntry;
 @dynamic isInWarning;
 
-- ( void ) setOptEntry: ( ATCTotpEntry* )_NewEntry
+- ( void ) setOptEntry: ( ATCAuthVaultItem* )_NewEntry
     {
     if ( optEntry_ != _NewEntry )
         {
@@ -64,7 +64,7 @@
         }
     }
 
-- ( ATCTotpEntry* ) optEntry
+- ( ATCAuthVaultItem* ) optEntry
     {
     return optEntry_;
     }

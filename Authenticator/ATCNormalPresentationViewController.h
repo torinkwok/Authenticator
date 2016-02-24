@@ -6,7 +6,7 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-@class ATCTotpEntry;
+@class ATCAuthVaultItem;
 @class ATCQRCodeScannerWindowController;
 
 // ATCNormalPresentationViewController class
@@ -14,7 +14,7 @@
     <NSTableViewDataSource, NSTableViewDelegate>
     {
 @private
-    NSMutableOrderedSet <ATCTotpEntry*>* otpEntries_;
+    NSMutableOrderedSet <ATCAuthVaultItem*>* otpEntries_;
 
     ATCQRCodeScannerWindowController __strong* QRCodeScannerWindow_;
     }

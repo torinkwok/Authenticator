@@ -21,7 +21,7 @@
 
 @dynamic optEntry;
 
-- ( void ) setOptEntry: ( ATCTotpEntry* )_NewEntry
+- ( void ) setOptEntry: ( ATCAuthVaultItem* )_NewEntry
     {
     if ( optEntry_ != _NewEntry )
         {
@@ -30,7 +30,7 @@
         }
     }
 
-- ( ATCTotpEntry* ) optEntry
+- ( ATCAuthVaultItem* ) optEntry
     {
     return optEntry_;
     }
