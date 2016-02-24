@@ -7,12 +7,16 @@
 //
 
 @class ATCMainViewController;
+@class ATCPasswordSettingViewController;
+@class ATCPasswordPromptViewController;
 
 // ATCMainContentViewController class
 @interface ATCMainContentViewController : NSViewController
     {
 @private
-    ATCMainViewController __strong* mainViewController_;
+    ATCMainViewController __strong*             mainViewController_;
+    ATCPasswordSettingViewController __strong*  passwordSettingViewController_;
+    ATCPasswordPromptViewController __strong*   passwordPromptViewController_;
     }
 
 @end // ATCMainContentViewController class

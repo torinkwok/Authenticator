@@ -7,7 +7,10 @@
 //
 
 #import "ATCMainContentViewController.h"
+
 #import "ATCMainViewController.h"
+#import "ATCPasswordSettingViewController.h"
+#import "ATCPasswordPromptViewController.h"
 
 // Private Interfaces
 @interface ATCMainContentViewController ()
@@ -25,8 +28,20 @@
         [ self addChildViewController: mainViewController_ ];
         }
 
-    [ self.view addSubview: mainViewController_.view ];
-    [ mainViewController_.view autoPinEdgesToSuperviewEdges ];
+    if ( !passwordSettingViewController_ )
+        {
+        passwordSettingViewController_ = [ [ NSStoryboard storyboardWithName: @"ATCPasswordSettingView" bundle: nil ] instantiateInitialController ];
+        [ self addChildViewController: passwordSettingViewController_ ];
+        }
+
+    if ( !passwordPromptViewController_ )
+        {
+        passwordPromptViewController_ = [ [ NSStoryboard storyboardWithName: @"ATCPasswordPrompt" bundle: nil ] instantiateInitialController ];
+        [ self addChildViewController: passwordPromptViewController_ ];
+        }
+
+    [ self.view addSubview: passwordPromptViewController_.view ];
+    [ passwordPromptViewController_.view autoPinEdgesToSuperviewEdges ];
     }
 
 @end // ATCMainContentViewController class

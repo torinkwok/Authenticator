@@ -70,6 +70,12 @@
 		83D755F21C7D5BF600BFDEC8 /* ATCMainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D755F11C7D5BF600BFDEC8 /* ATCMainView.storyboard */; settings = {ASSET_TAGS = (); }; };
 		83D755F51C7D5C3B00BFDEC8 /* ATCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D755F41C7D5C3B00BFDEC8 /* ATCMainViewController.m */; settings = {ASSET_TAGS = (); }; };
 		83D755F81C7D5C4500BFDEC8 /* ATCMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D755F71C7D5C4500BFDEC8 /* ATCMainView.m */; settings = {ASSET_TAGS = (); }; };
+		83D755FA1C7D719F00BFDEC8 /* ATCPasswordSettingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D755F91C7D719F00BFDEC8 /* ATCPasswordSettingView.storyboard */; settings = {ASSET_TAGS = (); }; };
+		83D755FD1C7D737600BFDEC8 /* ATCPasswordSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D755FC1C7D737600BFDEC8 /* ATCPasswordSettingView.m */; settings = {ASSET_TAGS = (); }; };
+		83D756001C7D738000BFDEC8 /* ATCPasswordSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D755FF1C7D738000BFDEC8 /* ATCPasswordSettingViewController.m */; settings = {ASSET_TAGS = (); }; };
+		83D756021C7D764300BFDEC8 /* ATCPasswordPrompt.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D756011C7D764300BFDEC8 /* ATCPasswordPrompt.storyboard */; settings = {ASSET_TAGS = (); }; };
+		83D756051C7D770C00BFDEC8 /* ATCPasswordPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D756041C7D770C00BFDEC8 /* ATCPasswordPromptView.m */; settings = {ASSET_TAGS = (); }; };
+		83D756081C7D771800BFDEC8 /* ATCPasswordPromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D756071C7D771800BFDEC8 /* ATCPasswordPromptViewController.m */; settings = {ASSET_TAGS = (); }; };
 		83F56E841C7B57E0008463F2 /* opt-add-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F56E821C7B57E0008463F2 /* opt-add-button.png */; settings = {ASSET_TAGS = (); }; };
 		83F56E851C7B57E0008463F2 /* opt-add-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F56E831C7B57E0008463F2 /* opt-add-button@2x.png */; settings = {ASSET_TAGS = (); }; };
 		83F56E881C7B588A008463F2 /* opt-scan-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F56E861C7B588A008463F2 /* opt-scan-button@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -464,6 +470,16 @@
 		83D755F41C7D5C3B00BFDEC8 /* ATCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainViewController.m; sourceTree = "<group>"; };
 		83D755F61C7D5C4500BFDEC8 /* ATCMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainView.h; sourceTree = "<group>"; };
 		83D755F71C7D5C4500BFDEC8 /* ATCMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainView.m; sourceTree = "<group>"; };
+		83D755F91C7D719F00BFDEC8 /* ATCPasswordSettingView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ATCPasswordSettingView.storyboard; sourceTree = "<group>"; };
+		83D755FB1C7D737600BFDEC8 /* ATCPasswordSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCPasswordSettingView.h; sourceTree = "<group>"; };
+		83D755FC1C7D737600BFDEC8 /* ATCPasswordSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCPasswordSettingView.m; sourceTree = "<group>"; };
+		83D755FE1C7D738000BFDEC8 /* ATCPasswordSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCPasswordSettingViewController.h; sourceTree = "<group>"; };
+		83D755FF1C7D738000BFDEC8 /* ATCPasswordSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCPasswordSettingViewController.m; sourceTree = "<group>"; };
+		83D756011C7D764300BFDEC8 /* ATCPasswordPrompt.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ATCPasswordPrompt.storyboard; sourceTree = "<group>"; };
+		83D756031C7D770C00BFDEC8 /* ATCPasswordPromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCPasswordPromptView.h; sourceTree = "<group>"; };
+		83D756041C7D770C00BFDEC8 /* ATCPasswordPromptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCPasswordPromptView.m; sourceTree = "<group>"; };
+		83D756061C7D771800BFDEC8 /* ATCPasswordPromptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCPasswordPromptViewController.h; sourceTree = "<group>"; };
+		83D756071C7D771800BFDEC8 /* ATCPasswordPromptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCPasswordPromptViewController.m; sourceTree = "<group>"; };
 		83F56E821C7B57E0008463F2 /* opt-add-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opt-add-button.png"; sourceTree = "<group>"; };
 		83F56E831C7B57E0008463F2 /* opt-add-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opt-add-button@2x.png"; sourceTree = "<group>"; };
 		83F56E861C7B588A008463F2 /* opt-scan-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opt-scan-button@2x.png"; sourceTree = "<group>"; };
@@ -1118,6 +1134,14 @@
 				83D755F41C7D5C3B00BFDEC8 /* ATCMainViewController.m */,
 				83D755F61C7D5C4500BFDEC8 /* ATCMainView.h */,
 				83D755F71C7D5C4500BFDEC8 /* ATCMainView.m */,
+				83D755FE1C7D738000BFDEC8 /* ATCPasswordSettingViewController.h */,
+				83D755FF1C7D738000BFDEC8 /* ATCPasswordSettingViewController.m */,
+				83D755FB1C7D737600BFDEC8 /* ATCPasswordSettingView.h */,
+				83D755FC1C7D737600BFDEC8 /* ATCPasswordSettingView.m */,
+				83D756061C7D771800BFDEC8 /* ATCPasswordPromptViewController.h */,
+				83D756071C7D771800BFDEC8 /* ATCPasswordPromptViewController.m */,
+				83D756031C7D770C00BFDEC8 /* ATCPasswordPromptView.h */,
+				83D756041C7D770C00BFDEC8 /* ATCPasswordPromptView.m */,
 				83CEE8AC1C6CD0E90027AE38 /* ATCHintField.h */,
 				83CEE8AD1C6CD0E90027AE38 /* ATCHintField.m */,
 				83D34BFA1C67148A007253E3 /* ATCTotpEntry.h */,
@@ -1178,6 +1202,8 @@
 			children = (
 				8324B1A91C67073900153EC7 /* ATCMain.storyboard */,
 				83D755F11C7D5BF600BFDEC8 /* ATCMainView.storyboard */,
+				83D755F91C7D719F00BFDEC8 /* ATCPasswordSettingView.storyboard */,
+				83D756011C7D764300BFDEC8 /* ATCPasswordPrompt.storyboard */,
 				83F571671C7C0199008463F2 /* ATCQRCodeScannerWindowController.xib */,
 			);
 			name = wysiwyg;
@@ -2130,7 +2156,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83D756021C7D764300BFDEC8 /* ATCPasswordPrompt.storyboard in Resources */,
 				83F56E891C7B588A008463F2 /* opt-scan-button.png in Resources */,
+				83D755FA1C7D719F00BFDEC8 /* ATCPasswordSettingView.storyboard in Resources */,
 				83F56E851C7B57E0008463F2 /* opt-add-button@2x.png in Resources */,
 				83F56E881C7B588A008463F2 /* opt-scan-button@2x.png in Resources */,
 				83F56E841C7B57E0008463F2 /* opt-add-button.png in Resources */,
@@ -2300,6 +2328,7 @@
 				83F570FC1C7B5E20008463F2 /* ZXAI01weightDecoder.m in Sources */,
 				83F570EA1C7B5E20008463F2 /* ZXDataMatrixX12Encoder.m in Sources */,
 				83F570CC1C7B5E20008463F2 /* ZXBinarizer.m in Sources */,
+				83D755FD1C7D737600BFDEC8 /* ATCPasswordSettingView.m in Sources */,
 				83F5710B1C7B5E20008463F2 /* ZXRSS14Reader.m in Sources */,
 				83F570971C7B5E20008463F2 /* ZXEmailAddressResultParser.m in Sources */,
 				83F570DC1C7B5E20008463F2 /* ZXDataMatrixDecoder.m in Sources */,
@@ -2310,6 +2339,7 @@
 				83F5709E1C7B5E20008463F2 /* ZXISBNResultParser.m in Sources */,
 				83F570E31C7B5E20008463F2 /* ZXDataMatrixEdifactEncoder.m in Sources */,
 				836F0CB51C784BF9005EE91E /* ATCAuthVaultConstants.m in Sources */,
+				83D756051C7D770C00BFDEC8 /* ATCPasswordPromptView.m in Sources */,
 				83F571421C7B5E20008463F2 /* ZXPDF417Writer.m in Sources */,
 				83F571391C7B5E20008463F2 /* ZXPDF417.m in Sources */,
 				83F571231C7B5E20008463F2 /* ZXUPCAWriter.m in Sources */,
@@ -2406,6 +2436,7 @@
 				83F571221C7B5E20008463F2 /* ZXUPCAReader.m in Sources */,
 				83F570A21C7B5E20008463F2 /* ZXResultParser.m in Sources */,
 				83F5709F1C7B5E20008463F2 /* ZXParsedResult.m in Sources */,
+				83D756001C7D738000BFDEC8 /* ATCPasswordSettingViewController.m in Sources */,
 				83F570911C7B5E20008463F2 /* ZXAddressBookDoCoMoResultParser.m in Sources */,
 				83F5710A1C7B5E20008463F2 /* ZXAbstractRSSReader.m in Sources */,
 				83F571401C7B5E20008463F2 /* ZXPDF417Reader.m in Sources */,
@@ -2437,6 +2468,7 @@
 				83F5710E1C7B5E20008463F2 /* ZXRSSPair.m in Sources */,
 				83F571581C7B5E20008463F2 /* ZXMultiDetector.m in Sources */,
 				83F570DD1C7B5E20008463F2 /* ZXDataMatrixVersion.m in Sources */,
+				83D756081C7D771800BFDEC8 /* ATCPasswordPromptViewController.m in Sources */,
 				83F571471C7B5E20008463F2 /* ZXQRCodeDecoder.m in Sources */,
 				83F5711B1C7B5E20008463F2 /* ZXEANManufacturerOrgSupport.m in Sources */,
 				83F571071C7B5E20008463F2 /* ZXRSSExpandedPair.m in Sources */,
