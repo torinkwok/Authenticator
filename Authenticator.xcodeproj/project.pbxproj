@@ -67,6 +67,9 @@
 		83CEE8C01C6E13090027AE38 /* ATCOTPBadgeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8BF1C6E13090027AE38 /* ATCOTPBadgeLayer.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */; settings = {ASSET_TAGS = (); }; };
 		83D34BFC1C67148A007253E3 /* ATCTotpEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BFB1C67148A007253E3 /* ATCTotpEntry.m */; settings = {ASSET_TAGS = (); }; };
+		83D755F21C7D5BF600BFDEC8 /* ATCMainView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D755F11C7D5BF600BFDEC8 /* ATCMainView.storyboard */; settings = {ASSET_TAGS = (); }; };
+		83D755F51C7D5C3B00BFDEC8 /* ATCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D755F41C7D5C3B00BFDEC8 /* ATCMainViewController.m */; settings = {ASSET_TAGS = (); }; };
+		83D755F81C7D5C4500BFDEC8 /* ATCMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D755F71C7D5C4500BFDEC8 /* ATCMainView.m */; settings = {ASSET_TAGS = (); }; };
 		83F56E841C7B57E0008463F2 /* opt-add-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F56E821C7B57E0008463F2 /* opt-add-button.png */; settings = {ASSET_TAGS = (); }; };
 		83F56E851C7B57E0008463F2 /* opt-add-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F56E831C7B57E0008463F2 /* opt-add-button@2x.png */; settings = {ASSET_TAGS = (); }; };
 		83F56E881C7B588A008463F2 /* opt-scan-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F56E861C7B588A008463F2 /* opt-scan-button@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -456,6 +459,11 @@
 		83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntryTableCellView.m; sourceTree = "<group>"; };
 		83D34BFA1C67148A007253E3 /* ATCTotpEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCTotpEntry.h; sourceTree = "<group>"; };
 		83D34BFB1C67148A007253E3 /* ATCTotpEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCTotpEntry.m; sourceTree = "<group>"; };
+		83D755F11C7D5BF600BFDEC8 /* ATCMainView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ATCMainView.storyboard; sourceTree = "<group>"; };
+		83D755F31C7D5C3B00BFDEC8 /* ATCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainViewController.h; sourceTree = "<group>"; };
+		83D755F41C7D5C3B00BFDEC8 /* ATCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainViewController.m; sourceTree = "<group>"; };
+		83D755F61C7D5C4500BFDEC8 /* ATCMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainView.h; sourceTree = "<group>"; };
+		83D755F71C7D5C4500BFDEC8 /* ATCMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainView.m; sourceTree = "<group>"; };
 		83F56E821C7B57E0008463F2 /* opt-add-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opt-add-button.png"; sourceTree = "<group>"; };
 		83F56E831C7B57E0008463F2 /* opt-add-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opt-add-button@2x.png"; sourceTree = "<group>"; };
 		83F56E861C7B588A008463F2 /* opt-scan-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "opt-scan-button@2x.png"; sourceTree = "<group>"; };
@@ -1106,6 +1114,10 @@
 				8324B1A51C67073900153EC7 /* ATCMainContentViewController.m */,
 				8339601B1C670D96007241D9 /* ATCMainContentView.h */,
 				8339601C1C670D96007241D9 /* ATCMainContentView.m */,
+				83D755F31C7D5C3B00BFDEC8 /* ATCMainViewController.h */,
+				83D755F41C7D5C3B00BFDEC8 /* ATCMainViewController.m */,
+				83D755F61C7D5C4500BFDEC8 /* ATCMainView.h */,
+				83D755F71C7D5C4500BFDEC8 /* ATCMainView.m */,
 				83CEE8AC1C6CD0E90027AE38 /* ATCHintField.h */,
 				83CEE8AD1C6CD0E90027AE38 /* ATCHintField.m */,
 				83D34BFA1C67148A007253E3 /* ATCTotpEntry.h */,
@@ -1165,6 +1177,7 @@
 			isa = PBXGroup;
 			children = (
 				8324B1A91C67073900153EC7 /* ATCMain.storyboard */,
+				83D755F11C7D5BF600BFDEC8 /* ATCMainView.storyboard */,
 				83F571671C7C0199008463F2 /* ATCQRCodeScannerWindowController.xib */,
 			);
 			name = wysiwyg;
@@ -2122,6 +2135,7 @@
 				83F56E881C7B588A008463F2 /* opt-scan-button@2x.png in Resources */,
 				83F56E841C7B57E0008463F2 /* opt-add-button.png in Resources */,
 				8324B1A81C67073900153EC7 /* Assets.xcassets in Resources */,
+				83D755F21C7D5BF600BFDEC8 /* ATCMainView.storyboard in Resources */,
 				8324B1AB1C67073900153EC7 /* ATCMain.storyboard in Resources */,
 				83F571691C7C0199008463F2 /* ATCQRCodeScannerWindowController.xib in Resources */,
 			);
@@ -2291,6 +2305,7 @@
 				83F570DC1C7B5E20008463F2 /* ZXDataMatrixDecoder.m in Sources */,
 				8373D8661C671D7300A11E31 /* ALView+PureLayout.m in Sources */,
 				83F571351C7B5E20008463F2 /* ZXPDF417DetectionResultRowIndicatorColumn.m in Sources */,
+				83D755F51C7D5C3B00BFDEC8 /* ATCMainViewController.m in Sources */,
 				83F570B41C7B5E20008463F2 /* ZXCGImageLuminanceSource.m in Sources */,
 				83F5709E1C7B5E20008463F2 /* ZXISBNResultParser.m in Sources */,
 				83F570E31C7B5E20008463F2 /* ZXDataMatrixEdifactEncoder.m in Sources */,
@@ -2403,6 +2418,7 @@
 				8373D8921C67548C00A11E31 /* AGTotp.m in Sources */,
 				83F571271C7B5E20008463F2 /* ZXUPCEANReader.m in Sources */,
 				83F570F41C7B5E20008463F2 /* ZXAI013103decoder.m in Sources */,
+				83D755F81C7D5C4500BFDEC8 /* ATCMainView.m in Sources */,
 				830AD1A01C706844006D909C /* NSDate+WSCCocoaDate.m in Sources */,
 				83F570C71C7B5E20008463F2 /* ZXGridSampler.m in Sources */,
 				83F570A71C7B5E20008463F2 /* ZXTelParsedResult.m in Sources */,
