@@ -6,8 +6,7 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
+// ATCPasswordPromptViewController class
 @interface ATCPasswordPromptViewController : NSViewController
 
-@end
+@end // ATCPasswordPromptViewController class

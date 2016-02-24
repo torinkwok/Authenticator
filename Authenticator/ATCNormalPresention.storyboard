@@ -4,11 +4,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Normal Presentation View Controller-->
         <scene sceneID="Sbb-yt-py0">
             <objects>
-                <viewController id="Kru-w5-j0d" customClass="ATCMainViewController" sceneMemberID="viewController">
-                    <view key="view" id="Ykf-4C-4gd" customClass="ATCMainView">
+                <viewController id="Kru-w5-j0d" customClass="ATCNormalPresentationViewController" sceneMemberID="viewController">
+                    <view key="view" id="Ykf-4C-4gd" customClass="ATCNormalPresentationView">
                         <rect key="frame" x="0.0" y="0.0" width="424" height="512"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

@@ -8,15 +8,7 @@
 
 #import "ATCPasswordPromptViewController.h"
 
-@interface ATCPasswordPromptViewController ()
-
-@end
-
+// ATCPasswordPromptViewController class
 @implementation ATCPasswordPromptViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do view setup here.
-}
-
-@end
+@end // ATCPasswordPromptViewController class

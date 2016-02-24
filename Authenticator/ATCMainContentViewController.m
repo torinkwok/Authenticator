@@ -8,7 +8,7 @@
 
 #import "ATCMainContentViewController.h"
 
-#import "ATCMainViewController.h"
+#import "ATCNormalPresentationViewController.h"
 #import "ATCPasswordSettingViewController.h"
 #import "ATCPasswordPromptViewController.h"
 
@@ -22,15 +22,15 @@
 
 - ( void ) viewDidLoad
     {
-    if ( !mainViewController_ )
+    if ( !normalPresentationViewController_ )
         {
-        mainViewController_ = [ [ NSStoryboard storyboardWithName: @"ATCMainView" bundle: nil ] instantiateInitialController ];
-        [ self addChildViewController: mainViewController_ ];
+        normalPresentationViewController_ = [ [ NSStoryboard storyboardWithName: @"ATCNormalPresention" bundle: nil ] instantiateInitialController ];
+        [ self addChildViewController: normalPresentationViewController_ ];
         }
 
     if ( !passwordSettingViewController_ )
         {
-        passwordSettingViewController_ = [ [ NSStoryboard storyboardWithName: @"ATCPasswordSettingView" bundle: nil ] instantiateInitialController ];
+        passwordSettingViewController_ = [ [ NSStoryboard storyboardWithName: @"ATCPasswordSetting" bundle: nil ] instantiateInitialController ];
         [ self addChildViewController: passwordSettingViewController_ ];
         }
 
@@ -40,8 +40,8 @@
         [ self addChildViewController: passwordPromptViewController_ ];
         }
 
-    [ self.view addSubview: passwordPromptViewController_.view ];
-    [ passwordPromptViewController_.view autoPinEdgesToSuperviewEdges ];
+    [ self.view addSubview: normalPresentationViewController_.view ];
+    [ normalPresentationViewController_.view autoPinEdgesToSuperviewEdges ];
     }
 
 @end // ATCMainContentViewController class

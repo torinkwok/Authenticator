@@ -1,5 +1,5 @@
 //
-//  ATCMainViewController.h
+//  ATCNormalPresentationViewController.h
 //  Authenticator
 //
 //  Created by Tong G. on 2/24/16.
@@ -9,8 +9,8 @@
 @class ATCTotpEntry;
 @class ATCQRCodeScannerWindowController;
 
-// ATCMainViewController class
-@interface ATCMainViewController : NSViewController
+// ATCNormalPresentationViewController class
+@interface ATCNormalPresentationViewController : NSViewController
     <NSTableViewDataSource, NSTableViewDelegate>
     {
 @private
@@ -25,4 +25,4 @@
 
 - ( IBAction ) scanQRCodeOnScreenAction_: ( id )_Sender;
 
-@end // ATCMainViewController class
+@end // ATCNormalPresentationViewController class

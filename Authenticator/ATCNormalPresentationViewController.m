@@ -1,26 +1,26 @@
 //
-//  ATCMainViewController.m
+//  ATCNormalPresentationViewController.m
 //  Authenticator
 //
 //  Created by Tong G. on 2/24/16.
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-#import "ATCMainViewController.h"
+#import "ATCNormalPresentationViewController.h"
 #import "ATCTotpEntry.h"
 #import "ATCOTPEntryTableCellView.h"
 #import "ATCQRCodeScannerWindowController.h"
 
 // Private Interfaces
-@interface ATCMainViewController ()
+@interface ATCNormalPresentationViewController ()
 
 // Notification Selector
 - ( void ) newTotpEntryDidAdd: ( NSNotification* )_Notif;
 
 @end // Private Interfaces
 
-// ATCMainViewController class
-@implementation ATCMainViewController
+// ATCNormalPresentationViewController class
+@implementation ATCNormalPresentationViewController
 
 #pragma mark - Initializations
 
@@ -193,4 +193,4 @@
         }
     }
 
-@end // ATCMainViewController class
+@end // ATCNormalPresentationViewController class

@@ -8,6 +8,7 @@
 
 #import "ATCPasswordSettingView.h"
 
+// ATCPasswordSettingView class
 @implementation ATCPasswordSettingView
 
 - ( instancetype ) initWithCoder: ( NSCoder* )_Coder
@@ -21,4 +22,4 @@
     return self;
     }
 
-@end
+@end // ATCPasswordSettingView class

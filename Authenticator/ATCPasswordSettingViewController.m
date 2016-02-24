@@ -8,15 +8,6 @@
 
 #import "ATCPasswordSettingViewController.h"
 
-@interface ATCPasswordSettingViewController ()
-
-@end
-
+// ATCPasswordSettingViewController class
 @implementation ATCPasswordSettingViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do view setup here.
-}
-
-@end
+@end // ATCPasswordSettingViewController class

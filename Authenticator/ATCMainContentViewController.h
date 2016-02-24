@@ -6,7 +6,7 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-@class ATCMainViewController;
+@class ATCNormalPresentationViewController;
 @class ATCPasswordSettingViewController;
 @class ATCPasswordPromptViewController;
 
@@ -14,9 +14,9 @@
 @interface ATCMainContentViewController : NSViewController
     {
 @private
-    ATCMainViewController __strong*             mainViewController_;
-    ATCPasswordSettingViewController __strong*  passwordSettingViewController_;
-    ATCPasswordPromptViewController __strong*   passwordPromptViewController_;
+    ATCNormalPresentationViewController __strong*   normalPresentationViewController_;
+    ATCPasswordSettingViewController __strong*      passwordSettingViewController_;
+    ATCPasswordPromptViewController __strong*       passwordPromptViewController_;
     }
 
 @end // ATCMainContentViewController class

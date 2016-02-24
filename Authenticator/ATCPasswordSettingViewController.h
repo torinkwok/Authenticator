@@ -6,8 +6,7 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
+// ATCPasswordSettingViewController class
 @interface ATCPasswordSettingViewController : NSViewController
 
-@end
+@end // ATCPasswordSettingViewController class

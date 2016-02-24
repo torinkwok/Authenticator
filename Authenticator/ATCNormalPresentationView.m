@@ -1,15 +1,15 @@
 //
-//  ATCMainView.m
+//  ATCNormalPresentationView.m
 //  Authenticator
 //
 //  Created by Tong G. on 2/24/16.
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-#import "ATCMainView.h"
+#import "ATCNormalPresentationView.h"
 
-// ATCMainView class
-@implementation ATCMainView
+// ATCNormalPresentationView class
+@implementation ATCNormalPresentationView
 
 - ( instancetype ) initWithCoder: ( NSCoder* )_Coder
     {
@@ -19,4 +19,4 @@
     return self;
     }
 
-@end // ATCMainView class
+@end // ATCNormalPresentationView class

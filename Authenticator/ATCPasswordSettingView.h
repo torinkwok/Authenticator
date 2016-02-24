@@ -8,6 +8,7 @@
 
 #import "ATCBeautifulView.h"
 
+// ATCPasswordSettingView class
 @interface ATCPasswordSettingView : ATCBeautifulView
 
-@end
+@end // ATCPasswordSettingView class

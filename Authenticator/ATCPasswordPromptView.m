@@ -8,6 +8,7 @@
 
 #import "ATCPasswordPromptView.h"
 
+// ATCPasswordPromptView class
 @implementation ATCPasswordPromptView
 
 - ( instancetype ) initWithCoder: ( NSCoder* )_Coder
@@ -21,4 +22,4 @@
     return self;
     }
 
-@end
+@end // ATCPasswordPromptView class
