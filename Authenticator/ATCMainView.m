@@ -11,4 +11,9 @@
 // ATCMainView class
 @implementation ATCMainView
 
+- ( void ) awakeFromNib
+    {
+    [ self configureForAutoLayout ];
+    }
+
 @end // ATCMainView class

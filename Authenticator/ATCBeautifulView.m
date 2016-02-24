@@ -13,12 +13,17 @@
 
 #pragma mark - Initializations
 
-- ( void ) awakeFromNib
+- ( instancetype ) initWithCoder: ( NSCoder* )_Coder
     {
-    self.state = NSVisualEffectStateActive;
+    if ( self = [ super initWithCoder: _Coder ] )
+        {
+        self.state = NSVisualEffectStateActive;
 
-    self.wantsLayer = YES;
-    self.layer.backgroundColor = [ NSColor whiteColor ].CGColor;
+        self.wantsLayer = YES;
+        self.layer.backgroundColor = [ NSColor whiteColor ].CGColor;
+        }
+
+    return self;
     }
 
 @end // ATCBeautifulView class

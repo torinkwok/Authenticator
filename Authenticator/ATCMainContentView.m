@@ -11,6 +11,11 @@
 // ATCMainContentView class
 @implementation ATCMainContentView
 
+- ( void ) awakeFromNib
+    {
+    [ self configureForAutoLayout ];
+    }
+
 #pragma mark - Drawing
 
 - ( void ) drawRect: ( NSRect )_DirtyRect

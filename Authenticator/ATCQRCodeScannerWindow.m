@@ -8,6 +8,14 @@
 
 #import "ATCQRCodeScannerWindow.h"
 
+// Private Interfaces
+@interface ATCQRCodeScannerWindow ()
+
+// Notification Selectors
+- ( void ) applicationWillResignActive_: ( NSNotification* )_Notif;
+
+@end // Private Interfaces
+
 // ATCQRCodeScannerWindow class
 @implementation ATCQRCodeScannerWindow
 
@@ -26,12 +34,15 @@
     [ self setFrame: [ NSScreen mainScreen ].frame display: YES ];
 
     [ [ NSNotificationCenter defaultCenter ]
-        addObserver: self selector: @selector( applicationWillResignActive: ) name: NSApplicationWillResignActiveNotification object: NSApp ];
+        addObserver: self selector: @selector( applicationWillResignActive_: ) name: NSApplicationWillResignActiveNotification object: NSApp ];
     }
 
-- ( void ) applicationWillResignActive:(NSNotification *)notification
+#pragma mark - Private Interfaces
+
+// Notification Selectors
+- ( void ) applicationWillResignActive_: ( NSNotification* )_Notif
     {
-    [ self close ];
+    [ self orderOut: self ];
     }
 
 @end // ATCQRCodeScannerWindow class

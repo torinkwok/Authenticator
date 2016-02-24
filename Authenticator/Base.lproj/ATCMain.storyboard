@@ -675,37 +675,11 @@
                     <view key="view" id="FtU-of-P4y" customClass="ATCMainContentView">
                         <rect key="frame" x="0.0" y="0.0" width="403" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="4aE-Yn-uKf">
-                                <rect key="frame" x="0.0" y="0.0" width="403" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="ApX-7a-9RE"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="403" id="coa-EJ-zw1"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="Zwp-mN-eEy" kind="embed" id="SFa-il-oAQ"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="4aE-Yn-uKf" firstAttribute="leading" secondItem="FtU-of-P4y" secondAttribute="leading" id="Aqq-eW-Ltt"/>
-                            <constraint firstAttribute="bottom" secondItem="4aE-Yn-uKf" secondAttribute="bottom" id="Zh2-zE-c3F"/>
-                            <constraint firstAttribute="trailing" secondItem="4aE-Yn-uKf" secondAttribute="trailing" id="pED-ZF-caD"/>
-                            <constraint firstItem="4aE-Yn-uKf" firstAttribute="top" secondItem="FtU-of-P4y" secondAttribute="top" id="pox-Tz-Hij"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="Uey-bB-UHF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-833.5" y="1333"/>
-        </scene>
-        <!--ATCMainView-->
-        <scene sceneID="DhM-Xu-Zcr">
-            <objects>
-                <controllerPlaceholder storyboardName="ATCMainView" id="Zwp-mN-eEy" sceneMemberID="viewController"/>
-                <customObject id="rfK-6v-z9f" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-833.5" y="1598"/>
         </scene>
     </scenes>
 </document>
