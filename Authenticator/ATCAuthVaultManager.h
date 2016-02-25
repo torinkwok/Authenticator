@@ -11,10 +11,13 @@
 // ATCAuthVaultManager class
 @interface ATCAuthVaultManager : NSObject
 
++ ( NSURL* ) defaultAuthVaultLocation;
 + ( BOOL ) defaultAuthVaultExists;
 + ( ATCAuthVault* ) generateDefaultAuthVaultWithMasterPassword: ( NSString* )_Password error: ( NSError** )_Error;
++ ( BOOL ) writeAuthVaultBackIntoDefaultAuthVault: ( ATCAuthVault* )_ModifiedAuthVault error: ( NSError** )_Error;
 
-+ ( void ) setMasterPassword: ( NSString* )_Password;
-+ ( NSString* ) masterPassword;
++ ( ATCAuthVault* ) defaultAuthVaultInDefaultLocationWithPassword: ( NSString* )_Password error: ( NSError** )_Error;
+
++ ( NSString* ) tmpMasterPassword;
 
 @end // ATCAuthVaultManager class

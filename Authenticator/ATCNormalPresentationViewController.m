@@ -28,7 +28,7 @@
 
 - ( NSString* ) authVaultNeedsPasswordToUnlock:(ATCAuthVault *)_AuthVault
     {
-    return [ ATCAuthVaultManager masterPassword ];
+    return [ ATCAuthVaultManager tmpMasterPassword ];
     }
 
 - ( void ) viewDidLoad
@@ -42,7 +42,7 @@
     NSData* authVaultData = [ NSData dataWithContentsOfURL: [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" ] options: 0 error: &error ];
     if ( authVaultData )
         {
-        authVault_ = [ [ ATCAuthVault alloc ] initWithData: authVaultData masterPassword: [ ATCAuthVaultManager masterPassword ] error: &error ];
+        authVault_ = [ [ ATCAuthVault alloc ] initWithData: authVaultData masterPassword: [ ATCAuthVaultManager tmpMasterPassword ] error: &error ];
         authVault_.passwordSource = self;
         [ otpEntries_ addObjectsFromArray: [ authVault_ authVaultItemsWithError: &error ] ];
         }
@@ -88,7 +88,7 @@
 
         ATCAuthVaultItem* newEntry = [ [ ATCAuthVaultItem alloc ] initWithIssuer: issuer accountName: accountName secretKey: secret ];
         [ otpEntries_ insertObject: newEntry atIndex: 0 ];
-        [ authVault_ addAuthVaultItem: newEntry withMasterPassword: [ ATCAuthVaultManager masterPassword ] error: nil ];
+        [ authVault_ addAuthVaultItem: newEntry withMasterPassword: [ ATCAuthVaultManager tmpMasterPassword ] error: nil ];
         [ authVault_ writeToURL: [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" ] atomically: YES ];
 
         [ self.optEntriesTableView reloadData ];
@@ -168,7 +168,7 @@
     if ( newTotpEntry )
         {
         [ otpEntries_ insertObject: newTotpEntry atIndex: 0 ];
-        [ authVault_ addAuthVaultItem: newTotpEntry withMasterPassword: [ ATCAuthVaultManager masterPassword ] error: nil ];
+        [ authVault_ addAuthVaultItem: newTotpEntry withMasterPassword: [ ATCAuthVaultManager tmpMasterPassword ] error: nil ];
         [ authVault_ writeToURL: [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" ] atomically: YES ];
         [ self.optEntriesTableView reloadData ];
         }

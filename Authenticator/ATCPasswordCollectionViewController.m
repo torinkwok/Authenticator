@@ -25,7 +25,7 @@
     if ( defaultVault )
         {
         [ defaultVault writeToURL: defaultVaultURL atomically: YES ];
-        [ ATCAuthVaultManager setMasterPassword: userInput ];
+//        [ ATCAuthVaultManager setMasterPassword: userInput ];
         }
 
     if ( error )
