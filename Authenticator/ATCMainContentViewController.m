@@ -53,8 +53,7 @@
     {
     NSViewController* candidate = nil;
 
-    NSURL* defaultVaultURL = [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" isDirectory: NO ];
-    if ( [ defaultVaultURL checkResourceIsReachableAndReturnError: nil ] )
+    if ( [ ATCAuthVaultManager defaultAuthVaultExists ] )
         {
         if ( [ ATCAuthVaultManager tmpMasterPassword ] )
             candidate = self.normalPresentationViewController_;

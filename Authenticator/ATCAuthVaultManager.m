@@ -35,30 +35,25 @@ NSURL static* sDefaultVaultURL;
 
 + ( BOOL ) defaultAuthVaultExists
     {
-    NSError* error = nil;
-    BOOL exists = NO;
-
-    if ( [ [ self defaultAuthVaultLocation ] checkResourceIsReachableAndReturnError: nil ] )
-        {
-        BOOL isDir = NO;
-        if ( [ [ NSFileManager defaultManager ] fileExistsAtPath: [ self defaultAuthVaultLocation ].path isDirectory: &isDir ] && !isDir )
-            exists = YES;
-
-        else if ( isDir )
-            [ [ NSFileManager defaultManager ] removeItemAtURL: [ self defaultAuthVaultLocation ] error: &error ];
-        }
-
-    if ( error )
-        NSLog( @"%@", error );
-
-    return exists;
+    return [ [ self defaultAuthVaultLocation ] checkResourceIsReachableAndReturnError: nil ];
     }
 
 + ( ATCAuthVault* ) generateDefaultAuthVaultWithMasterPassword: ( NSString* )_Password
                                                          error: ( NSError** )_Error
     {
     NSError* error = nil;
+
     ATCAuthVault* emptyAuthVault = [ [ ATCAuthVault alloc ] initWithMasterPassword: _Password error: &error ];
+    if ( emptyAuthVault )
+        {
+        if ( [ self writeAuthVaultBackIntoDefaultAuthVault: emptyAuthVault error: &error ] )
+            {
+            sTmpMasterPassword = [ _Password copy ];
+
+            [ [ NSNotificationCenter defaultCenter ]
+                postNotificationName: ATCMasterPasswordDidChangeNotif object: self ];
+            }
+        }
 
     if ( error )
         if ( _Error )
@@ -86,8 +81,13 @@ NSURL static* sDefaultVaultURL;
             {
             defaultAuthVault = [ [ ATCAuthVault alloc ] initWithData: data masterPassword: _Password error: &error ];
 
-            if ( defaultAuthVault )
+            if ( defaultAuthVault && !error )
+                {
                 sTmpMasterPassword = [ _Password copy ];
+
+                [ [ NSNotificationCenter defaultCenter ]
+                    postNotificationName: ATCMasterPasswordDidChangeNotif object: self ];
+                }
             }
         }
     else

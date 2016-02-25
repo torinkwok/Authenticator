@@ -20,13 +20,7 @@
 
     NSString* userInput = self.repeatSecureField.stringValue;
 
-    NSURL* defaultVaultURL = [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" isDirectory: NO ];
-    ATCAuthVault* defaultVault = [ [ ATCAuthVault alloc ] initWithMasterPassword: userInput error: &error ];
-    if ( defaultVault )
-        {
-        [ defaultVault writeToURL: defaultVaultURL atomically: YES ];
-//        [ ATCAuthVaultManager setMasterPassword: userInput ];
-        }
+    ATCAuthVault* defaultVault = [ ATCAuthVaultManager generateDefaultAuthVaultWithMasterPassword: userInput error: &error ];
 
     if ( error )
         NSLog( @"%@", error );

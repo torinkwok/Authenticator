@@ -35,16 +35,15 @@
     {
     [ super viewDidLoad ];
 
+    NSError* error = nil;
     otpEntries_ = [ NSMutableOrderedSet orderedSet ];
 
-    NSError* error = nil;
-
-    NSData* authVaultData = [ NSData dataWithContentsOfURL: [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" ] options: 0 error: &error ];
-    if ( authVaultData )
+    authVault_ = [ ATCAuthVaultManager defaultAuthVaultInDefaultLocationWithPassword: [ ATCAuthVaultManager tmpMasterPassword ] error: &error ];
+    if ( authVault_ )
         {
-        authVault_ = [ [ ATCAuthVault alloc ] initWithData: authVaultData masterPassword: [ ATCAuthVaultManager tmpMasterPassword ] error: &error ];
         authVault_.passwordSource = self;
         [ otpEntries_ addObjectsFromArray: [ authVault_ authVaultItemsWithError: &error ] ];
+        [ self.optEntriesTableView reloadData ];
         }
 
     [ [ NSNotificationCenter defaultCenter ]

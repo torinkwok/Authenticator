@@ -19,12 +19,7 @@
     NSError* error = nil;
     NSString* userInput = self.passwordSecureField.stringValue;
 
-    NSURL* defaultVaultURL = [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" isDirectory: NO ];
-    NSData* defaultVaultDat = [ NSData dataWithContentsOfURL: defaultVaultURL ];
-    ATCAuthVault* defaultVault = [ [ ATCAuthVault alloc ] initWithData: defaultVaultDat masterPassword: userInput error: &error ];
-
-    if ( defaultVault )
-        [ ATCAuthVaultManager setMasterPassword: userInput ];
+    ATCAuthVault* defaultVault = [ ATCAuthVaultManager defaultAuthVaultInDefaultLocationWithPassword: userInput error: &error ];
 
     if ( error )
         NSLog( @"%@", error );
