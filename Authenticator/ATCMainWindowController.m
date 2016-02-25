@@ -24,6 +24,8 @@
     {
     [ super windowDidLoad ];
 
+    [ self.window setFrameUsingName: [ [ NSBundle mainBundle ].bundleIdentifier stringByAppendingString: @".MainWindow" ] force: NO ];
+
     [ [ NSNotificationCenter defaultCenter ]
         addObserver: self selector: @selector( beginScanningQRCodeOnScreen_: ) name: ATCBeginScanningQRCodeOnScreenNotif object: nil ];
     

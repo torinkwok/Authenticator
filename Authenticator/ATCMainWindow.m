@@ -11,4 +11,10 @@
 // ATCMainWindow class
 @implementation ATCMainWindow
 
+- ( void ) awakeFromNib
+    {
+    [ super awakeFromNib ];
+    [ self setFrameAutosaveName: [ [ NSBundle mainBundle ].bundleIdentifier stringByAppendingString: @".MainWindow" ] ];
+    }
+
 @end // ATCMainWindow class

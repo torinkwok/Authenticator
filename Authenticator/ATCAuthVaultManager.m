@@ -116,6 +116,20 @@ NSURL static*           sDefaultVaultURL;
     return isSuccess;
     }
 
++ ( BOOL ) deleteItemFromDefaultAuthVault: ( ATCAuthVaultItem* )_Item error: ( NSError** )_Error
+    {
+    NSError* error = nil;
+    BOOL isSuccess = NO;
+
+    if ( [ sAuthVault deleteAuthVaultItem: _Item
+                       withMasterPassword: [ self tmpMasterPassword ]
+                                    error: &error ] )
+        isSuccess = [ sAuthVault writeToURL: [ self defaultAuthVaultLocation ]
+                                    options: NSDataWritingAtomic
+                                      error: &error ];
+    return isSuccess;
+    }
+
 + ( BOOL ) defaultAuthVaultInDefaultLocationWithPassword: ( NSString* )_Password
                                                    error: ( NSError** )_Error
     {

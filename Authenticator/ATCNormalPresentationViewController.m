@@ -17,7 +17,10 @@
 @interface ATCNormalPresentationViewController ()
 
 // Notification Selector
-- ( void ) newTotpEntryDidAdd: ( NSNotification* )_Notif;
+- ( void ) newTotpEntryDidAdd_: ( NSNotification* )_Notif;
+
+// Actions triggered by the items in the contextual menu of self.optEntriesTableView
+- ( IBAction ) deleteSelectedEntry_: ( id )_Sender;
 
 @end // Private Interfaces
 
@@ -35,6 +38,10 @@
     {
     [ super viewDidLoad ];
 
+    NSMenu* menu = [ [ NSMenu alloc ] init ];
+    [ menu addItemWithTitle: NSLocalizedString( @"Delete", nil ) action: @selector( deleteSelectedEntry_: ) keyEquivalent: @"" ];
+    self.optEntriesTableView.menu = menu;
+
     NSError* error = nil;
     otpEntries_ = [ NSMutableOrderedSet orderedSet ];
 
@@ -49,7 +56,7 @@
         addObserver: self selector: @selector( finishScanningQRCodeOnScreen_: ) name: ATCFinishScanningQRCodeOnScreenNotif object: nil ];
 
     [ [ NSNotificationCenter defaultCenter ]
-        addObserver: self selector: @selector( newTotpEntryDidAdd: ) name: ATCNewTotpEntryDidAddNotif object: nil ];
+        addObserver: self selector: @selector( newTotpEntryDidAdd_: ) name: ATCNewTotpEntryDidAddNotif object: nil ];
     }
 
 - ( void ) finishScanningQRCodeOnScreen_: ( NSNotification* )_Notif
@@ -164,7 +171,8 @@
 #pragma mark - Private Interfaces
 
 // Notification Selector
-- ( void ) newTotpEntryDidAdd: ( NSNotification* )_Notif
+
+- ( void ) newTotpEntryDidAdd_: ( NSNotification* )_Notif
     {
     NSError* error = nil;
     ATCAuthVaultItem* newTotpEntry = _Notif.userInfo[ kTotpEntry ];
@@ -180,6 +188,23 @@
 
     if ( error )
         NSLog( @"%@", error );
+    }
+
+// Actions triggered by the items in the contextual menu of self.optEntriesTableView
+
+- ( IBAction ) deleteSelectedEntry_: ( id )_Sender
+    {
+    NSError* error = nil;
+
+    NSInteger rowToBeDeleted = self.optEntriesTableView.clickedRow;
+    if ( rowToBeDeleted > -1 )
+        {
+        if ( [ ATCAuthVaultManager deleteItemFromDefaultAuthVault: otpEntries_[ rowToBeDeleted ] error: &error ] )
+            {
+            [ otpEntries_ removeObjectAtIndex: rowToBeDeleted ];
+            [ self.optEntriesTableView reloadData ];
+            }
+        }
     }
 
 @end // ATCNormalPresentationViewController class

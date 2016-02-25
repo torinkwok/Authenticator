@@ -19,6 +19,7 @@
 
 + ( NSArray <ATCAuthVaultItem*>* ) allItemsOfDefaultAuthVaultWithError: ( NSError** )_Error;
 + ( BOOL ) addItemIntoDefaultAuthVault: ( ATCAuthVaultItem* )_Item error: ( NSError** )_Error;
++ ( BOOL ) deleteItemFromDefaultAuthVault: ( ATCAuthVaultItem* )_Item error: ( NSError** )_Error;
 
 + ( BOOL ) defaultAuthVaultInDefaultLocationWithPassword: ( NSString* )_Password error: ( NSError** )_Error;
 
