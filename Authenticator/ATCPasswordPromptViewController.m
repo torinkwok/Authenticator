@@ -19,8 +19,7 @@
     NSError* error = nil;
     NSString* userInput = self.passwordSecureField.stringValue;
 
-    ATCAuthVault* defaultVault = [ ATCAuthVaultManager defaultAuthVaultInDefaultLocationWithPassword: userInput error: &error ];
-
+    [ ATCAuthVaultManager defaultAuthVaultInDefaultLocationWithPassword: userInput error: &error ];
     if ( error )
         NSLog( @"%@", error );
     }

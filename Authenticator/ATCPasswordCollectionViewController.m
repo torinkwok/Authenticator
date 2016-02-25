@@ -20,8 +20,7 @@
 
     NSString* userInput = self.repeatSecureField.stringValue;
 
-    ATCAuthVault* defaultVault = [ ATCAuthVaultManager generateDefaultAuthVaultWithMasterPassword: userInput error: &error ];
-
+    [ ATCAuthVaultManager generateDefaultAuthVaultWithMasterPassword: userInput error: &error ];
     if ( error )
         NSLog( @"%@", error );
     }

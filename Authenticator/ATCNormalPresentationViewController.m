@@ -38,13 +38,12 @@
     NSError* error = nil;
     otpEntries_ = [ NSMutableOrderedSet orderedSet ];
 
-    authVault_ = [ ATCAuthVaultManager defaultAuthVaultInDefaultLocationWithPassword: [ ATCAuthVaultManager tmpMasterPassword ] error: &error ];
-    if ( authVault_ )
-        {
-        authVault_.passwordSource = self;
-        [ otpEntries_ addObjectsFromArray: [ authVault_ authVaultItemsWithError: &error ] ];
-        [ self.optEntriesTableView reloadData ];
-        }
+    [ ATCAuthVaultManager defaultAuthVaultInDefaultLocationWithPassword: [ ATCAuthVaultManager tmpMasterPassword ] error: &error ];
+    [ otpEntries_ addObjectsFromArray: [ ATCAuthVaultManager allItemsOfDefaultAuthVaultWithError: &error ] ?: @[] ];
+    [ self.optEntriesTableView reloadData ];
+
+    if ( error )
+        NSLog( @"%@", error );
 
     [ [ NSNotificationCenter defaultCenter ]
         addObserver: self selector: @selector( finishScanningQRCodeOnScreen_: ) name: ATCFinishScanningQRCodeOnScreenNotif object: nil ];
@@ -55,7 +54,9 @@
 
 - ( void ) finishScanningQRCodeOnScreen_: ( NSNotification* )_Notif
     {
+    NSError* error = nil;
     NSURL* otpAuthURL = _Notif.userInfo[ kQRCodeContents ];
+
     if ( otpAuthURL )
         {
         NSArray* queries = [ otpAuthURL.query componentsSeparatedByString: @"&" ];
@@ -86,12 +87,14 @@
         #endif
 
         ATCAuthVaultItem* newEntry = [ [ ATCAuthVaultItem alloc ] initWithIssuer: issuer accountName: accountName secretKey: secret ];
-        [ otpEntries_ insertObject: newEntry atIndex: 0 ];
-        [ authVault_ addAuthVaultItem: newEntry withMasterPassword: [ ATCAuthVaultManager tmpMasterPassword ] error: nil ];
-        [ authVault_ writeToURL: [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" ] atomically: YES ];
+        if ( [ ATCAuthVaultManager addItemIntoDefaultAuthVault: newEntry error: &error ] )
+            [ otpEntries_ insertObject: newEntry atIndex: 0 ];
 
         [ self.optEntriesTableView reloadData ];
         }
+
+    if ( error )
+        NSLog( @"%@", error );
     }
 
 - ( void ) setRepresentedObject: ( id )_RepresentedObject
@@ -163,14 +166,20 @@
 // Notification Selector
 - ( void ) newTotpEntryDidAdd: ( NSNotification* )_Notif
     {
+    NSError* error = nil;
     ATCAuthVaultItem* newTotpEntry = _Notif.userInfo[ kTotpEntry ];
+
     if ( newTotpEntry )
         {
-        [ otpEntries_ insertObject: newTotpEntry atIndex: 0 ];
-        [ authVault_ addAuthVaultItem: newTotpEntry withMasterPassword: [ ATCAuthVaultManager tmpMasterPassword ] error: nil ];
-        [ authVault_ writeToURL: [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" ] atomically: YES ];
-        [ self.optEntriesTableView reloadData ];
+        if ( [ ATCAuthVaultManager addItemIntoDefaultAuthVault: newTotpEntry error: &error ] )
+            {
+            [ otpEntries_ insertObject: newTotpEntry atIndex: 0 ];
+            [ self.optEntriesTableView reloadData ];
+            }
         }
+
+    if ( error )
+        NSLog( @"%@", error );
     }
 
 @end // ATCNormalPresentationViewController class

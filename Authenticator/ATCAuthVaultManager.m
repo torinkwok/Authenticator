@@ -8,12 +8,14 @@
 
 #import "ATCAuthVaultManager.h"
 #import "ATCAuthVault.h"
+#import "ATCAuthVaultItem.h"
 
 // ATCAuthVaultManager class
 @implementation ATCAuthVaultManager
 
-NSString static* sTmpMasterPassword;
-NSURL static* sDefaultVaultURL;
+ATCAuthVault static*    sAuthVault;
+NSString static*        sTmpMasterPassword;
+NSURL static*           sDefaultVaultURL;
 
 + ( NSURL* ) defaultAuthVaultLocation
     {
@@ -38,17 +40,19 @@ NSURL static* sDefaultVaultURL;
     return [ [ self defaultAuthVaultLocation ] checkResourceIsReachableAndReturnError: nil ];
     }
 
-+ ( ATCAuthVault* ) generateDefaultAuthVaultWithMasterPassword: ( NSString* )_Password
-                                                         error: ( NSError** )_Error
++ ( BOOL ) generateDefaultAuthVaultWithMasterPassword: ( NSString* )_Password
+                                                error: ( NSError** )_Error
     {
     NSError* error = nil;
+    BOOL isSuccess = NO;
 
-    ATCAuthVault* emptyAuthVault = [ [ ATCAuthVault alloc ] initWithMasterPassword: _Password error: &error ];
-    if ( emptyAuthVault )
+    sAuthVault = [ [ ATCAuthVault alloc ] initWithMasterPassword: _Password error: &error ];
+    if ( sAuthVault )
         {
-        if ( [ self writeAuthVaultBackIntoDefaultAuthVault: emptyAuthVault error: &error ] )
+        if ( [ self writeAuthVaultBackIntoDefaultAuthVault: sAuthVault error: &error ] )
             {
             sTmpMasterPassword = [ _Password copy ];
+            isSuccess = YES;
 
             [ [ NSNotificationCenter defaultCenter ]
                 postNotificationName: ATCMasterPasswordDidChangeNotif object: self ];
@@ -59,7 +63,7 @@ NSURL static* sDefaultVaultURL;
         if ( _Error )
             *_Error = error;
 
-    return emptyAuthVault;
+    return isSuccess;
     }
 
 + ( BOOL ) writeAuthVaultBackIntoDefaultAuthVault: ( ATCAuthVault* )_ModifiedAuthVault
@@ -68,20 +72,39 @@ NSURL static* sDefaultVaultURL;
     return [ _ModifiedAuthVault writeToURL: [ self defaultAuthVaultLocation ] options: NSDataWritingAtomic error: _Error ];
     }
 
-+ ( ATCAuthVault* ) defaultAuthVaultInDefaultLocationWithPassword: ( NSString* )_Password
-                                                            error: ( NSError** )_Error
++ ( NSArray <ATCAuthVaultItem*>* ) allItemsOfDefaultAuthVaultWithError: ( NSError** )_Error
+    {
+    return [ sAuthVault authVaultItemsWithError: _Error ];
+    }
+
++ ( BOOL ) addItemIntoDefaultAuthVault: ( ATCAuthVaultItem* )_Item error: ( NSError** )_Error
     {
     NSError* error = nil;
-    ATCAuthVault* defaultAuthVault = nil;
+    BOOL isSuccess = NO;
+
+    if ( [ sAuthVault addAuthVaultItem: _Item
+                    withMasterPassword: [ self tmpMasterPassword ]
+                                 error: &error ] )
+        isSuccess = [ sAuthVault writeToURL: [ self defaultAuthVaultLocation ]
+                                    options: NSDataWritingAtomic
+                                      error: &error ];
+    return isSuccess;
+    }
+
++ ( BOOL ) defaultAuthVaultInDefaultLocationWithPassword: ( NSString* )_Password
+                                                   error: ( NSError** )_Error
+    {
+    NSError* error = nil;
+    BOOL isSuccess = NO;
 
     if ( [ self defaultAuthVaultExists ] )
         {
         NSData* data = [ NSData dataWithContentsOfURL: [ self defaultAuthVaultLocation ] options: 0 error: &error ];
         if ( data )
             {
-            defaultAuthVault = [ [ ATCAuthVault alloc ] initWithData: data masterPassword: _Password error: &error ];
+            sAuthVault = [ [ ATCAuthVault alloc ] initWithData: data masterPassword: _Password error: &error ];
 
-            if ( defaultAuthVault && !error )
+            if ( sAuthVault && !error )
                 {
                 sTmpMasterPassword = [ _Password copy ];
 
@@ -93,7 +116,7 @@ NSURL static* sDefaultVaultURL;
     else
         ; // TODO: To construct an error object that contains the information about this failure
 
-    return defaultAuthVault;
+    return isSuccess;
     }
 
 + ( NSString* ) tmpMasterPassword;

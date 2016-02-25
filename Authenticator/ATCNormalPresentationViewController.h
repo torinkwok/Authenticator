@@ -15,7 +15,6 @@
     <NSTableViewDataSource, NSTableViewDelegate, ATCAuthVaultPasswordSource>
     {
 @private
-    ATCAuthVault __strong* authVault_;
     NSMutableOrderedSet <ATCAuthVaultItem*>* otpEntries_;
 
     ATCQRCodeScannerWindowController __strong* QRCodeScannerWindow_;
