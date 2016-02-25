@@ -10,22 +10,45 @@
 #import "ATCAuthVault.h"
 #import "ATCAuthVaultItem.h"
 
+// ATCDefaultAuthVaultPassWordSource_
+@interface ATCDefaultAuthVaultPassWordSource_ : NSObject <ATCAuthVaultPasswordSource>
+@property ( strong, readwrite ) NSString* tmpPassword;
+@end
+
+@implementation ATCDefaultAuthVaultPassWordSource_
+@synthesize tmpPassword;
+
+#pragma mark - Conforms to <ATCAuthVaultPasswordSource>
+
+- ( NSString* ) authVaultNeedsPasswordToUnlock: ( ATCAuthVault* )_AuthVault
+    {
+    return tmpPassword;
+    }
+
+@end // ATCDefaultAuthVaultPassWordSource_
+
 // ATCAuthVaultManager class
 @implementation ATCAuthVaultManager
 
+ATCDefaultAuthVaultPassWordSource_ static* sSource;
+
 ATCAuthVault static*    sAuthVault;
-NSString static*        sTmpMasterPassword;
 NSURL static*           sDefaultVaultURL;
+
++ ( void ) initialize
+    {
+    sSource = [ [ ATCDefaultAuthVaultPassWordSource_ alloc ] init ];
+    }
 
 + ( NSURL* ) defaultAuthVaultLocation
     {
     dispatch_once_t static onceToken;
     dispatch_once( &onceToken
                  , ( dispatch_block_t )
-        ^( void )
-            {
-            sDefaultVaultURL = [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" isDirectory: NO ];
-            } );
+    ^( void )
+        {
+        sDefaultVaultURL = [ ATCDefaultVaultsDirURL() URLByAppendingPathComponent: @"default.authvault" isDirectory: NO ];
+        } );
 
     BOOL isDir = NO;
     BOOL exists = [ [ NSFileManager defaultManager ] fileExistsAtPath: sDefaultVaultURL.path isDirectory: &isDir ];
@@ -49,9 +72,11 @@ NSURL static*           sDefaultVaultURL;
     sAuthVault = [ [ ATCAuthVault alloc ] initWithMasterPassword: _Password error: &error ];
     if ( sAuthVault )
         {
+        sAuthVault.passwordSource = sSource;
+        sSource.tmpPassword = [ _Password copy ];
+
         if ( [ self writeAuthVaultBackIntoDefaultAuthVault: sAuthVault error: &error ] )
             {
-            sTmpMasterPassword = [ _Password copy ];
             isSuccess = YES;
 
             [ [ NSNotificationCenter defaultCenter ]
@@ -106,7 +131,8 @@ NSURL static*           sDefaultVaultURL;
 
             if ( sAuthVault && !error )
                 {
-                sTmpMasterPassword = [ _Password copy ];
+                sAuthVault.passwordSource = sSource;
+                sSource.tmpPassword = [ _Password copy ];
 
                 [ [ NSNotificationCenter defaultCenter ]
                     postNotificationName: ATCMasterPasswordDidChangeNotif object: self ];
@@ -121,7 +147,7 @@ NSURL static*           sDefaultVaultURL;
 
 + ( NSString* ) tmpMasterPassword;
     {
-    return sTmpMasterPassword;
+    return sSource.tmpPassword ;
     }
 
 @end // ATCAuthVaultManager class
