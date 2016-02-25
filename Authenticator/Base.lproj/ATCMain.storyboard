@@ -671,13 +671,13 @@
             <objects>
                 <viewController id="qKk-E3-c1J" customClass="ATCMainContentViewController" sceneMemberID="viewController">
                     <view key="view" id="FtU-of-P4y" customClass="ATCMainContentView">
-                        <rect key="frame" x="0.0" y="0.0" width="403" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="403" height="428"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
                 <customObject id="Uey-bB-UHF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-833.5" y="1333"/>
+            <point key="canvasLocation" x="-833.5" y="1397"/>
         </scene>
     </scenes>
 </document>
