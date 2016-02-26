@@ -1,17 +1,17 @@
 ## What's Authenticator?
 
-Authenticator is a native and modern Mac app that generates one-time password (i.e. TOTP security tokens defined by RFC 6238) that can be used with the two-step-verification of so many popular Internet services (such as Google, Evernote, GitHub, Amazon, Dropbox, Facebook, Linode etc.). You'd like to think of it as a modern Mac version of Google Authenticator.
+Authenticator is a native and modern Mac app that generates one-time password (i.e. TOTP security tokens defined by [RFC 6238](https://tools.ietf.org/html/rfc6238)) that can be used with the two-factor verification of so many popular Internet services (such as Google, Evernote, GitHub, Amazon, Dropbox, Facebook, Linode etc.). You'd like to think of it as a modern Mac version of Google Authenticator.
 
-## Features:
+## Features
 
-- Be compatible with all the populator OTP utilities such as Google Authenticator, Authy and OTP Auth
-- Native and modern U
+- Be compatible with all the populator OTP utilities such as [Google Authenticator](https://itunes.apple.com/en/app/google-authenticator/id388497605?mt=8), [Authy](https://www.authy.com/) and [OTP Auth](https://itunes.apple.com/us/app/otp-auth/id659877384?mt=8)
+- Native and modern UI
 - Scan QR codes that include accounts and appear on the computer screen with an awesome QR codes picker
 - Automatically lock in order to protect your vault against unexpected access
 - Work offline
 - Opened source under MIT license so that you can evaluate security, modify source code or contribute to this repo. I’m looking forward to see some other contributors :-)
 
-## Roadmap:
+## Roadmap
 
 - iCloud and Dropbox sync
 - Notification Center widget for fast picking up passwords
@@ -28,7 +28,7 @@ Authenticator is a native and modern Mac app that generates one-time password (i
 
 Amazing huh? It’s thanks to the mathematics and my sense of morality to make all of above “don’t, won’t and never" possible. Happy authenticating!
 
-## Feedback:
+## Feedback
 
 Thanks for all reviews, and feel free to open an issue on GitHub or contact me directly when you encounter any problem:
 
