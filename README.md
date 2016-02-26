@@ -33,11 +33,11 @@ Authenticator is a native and modern Mac app that generates one-time password (i
 
 Amazing huh? It’s thanks to the mathematics and my sense of morality to make all of above “don’t, won’t and never" possible. Happy authenticating!
 
+![screenshot-3](https://i.imgur.com/AZWF1Yw.jpg)
+
 ## Feedback
 
 Thanks for all reviews, and feel free to open an issue on GitHub or contact me directly when you encounter any problem:
 
 - Email: contact|-at-|tong-kuo.me (replace |-at-| with @)
 - Open an issue
-
-![screenshot-3](https://i.imgur.com/AZWF1Yw.jpg)
