@@ -39,3 +39,5 @@ Thanks for all reviews, and feel free to open an issue on GitHub or contact me d
 
 - Email: contact|-at-|tong-kuo.me (replace |-at-| with @)
 - Open an issue
+
+![screenshot-3](https://i.imgur.com/AZWF1Yw.jpg)
