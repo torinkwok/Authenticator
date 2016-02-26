@@ -31,7 +31,7 @@ Authenticator is a native and modern Mac app that generates one-time password (i
 - won't upload your accounts to someone else
 - will never steal your wife and enslave your children
 
-Amazing huh? It’s thanks to the mathematics and my sense of morality to make all of above “don’t, won’t and never" possible. Happy authenticating!
+Amazing huh? It’s thanks to the mathematics and my sense of morality to make all of “don’t, won’t and never" above possible. Happy authenticating!
 
 ![screenshot-3](https://i.imgur.com/AZWF1Yw.jpg)
 
