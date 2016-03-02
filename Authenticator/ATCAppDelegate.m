@@ -17,11 +17,4 @@
 // ATCAppDelegate class
 @implementation ATCAppDelegate
 
-#pragma mark - Conforms to <NSApplicationDelegate>
-
-- ( void ) applicationDidFinishLaunching: ( NSNotification* )_Notif
-    {
-    // TODO:
-    }
-
 @end // ATCAppDelegate class

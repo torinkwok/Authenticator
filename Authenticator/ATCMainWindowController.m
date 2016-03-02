@@ -31,6 +31,8 @@
     
     [ [ NSNotificationCenter defaultCenter ]
         addObserver: self selector: @selector( finishScanningQRCodeOnScreen_: ) name: ATCFinishScanningQRCodeOnScreenNotif object: nil ];
+
+    [ NSApp setDelegate: self ];
     }
 
 #pragma mark - Conforms to <NSWindowDelegate> 
@@ -38,6 +40,19 @@
 - ( void ) windowDidEndLiveResize: ( NSNotification* )_Notif
     {
     [ self postNotificationOnBehalfOfMeWithName: ATCTotpBadgeViewShouldUpdateNotif ];
+    }
+
+#pragma mark - Conforms to <NSApplicationDelegate>
+
+- ( BOOL ) applicationShouldHandleReopen: ( NSApplication* )_Sender
+                       hasVisibleWindows: ( BOOL )_Flag
+    {
+    if ( _Flag )
+        [ self.window orderFront: self ];
+    else
+        [ self.window makeKeyAndOrderFront: self ];
+
+    return YES;
     }
 
 #pragma mark - Private Interfaces
