@@ -1,3 +1,6 @@
+[![app-store](file:///Users/EsquireTongG/Desktop/MAS%20Badge.svg =250x)](http://apple.co/1Yke3NO)
+[![app-store](file:///Users/EsquireTongG/Desktop/GitHub%20Badge.svg =250x)](http://github.com/TongKuo/Authenticator)
+
 ## What's Authenticator?
 
 Authenticator is a native and modern Mac app that generates one-time password (i.e. TOTP security tokens defined by [RFC 6238](https://tools.ietf.org/html/rfc6238)) that can be used with the two-factor verification of so many popular Internet services (such as Google, Evernote, GitHub, Amazon, Dropbox, Facebook, Linode etc.). You'd like to think of it as a modern Mac version of [Google Authenticator](https://itunes.apple.com/en/app/google-authenticator/id388497605?mt=8).
