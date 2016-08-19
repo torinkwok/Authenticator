@@ -9,4 +9,4 @@
 	url = https://gist.github.com/9aea4d69fac1cf0ba27d.git
 [submodule "Authenticator/vendors/ZXingObjC"]
 	path = Authenticator/vendors/ZXingObjC
-	url = https://github.com/TheLevelUp/ZXingObjC.git
+	url = https://github.com/TorinKwok/ZXingObjC.git
