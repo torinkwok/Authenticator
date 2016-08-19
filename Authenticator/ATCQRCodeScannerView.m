@@ -218,8 +218,8 @@ typedef struct
     NSUInteger mainDisplayIdx = [ [ NSScreen screens ] indexOfObject: [ NSScreen mainScreen ] ];
 
     /* Make a snapshot image of the current display. */
-    CGImageRef cgScreenshotImage =
-        CGDisplayCreateImageForRect( displays_[ mainDisplayIdx ], NSRectToCGRect( paintStates_.scanRegion ) );
+    CGImageRef cgScreenshotImage = nil;
+    cgScreenshotImage = CGDisplayCreateImageForRect( displays_[ mainDisplayIdx ], NSRectToCGRect( paintStates_.scanRegion ) );
 
     return cgScreenshotImage; // Invoker is responsible for releasing it
     }
@@ -264,7 +264,9 @@ typedef struct
     CGImageRef screenshot = [ self takeSnapshot_ ];
 
     ZXLuminanceSource* source = [ [ ZXCGImageLuminanceSource alloc ] initWithCGImage: screenshot ];
-    CFRelease( screenshot );
+
+    if ( screenshot )
+        CFRelease( screenshot );
 
     ZXBinaryBitmap* bitmap = [ ZXBinaryBitmap binaryBitmapWithBinarizer: [ ZXHybridBinarizer binarizerWithSource: source ] ];
 

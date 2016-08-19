@@ -18,7 +18,6 @@
 
 // Third Party Modules
 #import "PureLayout.h"
-#import "WaxSealCore.h"
 #import "OAuthSigningConstants.h"
 #import "RNCryptorModule.h"
 
@@ -31,8 +30,5 @@
 #import "NSBezierPath+ATCExtensions.h"
 #import "AGClock+ATCExtensions.h"
 #import "NSObject+ATCExtensions.h"
-
-// External Prefix-Compiled Headers
-#import "WaxSealCore-Prefix.pch"
 
 #endif /* AuthenticatorPrefixHeader_pch */

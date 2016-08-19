@@ -40,3 +40,5 @@ NSURL* ATCTemporaryDirURL();
 NSString extern* const ATCTotpAuthURLTemplate;
 
 NSString extern* const ATCUnitedTypeIdentifier;
+
+NSString extern* const ATCPinCodePboardType;;

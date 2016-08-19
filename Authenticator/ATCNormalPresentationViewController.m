@@ -34,11 +34,21 @@
     return [ ATCAuthVaultManager tmpMasterPassword ];
     }
 
+- ( BOOL ) validateMenuItem: ( NSMenuItem* )_MenuItem
+    {
+    if ( _MenuItem.action == @selector( deleteSelectedEntry_: )
+            || _MenuItem.action == @selector( copySelectedEntry_: ) )
+        return otpEntries_.count > 0;
+
+    return [ super validateMenuItem: _MenuItem ];
+    }
+
 - ( void ) viewDidLoad
     {
     [ super viewDidLoad ];
 
     NSMenu* menu = [ [ NSMenu alloc ] init ];
+    [ menu addItemWithTitle: NSLocalizedString( @"Copy", nil ) action: @selector( copySelectedEntry_: ) keyEquivalent: @"" ];
     [ menu addItemWithTitle: NSLocalizedString( @"Delete", nil ) action: @selector( deleteSelectedEntry_: ) keyEquivalent: @"" ];
     self.optEntriesTableView.menu = menu;
 
@@ -192,6 +202,18 @@
 
 // Actions triggered by the items in the contextual menu of self.optEntriesTableView
 
+- ( IBAction ) copySelectedEntry_: ( id )_Sender
+    {
+    NSInteger clickedRow = self.optEntriesTableView.clickedRow;
+    if ( clickedRow > -1 && NSLocationInRange( clickedRow, NSMakeRange( 0, otpEntries_.count ) ) )
+        {
+        ATCAuthVaultItem* clickedItem = otpEntries_[ clickedRow ];
+        [ clickedItem writeToPasteboard: [ NSPasteboard generalPasteboard ] ];
+        }
+    else
+        ; // TODO: log error
+    }
+
 - ( IBAction ) deleteSelectedEntry_: ( id )_Sender
     {
     NSError* error = nil;
@@ -206,5 +228,6 @@
             }
         }
     }
+
 
 @end // ATCNormalPresentationViewController class
