@@ -43,7 +43,7 @@ Amazing huh? It’s thanks to the mathematics and my sense of morality to make a
 
 Thanks for all reviews, and feel free to open an issue on GitHub or contact me directly when you encounter any problem:
 
-- Email: contact|-at-|tong-kuo.me (replace |-at-| with @)
+- Email: torin|-at-|kwok.im (replace |-at-| with @)
 - Open an issue
 
 ## License

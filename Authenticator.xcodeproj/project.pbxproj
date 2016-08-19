@@ -17,6 +17,7 @@
 		8324B1AB1C67073900153EC7 /* ATCMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8324B1A91C67073900153EC7 /* ATCMain.storyboard */; };
 		8324B1B61C67073A00153EC7 /* AuthenticatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B1B51C67073A00153EC7 /* AuthenticatorTests.m */; };
 		8324B1C11C67073A00153EC7 /* AuthenticatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B1C01C67073A00153EC7 /* AuthenticatorUITests.m */; };
+		832782C61D6719BA004D1979 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 832782C51D6719BA004D1979 /* README.md */; };
 		833960171C670C73007241D9 /* ATCMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960161C670C73007241D9 /* ATCMainWindow.m */; };
 		8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960191C670CBB007241D9 /* ATCMainWindowController.m */; };
 		8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339601C1C670D96007241D9 /* ATCMainContentView.m */; };
@@ -334,6 +335,7 @@
 		8324B1C01C67073A00153EC7 /* AuthenticatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenticatorUITests.m; sourceTree = "<group>"; };
 		8324B1C21C67073A00153EC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8324B1CE1C67074800153EC7 /* Authenticator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Authenticator.entitlements; sourceTree = "<group>"; };
+		832782C51D6719BA004D1979 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		833960151C670C73007241D9 /* ATCMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainWindow.h; sourceTree = "<group>"; };
 		833960161C670C73007241D9 /* ATCMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainWindow.m; sourceTree = "<group>"; };
 		833960181C670CBB007241D9 /* ATCMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainWindowController.h; sourceTree = "<group>"; };
@@ -960,6 +962,7 @@
 		8324B1921C67073900153EC7 = {
 			isa = PBXGroup;
 			children = (
+				832782C51D6719BA004D1979 /* README.md */,
 				8324B19D1C67073900153EC7 /* Authenticator */,
 				8373D85B1C671D6300A11E31 /* vendors */,
 				83F56E811C7B57E0008463F2 /* artworks */,
@@ -2268,6 +2271,7 @@
 				83F5714A1C7B5E20008463F2 /* ZXQRCodeFormatInformation.m in Sources */,
 				83F5709A1C7B5E20008463F2 /* ZXExpandedProductResultParser.m in Sources */,
 				8373D8901C67548C00A11E31 /* AGOtp.m in Sources */,
+				832782C61D6719BA004D1979 /* README.md in Sources */,
 				83F570D21C7B5E20008463F2 /* ZXErrors.m in Sources */,
 				83F570DA1C7B5E20008463F2 /* ZXDataMatrixDataBlock.m in Sources */,
 				8373D8B51C697D4D00A11E31 /* ATCBeautifulWindow.m in Sources */,
