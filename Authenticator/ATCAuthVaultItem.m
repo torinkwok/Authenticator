@@ -53,6 +53,20 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
 // ATCAuthVaultItem class
 @implementation ATCAuthVaultItem
 
+#pragma mark - Conforms to <NSCopying>
+
+- ( instancetype ) copyWithZone: ( NSZone* )_Zone
+    {
+    ATCAuthVaultItem* copy = [ [ [ self class ] alloc ] initWithIssuer: self.issuer accountName: self.accountName secretKey: self.secretKey ];
+    copy.digits = self.digits;
+    copy.timeStep = self.timeStep;
+    copy.algorithm = self.algorithm;
+
+    // createdDate, UUID should not be copied
+
+    return copy;
+    }
+
 #pragma mark - Properties
 
 @dynamic accountName;
@@ -211,6 +225,14 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
     return self;
     }
 
+#pragma mark - Pasteboard Support
+
+- ( BOOL ) writeToPasteboard: ( NSPasteboard* )_Pboard
+    {
+    [ _Pboard clearContents ];
+    return [ _Pboard writeObjects: @[ self ] ];
+    }
+
 #pragma mark - Private Interfaces
 
 - ( void ) resetCheckSum_
@@ -254,3 +276,72 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
     }
 
 @end // ATCAuthVaultItem + ATCFriends_
+
+// ATCAuthVaultItem + ATCPasteboardSupport
+@implementation ATCAuthVaultItem ( ATCPasteboardSupport )
+
+#define kIssuerKey @"kIssuerKey"
+#define kAccountNameKey @"kAccountNameKey"
+#define kSecretKeyKey @"kSecretKeyKey"
+
+#define kDigitsKey @"kDigitsKey"
+#define kTimeStepKey @"kTimeStepKey"
+#define kAlgorithmKey @"kAlgorithmKey"
+
+- ( id ) initWithCoder: ( NSCoder* )_Coder
+    {
+    ATCAuthVaultItem* decoded =
+        [ self initWithIssuer: [ _Coder decodeObjectForKey: kIssuerKey ]
+                  accountName: [ _Coder decodeObjectForKey: kAccountNameKey ]
+                    secretKey: [ _Coder decodeObjectForKey: kSecretKeyKey ] ];
+
+    [ self setDigits: ( NSUInteger )[ _Coder decodeIntegerForKey: kDigitsKey ] ];
+    [ self setTimeStep: ( NSUInteger )[ _Coder decodeIntegerForKey: kTimeStepKey ] ];
+    [ self setAlgorithm: ( uint32_t )[ _Coder decodeInt32ForKey: kAlgorithmKey ] ];
+
+    return decoded;
+    }
+
+- ( void ) encodeWithCoder: ( NSCoder* )_Coder
+    {
+    [ _Coder encodeObject: [ self issuer ] forKey: kIssuerKey ];
+    [ _Coder encodeObject: [ self accountName ] forKey: kAccountNameKey ];
+    [ _Coder encodeObject: [ self secretKey ] forKey: kSecretKeyKey ];
+
+    [ _Coder encodeInteger: ( NSInteger )[ self digits ] forKey: kDigitsKey ];
+    [ _Coder encodeInteger: ( NSInteger )[ self timeStep ] forKey: kTimeStepKey ];
+    [ _Coder encodeInt32: ( int32_t )[ self algorithm ] forKey: kAlgorithmKey ];
+    }
+
+// Conforms <NSPasteboardWriting> protocol
+
+- ( NSArray* ) writableTypesForPasteboard: ( NSPasteboard* )_Pboard
+    {
+    NSArray static* writableTypes = nil;
+
+    if ( !writableTypes )
+        writableTypes = @[ ATCPinCodePboardType, NSPasteboardTypeString ];
+
+    return writableTypes;
+    }
+
+- ( id ) pasteboardPropertyListForType: ( NSString* )_Type
+    {
+    id propertyListObject = nil;
+
+    if ( [ _Type isEqualToString: ATCPinCodePboardType ] )
+        propertyListObject = [ NSKeyedArchiver archivedDataWithRootObject: self ];
+
+    else if ( [ _Type isEqualToString: NSPasteboardTypeString ] )
+        propertyListObject = [ self.pinCodeRightNow pasteboardPropertyListForType: NSPasteboardTypeString ];
+
+    return propertyListObject;
+    }
+
+- ( BOOL ) writeToPasteboard: ( NSPasteboard* )_Pboard
+    {
+    [ _Pboard clearContents ];
+    return [ _Pboard writeObjects: @[ self ] ];
+    }
+
+@end // ATCAuthVaultItem + ATCPasteboardSupport

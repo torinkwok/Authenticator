@@ -9,7 +9,7 @@
 @class AGTotp;
 
 // ATCAuthVaultItem class
-@interface ATCAuthVaultItem : NSObject
+@interface ATCAuthVaultItem : NSObject <NSCopying>
     {
 @protected
     NSMutableDictionary __strong* backingStore_;
@@ -42,3 +42,17 @@
 - ( instancetype ) initWithIssuer: ( NSString* )_IssuerName accountName: ( NSString* )_AccountName secretKey: ( NSString* )_SecretKey;
 
 @end // ATCAuthVaultItem class
+
+// ATCAuthVaultItem + ATCPasteboardSupport
+@interface ATCAuthVaultItem ( ATCPasteboardSupport ) <NSCoding, NSPasteboardWriting>
+
+- ( id ) initWithCoder: ( NSCoder* )_Coder;
+- ( void ) encodeWithCoder: ( NSCoder* )_Coder;
+
+// Conforms <NSPasteboardWriting> protocol
+- ( NSArray <NSString*>* ) writableTypesForPasteboard: ( NSPasteboard* )_Pboard;
+- ( id ) pasteboardPropertyListForType: ( NSString* )_Type;
+
+- ( BOOL ) writeToPasteboard: ( NSPasteboard* )_Pboard;
+
+@end // ATCAuthVaultItem + ATCPasteboardSupport
