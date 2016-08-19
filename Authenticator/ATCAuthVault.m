@@ -318,8 +318,9 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
     return authVaultItems;
     }
 
-- ( void ) setAuthVaultItems: ( NSArray <ATCAuthVaultItem*>* )_Items error: ( NSError** )_Error
+- ( BOOL ) setAuthVaultItems: ( NSArray <ATCAuthVaultItem*>* )_Items error: ( NSError** )_Error
     {
+    BOOL isSuccess = YES;
     NSError* error = nil;
 
     NSString* password = [ self.passwordSource authVaultNeedsPasswordToUnlock: self ];
@@ -344,8 +345,14 @@ inline static NSString* kCheckSumOfAuthVaultInternalPlist_( NSDictionary* _Inter
         }
 
     if ( error )
+        {
+        isSuccess = NO;
+
         if ( _Error )
             *_Error = error;
+        }
+
+    return isSuccess;
     }
 
 #pragma mark - Private Interfaces
