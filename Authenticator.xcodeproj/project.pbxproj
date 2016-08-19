@@ -2608,7 +2608,7 @@
 				CODE_SIGN_ENTITLEMENTS = Authenticator/Authenticator.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Authenticator/AuthenticatorPrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2642,7 +2642,7 @@
 				CODE_SIGN_ENTITLEMENTS = Authenticator/Authenticator.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Authenticator/AuthenticatorPrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "__debug_Vault__=1";
