@@ -31,11 +31,6 @@
 		8373D87B1C67494300A11E31 /* NSBezierPath+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8761C67494300A11E31 /* NSBezierPath+ATCExtensions.m */; };
 		8373D87C1C67494300A11E31 /* NSAffineTransform+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8781C67494300A11E31 /* NSAffineTransform+ATCExtensions.m */; };
 		8373D87F1C67537500A11E31 /* ATCOTPBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D87D1C67537500A11E31 /* ATCOTPBadgeView.m */; };
-		8373D88E1C67548C00A11E31 /* AGBase32.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8851C67548C00A11E31 /* AGBase32.m */; };
-		8373D88F1C67548C00A11E31 /* AGClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8871C67548C00A11E31 /* AGClock.m */; };
-		8373D8901C67548C00A11E31 /* AGOtp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8891C67548C00A11E31 /* AGOtp.m */; };
-		8373D8911C67548C00A11E31 /* AGStringEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D88B1C67548C00A11E31 /* AGStringEncoding.m */; };
-		8373D8921C67548C00A11E31 /* AGTotp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D88D1C67548C00A11E31 /* AGTotp.m */; };
 		8373D8B51C697D4D00A11E31 /* ATCBeautifulWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8B41C697D4D00A11E31 /* ATCBeautifulWindow.m */; };
 		8373D8B81C697D8D00A11E31 /* ATCSecretKeyManuallyInputWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8B71C697D8D00A11E31 /* ATCSecretKeyManuallyInputWindow.m */; };
 		8373D8BB1C697E0500A11E31 /* ATCBeautifulView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373D8BA1C697E0500A11E31 /* ATCBeautifulView.m */; };
@@ -51,6 +46,7 @@
 		83CEE8C01C6E13090027AE38 /* ATCOTPBadgeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8BF1C6E13090027AE38 /* ATCOTPBadgeLayer.m */; };
 		83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */; };
 		83D63A48201B8E850057C202 /* PureLayout in Resources */ = {isa = PBXBuildFile; fileRef = 83D63A47201B8E850057C202 /* PureLayout */; };
+		83D63A4A201B8F080057C202 /* AeroGearOTP in Resources */ = {isa = PBXBuildFile; fileRef = 83D63A49201B8F070057C202 /* AeroGearOTP */; };
 		83D755F21C7D5BF600BFDEC8 /* ATCNormalPresention.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D755F11C7D5BF600BFDEC8 /* ATCNormalPresention.storyboard */; };
 		83D755F51C7D5C3B00BFDEC8 /* ATCNormalPresentationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D755F41C7D5C3B00BFDEC8 /* ATCNormalPresentationViewController.m */; };
 		83D755F81C7D5C4500BFDEC8 /* ATCNormalPresentationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D755F71C7D5C4500BFDEC8 /* ATCNormalPresentationView.m */; };
@@ -363,18 +359,6 @@
 		8373D8791C67494300A11E31 /* NSAffineTransform+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAffineTransform+ATCExtensions.h"; sourceTree = "<group>"; };
 		8373D87D1C67537500A11E31 /* ATCOTPBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPBadgeView.m; sourceTree = "<group>"; };
 		8373D87E1C67537500A11E31 /* ATCOTPBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPBadgeView.h; sourceTree = "<group>"; };
-		8373D8811C67548C00A11E31 /* aerogear-otp.ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "aerogear-otp.ios-Prefix.pch"; sourceTree = "<group>"; };
-		8373D8831C67548C00A11E31 /* AeroGearOTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AeroGearOTP.h; sourceTree = "<group>"; };
-		8373D8841C67548C00A11E31 /* AGBase32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGBase32.h; sourceTree = "<group>"; };
-		8373D8851C67548C00A11E31 /* AGBase32.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGBase32.m; sourceTree = "<group>"; };
-		8373D8861C67548C00A11E31 /* AGClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGClock.h; sourceTree = "<group>"; };
-		8373D8871C67548C00A11E31 /* AGClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGClock.m; sourceTree = "<group>"; };
-		8373D8881C67548C00A11E31 /* AGOtp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGOtp.h; sourceTree = "<group>"; };
-		8373D8891C67548C00A11E31 /* AGOtp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGOtp.m; sourceTree = "<group>"; };
-		8373D88A1C67548C00A11E31 /* AGStringEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGStringEncoding.h; sourceTree = "<group>"; };
-		8373D88B1C67548C00A11E31 /* AGStringEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGStringEncoding.m; sourceTree = "<group>"; };
-		8373D88C1C67548C00A11E31 /* AGTotp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTotp.h; sourceTree = "<group>"; };
-		8373D88D1C67548C00A11E31 /* AGTotp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTotp.m; sourceTree = "<group>"; };
 		8373D8B31C697D4D00A11E31 /* ATCBeautifulWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCBeautifulWindow.h; sourceTree = "<group>"; };
 		8373D8B41C697D4D00A11E31 /* ATCBeautifulWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCBeautifulWindow.m; sourceTree = "<group>"; };
 		8373D8B61C697D8D00A11E31 /* ATCSecretKeyManuallyInputWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCSecretKeyManuallyInputWindow.h; sourceTree = "<group>"; };
@@ -402,6 +386,7 @@
 		83D34BF71C67145B007253E3 /* ATCOTPEntryTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntryTableCellView.h; sourceTree = "<group>"; };
 		83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntryTableCellView.m; sourceTree = "<group>"; };
 		83D63A47201B8E850057C202 /* PureLayout */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PureLayout; path = Authenticator/vendors/PureLayout/PureLayout/PureLayout; sourceTree = "<group>"; };
+		83D63A49201B8F070057C202 /* AeroGearOTP */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AeroGearOTP; path = "Authenticator/vendors/aerogear-ios-otp/AeroGearOTP"; sourceTree = "<group>"; };
 		83D755F11C7D5BF600BFDEC8 /* ATCNormalPresention.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ATCNormalPresention.storyboard; sourceTree = "<group>"; };
 		83D755F31C7D5C3B00BFDEC8 /* ATCNormalPresentationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCNormalPresentationViewController.h; sourceTree = "<group>"; };
 		83D755F41C7D5C3B00BFDEC8 /* ATCNormalPresentationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCNormalPresentationViewController.m; sourceTree = "<group>"; };
@@ -1093,8 +1078,8 @@
 				83A650E81C70516B009D2FA7 /* Security.framework */,
 				831EC89F1C688830005DCD88 /* QuartzCore.framework */,
 				83D63A47201B8E850057C202 /* PureLayout */,
+				83D63A49201B8F070057C202 /* AeroGearOTP */,
 				83F56E8A1C7B5B21008463F2 /* RNCryptor */,
-				8373D8801C67548C00A11E31 /* aerogear-otp.ios */,
 				830AD2081C730BE5006D909C /* OAuthSigningConstants */,
 				83F56E991C7B5E20008463F2 /* ZXingObjC */,
 			);
@@ -1116,34 +1101,6 @@
 				83CEE8B01C6DB4B50027AE38 /* NSObject+ATCExtensions.m */,
 			);
 			name = extensions;
-			sourceTree = "<group>";
-		};
-		8373D8801C67548C00A11E31 /* aerogear-otp.ios */ = {
-			isa = PBXGroup;
-			children = (
-				8373D8811C67548C00A11E31 /* aerogear-otp.ios-Prefix.pch */,
-				8373D8821C67548C00A11E31 /* Classes */,
-			);
-			name = "aerogear-otp.ios";
-			path = "Authenticator/vendors/aerogear-otp-ios/aerogear-otp.ios";
-			sourceTree = "<group>";
-		};
-		8373D8821C67548C00A11E31 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				8373D8831C67548C00A11E31 /* AeroGearOTP.h */,
-				8373D8841C67548C00A11E31 /* AGBase32.h */,
-				8373D8851C67548C00A11E31 /* AGBase32.m */,
-				8373D8861C67548C00A11E31 /* AGClock.h */,
-				8373D8871C67548C00A11E31 /* AGClock.m */,
-				8373D8881C67548C00A11E31 /* AGOtp.h */,
-				8373D8891C67548C00A11E31 /* AGOtp.m */,
-				8373D88A1C67548C00A11E31 /* AGStringEncoding.h */,
-				8373D88B1C67548C00A11E31 /* AGStringEncoding.m */,
-				8373D88C1C67548C00A11E31 /* AGTotp.h */,
-				8373D88D1C67548C00A11E31 /* AGTotp.m */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		8383DD741C75B54B007B7665 /* internal */ = {
@@ -2019,6 +1976,7 @@
 				83D756021C7D764300BFDEC8 /* ATCPasswordPrompt.storyboard in Resources */,
 				83F56E891C7B588A008463F2 /* opt-scan-button.png in Resources */,
 				83D755FA1C7D719F00BFDEC8 /* ATCPasswordCollection.storyboard in Resources */,
+				83D63A4A201B8F080057C202 /* AeroGearOTP in Resources */,
 				83F56E851C7B57E0008463F2 /* opt-add-button@2x.png in Resources */,
 				83F56E881C7B588A008463F2 /* opt-scan-button@2x.png in Resources */,
 				832782C81D671A67004D1979 /* LICENSE in Resources */,
@@ -2071,7 +2029,6 @@
 				83F570991C7B5E20008463F2 /* ZXExpandedProductParsedResult.m in Sources */,
 				836F0CB41C784BF9005EE91E /* ATCAuthVaultItem.m in Sources */,
 				83F571571C7B5E20008463F2 /* ZXQRCodeMatrixUtil.m in Sources */,
-				8373D8911C67548C00A11E31 /* AGStringEncoding.m in Sources */,
 				83F570EF1C7B5E20008463F2 /* ZXMaxiCodeDecoder.m in Sources */,
 				83F5715C1C7B5E20008463F2 /* ZXQRCodeWriter.m in Sources */,
 				83F570C11C7B5E20008463F2 /* ZXByteArray.m in Sources */,
@@ -2247,7 +2204,6 @@
 				83F570EB1C7B5E20008463F2 /* ZXDataMatrixReader.m in Sources */,
 				83F5714A1C7B5E20008463F2 /* ZXQRCodeFormatInformation.m in Sources */,
 				83F5709A1C7B5E20008463F2 /* ZXExpandedProductResultParser.m in Sources */,
-				8373D8901C67548C00A11E31 /* AGOtp.m in Sources */,
 				832782C61D6719BA004D1979 /* README.md in Sources */,
 				83F570D21C7B5E20008463F2 /* ZXErrors.m in Sources */,
 				83F570DA1C7B5E20008463F2 /* ZXDataMatrixDataBlock.m in Sources */,
@@ -2273,11 +2229,9 @@
 				833960171C670C73007241D9 /* ATCMainWindow.m in Sources */,
 				83F570AA1C7B5E20008463F2 /* ZXURIParsedResult.m in Sources */,
 				83F571051C7B5E20008463F2 /* ZXRSSExpandedGeneralAppIdDecoder.m in Sources */,
-				8373D88E1C67548C00A11E31 /* AGBase32.m in Sources */,
 				83F570F71C7B5E20008463F2 /* ZXAI01393xDecoder.m in Sources */,
 				83F570CD1C7B5E20008463F2 /* ZXBinaryBitmap.m in Sources */,
 				83F570B31C7B5E20008463F2 /* ZXCapture.m in Sources */,
-				8373D88F1C67548C00A11E31 /* AGClock.m in Sources */,
 				83F571301C7B5E20008463F2 /* ZXPDF417Codeword.m in Sources */,
 				83F571221C7B5E20008463F2 /* ZXUPCAReader.m in Sources */,
 				83F570A21C7B5E20008463F2 /* ZXResultParser.m in Sources */,
@@ -2292,7 +2246,6 @@
 				83F570841C7B5E20008463F2 /* ZXAztecDetector.m in Sources */,
 				83F5713A1C7B5E20008463F2 /* ZXPDF417BarcodeMatrix.m in Sources */,
 				83F570A51C7B5E20008463F2 /* ZXSMSTOMMSTOResultParser.m in Sources */,
-				8373D8921C67548C00A11E31 /* AGTotp.m in Sources */,
 				83F571271C7B5E20008463F2 /* ZXUPCEANReader.m in Sources */,
 				83F570F41C7B5E20008463F2 /* ZXAI013103decoder.m in Sources */,
 				83D755F81C7D5C4500BFDEC8 /* ATCNormalPresentationView.m in Sources */,
