@@ -1,0 +1,3 @@
+[submodule "Authenticator/vendors/PureLayout"]
+	path = Authenticator/vendors/PureLayout
+	url = https://github.com/PureLayout/PureLayout.git
