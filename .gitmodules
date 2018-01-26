@@ -4,3 +4,12 @@
 [submodule "Authenticator/vendors/aerogear-ios-otp"]
 	path = Authenticator/vendors/aerogear-ios-otp
 	url = https://github.com/aerogear/aerogear-ios-otp.git
+[submodule "Authenticator/vendors/ZXingObjC"]
+	path = Authenticator/vendors/ZXingObjC
+	url = https://github.com/TheLevelUp/ZXingObjC.git
+[submodule "Authenticator/vendors/RNCryptor"]
+	path = Authenticator/vendors/RNCryptor
+	url = https://github.com/RNCryptor/RNCryptor-objc.git
+[submodule "Authenticator/vendors/OAuthSigningConstants"]
+	path = Authenticator/vendors/OAuthSigningConstants
+	url = https://gist.github.com/9aea4d69fac1cf0ba27d.git
