@@ -17,9 +17,10 @@
 @import QuartzCore;
 
 // Third Party Modules
-#import "PureLayout.h"
+@import PureLayout;
 #import "OAuthSigningConstants.h"
-#import "RNCryptorModule.h"
+#import "RNCryptor/RNCryptor.h"
+#import "AeroGearOTP.h"
 
 // Frequently Used Headers
 #import "ATCConstants.h"

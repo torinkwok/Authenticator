@@ -6,7 +6,7 @@
 //  Copyright © 2016 Tong Kuo. All rights reserved.
 //
 
-#import "AGClock.h"
+#import "AeroGearOTP.h"
 
 // AGClock + ATCExtensions
 @interface AGClock ( ATCExtensions )

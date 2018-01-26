@@ -44,10 +44,10 @@
 		83CEE8B41C6E03800027AE38 /* ATCOTPDigitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8B31C6E03800027AE38 /* ATCOTPDigitLayer.m */; };
 		83CEE8C01C6E13090027AE38 /* ATCOTPBadgeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8BF1C6E13090027AE38 /* ATCOTPBadgeLayer.m */; };
 		83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */; };
-		83D63A4A201B8F080057C202 /* AeroGearOTP in Resources */ = {isa = PBXBuildFile; fileRef = 83D63A49201B8F070057C202 /* AeroGearOTP */; };
-		83D63A4C201B96700057C202 /* ZXingObjC in Resources */ = {isa = PBXBuildFile; fileRef = 83D63A4B201B96700057C202 /* ZXingObjC */; };
-		83D63A4E201B96A80057C202 /* RNCryptor in Resources */ = {isa = PBXBuildFile; fileRef = 83D63A4D201B96A80057C202 /* RNCryptor */; };
 		83D63A4F201B99290057C202 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 832782C51D6719BA004D1979 /* README.md */; };
+		83D63A6F201B9C9F0057C202 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D63A5F201B9C930057C202 /* PureLayout.framework */; };
+		83D63A88201B9CB00057C202 /* RNCryptor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D63A7D201B9CAB0057C202 /* RNCryptor.framework */; };
+		83D63A9E201B9D3C0057C202 /* ZXingObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D63A9B201B9D340057C202 /* ZXingObjC.framework */; };
 		83D755F21C7D5BF600BFDEC8 /* ATCNormalPresention.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D755F11C7D5BF600BFDEC8 /* ATCNormalPresention.storyboard */; };
 		83D755F51C7D5C3B00BFDEC8 /* ATCNormalPresentationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D755F41C7D5C3B00BFDEC8 /* ATCNormalPresentationViewController.m */; };
 		83D755F81C7D5C4500BFDEC8 /* ATCNormalPresentationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D755F71C7D5C4500BFDEC8 /* ATCNormalPresentationView.m */; };
@@ -82,6 +82,174 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8324B19A1C67073900153EC7;
 			remoteInfo = Authenticator;
+		};
+		83D63A5C201B9C930057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A50201B9C930057C202 /* PureLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B1046AB01A7F32380017187F;
+			remoteInfo = PureLayout_iOS;
+		};
+		83D63A5E201B9C930057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A50201B9C930057C202 /* PureLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B1046AD81A7F32790017187F;
+			remoteInfo = PureLayout_Mac;
+		};
+		83D63A60201B9C930057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A50201B9C930057C202 /* PureLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 164C8B831C0D36500007A6B1;
+			remoteInfo = PureLayout_tvOS;
+		};
+		83D63A62201B9C930057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A50201B9C930057C202 /* PureLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B12C23DB17C3FDE4001CF667;
+			remoteInfo = "Example-iOS";
+		};
+		83D63A64201B9C930057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A50201B9C930057C202 /* PureLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7D4967E1B7B084800A74818;
+			remoteInfo = "Example-iOS-Xcode7";
+		};
+		83D63A66201B9C930057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A50201B9C930057C202 /* PureLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B1A290DB19562FDA00D4765E;
+			remoteInfo = "Example-Mac";
+		};
+		83D63A68201B9C930057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A50201B9C930057C202 /* PureLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 164C8B4E1C0D354E0007A6B1;
+			remoteInfo = "Example-tvOS";
+		};
+		83D63A6A201B9C930057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A50201B9C930057C202 /* PureLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B1EC855D195662790099293C;
+			remoteInfo = "PureLayoutTests-iOS";
+		};
+		83D63A6C201B9C930057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A50201B9C930057C202 /* PureLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B1EC857C195662B40099293C;
+			remoteInfo = "PureLayoutTests-Mac";
+		};
+		83D63A7A201B9CAB0057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A70201B9CAB0057C202 /* RNCryptor.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FB7564F01512D3C4007B806B;
+			remoteInfo = RNCryptor;
+		};
+		83D63A7C201B9CAB0057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A70201B9CAB0057C202 /* RNCryptor.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AB13427A15E0FC2300456914;
+			remoteInfo = "RNCryptor OS X";
+		};
+		83D63A7E201B9CAB0057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A70201B9CAB0057C202 /* RNCryptor.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FB7565001512D3C4007B806B;
+			remoteInfo = RNCryptorTests;
+		};
+		83D63A80201B9CAB0057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A70201B9CAB0057C202 /* RNCryptor.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FB6AC68C16F6704100CA0C0A;
+			remoteInfo = rncrypt;
+		};
+		83D63A82201B9CAB0057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A70201B9CAB0057C202 /* RNCryptor.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 659134E91B14262B00B82A96;
+			remoteInfo = "RNCryptor iOS";
+		};
+		83D63A84201B9CAB0057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A70201B9CAB0057C202 /* RNCryptor.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F3717531DDB9C5F009E537B;
+			remoteInfo = "RNCryptor watchOS";
+		};
+		83D63A86201B9CAB0057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A70201B9CAB0057C202 /* RNCryptor.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F37176A1DDB9D1B009E537B;
+			remoteInfo = "RNCryptor tvOS";
+		};
+		83D63A92201B9D340057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A89201B9D340057C202 /* ZXingObjC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25403CB3166A96FA00E13304;
+			remoteInfo = "ZXingObjC-iOS";
+		};
+		83D63A94201B9D340057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A89201B9D340057C202 /* ZXingObjC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25403CC4166A96FA00E13304;
+			remoteInfo = "Unit Tests iOS";
+		};
+		83D63A96201B9D340057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A89201B9D340057C202 /* ZXingObjC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25404166166AADAC00E13304;
+			remoteInfo = "ZXingObjC-osx";
+		};
+		83D63A98201B9D340057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A89201B9D340057C202 /* ZXingObjC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25404178166AADAC00E13304;
+			remoteInfo = "Unit Tests OS X";
+		};
+		83D63A9A201B9D340057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A89201B9D340057C202 /* ZXingObjC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2540439E166ABA0A00E13304;
+			remoteInfo = "OS X Framework";
+		};
+		83D63A9C201B9D340057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A89201B9D340057C202 /* ZXingObjC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DB72547F1A523C9200EFF81B;
+			remoteInfo = "iOS Framework";
+		};
+		83D63AA4201B9D560057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A9F201B9D560057C202 /* AeroGearOTP.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81F41621D94B6B79552689A3;
+			remoteInfo = AeroGearOTP;
+		};
+		83D63AA6201B9D560057C202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83D63A9F201B9D560057C202 /* AeroGearOTP.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81F41DAAA0F339CAA4A45113;
+			remoteInfo = AeroGearOTPTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -162,9 +330,10 @@
 		83CEE8BF1C6E13090027AE38 /* ATCOTPBadgeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPBadgeLayer.m; sourceTree = "<group>"; };
 		83D34BF71C67145B007253E3 /* ATCOTPEntryTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntryTableCellView.h; sourceTree = "<group>"; };
 		83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntryTableCellView.m; sourceTree = "<group>"; };
-		83D63A49201B8F070057C202 /* AeroGearOTP */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AeroGearOTP; path = "Authenticator/vendors/aerogear-ios-otp/AeroGearOTP"; sourceTree = "<group>"; };
-		83D63A4B201B96700057C202 /* ZXingObjC */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ZXingObjC; path = Authenticator/vendors/ZXingObjC/ZXingObjC; sourceTree = "<group>"; };
-		83D63A4D201B96A80057C202 /* RNCryptor */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RNCryptor; path = Authenticator/vendors/RNCryptor/RNCryptor; sourceTree = "<group>"; };
+		83D63A50201B9C930057C202 /* PureLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PureLayout.xcodeproj; path = Authenticator/vendors/PureLayout/PureLayout/PureLayout.xcodeproj; sourceTree = "<group>"; };
+		83D63A70201B9CAB0057C202 /* RNCryptor.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCryptor.xcodeproj; path = Authenticator/vendors/RNCryptor/RNCryptor.xcodeproj; sourceTree = "<group>"; };
+		83D63A89201B9D340057C202 /* ZXingObjC.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingObjC.xcodeproj; path = Authenticator/vendors/ZXingObjC/ZXingObjC.xcodeproj; sourceTree = "<group>"; };
+		83D63A9F201B9D560057C202 /* AeroGearOTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AeroGearOTP.xcodeproj; path = "Authenticator/vendors/aerogear-ios-otp/AeroGearOTP.xcodeproj"; sourceTree = "<group>"; };
 		83D755F11C7D5BF600BFDEC8 /* ATCNormalPresention.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ATCNormalPresention.storyboard; sourceTree = "<group>"; };
 		83D755F31C7D5C3B00BFDEC8 /* ATCNormalPresentationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCNormalPresentationViewController.h; sourceTree = "<group>"; };
 		83D755F41C7D5C3B00BFDEC8 /* ATCNormalPresentationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCNormalPresentationViewController.m; sourceTree = "<group>"; };
@@ -200,6 +369,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83D63A9E201B9D3C0057C202 /* ZXingObjC.framework in Frameworks */,
+				83D63A88201B9CB00057C202 /* RNCryptor.framework in Frameworks */,
+				83D63A6F201B9C9F0057C202 /* PureLayout.framework in Frameworks */,
 				838ECF291CC1143D009AADAB /* libSystem.tbd in Frameworks */,
 				83A650E91C70516B009D2FA7 /* Security.framework in Frameworks */,
 				831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */,
@@ -250,6 +422,10 @@
 		8324B1921C67073900153EC7 = {
 			isa = PBXGroup;
 			children = (
+				83D63A9F201B9D560057C202 /* AeroGearOTP.xcodeproj */,
+				83D63A89201B9D340057C202 /* ZXingObjC.xcodeproj */,
+				83D63A70201B9CAB0057C202 /* RNCryptor.xcodeproj */,
+				83D63A50201B9C930057C202 /* PureLayout.xcodeproj */,
 				832782C51D6719BA004D1979 /* README.md */,
 				832782C71D671A67004D1979 /* LICENSE */,
 				8324B19D1C67073900153EC7 /* Authenticator */,
@@ -258,6 +434,7 @@
 				8324B1B41C67073A00153EC7 /* AuthenticatorTests */,
 				8324B1BF1C67073A00153EC7 /* AuthenticatorUITests */,
 				8324B19C1C67073900153EC7 /* Products */,
+				83D63A6E201B9C9F0057C202 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -388,9 +565,6 @@
 				838ECF281CC1143D009AADAB /* libSystem.tbd */,
 				83A650E81C70516B009D2FA7 /* Security.framework */,
 				831EC89F1C688830005DCD88 /* QuartzCore.framework */,
-				83D63A4D201B96A80057C202 /* RNCryptor */,
-				83D63A49201B8F070057C202 /* AeroGearOTP */,
-				83D63A4B201B96700057C202 /* ZXingObjC */,
 				830AD2081C730BE5006D909C /* OAuthSigningConstants */,
 			);
 			name = vendors;
@@ -420,6 +594,65 @@
 				836F0CAD1C784BF9005EE91E /* ATCAuthVaultItem+ATCFriends_.h */,
 			);
 			name = internal;
+			sourceTree = "<group>";
+		};
+		83D63A51201B9C930057C202 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83D63A5D201B9C930057C202 /* PureLayout.framework */,
+				83D63A5F201B9C930057C202 /* PureLayout.framework */,
+				83D63A61201B9C930057C202 /* PureLayout.framework */,
+				83D63A63201B9C930057C202 /* Example-iOS.app */,
+				83D63A65201B9C930057C202 /* Example-iOS-Xcode7.app */,
+				83D63A67201B9C930057C202 /* Example-Mac.app */,
+				83D63A69201B9C930057C202 /* Example-tvOS.app */,
+				83D63A6B201B9C930057C202 /* PureLayoutTests-iOS.xctest */,
+				83D63A6D201B9C930057C202 /* PureLayoutTests-Mac.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		83D63A6E201B9C9F0057C202 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		83D63A71201B9CAB0057C202 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83D63A7B201B9CAB0057C202 /* libRNCryptor.a */,
+				83D63A7D201B9CAB0057C202 /* RNCryptor.framework */,
+				83D63A7F201B9CAB0057C202 /* RNCryptorTests.xctest */,
+				83D63A81201B9CAB0057C202 /* rncrypt */,
+				83D63A83201B9CAB0057C202 /* RNCryptor.framework */,
+				83D63A85201B9CAB0057C202 /* RNCryptor.framework */,
+				83D63A87201B9CAB0057C202 /* RNCryptor.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		83D63A8A201B9D340057C202 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83D63A93201B9D340057C202 /* libZXingObjC-iOS.a */,
+				83D63A95201B9D340057C202 /* Unit Tests iOS.xctest */,
+				83D63A97201B9D340057C202 /* libZXingObjC-osx.a */,
+				83D63A99201B9D340057C202 /* Unit Tests OS X.xctest */,
+				83D63A9B201B9D340057C202 /* ZXingObjC.framework */,
+				83D63A9D201B9D340057C202 /* ZXingObjC.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		83D63AA0201B9D560057C202 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83D63AA5201B9D560057C202 /* libAeroGearOTP.a */,
+				83D63AA7201B9D560057C202 /* AeroGearOTPTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		83F56E811C7B57E0008463F2 /* artworks */ = {
@@ -529,6 +762,24 @@
 			mainGroup = 8324B1921C67073900153EC7;
 			productRefGroup = 8324B19C1C67073900153EC7 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 83D63AA0201B9D560057C202 /* Products */;
+					ProjectRef = 83D63A9F201B9D560057C202 /* AeroGearOTP.xcodeproj */;
+				},
+				{
+					ProductGroup = 83D63A51201B9C930057C202 /* Products */;
+					ProjectRef = 83D63A50201B9C930057C202 /* PureLayout.xcodeproj */;
+				},
+				{
+					ProductGroup = 83D63A71201B9CAB0057C202 /* Products */;
+					ProjectRef = 83D63A70201B9CAB0057C202 /* RNCryptor.xcodeproj */;
+				},
+				{
+					ProductGroup = 83D63A8A201B9D340057C202 /* Products */;
+					ProjectRef = 83D63A89201B9D340057C202 /* ZXingObjC.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8324B19A1C67073900153EC7 /* Authenticator */,
@@ -537,6 +788,177 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		83D63A5D201B9C930057C202 /* PureLayout.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PureLayout.framework;
+			remoteRef = 83D63A5C201B9C930057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A5F201B9C930057C202 /* PureLayout.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PureLayout.framework;
+			remoteRef = 83D63A5E201B9C930057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A61201B9C930057C202 /* PureLayout.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PureLayout.framework;
+			remoteRef = 83D63A60201B9C930057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A63201B9C930057C202 /* Example-iOS.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Example-iOS.app";
+			remoteRef = 83D63A62201B9C930057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A65201B9C930057C202 /* Example-iOS-Xcode7.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Example-iOS-Xcode7.app";
+			remoteRef = 83D63A64201B9C930057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A67201B9C930057C202 /* Example-Mac.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Example-Mac.app";
+			remoteRef = 83D63A66201B9C930057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A69201B9C930057C202 /* Example-tvOS.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Example-tvOS.app";
+			remoteRef = 83D63A68201B9C930057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A6B201B9C930057C202 /* PureLayoutTests-iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "PureLayoutTests-iOS.xctest";
+			remoteRef = 83D63A6A201B9C930057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A6D201B9C930057C202 /* PureLayoutTests-Mac.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "PureLayoutTests-Mac.xctest";
+			remoteRef = 83D63A6C201B9C930057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A7B201B9CAB0057C202 /* libRNCryptor.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCryptor.a;
+			remoteRef = 83D63A7A201B9CAB0057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A7D201B9CAB0057C202 /* RNCryptor.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RNCryptor.framework;
+			remoteRef = 83D63A7C201B9CAB0057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A7F201B9CAB0057C202 /* RNCryptorTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RNCryptorTests.xctest;
+			remoteRef = 83D63A7E201B9CAB0057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A81201B9CAB0057C202 /* rncrypt */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = rncrypt;
+			remoteRef = 83D63A80201B9CAB0057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A83201B9CAB0057C202 /* RNCryptor.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RNCryptor.framework;
+			remoteRef = 83D63A82201B9CAB0057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A85201B9CAB0057C202 /* RNCryptor.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RNCryptor.framework;
+			remoteRef = 83D63A84201B9CAB0057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A87201B9CAB0057C202 /* RNCryptor.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RNCryptor.framework;
+			remoteRef = 83D63A86201B9CAB0057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A93201B9D340057C202 /* libZXingObjC-iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libZXingObjC-iOS.a";
+			remoteRef = 83D63A92201B9D340057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A95201B9D340057C202 /* Unit Tests iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Unit Tests iOS.xctest";
+			remoteRef = 83D63A94201B9D340057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A97201B9D340057C202 /* libZXingObjC-osx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libZXingObjC-osx.a";
+			remoteRef = 83D63A96201B9D340057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A99201B9D340057C202 /* Unit Tests OS X.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Unit Tests OS X.xctest";
+			remoteRef = 83D63A98201B9D340057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A9B201B9D340057C202 /* ZXingObjC.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ZXingObjC.framework;
+			remoteRef = 83D63A9A201B9D340057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63A9D201B9D340057C202 /* ZXingObjC.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ZXingObjC.framework;
+			remoteRef = 83D63A9C201B9D340057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63AA5201B9D560057C202 /* libAeroGearOTP.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAeroGearOTP.a;
+			remoteRef = 83D63AA4201B9D560057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83D63AA7201B9D560057C202 /* AeroGearOTPTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AeroGearOTPTests.xctest;
+			remoteRef = 83D63AA6201B9D560057C202 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8324B1991C67073900153EC7 /* Resources */ = {
@@ -547,17 +969,14 @@
 				83D756021C7D764300BFDEC8 /* ATCPasswordPrompt.storyboard in Resources */,
 				83F56E891C7B588A008463F2 /* opt-scan-button.png in Resources */,
 				83D755FA1C7D719F00BFDEC8 /* ATCPasswordCollection.storyboard in Resources */,
-				83D63A4A201B8F080057C202 /* AeroGearOTP in Resources */,
 				83F56E851C7B57E0008463F2 /* opt-add-button@2x.png in Resources */,
 				83F56E881C7B588A008463F2 /* opt-scan-button@2x.png in Resources */,
 				832782C81D671A67004D1979 /* LICENSE in Resources */,
 				83F56E841C7B57E0008463F2 /* opt-add-button.png in Resources */,
 				8324B1A81C67073900153EC7 /* Assets.xcassets in Resources */,
 				83D755F21C7D5BF600BFDEC8 /* ATCNormalPresention.storyboard in Resources */,
-				83D63A4C201B96700057C202 /* ZXingObjC in Resources */,
 				8324B1AB1C67073900153EC7 /* ATCMain.storyboard in Resources */,
 				83F571691C7C0199008463F2 /* ATCQRCodeScannerWindowController.xib in Resources */,
-				83D63A4E201B96A80057C202 /* RNCryptor in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
