@@ -44,10 +44,10 @@
 		83CEE8B41C6E03800027AE38 /* ATCOTPDigitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8B31C6E03800027AE38 /* ATCOTPDigitLayer.m */; };
 		83CEE8C01C6E13090027AE38 /* ATCOTPBadgeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CEE8BF1C6E13090027AE38 /* ATCOTPBadgeLayer.m */; };
 		83D34BF91C67145B007253E3 /* ATCOTPEntryTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */; };
-		83D63A48201B8E850057C202 /* PureLayout in Resources */ = {isa = PBXBuildFile; fileRef = 83D63A47201B8E850057C202 /* PureLayout */; };
 		83D63A4A201B8F080057C202 /* AeroGearOTP in Resources */ = {isa = PBXBuildFile; fileRef = 83D63A49201B8F070057C202 /* AeroGearOTP */; };
 		83D63A4C201B96700057C202 /* ZXingObjC in Resources */ = {isa = PBXBuildFile; fileRef = 83D63A4B201B96700057C202 /* ZXingObjC */; };
 		83D63A4E201B96A80057C202 /* RNCryptor in Resources */ = {isa = PBXBuildFile; fileRef = 83D63A4D201B96A80057C202 /* RNCryptor */; };
+		83D63A4F201B99290057C202 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 832782C51D6719BA004D1979 /* README.md */; };
 		83D755F21C7D5BF600BFDEC8 /* ATCNormalPresention.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D755F11C7D5BF600BFDEC8 /* ATCNormalPresention.storyboard */; };
 		83D755F51C7D5C3B00BFDEC8 /* ATCNormalPresentationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D755F41C7D5C3B00BFDEC8 /* ATCNormalPresentationViewController.m */; };
 		83D755F81C7D5C4500BFDEC8 /* ATCNormalPresentationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D755F71C7D5C4500BFDEC8 /* ATCNormalPresentationView.m */; };
@@ -162,7 +162,6 @@
 		83CEE8BF1C6E13090027AE38 /* ATCOTPBadgeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPBadgeLayer.m; sourceTree = "<group>"; };
 		83D34BF71C67145B007253E3 /* ATCOTPEntryTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPEntryTableCellView.h; sourceTree = "<group>"; };
 		83D34BF81C67145B007253E3 /* ATCOTPEntryTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPEntryTableCellView.m; sourceTree = "<group>"; };
-		83D63A47201B8E850057C202 /* PureLayout */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PureLayout; path = Authenticator/vendors/PureLayout/PureLayout/PureLayout; sourceTree = "<group>"; };
 		83D63A49201B8F070057C202 /* AeroGearOTP */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AeroGearOTP; path = "Authenticator/vendors/aerogear-ios-otp/AeroGearOTP"; sourceTree = "<group>"; };
 		83D63A4B201B96700057C202 /* ZXingObjC */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ZXingObjC; path = Authenticator/vendors/ZXingObjC/ZXingObjC; sourceTree = "<group>"; };
 		83D63A4D201B96A80057C202 /* RNCryptor */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RNCryptor; path = Authenticator/vendors/RNCryptor/RNCryptor; sourceTree = "<group>"; };
@@ -389,7 +388,6 @@
 				838ECF281CC1143D009AADAB /* libSystem.tbd */,
 				83A650E81C70516B009D2FA7 /* Security.framework */,
 				831EC89F1C688830005DCD88 /* QuartzCore.framework */,
-				83D63A47201B8E850057C202 /* PureLayout */,
 				83D63A4D201B96A80057C202 /* RNCryptor */,
 				83D63A49201B8F070057C202 /* AeroGearOTP */,
 				83D63A4B201B96700057C202 /* ZXingObjC */,
@@ -498,7 +496,7 @@
 		8324B1931C67073900153EC7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Tong Kuo";
 				TargetAttributes = {
 					8324B19A1C67073900153EC7 = {
@@ -545,7 +543,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83D63A48201B8E850057C202 /* PureLayout in Resources */,
+				83D63A4F201B99290057C202 /* README.md in Resources */,
 				83D756021C7D764300BFDEC8 /* ATCPasswordPrompt.storyboard in Resources */,
 				83F56E891C7B588A008463F2 /* opt-scan-button.png in Resources */,
 				83D755FA1C7D719F00BFDEC8 /* ATCPasswordCollection.storyboard in Resources */,
@@ -677,13 +675,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -720,13 +726,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
