@@ -27,15 +27,15 @@ uint64_t extern const ATCWarningTimeStep;
 NSString extern* const ATCHexNormalPINColor;
 NSString extern* const ATCHexWarningPINColor;
 
-NSColor* ATCNormalPINColor();
-NSColor* ATCWarningPINColor();
-NSColor* ATCAlternativeWarningPINColor();
-NSColor* ATCControlColor();
+NSColor* ATCNormalPINColor(void);
+NSColor* ATCWarningPINColor(void);
+NSColor* ATCAlternativeWarningPINColor(void);
+NSColor* ATCControlColor(void);
 
-NSURL* ATCVaultsDirURL();
-NSURL* ATCDefaultVaultsDirURL();
-NSURL* ATCImportedVaultsDirURL();
-NSURL* ATCTemporaryDirURL();
+NSURL* ATCVaultsDirURL(void);
+NSURL* ATCDefaultVaultsDirURL(void);
+NSURL* ATCImportedVaultsDirURL(void);
+NSURL* ATCTemporaryDirURL(void);
 
 NSString extern* const ATCTotpAuthURLTemplate;
 
