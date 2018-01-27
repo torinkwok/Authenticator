@@ -21,6 +21,7 @@
 		833960171C670C73007241D9 /* ATCMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960161C670C73007241D9 /* ATCMainWindow.m */; };
 		8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960191C670CBB007241D9 /* ATCMainWindowController.m */; };
 		8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339601C1C670D96007241D9 /* ATCMainContentView.m */; };
+		83416858201C377C00382C64 /* AeroGearOTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83416857201C377C00382C64 /* AeroGearOTP.framework */; };
 		8368DD341C6AED6600005A7D /* ATCNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */; };
 		8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */; };
 		836F0CB41C784BF9005EE91E /* ATCAuthVaultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CAE1C784BF9005EE91E /* ATCAuthVaultItem.m */; };
@@ -96,6 +97,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 81F41DAAA0F339CAA4A45113;
 			remoteInfo = AeroGearOTPTests;
+		};
+		83416856201C377C00382C64 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8341681B201C36A500382C64 /* AeroGearOTP.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8341683F201C36E900382C64;
+			remoteInfo = "AeroGearOTP-macOS";
 		};
 		83D63A5C201B9C930057C202 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -369,6 +377,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83416858201C377C00382C64 /* AeroGearOTP.framework in Frameworks */,
 				83D63A9E201B9D3C0057C202 /* ZXingObjC.framework in Frameworks */,
 				83D63A88201B9CB00057C202 /* RNCryptor.framework in Frameworks */,
 				83D63A6F201B9C9F0057C202 /* PureLayout.framework in Frameworks */,
@@ -563,6 +572,7 @@
 			isa = PBXGroup;
 			children = (
 				83416821201C36A500382C64 /* libAeroGearOTP.a */,
+				83416857201C377C00382C64 /* AeroGearOTP.framework */,
 				83416823201C36A500382C64 /* AeroGearOTPTests.xctest */,
 			);
 			name = Products;
@@ -802,6 +812,13 @@
 			fileType = wrapper.cfbundle;
 			path = AeroGearOTPTests.xctest;
 			remoteRef = 83416822201C36A500382C64 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83416857201C377C00382C64 /* AeroGearOTP.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AeroGearOTP.framework;
+			remoteRef = 83416856201C377C00382C64 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		83D63A5D201B9C930057C202 /* PureLayout.framework */ = {

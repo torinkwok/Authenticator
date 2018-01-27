@@ -8,7 +8,6 @@
 
 #import "ATCAuthVaultItem.h"
 #import "ATCAuthVaultConstants.h"
-#import "AeroGearOTP.h"
 
 #import "ATCAuthVaultItem+ATCFriends_.h"
 #import "ATCExtensions_.h"

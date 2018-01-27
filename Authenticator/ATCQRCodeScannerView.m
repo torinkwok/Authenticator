@@ -7,7 +7,7 @@
 //
 
 #import "ATCQRCodeScannerView.h"
-#import "ZXingObjC.h"
+#import "ZXingObjC/ZXingObjC.h"
 
 typedef struct
     {

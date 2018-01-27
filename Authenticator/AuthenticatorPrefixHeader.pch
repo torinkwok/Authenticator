@@ -19,8 +19,14 @@
 // Third Party Modules
 @import PureLayout;
 #import "OAuthSigningConstants.h"
+
 #import "RNCryptor/RNCryptor.h"
-#import "AeroGearOTP.h"
+#import "RNCryptor/RNDecryptor.h"
+#import "RNCryptor/RNEncryptor.h"
+
+#import "AeroGearOTP/AGClock.h"
+#import "AeroGearOTP/AGBase32.h"
+#import "AeroGearOTP/AGTotp.h"
 
 // Frequently Used Headers
 #import "ATCConstants.h"
