@@ -103,7 +103,7 @@
     {
     NSViewController* candidate = [ self candidate_ ];
 
-    [ self.view removeAllConstraints ];
+    [ self.view removeConstraints: self.view.constraints ];
     [ self.view setSubviews: @[] ];
     [ self.view addSubview: candidate.view ];
     [ candidate.view autoPinEdgesToSuperviewEdges ];

@@ -8,7 +8,6 @@
 
 #import "ATCAuthVaultItem.h"
 #import "ATCAuthVaultConstants.h"
-#import "AeroGearOTP.h"
 
 #import "ATCAuthVaultItem+ATCFriends_.h"
 #import "ATCExtensions_.h"
@@ -207,8 +206,8 @@ inline static NSString* kCheckSumOfAuthVaultItemBackingStore_( NSDictionary* _Ba
     if ( self = [ super init ] )
         {
         backingStore_ = [ [ NSMutableDictionary alloc ] initWithObjectsAndKeys:
-              _AccountName, kAccountNameKey
-            , _IssuerName, kIssuerKey
+              _AccountName ?: @"Unknown", kAccountNameKey
+            , _IssuerName ?: @"Unknown", kIssuerKey
             , _SecretKey, kSecretKeyKey
             , @( ATC_DEFAULT_DIGTIS ), kDigitsKey
             , @( ATC_DEFAULT_TIME_STEP ), kTimeStepKey
