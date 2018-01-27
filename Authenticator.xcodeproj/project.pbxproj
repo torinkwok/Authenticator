@@ -21,7 +21,6 @@
 		833960171C670C73007241D9 /* ATCMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960161C670C73007241D9 /* ATCMainWindow.m */; };
 		8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833960191C670CBB007241D9 /* ATCMainWindowController.m */; };
 		8339601D1C670D96007241D9 /* ATCMainContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339601C1C670D96007241D9 /* ATCMainContentView.m */; };
-		83416858201C377C00382C64 /* AeroGearOTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83416857201C377C00382C64 /* AeroGearOTP.framework */; };
 		8368DD341C6AED6600005A7D /* ATCNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */; };
 		8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */; };
 		836F0CB41C784BF9005EE91E /* ATCAuthVaultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CAE1C784BF9005EE91E /* ATCAuthVaultItem.m */; };
@@ -83,27 +82,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8324B19A1C67073900153EC7;
 			remoteInfo = Authenticator;
-		};
-		83416820201C36A500382C64 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8341681B201C36A500382C64 /* AeroGearOTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81F41621D94B6B79552689A3;
-			remoteInfo = AeroGearOTP;
-		};
-		83416822201C36A500382C64 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8341681B201C36A500382C64 /* AeroGearOTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 81F41DAAA0F339CAA4A45113;
-			remoteInfo = AeroGearOTPTests;
-		};
-		83416856201C377C00382C64 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8341681B201C36A500382C64 /* AeroGearOTP.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8341683F201C36E900382C64;
-			remoteInfo = "AeroGearOTP-macOS";
 		};
 		83D63A5C201B9C930057C202 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -291,7 +269,6 @@
 		833960191C670CBB007241D9 /* ATCMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainWindowController.m; sourceTree = "<group>"; };
 		8339601B1C670D96007241D9 /* ATCMainContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainContentView.h; sourceTree = "<group>"; };
 		8339601C1C670D96007241D9 /* ATCMainContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainContentView.m; sourceTree = "<group>"; };
-		8341681B201C36A500382C64 /* AeroGearOTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AeroGearOTP.xcodeproj; path = "Authenticator/vendors/aerogear-ios-otp/AeroGearOTP.xcodeproj"; sourceTree = "<group>"; };
 		8368DD321C6AED6600005A7D /* ATCNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCNotificationCenter.h; sourceTree = "<group>"; };
 		8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCNotificationCenter.m; sourceTree = "<group>"; };
 		8368DD371C6CC12500005A7D /* AGClock+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AGClock+ATCExtensions.h"; sourceTree = "<group>"; };
@@ -377,7 +354,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83416858201C377C00382C64 /* AeroGearOTP.framework in Frameworks */,
 				83D63A9E201B9D3C0057C202 /* ZXingObjC.framework in Frameworks */,
 				83D63A88201B9CB00057C202 /* RNCryptor.framework in Frameworks */,
 				83D63A6F201B9C9F0057C202 /* PureLayout.framework in Frameworks */,
@@ -431,7 +407,6 @@
 		8324B1921C67073900153EC7 = {
 			isa = PBXGroup;
 			children = (
-				8341681B201C36A500382C64 /* AeroGearOTP.xcodeproj */,
 				83D63A89201B9D340057C202 /* ZXingObjC.xcodeproj */,
 				83D63A70201B9CAB0057C202 /* RNCryptor.xcodeproj */,
 				83D63A50201B9C930057C202 /* PureLayout.xcodeproj */,
@@ -566,16 +541,6 @@
 				83F571671C7C0199008463F2 /* ATCQRCodeScannerWindowController.xib */,
 			);
 			name = wysiwyg;
-			sourceTree = "<group>";
-		};
-		8341681C201C36A500382C64 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				83416821201C36A500382C64 /* libAeroGearOTP.a */,
-				83416857201C377C00382C64 /* AeroGearOTP.framework */,
-				83416823201C36A500382C64 /* AeroGearOTPTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		8373D85B1C671D6300A11E31 /* vendors */ = {
@@ -774,10 +739,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 8341681C201C36A500382C64 /* Products */;
-					ProjectRef = 8341681B201C36A500382C64 /* AeroGearOTP.xcodeproj */;
-				},
-				{
 					ProductGroup = 83D63A51201B9C930057C202 /* Products */;
 					ProjectRef = 83D63A50201B9C930057C202 /* PureLayout.xcodeproj */;
 				},
@@ -800,27 +761,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		83416821201C36A500382C64 /* libAeroGearOTP.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libAeroGearOTP.a;
-			remoteRef = 83416820201C36A500382C64 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		83416823201C36A500382C64 /* AeroGearOTPTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = AeroGearOTPTests.xctest;
-			remoteRef = 83416822201C36A500382C64 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		83416857201C377C00382C64 /* AeroGearOTP.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AeroGearOTP.framework;
-			remoteRef = 83416856201C377C00382C64 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		83D63A5D201B9C930057C202 /* PureLayout.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
