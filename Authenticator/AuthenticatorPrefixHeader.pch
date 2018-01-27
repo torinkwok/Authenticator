@@ -24,9 +24,7 @@
 #import "RNCryptor/RNDecryptor.h"
 #import "RNCryptor/RNEncryptor.h"
 
-#import "AeroGearOTP/AGClock.h"
-#import "AeroGearOTP/AGBase32.h"
-#import "AeroGearOTP/AGTotp.h"
+#import "AeroGearOTP/AeroGearOTP.h"
 
 // Frequently Used Headers
 #import "ATCConstants.h"
