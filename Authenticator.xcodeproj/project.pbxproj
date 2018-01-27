@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		830AD20B1C730BE5006D909C /* OAuthSigningConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 830AD20A1C730BE5006D909C /* OAuthSigningConstants.m */; };
 		831EC89E1C688824005DCD88 /* ATCOTPDigitTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */; };
 		831EC8A01C688830005DCD88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831EC89F1C688830005DCD88 /* QuartzCore.framework */; };
 		8324B1A01C67073900153EC7 /* ATCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8324B19F1C67073900153EC7 /* ATCAppDelegate.m */; };
@@ -29,6 +28,7 @@
 		834168DF201C46A000382C64 /* PureLayout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 83D63A5F201B9C930057C202 /* PureLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8341691D201C47F300382C64 /* AeroGearOTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8341691C201C47F300382C64 /* AeroGearOTP.framework */; };
 		8341691E201C47F300382C64 /* AeroGearOTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8341691C201C47F300382C64 /* AeroGearOTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		83416923201C4B5200382C64 /* OAuthSigningConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 83416921201C4B5100382C64 /* OAuthSigningConstants.m */; };
 		8368DD341C6AED6600005A7D /* ATCNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */; };
 		8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368DD381C6CC12500005A7D /* AGClock+ATCExtensions.m */; };
 		836F0CB41C784BF9005EE91E /* ATCAuthVaultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 836F0CAE1C784BF9005EE91E /* ATCAuthVaultItem.m */; };
@@ -311,8 +311,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		830AD2091C730BE5006D909C /* OAuthSigningConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthSigningConstants.h; sourceTree = "<group>"; };
-		830AD20A1C730BE5006D909C /* OAuthSigningConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthSigningConstants.m; sourceTree = "<group>"; };
 		831EC89C1C688824005DCD88 /* ATCOTPDigitTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCOTPDigitTextLayer.h; sourceTree = "<group>"; };
 		831EC89D1C688824005DCD88 /* ATCOTPDigitTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCOTPDigitTextLayer.m; sourceTree = "<group>"; };
 		831EC89F1C688830005DCD88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -341,6 +339,8 @@
 		8339601B1C670D96007241D9 /* ATCMainContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCMainContentView.h; sourceTree = "<group>"; };
 		8339601C1C670D96007241D9 /* ATCMainContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCMainContentView.m; sourceTree = "<group>"; };
 		834168F6201C474F00382C64 /* AeroGearOTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AeroGearOTP.xcodeproj; path = Authenticator/vendors/AeroGearOTP/AeroGearOTP.xcodeproj; sourceTree = "<group>"; };
+		83416921201C4B5100382C64 /* OAuthSigningConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OAuthSigningConstants.m; sourceTree = "<group>"; };
+		83416922201C4B5100382C64 /* OAuthSigningConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OAuthSigningConstants.h; sourceTree = "<group>"; };
 		8368DD321C6AED6600005A7D /* ATCNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCNotificationCenter.h; sourceTree = "<group>"; };
 		8368DD331C6AED6600005A7D /* ATCNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCNotificationCenter.m; sourceTree = "<group>"; };
 		8368DD371C6CC12500005A7D /* AGClock+ATCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AGClock+ATCExtensions.h"; sourceTree = "<group>"; };
@@ -467,16 +467,6 @@
 			path = "supports-of-outhvault";
 			sourceTree = "<group>";
 		};
-		830AD2081C730BE5006D909C /* OAuthSigningConstants */ = {
-			isa = PBXGroup;
-			children = (
-				830AD2091C730BE5006D909C /* OAuthSigningConstants.h */,
-				830AD20A1C730BE5006D909C /* OAuthSigningConstants.m */,
-			);
-			name = OAuthSigningConstants;
-			path = Authenticator/vendors/OAuthSigningConstants;
-			sourceTree = "<group>";
-		};
 		8324B1921C67073900153EC7 = {
 			isa = PBXGroup;
 			children = (
@@ -570,6 +560,8 @@
 				83F571601C7C009F008463F2 /* ATCQRCodeScannerWindow.m */,
 				83F571611C7C009F008463F2 /* ATCQRCodeScannerView.h */,
 				83F571621C7C009F008463F2 /* ATCQRCodeScannerView.m */,
+				83416922201C4B5100382C64 /* OAuthSigningConstants.h */,
+				83416921201C4B5100382C64 /* OAuthSigningConstants.m */,
 				8324B1A11C67073900153EC7 /* Supporting Files */,
 			);
 			path = Authenticator;
@@ -633,7 +625,6 @@
 				838ECF281CC1143D009AADAB /* libSystem.tbd */,
 				83A650E81C70516B009D2FA7 /* Security.framework */,
 				831EC89F1C688830005DCD88 /* QuartzCore.framework */,
-				830AD2081C730BE5006D909C /* OAuthSigningConstants */,
 			);
 			name = vendors;
 			sourceTree = "<group>";
@@ -1079,13 +1070,13 @@
 				8324B1A61C67073900153EC7 /* ATCMainContentViewController.m in Sources */,
 				8373D8BE1C697E2600A11E31 /* ATCSecretKeyManuallyInputView.m in Sources */,
 				8373D8B81C697D8D00A11E31 /* ATCSecretKeyManuallyInputWindow.m in Sources */,
+				83416923201C4B5200382C64 /* OAuthSigningConstants.m in Sources */,
 				8368DD341C6AED6600005A7D /* ATCNotificationCenter.m in Sources */,
 				83F571641C7C009F008463F2 /* ATCQRCodeScannerView.m in Sources */,
 				8324B1A31C67073900153EC7 /* main.m in Sources */,
 				8373D87A1C67494300A11E31 /* NSColor+ATCExtensions.m in Sources */,
 				8368DD391C6CC12500005A7D /* AGClock+ATCExtensions.m in Sources */,
 				8339601A1C670CBB007241D9 /* ATCMainWindowController.m in Sources */,
-				830AD20B1C730BE5006D909C /* OAuthSigningConstants.m in Sources */,
 				8373D87C1C67494300A11E31 /* NSAffineTransform+ATCExtensions.m in Sources */,
 				8373D87F1C67537500A11E31 /* ATCOTPBadgeView.m in Sources */,
 				836F0CB61C784BF9005EE91E /* ATCAuthVault.m in Sources */,
