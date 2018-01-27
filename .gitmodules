@@ -13,3 +13,6 @@
 [submodule "Authenticator/vendors/aerogear-ios-otp"]
 	path = Authenticator/vendors/aerogear-ios-otp
 	url = https://github.com/aerogear/aerogear-ios-otp.git
+[submodule "Authenticator/vendors/AeroGearOTP"]
+	path = Authenticator/vendors/AeroGearOTP
+	url = https://github.com/TorinKwok/AeroGearOTP.git
