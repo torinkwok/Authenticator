@@ -1,9 +1,6 @@
 [submodule "Authenticator/vendors/PureLayout"]
 	path = Authenticator/vendors/PureLayout
 	url = https://github.com/PureLayout/PureLayout.git
-[submodule "Authenticator/vendors/aerogear-ios-otp"]
-	path = Authenticator/vendors/aerogear-ios-otp
-	url = https://github.com/aerogear/aerogear-ios-otp.git
 [submodule "Authenticator/vendors/ZXingObjC"]
 	path = Authenticator/vendors/ZXingObjC
 	url = https://github.com/TheLevelUp/ZXingObjC.git
