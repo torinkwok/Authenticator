@@ -7,3 +7,6 @@
 [submodule "Authenticator/vendors/RNCryptor"]
 	path = Authenticator/vendors/RNCryptor
 	url = https://github.com/TorinKwok/RNCryptor-objc.git
+[submodule "Authenticator/vendors/ZXingObjC"]
+	path = Authenticator/vendors/ZXingObjC
+	url = https://github.com/TorinKwok/ZXingObjC.git
