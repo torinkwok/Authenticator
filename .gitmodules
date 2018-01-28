@@ -4,3 +4,6 @@
 [submodule "Authenticator/vendors/AeroGearOTP"]
 	path = Authenticator/vendors/AeroGearOTP
 	url = https://github.com/TorinKwok/AeroGearOTP.git
+[submodule "Authenticator/vendors/RNCryptor"]
+	path = Authenticator/vendors/RNCryptor
+	url = https://github.com/TorinKwok/RNCryptor-objc.git
