@@ -1,12 +1,12 @@
 [submodule "Authenticator/vendors/PureLayout"]
 	path = Authenticator/vendors/PureLayout
 	url = https://github.com/PureLayout/PureLayout.git
-[submodule "Authenticator/vendors/ZXingObjC"]
-	path = Authenticator/vendors/ZXingObjC
-	url = https://github.com/TheLevelUp/ZXingObjC.git
-[submodule "Authenticator/vendors/RNCryptor"]
-	path = Authenticator/vendors/RNCryptor
-	url = https://github.com/RNCryptor/RNCryptor-objc.git
 [submodule "Authenticator/vendors/AeroGearOTP"]
 	path = Authenticator/vendors/AeroGearOTP
 	url = https://github.com/TorinKwok/AeroGearOTP.git
+[submodule "Authenticator/vendors/RNCryptor"]
+	path = Authenticator/vendors/RNCryptor
+	url = https://github.com/TorinKwok/RNCryptor-objc.git
+[submodule "Authenticator/vendors/ZXingObjC"]
+	path = Authenticator/vendors/ZXingObjC
+	url = https://github.com/TorinKwok/ZXingObjC.git
