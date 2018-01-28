@@ -1,6 +1,6 @@
 ## What's Authenticator?
 
-Authenticator is a native and modern Mac app that generates one-time password (i.e. TOTP security tokens defined by [RFC 6238](https://tools.ietf.org/html/rfc6238)) that can be used with the two-factor verification of so many popular Internet services (such as Google, Evernote, GitHub, Amazon, Dropbox, Facebook, Linode etc.). You'd like to think of it as a modern Mac version of [Google Authenticator](https://itunes.apple.com/en/app/google-authenticator/id388497605?mt=8).
+Authenticator is a native and modern Mac app designed for generating one-time password (i.e. TOTP security tokens defined by [RFC 6238](https://tools.ietf.org/html/rfc6238)), which has been used by many popular Internet services as their manner of implementing two-factor verification. You'd like to think of it as a modern Mac version of [Google Authenticator](https://en.wikipedia.org/wiki/Google_Authenticator).
 
 ![screenshot-0](https://i.imgur.com/lXkHXBN.jpg)
 
@@ -11,8 +11,8 @@ Authenticator is a native and modern Mac app that generates one-time password (i
 - Scan QR codes that include accounts and appear on the computer screen with an awesome QR codes picker
 ![screenshot-1](https://i.imgur.com/UVcM0ql.jpg)
 - Automatically lock in order to protect your vault against unexpected access
-- Work offline
-- Opened source under MIT license so that you can evaluate security, modify source code or contribute to this repo. I’m looking forward to see some other contributors :-)
+- Works offline
+- Opened source under MIT license so that you can evaluate security, modify source code or contribute to this repo
 
 ![screenshot-2](https://i.imgur.com/m2JhAGM.jpg)
 
@@ -31,13 +31,11 @@ Authenticator is a native and modern Mac app that generates one-time password (i
 - won't upload your accounts to someone else
 - will never steal your wife and enslave your children
 
-Amazing huh? It’s thanks to the mathematics and my sense of morality to make all of “don’t, won’t and never" above possible. Happy authenticating!
-
 ![screenshot-3](https://i.imgur.com/AZWF1Yw.jpg)
 
 ## Retrieve it:
 
-<a href="http://apple.co/1Yke3NO"><img src="https://github.com/TongKuo/BadgeKit/blob/master/bitmap/mas-badge/mas-badge@1x.png?raw=true" title="mas-badge-bitmap" border="0" width="250" /></a><a href="http://bit.ly/1R8lT7t"><img src="https://github.com/TongKuo/BadgeKit/blob/master/bitmap/github-badge/github-badge@1x.png?raw=true" title="github-badge-bitmap" border="0" width="250" /></a>
+<a href="https://itunes.apple.com/cn/app/authenticator-happy-two-factor-verifying/id1087792302"><img src="https://github.com/TongKuo/BadgeKit/blob/master/bitmap/mas-badge/mas-badge@1x.png?raw=true" title="mas-badge-bitmap" border="0" width="250" /></a><a href="http://bit.ly/1R8lT7t"><img src="https://github.com/TongKuo/BadgeKit/blob/master/bitmap/github-badge/github-badge@1x.png?raw=true" title="github-badge-bitmap" border="0" width="250" /></a>
 
 ## Feedback
 
